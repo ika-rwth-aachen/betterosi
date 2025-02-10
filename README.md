@@ -4,6 +4,7 @@ its [osi3](https://github.com/OpenSimulationInterface/open-simulation-interface)
 
 - supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read_ground_truth`
 - View OSI or MCAP file containing OSI GroundTruth `betterosi <filepath.mcap / filepath.osi>`
+- Convert osi to mcap with `betterosi-tomcap <filepath to osi>`
 
 ## Install
 

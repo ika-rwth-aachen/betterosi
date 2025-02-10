@@ -51,7 +51,7 @@ class OSITrace:
         """Import a trace from a file"""
         self.type = self.map_message_type(type_name)
 
-        if path.lower().endswith((".lzma", ".xz")):
+        if str(path).lower().endswith((".lzma", ".xz")):
             self.file = lzma.open(path, "rb")
         else:
             self.file = open(path, "rb")

@@ -27,7 +27,8 @@ dependencies = [
     'betterproto2[all]',
     'mcap',
     'mcap-protobuf-support',
-    'matplotlib'
+    'matplotlib',
+    'typer'
 ]
 version = "0.1"
 
@@ -37,7 +38,8 @@ compile = ['betterproto2_compiler']
 
 
 [project.scripts]
-betterosi-view = "betterosi.viewer:main"
+betterosi = "betterosi.viewer:main"
+betterosi-tomcap = "betterosi.osi2mcap:app"
 
 [tool.ruff]
 lint.ignore = ["E741", "E701"]

@@ -16,7 +16,7 @@ MCAP_NOT_INSTALLED_STRING = 'install mcap'
 class RaiseOSINotInstalledDescriptor():
     def __getattribute__(self, k):
         raise RuntimeError(OSI_NOT_INSTALLED_STRING)
-osi3_installed = True or importlib.util.find_spec('osi3') is not None  
+osi3_installed = importlib.util.find_spec('osi3') is not None  
 if osi3_installed:
     import osi3
     SensorView.DESCRIPTOR = osi3.osi_sensorview_pb2.DESCRIPTOR
@@ -56,7 +56,7 @@ def read_ground_truth(filepath: str, mcap_return_betterosi: bool = True, mcap_to
     elif p.suffix=='.osi':
         if osi3_installed:
             try:
-                views = [m.global_ground_truth for m in OSITrace(filepath, 'SensorView')]
+                views = [m.global_ground_truth for m in OSITrace(str(filepath), 'SensorView')]
             except Exception:
                 views = [m for m in OSITrace(filepath, 'GroundTruth')]
         else:
