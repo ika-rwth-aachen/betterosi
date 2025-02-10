@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "ruff"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["betterosi*"]
+namespaces = false
+
+
+[project]
+name = "betterosi"
+authors = [
+    {name = "ika - RWTH Aachen", email = "michael.schuldes@ika.rwth-aachen.de"},
+]
+description = "betterosi"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["one", "two"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: None",
+    "Operating System :: OS Independent",
+]
+
+
+dependencies = [
+    'betterproto2[all]',
+    'mcap',
+    'mcap-protobuf-support',
+    'matplotlib'
+]
+version = "0.1"
+
+[project.optional-dependencies]
+writemcap = ['osi3']
+compile = ['betterproto2_compiler']
+
+
+[project.scripts]
+betterosi-view = "betterosi.viewer:main"
+
+[tool.ruff]
+lint.ignore = ["E741", "E701"]
