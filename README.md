@@ -22,7 +22,7 @@ ground_truths = betterosi.read_ground_truth('filepath.mcap/filepath.osi')
 With the following code you can create an MCAP file. If you change the filepath `test.mcap` and `.osi` file will be created automatically.
 
 ### Create MCAP
-This requires the official osi to be installed at the moment.
+
 ```python
 with betterosi.Writer(f'test.mcap') as writer:
     writer.add(some_ground_truth_or_sensor_view)

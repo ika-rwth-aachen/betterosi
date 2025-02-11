@@ -28,13 +28,18 @@ dependencies = [
     'mcap',
     'mcap-protobuf-support',
     'matplotlib',
+    'numpy',
     'typer'
 ]
-version = "0.1"
+version = "0.2"
 
-[project.optional-dependencies]
-writemcap = ['osi3']
-compile = ['betterproto2_compiler']
+#project.optional-dependencies]
+#compile = ['betterproto2_compiler'] #, 'osi3']
+
+[tool.setuptools.package-data]
+"betterosi" = [
+    "descriptors.json"
+]
 
 
 [project.scripts]

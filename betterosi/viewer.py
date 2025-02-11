@@ -18,18 +18,21 @@
 # pip install matplotlib
 
 
-import matplotlib.pyplot as plt
-import matplotlib.animation as anim
-import matplotlib.collections as mc
-import matplotlib.widgets as mw
-import matplotlib.patches as patches
-import matplotlib.transforms as transforms
-import numpy as np
 import os
 import sys
 import time
+
+import matplotlib.animation as anim
+import matplotlib.collections as mc
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
+import matplotlib.transforms as transforms
+import matplotlib.widgets as mw
+import numpy as np
+
 import betterosi as osi3
 from betterosi import read_ground_truth
+
 
 class BBObject:
     def __init__(self, id, x, y, h, v, width, height, axes):

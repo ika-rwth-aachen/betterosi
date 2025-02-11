@@ -6,9 +6,18 @@ Module to handle and manage OSI trace files.
 import lzma
 import struct
 
-from betterosi.generated.osi3 import SensorView, SensorViewConfiguration, SensorData, GroundTruth, HostVehicleData,TrafficCommand, TrafficCommandUpdate, TrafficUpdate, MotionRequest, StreamingUpdate
-
-
+from betterosi.generated.osi3 import (
+    GroundTruth,
+    HostVehicleData,
+    MotionRequest,
+    SensorData,
+    SensorView,
+    SensorViewConfiguration,
+    StreamingUpdate,
+    TrafficCommand,
+    TrafficCommandUpdate,
+    TrafficUpdate,
+)
 
 MESSAGES_TYPE = {
     "SensorView": SensorView,

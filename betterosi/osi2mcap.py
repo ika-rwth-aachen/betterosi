@@ -1,5 +1,7 @@
-import typer
 from pathlib import Path
+
+import typer
+
 import betterosi
 
 app = typer.Typer(pretty_exceptions_show_locals=False)
