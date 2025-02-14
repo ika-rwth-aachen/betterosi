@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from betterosi.descriptor import Descriptor
-from betterosi.io import Writer, read_ground_truth  # noqa: F401
+from betterosi.io import Writer, read  # noqa: F401
 
 from . import generated
 from .generated.osi3 import *  # noqa: F403

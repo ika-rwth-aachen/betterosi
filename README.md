@@ -2,9 +2,9 @@
 
 its [osi3](https://github.com/OpenSimulationInterface/open-simulation-interface) using [betterproto2](https://github.com/betterproto/python-betterproto2).
 
-- supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read_ground_truth`
-- View OSI or MCAP file containing OSI GroundTruth `betterosi <filepath.mcap / filepath.osi>`
-- Convert osi to mcap with `betterosi-tomcap <filepath to osi>`
+- supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read`
+- View OSI or MCAP file containing OSI GroundTruth `betterosi-viewer <filepath.mcap / filepath.osi>`
+- Convert osi to mcap with `betterosi-to-mcap <filepath to osi>`
 
 ## Install
 
@@ -15,7 +15,8 @@ The following code creates a list of ground truths form mcap or osi sensor views
 ```python
 import betterosi
 
-ground_truths = betterosi.read_ground_truth('filepath.mcap/filepath.osi')
+ground_truths = betterosi.read('filepath.mcap/filepath.osi')
+sensor_views = betterosi.read('filepath.osi', return_sensorview=True)
 
 ```
 ## Writing MCAP file

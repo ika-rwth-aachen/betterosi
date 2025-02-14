@@ -43,8 +43,8 @@ version = "0.2"
 
 
 [project.scripts]
-betterosi = "betterosi.viewer:main"
-betterosi-tomcap = "betterosi.osi2mcap:app"
+betterosi-viewer = "betterosi.viewer:main"
+betterosi-to-mcap = "betterosi.osi2mcap:app"
 
 [tool.ruff]
 lint.ignore = ["E741", "E701"]

@@ -2,41 +2,45 @@ import struct
 from pathlib import Path
 from typing import Any
 
+from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
-from mcap_protobuf.reader import read_protobuf_messages
 from mcap_protobuf.writer import Writer as McapWriter
 
 from betterosi.generated.osi3 import GroundTruth, SensorView
 from betterosi.osi3trace import OSITrace
 
 
-def read_ground_truth(filepath: str, mcap_return_betterosi: bool = True, mcap_topics: list|None = None) -> list[GroundTruth]:
+def gen2betterosi(schema, message, use_sv=False, passthrough=False):
+    if schema.name == 'osi3.SensorView':
+        sv = message if passthrough else SensorView().parse(message.SerializeToString())
+        return sv if use_sv else sv.global_ground_truth
+    elif not use_sv and schema.name == 'osi3.GroundTruth':
+        gt = message if passthrough else GroundTruth().parse(message.SerializeToString())
+        return gt
+    return None
+    
+    
+def read(filepath: str, return_sensor_view=False, mcap_return_betterosi: bool = True, mcap_topics: list|None = None) -> list[GroundTruth]|list[SensorView]:
     # reads osi or mcap SensorViews or GroundTruth
     p = Path(filepath)
     if p.suffix=='.mcap':
-        if mcap_return_betterosi:
-                try:
-                    with p.open("rb") as f:
-                        reader = make_reader(f)
-                        views = [SensorView().parse(message.data) for schema, channel, message in reader.iter_messages(topics=mcap_topics) if schema.name == "osi3.SensorView"]
-                    if len(views)==0:
-                        raise RuntimeError()
-                except RuntimeError:
-                    with p.open("rb") as f:
-                        reader = make_reader(f)
-                        views = [GroundTruth().parse(message.data) for schema, channel, message in reader.iter_messages(topics=mcap_topics) if schema.name == "osi3.GroundTruth"]
-        else:
-            views = [m.proto_msg for m in read_protobuf_messages(filepath) if m.proto_msg.__name__ in ['SensorView', 'GroundTruth']]
-            if hasattr(views[0], 'global_ground_truth'):
-                views = [v.global_ground_truth for v in views]
-            
+        with p.open("rb") as f:
+            reader = make_reader(f, decoder_factories=[DecoderFactory()])
+            views = [gen2betterosi(schema, proto_msg, use_sv=False, passthrough=not mcap_return_betterosi) for schema, channel, message, proto_msg in reader.iter_decoded_messages(topics=mcap_topics)]
+            views = [v for v in views if v is not None]
     elif p.suffix=='.osi':
         try:
-            views = [m.global_ground_truth for m in OSITrace(str(filepath), 'SensorView')]
-        except Exception:
-            views = [m for m in OSITrace(filepath, 'GroundTruth')]
+            views = [m for m in OSITrace(str(filepath), 'SensorView')]
+            if not return_sensor_view:
+                views = [m.global_ground_truth for m in views]
+        except Exception as e:
+            if return_sensor_view:
+                raise e
+            views = [m for m in OSITrace(str(filepath), 'GroundTruth')]
     else:
         raise NotImplementedError()
+    if len(views)==0:
+        raise RuntimeError()
     return views
 
 class Writer():
@@ -58,14 +62,13 @@ class Writer():
     def __enter__(self):
         return self
 
-    def add(self, gt: GroundTruth):
+    def add(self, view: GroundTruth|SensorView):
         if self.write_mcap:
-            log_time = int(gt.timestamp.nanos+gt.timestamp.seconds*1e9)
-            self.mcap_writer.write_message(self.topic, gt, 
+            log_time = int(view.timestamp.nanos+view.timestamp.seconds*1e9)
+            self.mcap_writer.write_message(self.topic, view, 
                 log_time=log_time, publish_time=log_time),
-
         if self.write_osi:
-            buffer = bytes(gt)
+            buffer = bytes(view)
             self.file.write(struct.pack("<L", len(buffer)))
             self.file.write(buffer)
 
