@@ -1,4 +1,4 @@
-# MODIFIED FROM https://github.com/OpenSimulationInterface/open-simulation-interface/blob/master/osi3trace/osi_trace.py
+# ADAPTED FROM https://github.com/OpenSimulationInterface/open-simulation-interface/blob/master/osi3trace/osi_trace.py
 """
 Module to handle and manage OSI trace files.
 """

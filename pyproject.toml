@@ -17,11 +17,10 @@ readme = "README.md"
 requires-python = ">=3.9"
 keywords = ["one", "two"]
 classifiers = [
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Programming Language :: Python :: 3",
-    "License :: None",
     "Operating System :: OS Independent",
 ]
-
 
 dependencies = [
     'betterproto2[all]',
@@ -45,6 +44,7 @@ version = "0.2"
 [project.scripts]
 betterosi-viewer = "betterosi.viewer:main"
 betterosi-to-mcap = "betterosi.osi2mcap:app"
+betterosi-generate-descriptor-json = "betterosi.descriptor:app"
 
 [tool.ruff]
 lint.ignore = ["E741", "E701"]

@@ -1,4 +1,5 @@
-# ADAPTED FROM ESMIN
+# ADAPTED FROM https://github.com/esmini/esmini/blob/master/scripts/osiviewer.py
+# 
 # esmini - Environment Simulator Minimalistic
 # https://github.com/esmini/esmini
 #
