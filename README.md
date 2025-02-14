@@ -1,6 +1,6 @@
 # betterosi: library for osi
 
-A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files.) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
+A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
 
 - supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read`
 - View OSI or MCAP file containing OSI GroundTruth `betterosi-viewer <filepath.mcap / filepath.osi>` (adapted from [esmini](https://github.com/esmini/esmini))
@@ -10,6 +10,7 @@ The library uses code from [esmini](https://github.com/esmini/esmini) (`betteros
 
 The library uses code generation of [python-betterproto2-compiler](https://github.com/betterproto/python-betterproto2-compiler) to generate python code from the protobuf definitions of [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface).
 
+Since osi and esmini are under MPL, also this repository is published under MPL 2.0 license.
 ## Install
 
 `pip install git+https://gitlab+deploy-token-147:gldt-nUtxxKzFkxtgbKngy5U-@gitlab.ika.rwth-aachen.de/fb-fi/projects/synergies/betterosi`
