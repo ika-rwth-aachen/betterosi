@@ -32,7 +32,7 @@ import matplotlib.widgets as mw
 import numpy as np
 
 import betterosi as osi3
-from betterosi import read_ground_truth
+import betterosi
 
 
 class BBObject:
@@ -769,8 +769,8 @@ class OSIMCAPFile:
         self.view = None
         self.first_timestamp = 0.0
 
-        ground_truths = read_ground_truth(osi_filename)
-        for i, msg in enumerate(ground_truths):
+        ground_truths = betterosi.read(osi_filename, return_ground_truth=True)
+        for msg in ground_truths:
             self.gt = msg
             timestamp = self.gt.timestamp.seconds + self.gt.timestamp.nanos * 1e-9
 
