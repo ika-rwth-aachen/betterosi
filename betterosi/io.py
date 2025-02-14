@@ -34,27 +34,35 @@ def read(filepath: str, return_sensor_view=False, return_ground_truth=False, mca
     if p.suffix=='.mcap':
         with p.open("rb") as f:
             reader = make_reader(f, decoder_factories=[DecoderFactory()])
-            views = [gen2betterosi(schema, proto_msg, use_sv=False, passthrough=not mcap_return_betterosi) for schema, channel, message, proto_msg in reader.iter_decoded_messages(topics=mcap_topics)]
-            views = [v for v in views if v is not None]
+            views = (gen2betterosi(schema, proto_msg, return_sensor_view=return_sensor_view, return_ground_truth=return_ground_truth, passthrough=not mcap_return_betterosi) for schema, channel, message, proto_msg in reader.iter_decoded_messages(topics=mcap_topics))
+            views = (v for v in views if v is not None)
+            for view in views:
+                yield view
     elif p.suffix=='.osi':
         if return_sensor_view or return_ground_truth:
             try:
-                views = [m for m in osi3trace.OSITrace(str(filepath), 'SensorView')]
-                if not return_sensor_view:
-                    views = [m.global_ground_truth for m in views]
-            except Exception as e:
+                next(iter(osi3trace.OSITrace(str(filepath), 'SensorView')))
+                is_sv = True
+            except RuntimeError as e:
                 if return_sensor_view:
                     raise e
-                views = [m for m in osi3trace.OSITrace(str(filepath), 'GroundTruth')]
+                is_sv = False
+            if is_sv:
+                views = osi3trace.OSITrace(str(filepath), 'SensorView')
+                if not return_sensor_view:
+                    views = (m.global_ground_truth for m in views)
+            else:
+                views = osi3trace.OSITrace(str(filepath), 'GroundTruth')
         else:
             if osi_message_type is None:
                 raise ValueError('Specify the osi_message_type, e.g., `GroundTruth`.')
-            views =  [m for m in osi3trace.OSITrace(str(filepath), osi_message_type)]
+            views =  osi3trace.OSITrace(str(filepath), osi_message_type)
+        for view in views:
+            yield view
     else:
         raise NotImplementedError()
-    if len(views)==0:
-        raise RuntimeError()
-    return views
+
+
 
 class Writer():
     def __init__(self, output, topic='ConvertedTrace', mode='wb', **kwargs):

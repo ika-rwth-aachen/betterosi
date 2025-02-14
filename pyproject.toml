@@ -28,7 +28,8 @@ dependencies = [
     'mcap-protobuf-support',
     'matplotlib',
     'numpy',
-    'typer'
+    'typer',
+    'tqdm'
 ]
 version = "0.2"
 
