@@ -1,4 +1,3 @@
-from pathlib import Path
 from warnings import warn
 from betterosi.descriptor import Descriptor
 from betterosi.io import Writer, read  # noqa: F401

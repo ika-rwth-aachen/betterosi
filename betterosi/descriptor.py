@@ -29,7 +29,7 @@ class Descriptor():
     
     @classmethod
     def get_osi_classe_names(cls):
-        return [k for k in dir(betterosi.osi3trace) if hasattr(getattr(betterosi.osi3trace, k), '__module__') and getattr(betterosi.osi3trace, k).__module__.endswith('osi3')]
+        return list(betterosi.osi3trace.MESSAGES_TYPE.keys())
     
     @classmethod
     def create_descriptors_from_json(cls, filepath: str ='descriptors.json'):

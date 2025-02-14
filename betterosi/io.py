@@ -6,22 +6,30 @@ from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
 from mcap_protobuf.writer import Writer as McapWriter
 
-from betterosi.generated.osi3 import GroundTruth, SensorView
-from betterosi.osi3trace import OSITrace
+from .generated.osi3 import GroundTruth, SensorView
+from . import osi3trace
 
 
-def gen2betterosi(schema, message, use_sv=False, passthrough=False):
-    if schema.name == 'osi3.SensorView':
-        sv = message if passthrough else SensorView().parse(message.SerializeToString())
-        return sv if use_sv else sv.global_ground_truth
-    elif not use_sv and schema.name == 'osi3.GroundTruth':
-        gt = message if passthrough else GroundTruth().parse(message.SerializeToString())
-        return gt
+def gen2betterosi(schema, message, return_sensor_view=False, return_ground_truth=False, passthrough=False):
+    if not passthrough:
+        if any(schema.name == f'osi3.{k}' for k in osi3trace.MESSAGES_TYPE.keys()):
+            message_cls = osi3trace.MESSAGES_TYPE[schema.name.split('.')[-1]]
+            message = message_cls().parse(message.SerializeToString())
+        else:
+            return None
+    if not return_sensor_view and not return_ground_truth:
+        return message
+    if return_sensor_view and schema.name == 'osi3.SensorView':
+        return message
+    if return_ground_truth:
+        if schema.name == 'osi3.SensorView':
+            return message.global_ground_truth
+        if schema.name == 'osi3.GroundTruth':
+            return message                        
     return None
     
     
-def read(filepath: str, return_sensor_view=False, mcap_return_betterosi: bool = True, mcap_topics: list|None = None) -> list[GroundTruth]|list[SensorView]:
-    # reads osi or mcap SensorViews or GroundTruth
+def read(filepath: str, return_sensor_view=False, return_ground_truth=False, mcap_return_betterosi: bool = True, mcap_topics: list|None = None, osi_message_type: str|None = None) -> list[Any]:
     p = Path(filepath)
     if p.suffix=='.mcap':
         with p.open("rb") as f:
@@ -29,14 +37,19 @@ def read(filepath: str, return_sensor_view=False, mcap_return_betterosi: bool = 
             views = [gen2betterosi(schema, proto_msg, use_sv=False, passthrough=not mcap_return_betterosi) for schema, channel, message, proto_msg in reader.iter_decoded_messages(topics=mcap_topics)]
             views = [v for v in views if v is not None]
     elif p.suffix=='.osi':
-        try:
-            views = [m for m in OSITrace(str(filepath), 'SensorView')]
-            if not return_sensor_view:
-                views = [m.global_ground_truth for m in views]
-        except Exception as e:
-            if return_sensor_view:
-                raise e
-            views = [m for m in OSITrace(str(filepath), 'GroundTruth')]
+        if return_sensor_view or return_ground_truth:
+            try:
+                views = [m for m in osi3trace.OSITrace(str(filepath), 'SensorView')]
+                if not return_sensor_view:
+                    views = [m.global_ground_truth for m in views]
+            except Exception as e:
+                if return_sensor_view:
+                    raise e
+                views = [m for m in osi3trace.OSITrace(str(filepath), 'GroundTruth')]
+        else:
+            if osi_message_type is None:
+                raise ValueError('Specify the osi_message_type, e.g., `GroundTruth`.')
+            views =  [m for m in osi3trace.OSITrace(str(filepath), osi_message_type)]
     else:
         raise NotImplementedError()
     if len(views)==0:

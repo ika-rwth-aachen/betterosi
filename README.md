@@ -19,8 +19,9 @@ The following code creates a list of ground truths form mcap or osi sensor views
 ```python
 import betterosi
 
-ground_truths = betterosi.read('filepath.mcap/filepath.osi')
-sensor_views = betterosi.read('filepath.osi', return_sensorview=True)
+ground_truths = betterosi.read('filepath.mcap/filepath.osi', return_ground_truth=True)
+sensor_views = betterosi.read('filepath.osi', return_sensor_view=True)
+any_osi_message = betterosi.read('filepath.mcap')
 
 ```
 ## Writing MCAP file
