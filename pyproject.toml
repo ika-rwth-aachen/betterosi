@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 dependencies = [
-    'betterproto2[all]<0.3.0',
+    'betterproto2[all]<=0.2.3',
     'mcap',
     'mcap-protobuf-support',
     'matplotlib',
