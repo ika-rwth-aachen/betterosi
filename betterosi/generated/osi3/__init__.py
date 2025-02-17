@@ -255,7 +255,7 @@ import betterproto2
 
 from ..message_pool import default_message_pool
 
-betterproto2.check_compiler_version("0.2.4")
+betterproto2.check_compiler_version("0.3.0")
 
 
 class BoundingBoxType(betterproto2.Enum):
@@ -269,7 +269,7 @@ class BoundingBoxType(betterproto2.Enum):
     """
 
     TYPE_OTHER = 1
-    """
+    """proto2.TYPE
     Any other type of object.
     """
 
@@ -304,7 +304,7 @@ class BoundingBoxType(betterproto2.Enum):
     """
     The side mirror of a vehicle.
 
-    \note The side mirror is not included in the overall bounding box
+    note The side mirror is not included in the overall bounding box
     of the parent object.
     """
 
@@ -313,8 +313,8 @@ class CameraDetectionColor(betterproto2.Enum):
     """
     Definition of shape dominant color.
 
-    \attention DEPRECATED: This color enum will be removed in version
-    4.0.0. Use \c ColorDescription instead.
+    attention DEPRECATED: This color enum will be removed in version
+    4.0.0. Use c ColorDescription instead.
     """
 
     COLOR_UNKNOWN = 0
@@ -342,7 +342,7 @@ class CameraDetectionColor(betterproto2.Enum):
     """
     Shape with gray color.
 
-    \note Deprecated variant spelling of COLOR_GRAY
+    note Deprecated variant spelling of COLOR_GRAY
     """
 
     COLOR_WHITE = 4
@@ -481,7 +481,7 @@ class CameraSensorViewConfigurationChannelFormat(betterproto2.Enum):
     """
     Unspecified but known channel format.
     Consider proposing an additional format if using
-    \c #CHANNEL_FORMAT_OTHER.
+    c #CHANNEL_FORMAT_OTHER.
     """
 
     CHANNEL_FORMAT_MONO_U8_LIN = 2
@@ -609,10 +609,10 @@ class CameraSensorViewConfigurationPixelOrder(betterproto2.Enum):
     """
     Pixel layout
 
-    Pixel layout documents the order of pixels in the \c image_data
+    Pixel layout documents the order of pixels in the c image_data
     in CameraSensorView.
 
-    \note this enum does not contain an entry to do mirroring upside down
+    note this enum does not contain an entry to do mirroring upside down
     and left-to-right at the same time, because this is equivalent to a
     180-degree rotation, which should be indicated in the sensor coordinate
     system.
@@ -628,7 +628,7 @@ class CameraSensorViewConfigurationPixelOrder(betterproto2.Enum):
     """
     Known pixel order that is not supported by OSI.
     Consider proposing an additional format if using
-    \c #PIXEL_ORDER_OTHER.
+    c #PIXEL_ORDER_OTHER.
     """
 
     PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM = 2
@@ -954,11 +954,11 @@ class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
     Categorization is done based on natural day/night time illuminance levels
     [2] and standards for required lighting levels on roads [2, 3, 4, 5].
 
-    \par References:
-    [1] DIN Deutsches Institut fuer Normung e. V. (1982). <em>DIN 5031-3 Strahlungsphysik im optischen Bereich und Lichttechnik - Groessen, Formelzeichen und Einheiten der Lichttechnik</em>. (DIN 5031-3:1982-03). Berlin, Germany. \n
-    [2] National Optical Astronomy Observatory. (2015, December 02). <em>Recommended Light Levels</em>. Retrieved January 25, 2020, from https://www.noao.edu/education/QLTkit/ACTIVITY_Documents/Safety/LightLevels_outdoor+indoor.pdf \n
-    [3] Wang, Y. & Zou, Y., (2016, March). <em>Study on Illumination for State Highways</em>. Washington State Department of Transportation. Retrieved January 25, 2020, from http://www.wsdot.wa.gov/research/reports/fullreports/847.1.pdf \n
-    [4] Laperriere, A. (2011, May). <em>LED street lighting in the municipality of Saint-Gedeon-de-Beauce within the framework of advanced lighting technologies</em>. Retrieved January 25, 2020, from http://sslnet.ca/wp-content/uploads/2011/10/LTE-RT-2011-0076-Anglais.pdf \n
+    par References:
+    [1] DIN Deutsches Institut fuer Normung e. V. (1982). <em>DIN 5031-3 Strahlungsphysik im optischen Bereich und Lichttechnik - Groessen, Formelzeichen und Einheiten der Lichttechnik</em>. (DIN 5031-3:1982-03). Berlin, Germany. n
+    [2] National Optical Astronomy Observatory. (2015, December 02). <em>Recommended Light Levels</em>. Retrieved January 25, 2020, from https://www.noao.edu/education/QLTkit/ACTIVITY_Documents/Safety/LightLevels_outdoor+indoor.pdf n
+    [3] Wang, Y. & Zou, Y., (2016, March). <em>Study on Illumination for State Highways</em>. Washington State Department of Transportation. Retrieved January 25, 2020, from http://www.wsdot.wa.gov/research/reports/fullreports/847.1.pdf n
+    [4] Laperriere, A. (2011, May). <em>LED street lighting in the municipality of Saint-Gedeon-de-Beauce within the framework of advanced lighting technologies</em>. Retrieved January 25, 2020, from http://sslnet.ca/wp-content/uploads/2011/10/LTE-RT-2011-0076-Anglais.pdf n
     [5] Crabb, G. I., Beaumont, R. & Webster, D. (2008, October 17). <em>Review of the class and quality of street lighting</em>. Transport Research Laboratory. Retrieved January 25, 2020, from http://courtneystrong.com/wp-content/uploads/2017/07/css-sl1-class-and-quality-of-street-lighting.pdf
     """
 
@@ -974,29 +974,29 @@ class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
 
     AMBIENT_ILLUMINATION_LEVEL1 = 2
     """
-    Level 1 illumination in ]0.001, 0.01[ lx. \n
+    Level 1 illumination in ]0.001, 0.01[ lx. n
     E.g. Night with no artificial light.
 
-    \note Use \c #AMBIENT_ILLUMINATION_LEVEL1 if illumination is less
+    note Use c #AMBIENT_ILLUMINATION_LEVEL1 if illumination is less
     than 0.001 lx.
     """
 
     AMBIENT_ILLUMINATION_LEVEL2 = 3
     """
-    Level 2 illumination in [0.01, 1[ lx. \n
+    Level 2 illumination in [0.01, 1[ lx. n
     E.g. Night full moon / Deep twilight.
     """
 
     AMBIENT_ILLUMINATION_LEVEL3 = 4
     """
-    Level 3 illumination in [1, 3[ lx. \n
+    Level 3 illumination in [1, 3[ lx. n
     E.g. Deep to average twilight / Minimum lighting on local low
     pedestrian conflict roads.
     """
 
     AMBIENT_ILLUMINATION_LEVEL4 = 5
     """
-    Level 4 illumination in [3, 10[ lx. \n
+    Level 4 illumination in [3, 10[ lx. n
     E.g. Average to full twilight / Minimum lighting on collector roads /
     Minimum lighting on major and expressway roads with low to average
     pedestrian conflict.
@@ -1004,36 +1004,36 @@ class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
 
     AMBIENT_ILLUMINATION_LEVEL5 = 6
     """
-    Level 5 illumination in [10, 20[ lx. \n
+    Level 5 illumination in [10, 20[ lx. n
     E.g. Minimum lighting on major and expressway roads with high
     pedestrian conflict.
     """
 
     AMBIENT_ILLUMINATION_LEVEL6 = 7
     """
-    Level 6 illumination in [20, 400[ lx. \n
+    Level 6 illumination in [20, 400[ lx. n
     E.g. Roads with more lighting / Very dark overcast day to sunrise or
     sunset on a clear day.
     """
 
     AMBIENT_ILLUMINATION_LEVEL7 = 8
     """
-    Level 7 illumination in [400, 1000[ lx. \n
+    Level 7 illumination in [400, 1000[ lx. n
     E.g. Sunrise or sunset on a clear day / Overcast day.
     """
 
     AMBIENT_ILLUMINATION_LEVEL8 = 9
     """
-    Level 8 illumination in [1000, 10000[ lx. \n
+    Level 8 illumination in [1000, 10000[ lx. n
     E.g. Average to full daylight.
     """
 
     AMBIENT_ILLUMINATION_LEVEL9 = 10
     """
-    Level 9 illumination in [10000, 120000[ lx. \n
+    Level 9 illumination in [10000, 120000[ lx. n
     E.g. Full daylight to intense sunlight.
 
-    \note Use \c #AMBIENT_ILLUMINATION_LEVEL9 if illumination is more
+    note Use c #AMBIENT_ILLUMINATION_LEVEL9 if illumination is more
     than 120000 lx
     """
 
@@ -1048,8 +1048,8 @@ class EnvironmentalConditionsCloudLayerFractionalCloudCover(betterproto2.Enum):
     0 oktas means that there are no traces of clouds in the sky,
     8 oktas means that the sky is completely covered with clouds and no sky blue can be recognized.
 
-    \par References:
-    [1] CIE engl. International Commission on Illumination. (2020). <em>CIE S017:2020 ILV: Intl. Lighting Vocabulary, 2nd edn.</em>. Retrieved March 8, 2022, from https://cie.co.at/eilvterm/17-29-116 \n
+    par References:
+    [1] CIE engl. International Commission on Illumination. (2020). <em>CIE S017:2020 ILV: Intl. Lighting Vocabulary, 2nd edn.</em>. Retrieved March 8, 2022, from https://cie.co.at/eilvterm/17-29-116 n
     [2] UBC The University of British Columbia. (2018). <em>ATSC 113 Weather for Sailing, Flying & Snow Sports</em>. Retrieved March 8, 2022, from https://www.eoas.ubc.ca/courses/atsc113/flying/met_concepts/01-met_concepts/01c-cloud_coverage/index.html
     """
 
@@ -1127,10 +1127,10 @@ class EnvironmentalConditionsFog(betterproto2.Enum):
     This is approximately equivalent to visibility measured in terms of the
     contrast of a distant object against its background.
 
-    \par References:
-    [1] Shepard, F. D. (1996). <em>Reduced visibility due to fog on the highway.</em> Transportation Research Board, National Research Council (Ed.). National Academy Press. Washington, D.C., USA. ISBN 0-309-06006-0. \n
-    [2] Strassenverkehrs-Ordnung (StVO) as of dated  March 06, 2013 (BGBl. I S. 367), lastly changed by article 4a of the order from June 06, 2019 (BGBl. I S. 756). \n
-    [3] stvo.de. (2013, April 01). <em>StVO Par. 17 Beleuchtung</em>. Retrieved January 25, 2020, from https://www.stvo.de/strassenverkehrsordnung/101-17-beleuchtung \n
+    par References:
+    [1] Shepard, F. D. (1996). <em>Reduced visibility due to fog on the highway.</em> Transportation Research Board, National Research Council (Ed.). National Academy Press. Washington, D.C., USA. ISBN 0-309-06006-0. n
+    [2] Strassenverkehrs-Ordnung (StVO) as of dated  March 06, 2013 (BGBl. I S. 367), lastly changed by article 4a of the order from June 06, 2019 (BGBl. I S. 756). n
+    [3] stvo.de. (2013, April 01). <em>StVO Par. 17 Beleuchtung</em>. Retrieved January 25, 2020, from https://www.stvo.de/strassenverkehrsordnung/101-17-beleuchtung n
     [4] Meteorological Office UK. (2020). <em>Homepage of the Meteorological Office - How we measure visibility</em>. Retrieved January 25, 2020, from http://www.metoffice.gov.uk/guide/weather/observations-guide/how-we-measure-visibility
     """
 
@@ -1191,7 +1191,7 @@ class EnvironmentalConditionsPrecipitation(betterproto2.Enum):
     Definition of discretized precipitation states according to [1].
     (I = Intensity of precipitation in mm per hour mm/h)
 
-    \par Reference:
+    par Reference:
     [1] Paulat, M., Frei, C., Hagen, M. & Wernli, H. (2008). A gridded dataset of hourly precipitation in Germany: Its construction, climatology and application. <em>Meteorologische Zeitschrift</em>. Vol. 17, No. 6. pp. 719-732. Berlin, Stuttgart, Germany. https://doi.org/10.1127/0941-2948/2008/0332
     """
 
@@ -1264,9 +1264,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionName(betterproto2.Enum):
     """
     A list of possible automated driving features.
 
-    \note This can span (in theory) from Level 0 all the way to Level 5.
+    note This can span (in theory) from Level 0 all the way to Level 5.
 
-    \par References:
+    par References:
     [1] CLEARING THE CONFUSION: Recommended Common Naming for Advanced Driver Assistance Technologies, SAE International, Retrieved October 22, 2021, from https://www.sae.org/binaries/content/assets/cm/content/miscellaneous/adas-nomenclature.pdf
     [2] Automated Driving, German Association of the Automotive Industry (VDA), Retrieved October 22, 2021, from https://www.vda.de/en/topics/innovation-and-technology/automated-driving/automated-driving
     """
@@ -1406,7 +1406,7 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionState(betterproto2.Enum):
     """
     The state that the feature is in.
 
-    \note Not all of these will be applicable for all vehicles
+    note Not all of these will be applicable for all vehicles
     and features.
     """
 
@@ -1557,7 +1557,7 @@ class LaneClassificationSubtype(betterproto2.Enum):
     SUBTYPE_NORMAL = 2
     """
     A normal driving lane.
-    Example: Lanes with IDs l1, l2, l3 and l4 in image \ref
+    Example: Lanes with IDs l1, l2, l3 and l4 in image ref
     HighwayExit.
 
     Since it is intended to be used for normal automotive
@@ -1591,7 +1591,7 @@ class LaneClassificationSubtype(betterproto2.Enum):
     SUBTYPE_STOP = 6
     """
     A hard shoulder on motorways for emergency stops.
-    Example: Lane l5 in image \ref
+    Example: Lane l5 in image ref
     HighwayExit.
 
     Since it is not intended to be used for normal automotive
@@ -1625,7 +1625,7 @@ class LaneClassificationSubtype(betterproto2.Enum):
     SUBTYPE_EXIT = 10
     """
     A deceleration lane in parallel to the main road.
-    Example: Lane l6 in image \ref
+    Example: Lane l6 in image ref
     HighwayExit.
 
     Since it is intended to be used for normal automotive
@@ -1683,22 +1683,22 @@ class LaneClassificationType(betterproto2.Enum):
     TYPE_DRIVING = 2
     """
     A normal lane.
-    Example: Lanes with IDs l1, l2, l3, l4 and l6 in image \ref
+    Example: Lanes with IDs l1, l2, l3, l4 and l6 in image ref
     HighwayExit.
     """
 
     TYPE_NONDRIVING = 3
     """
     A road where driving is normally not permitted.
-    Example: Lane with ID l5 in image \ref HighwayExit.
+    Example: Lane with ID l5 in image ref HighwayExit.
     """
 
     TYPE_INTERSECTION = 4
     """
     An intersection as a lane.
-    Example: Lane with ID l7 in image \ref Intersection.
+    Example: Lane with ID l7 in image ref Intersection.
 
-    \image html OSI_X-Junction.svg "" width=600px
+    image html OSI_X-Junction.svg "" width=600px
     """
 
 
@@ -1707,7 +1707,7 @@ class LaneBoundaryBoundaryPointDash(betterproto2.Enum):
     This enum describes the alternation of dashes in case of a
     dashed lane boundary.
 
-    \note The enum descriptions adhere to the definition direction
+    note The enum descriptions adhere to the definition direction
     of the lane boundary points. This means that start or end of a
     dash are understood with respect to the direction in which the
     points of the boundary line are defined.
@@ -1726,23 +1726,23 @@ class LaneBoundaryBoundaryPointDash(betterproto2.Enum):
 
     DASH_START = 2
     """
-    The current \c BoundaryPoint indicates the start of a dash.
+    The current c BoundaryPoint indicates the start of a dash.
     """
 
     DASH_CONTINUE = 3
     """
-    The current \c BoundaryPoint is located on a dash of a dashed
+    The current c BoundaryPoint is located on a dash of a dashed
     line. This enables a dash to continue across multiple points.
     """
 
     DASH_END = 4
     """
-    The current \c BoundaryPoint indicates the end of a dash.
+    The current c BoundaryPoint indicates the end of a dash.
     """
 
     DASH_GAP = 5
     """
-    The current \c BoundaryPoint is located in the gap between
+    The current c BoundaryPoint is located in the gap between
     two dashes. When used to describe a first/last point of a lane 
     boundary, it indicates that the lane boundary starts/ends in
     a gap.
@@ -1753,9 +1753,9 @@ class LaneBoundaryClassificationColor(betterproto2.Enum):
     """
     The semantic color of the lane boundary in case of a lane markings.
     Lane markings that alternate in color must be represented by
-    individual \c LaneBoundary segments.
+    individual c LaneBoundary segments.
 
-    \note The color types represent the semantic color classification of
+    note The color types represent the semantic color classification of
     lane markings only. They do not represent an actual visual appearance.
     """
 
@@ -2074,7 +2074,7 @@ class LogicalLaneType(betterproto2.Enum):
     TYPE_NORMAL = 2
     """
     A normal driving lane.
-    Example: Lanes with IDs l1, l2, l3 and l4 in image \ref
+    Example: Lanes with IDs l1, l2, l3 and l4 in image ref
     HighwayExit.
     This matches the OpenDRIVE type "driving".
 
@@ -2105,7 +2105,7 @@ class LogicalLaneType(betterproto2.Enum):
     TYPE_STOP = 6
     """
     A hard shoulder on motorways for emergency stops.
-    Example: Lane l5 in image \ref
+    Example: Lane l5 in image ref
     HighwayExit.
     """
 
@@ -2127,7 +2127,7 @@ class LogicalLaneType(betterproto2.Enum):
     TYPE_EXIT = 10
     """
     A deceleration lane in parallel to the main road.
-    Example: Lane l6 in image \ref
+    Example: Lane l6 in image ref
     HighwayExit.
     """
 
@@ -2264,13 +2264,13 @@ class MovingObjectPedestrianAttributesBoneType(betterproto2.Enum):
     """
     The type of the bone.
 
-    \image html OSI_PedestrianModelHierarchy.jpg
+    image html OSI_PedestrianModelHierarchy.jpg
     """
 
     TYPE_ROOT = 0
     """
     Root point of the pedestrian. Defined by bbcenter_to_root
-    (\c PedestrianAttributes::bbcenter_to_root).
+    (c PedestrianAttributes::bbcenter_to_root).
     """
 
     TYPE_HIP = 1
@@ -2590,7 +2590,7 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
     """
     Definition of vehicle types.
 
-    \note OSI provides a richer set of vehicle types than is supported by some
+    note OSI provides a richer set of vehicle types than is supported by some
     other OpenX standards (in particular, OpenScenario 1.x and 2.x, and OpenLabel).
     This is primarily for historical reasons.  Where a single type from a
     different standard can map to multiple OSI types it is left up to the
@@ -2601,7 +2601,7 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
     effort, it should now map to TYPE_CAR, which is an alias of the old TYPE_MEDIUM_CAR,
     and all other car type enums have been deprecated in favor of TYPE_CAR.
 
-    \note Vehicle type classification is a complex area and there are no
+    note Vehicle type classification is a complex area and there are no
     universally recognized standards.  As such, the boundaries between some of the
     OSI vehicle types are not well-defined.  It is left to the implementer to
     decide how to distinguish between them and agree that with any applications which
@@ -2625,7 +2625,7 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
 
     Definition: Hatchback car with maximum length 4 m.
 
-    \note Deprecated differentiation, use TYPE_CAR instead
+    note Deprecated differentiation, use TYPE_CAR instead
     """
 
     TYPE_COMPACT_CAR = 3
@@ -2634,7 +2634,7 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
 
     Definition: Hatchback car with length between 4 and 4.5 m.
 
-    \note Deprecated differentiation, use TYPE_CAR instead
+    note Deprecated differentiation, use TYPE_CAR instead
     """
 
     TYPE_CAR = 4
@@ -2651,7 +2651,7 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
 
     Definition: Hatchback or sedan with length between 4.5 and 5 m.
 
-    \note Deprecated differentiation, use the alias TYPE_CAR instead
+    note Deprecated differentiation, use the alias TYPE_CAR instead
     """
 
     TYPE_LUXURY_CAR = 5
@@ -2660,28 +2660,28 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
 
     Definition: Sedan or coupe that is longer then 5 m.
 
-    \note Deprecated differentiation, use TYPE_CAR instead
+    note Deprecated differentiation, use TYPE_CAR instead
     """
 
     TYPE_DELIVERY_VAN = 6
     """
     Vehicle is a delivery van.
 
-    \image html OSI_TYPE_DELIVERY_VAN.svg
+    image html OSI_TYPE_DELIVERY_VAN.svg
     """
 
     TYPE_HEAVY_TRUCK = 7
     """
     Vehicle is a (heavy) truck.
 
-    \image html OSI_TYPE_HEAVY_TRUCK.svg
+    image html OSI_TYPE_HEAVY_TRUCK.svg
     """
 
     TYPE_SEMITRACTOR = 16
     """
     Vehicle is a tractor capable of pulling a semi-trailer.
 
-    \image html OSI_TYPE_SEMITRACTOR.svg
+    image html OSI_TYPE_SEMITRACTOR.svg
     """
 
     TYPE_SEMITRAILER = 8
@@ -2689,20 +2689,20 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
     This vehicle is a semi-trailer that can be pulled by a
     semi-tractor.
 
-    \note The vehicle can be, but doesn't need to be,
+    note The vehicle can be, but doesn't need to be,
     attached to another vehicle.
 
-    \image html OSI_TYPE_SEMITRAILER.svg
+    image html OSI_TYPE_SEMITRAILER.svg
     """
 
     TYPE_TRAILER = 9
     """
     Vehicle is a trailer.
 
-    \note The vehicle can be, but doesn't need to be,
+    note The vehicle can be, but doesn't need to be,
     attached to another vehicle.
 
-    \image html OSI_TYPE_TRAILER.svg
+    image html OSI_TYPE_TRAILER.svg
     """
 
     TYPE_MOTORBIKE = 10
@@ -2831,7 +2831,7 @@ class OccupantClassificationSteeringControl(betterproto2.Enum):
     One hand is on the steering wheel. Whether it is the left or
     right hand is unspecified or unknown.
 
-    \note If there is no differentiation between one or both hands on
+    note If there is no differentiation between one or both hands on
     the steering wheel, this value should be used.
     """
 
@@ -2866,7 +2866,7 @@ class ReferenceLineType(betterproto2.Enum):
     ReferenceLine is a polyline, where the coordinates of points are
     calculated by projection onto the nearest point on the line.
 
-    \attention DEPRECATED: Due to the shortcomings documented below, this
+    attention DEPRECATED: Due to the shortcomings documented below, this
                type will be removed in 4.0.0.
     """
 
@@ -2875,7 +2875,7 @@ class ReferenceLineType(betterproto2.Enum):
     ReferenceLine is a polyline, where the coordinates of points are
     calculated using the T axis definition.
 
-    \note If this type is used, ReferenceLinePoint::t_axis_yaw must be set.
+    note If this type is used, ReferenceLinePoint::t_axis_yaw must be set.
     """
 
 
@@ -2883,7 +2883,7 @@ class RoadMarkingClassificationColor(betterproto2.Enum):
     """
     Definition of semantic road marking colors
 
-    \note The color types represent the semantic classification of
+    note The color types represent the semantic classification of
     road markings only. They do not represent an actual visual appearance.
     """
 
@@ -3035,7 +3035,7 @@ class SensorDetectionHeaderDataQualifier(betterproto2.Enum):
 class SensorDetectionHeaderExtendedQualifier(betterproto2.Enum):
     """
     The extended qualifier describes the reason (not the effect) why the
-    event data qualifier, \c #data_qualifier, is reduced or not available.
+    event data qualifier, c #data_qualifier, is reduced or not available.
     """
 
     EXTENDED_QUALIFIER_UNKNOWN = 0
@@ -3109,8 +3109,8 @@ class StationaryObjectClassificationColor(betterproto2.Enum):
     """
     Definition of colors for structures.
 
-    \attention DEPRECATED: This color enum will be removed in version
-    4.0.0. Use \c ColorDescription instead.
+    attention DEPRECATED: This color enum will be removed in version
+    4.0.0. Use c ColorDescription instead.
     """
 
     COLOR_UNKNOWN = 0
@@ -3167,7 +3167,7 @@ class StationaryObjectClassificationColor(betterproto2.Enum):
     """
     GRAY.
 
-    \note Deprecated variant spelling of COLOR_GRAY
+    note Deprecated variant spelling of COLOR_GRAY
     """
 
     COLOR_WHITE = 10
@@ -3268,7 +3268,7 @@ class StationaryObjectClassificationMaterial(betterproto2.Enum):
     """
     Glass structure.
 
-    \note Deprecated variant spelling of MATERIAL_GLASS
+    note Deprecated variant spelling of MATERIAL_GLASS
     """
 
     MATERIAL_MUD = 8
@@ -3441,7 +3441,7 @@ class TrafficLightClassificationColor(betterproto2.Enum):
     """
     Definition of semantic colors for traffic lights.
 
-    \note The color types represent the semantic classification of a traffic light
+    note The color types represent the semantic classification of a traffic light
     only. They do not represent an actual visual appearance.
     """
 
@@ -3610,7 +3610,7 @@ class TrafficLightClassificationIcon(betterproto2.Enum):
     This traffic light is valid for
     trams.
 
-    \note There is no detailed traffic light specification for trams
+    note There is no detailed traffic light specification for trams
     and buses at the moment.
     """
 
@@ -3619,7 +3619,7 @@ class TrafficLightClassificationIcon(betterproto2.Enum):
     This traffic light is valid for
     buses.
 
-    \note There is no detailed traffic light specification for trams
+    note There is no detailed traffic light specification for trams
     and buses at the moment.
     """
 
@@ -3628,7 +3628,7 @@ class TrafficLightClassificationIcon(betterproto2.Enum):
     This traffic light is valid for
     buses and trams.
 
-    \note There is no detailed traffic light specification for trams
+    note There is no detailed traffic light specification for trams
     and buses at the moment.
     """
 
@@ -3715,22 +3715,22 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Numbers are given according to German StVO.
 
     For an overview of the German StVO see:
-    \arg
+    arg
     https://www.bast.de/DE/Verkehrstechnik/Fachthemen/v1-verkehrszeichen/vz-download.html
     (Catalog of the Federal Road Research Institute - BASt)
-    \arg
+    arg
     https://www.dvr.de/publikationen/downloads/verkehrszeichen.html
-    (Images) \arg
+    (Images) arg
     https://www.gesetze-im-internet.de/stvo_2013/anlage_1.html
-    (Allgemeine und Besondere Gefahrenzeichen) \arg
+    (Allgemeine und Besondere Gefahrenzeichen) arg
     https://www.gesetze-im-internet.de/stvo_2013/anlage_2.html
-    (Vorschriftzeichen) \arg
+    (Vorschriftzeichen) arg
     https://www.gesetze-im-internet.de/stvo_2013/anlage_3.html
-    (Richtzeichen) \arg
+    (Richtzeichen) arg
     https://www.gesetze-im-internet.de/stvo_2013/anlage_4.html
-    (Verkehrseinrichtungen) \arg https://traffic-rules.com/
+    (Verkehrseinrichtungen) arg https://traffic-rules.com/
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -3754,7 +3754,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101.png
+    image html 101.png
     </td>
     <td>
     StVO 101
@@ -3768,57 +3768,57 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-11.png
+    image html 101-11.png
     </td>
     <td>
     StVO 101-11
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-11.png
+    image html 101-11.png
     </td>
     <td>
     StVO 101-21
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 350-10.png
+    image html 350-10.png
     </td>
     <td>
     StVO 350-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 350-20.png
+    image html 350-20.png
     </td>
     <td>
     StVO 350-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 293.png
+    image html 293.png
     </td>
     <td>
     StVO 293
@@ -3832,24 +3832,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-10.png
+    image html 101-10.png
     </td>
     <td>
     StVO 101-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-10.png
+    image html 101-10.png
     </td>
     <td>
     StVO 101-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -3861,25 +3861,25 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-12.png
+    image html 101-12.png
     </td>
     </td>
     <td>
     StVO 101-12
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-12.png
+    image html 101-12.png
     </td>
     <td>
     StVO 101-22
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -3891,24 +3891,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-13.png
+    image html 101-13.png
     </td>
     <td>
     StVO 101-13
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-13.png
+    image html 101-13.png
     </td>
     <td>
     StVO 101-23
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -3920,24 +3920,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-14.png
+    image html 101-14.png
     </td>
     <td>
     StVO 101-14
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-14.png
+    image html 101-14.png
     </td>
     <td>
     StVO 101-24
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -3949,24 +3949,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 101-15.png
+    image html 101-15.png
     </td>
     <td>
     StVO 101-15
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 101-15.png
+    image html 101-15.png
     </td>
     <td>
     StVO 101-25
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -3978,7 +3978,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101-51.png
+    image html 101-51.png
     </td>
     <td>
     StVO 101-51
@@ -3993,7 +3993,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101-52.png
+    image html 101-52.png
     </td>
     <td>
     StVO 101-52
@@ -4008,7 +4008,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101-53.png
+    image html 101-53.png
     </td>
     <td>
     StVO 101-53
@@ -4023,7 +4023,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101-54.png
+    image html 101-54.png
     </td>
     <td>
     StVO 101-54
@@ -4038,7 +4038,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 101-55.png
+    image html 101-55.png
     </td>
     <td>
     StVO 101-55
@@ -4053,7 +4053,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 102.png
+    image html 102.png
     </td>
     <td>
     StVO 102
@@ -4068,7 +4068,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 103-10.png
+    image html 103-10.png
     </td>
     <td>
     StVO 103-10
@@ -4076,7 +4076,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_TURN_RIGHT
+    Right: c #TYPE_TURN_RIGHT
     """
 
     TYPE_TURN_RIGHT = 5
@@ -4085,7 +4085,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 103-20.png
+    image html 103-20.png
     </td>
     <td>
     StVO 103-20
@@ -4093,7 +4093,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_TURN_LEFT
+    Left: c #TYPE_TURN_LEFT
     """
 
     TYPE_DOUBLE_TURN_LEFT = 6
@@ -4102,7 +4102,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 105-10.png
+    image html 105-10.png
     </td>
     <td>
     StVO 105-10
@@ -4110,7 +4110,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_DOUBLE_TURN_RIGHT
+    Right: c #TYPE_DOUBLE_TURN_RIGHT
     """
 
     TYPE_DOUBLE_TURN_RIGHT = 7
@@ -4119,7 +4119,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 105-20.png
+    image html 105-20.png
     </td>
     <td>
     StVO 105-20
@@ -4127,7 +4127,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_DOUBLE_TURN_LEFT
+    Left: c #TYPE_DOUBLE_TURN_LEFT
     """
 
     TYPE_HILL_DOWNWARDS = 8
@@ -4136,13 +4136,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 108-4.png
+    image html 108-4.png
     </td>
     <td>
     StVO 108
     </td>
     <td>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to indicate slope.
     </td>
     </tr>
@@ -4155,13 +4155,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 110-4.png
+    image html 110-4.png
     </td>
     <td>
     StVO 110
     </td>
     <td>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to indicate slope
     </td>
     </tr>
@@ -4174,7 +4174,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 112.png
+    image html 112.png
     </td>
     <td>
     StVO 112
@@ -4189,7 +4189,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 114.png
+    image html 114.png
     </td>
     <td>
     StVO 114
@@ -4204,24 +4204,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 117-10.png
+    image html 117-10.png
     </td>
     <td>
     StVO 117-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 117-10.png
+    image html 117-10.png
     </td>
     <td>
     StVO 117-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -4233,7 +4233,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 120.png
+    image html 120.png
     </td>
     <td>
     StVO 120
@@ -4248,7 +4248,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 121-10.png
+    image html 121-10.png
     </td>
     <td>
     StVO 121-10
@@ -4263,7 +4263,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 121-20.png
+    image html 121-20.png
     </td>
     <td>
     StVO 121-20
@@ -4278,7 +4278,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 123.png
+    image html 123.png
     </td>
     <td>
     StVO 123
@@ -4293,7 +4293,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 124.png
+    image html 124.png
     </td>
     <td>
     StVO 124
@@ -4308,7 +4308,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 125.png
+    image html 125.png
     </td>
     <td>
     StVO 125
@@ -4323,7 +4323,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 131.png
+    image html 131.png
     </td>
     <td>
     StVO 131
@@ -4338,24 +4338,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 133-10.png
+    image html 133-10.png
     </td>
     <td>
     StVO 133-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 133-10.png
+    image html 133-10.png
     </td>
     <td>
     StVO 133-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -4367,24 +4367,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 136-10.png
+    image html 136-10.png
     </td>
     <td>
     StVO 136-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 136-10.png
+    image html 136-10.png
     </td>
     <td>
     StVO 136-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -4396,24 +4396,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 138-10.png
+    image html 138-10.png
     </td>
     <td>
     StVO 138-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 138-10.png
+    image html 138-10.png
     </td>
     <td>
     StVO 138-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -4425,24 +4425,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 142-10.png
+    image html 142-10.png
     </td>
     <td>
     StVO 142-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 142-10.png
+    image html 142-10.png
     </td>
     <td>
     StVO 142-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -4454,7 +4454,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 151.png
+    image html 151.png
     </td>
     <td>
     StVO 151
@@ -4467,24 +4467,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     """
     Level crossing marker.
     (StVO 156 - Countdown marker indicating that level crossing
-    are 2 main signs \c #TYPE_UNGATED_LEVEL_CROSSING and \c
+    are 2 main signs c #TYPE_UNGATED_LEVEL_CROSSING and c
     #TYPE_LEVEL_CROSSING_MARKER.)
     <table border="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 157-20.png
+    image html 157-20.png
     </td>
     <td style="transform:scaleX(-1)">
-    \image html 159-20.png
+    image html 159-20.png
     </td>
     <td style="transform:scaleX(-1)">
-    \image html 161-20.png
+    image html 161-20.png
     </td>
     <td>
-    \image html 156-10.png
+    image html 156-10.png
     </td>
     <td>
-    \image html 156-11.png
+    image html 156-11.png
     </td>
     </tr>
     <tr style="font-weight:bold">
@@ -4506,19 +4506,19 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 157-20.png
+    image html 157-20.png
     </td>
     <td>
-    \image html 159-20.png
+    image html 159-20.png
     </td>
     <td>
-    \image html 161-20.png
+    image html 161-20.png
     </td>
     <td style="transform:scaleX(-1)">
-    \image html 156-10.png
+    image html 156-10.png
     </td>
     <td>
-    \image html 156-21.png
+    image html 156-21.png
     </td>
     </tr>
     <tr style="font-weight:bold">
@@ -4547,7 +4547,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
@@ -4555,12 +4555,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-11
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
-    Additionally, use \c TrafficSignValue::value and \c
+    Set c #vertically_mirrored to c false.
+    Additionally, use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to indicate the remaining
     distance or the number of displayed red stripes. In
-    the second case, set \c TrafficSignValue::value_unit
-    to \c TrafficSignValue::UNIT_NO_UNIT.
+    the second case, set c TrafficSignValue::value_unit
+    to c TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
     <tr>
@@ -4568,7 +4568,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     <tr>
@@ -4576,12 +4576,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-21
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
-    Additionally, use \c TrafficSignValue::value and \c
+    Set c #vertically_mirrored to c true.
+    Additionally, use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to indicate the remaining
     distance or the number of displayed red stripes. In
-    the second case, set \c TrafficSignValue::value_unit
-    to \c TrafficSignValue::UNIT_NO_UNIT.
+    the second case, set c TrafficSignValue::value_unit
+    to c TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
     </table>
@@ -4593,14 +4593,14 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 201-50.png
+    image html 201-50.png
     <td>
     StVO 201-50
     <td>
     </tr>
     <tr>
     <td>
-    \image html 201-52.png
+    image html 201-52.png
     </td>
     <td>
     StVO 201-52
@@ -4619,7 +4619,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 205.png
+    image html 205.png
     </td>
     <td>
     StVO 205
@@ -4628,13 +4628,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </table>
 
     As symbolic road marking
-    \c RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
+    c RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
     <!--
-    \image html 341.png
+    image html 341.png
     -->
     </td>
     <td>
@@ -4650,7 +4650,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 206.png
+    image html 206.png
     </td>
     <td>
     StVO 206
@@ -4659,12 +4659,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </table>
 
     As symbolic road marking
-    \c RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
+    c RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 294.png
+    image html 294.png
     </td>
     <td>
     StVO 294
@@ -4679,7 +4679,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 208.png
+    image html 208.png
     </td>
     <td>
     StVO 208
@@ -4687,7 +4687,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    See also: \c
+    See also: c
     #TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION.
     """
 
@@ -4698,7 +4698,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(180deg)">
-    \image html 208.png
+    image html 208.png
     </td>
     <td>
     StVO 208, upside down
@@ -4706,7 +4706,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    See also: \c #TYPE_PRIORITY_TO_OPPOSITE_DIRECTION.
+    See also: c #TYPE_PRIORITY_TO_OPPOSITE_DIRECTION.
     """
 
     TYPE_PRESCRIBED_LEFT_TURN = 20
@@ -4715,7 +4715,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 209-10.png
+    image html 209-10.png
     </td>
     <td>
     StVO 209-10
@@ -4723,9 +4723,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_PRESCRIBED_RIGHT_TURN
+    Right: c #TYPE_PRESCRIBED_RIGHT_TURN
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4736,7 +4736,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 209-10.png
+    image html 209-10.png
     </td>
     <td>
     StVO 209-20
@@ -4744,9 +4744,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_PRESCRIBED_LEFT_TURN
+    Left: c #TYPE_PRESCRIBED_LEFT_TURN
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4757,7 +4757,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 209-30.png
+    image html 209-30.png
     </td>
     <td>
     StVO 209-30
@@ -4765,7 +4765,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4776,7 +4776,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 211.png
+    image html 211.png
     </td>
     <td>
     StVO 211
@@ -4784,7 +4784,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_PRESCRIBED_LEFT_WAY
+    Left: c #TYPE_PRESCRIBED_LEFT_WAY
     """
 
     TYPE_PRESCRIBED_LEFT_WAY = 23
@@ -4793,7 +4793,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 211-10.png
+    image html 211-10.png
     </td>
     <td>
     StVO 211-10
@@ -4801,7 +4801,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_PRESCRIBED_RIGHT_WAY
+    Right: c #TYPE_PRESCRIBED_RIGHT_WAY
     """
 
     TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT = 26
@@ -4810,7 +4810,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 214.png
+    image html 214.png
     </td>
     <td>
     StVO 214
@@ -4818,9 +4818,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT
+    Left: c #TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4831,7 +4831,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 214-10.png
+    image html 214-10.png
     </td>
     <td>
     StVO 214-10
@@ -4839,9 +4839,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT
+    Right: c #TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4852,7 +4852,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 214-30.png
+    image html 214-30.png
     </td>
     <td>
     StVO 214-30
@@ -4860,7 +4860,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4870,7 +4870,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Prescribed left turn, right turn and driving straight
     (required for logical signs as road marking).
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN
     (StVO 297).
     """
@@ -4881,7 +4881,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 215.png
+    image html 215.png
     </td>
     <td>
     StVO 215
@@ -4889,7 +4889,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note The direction of driving (clockwise, counterclockwise)
+    note The direction of driving (clockwise, counterclockwise)
     is country-specific.
     """
 
@@ -4899,7 +4899,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 220-10.png
+    image html 220-10.png
     </td>
     <td>
     StVO 220-10
@@ -4907,7 +4907,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_ONEWAY_RIGHT
+    Right: c #TYPE_ONEWAY_RIGHT
     """
 
     TYPE_ONEWAY_RIGHT = 31
@@ -4916,7 +4916,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 220-20.png
+    image html 220-20.png
     </td>
     <td>
     StVO 220-20
@@ -4924,7 +4924,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_ONEWAY_LEFT
+    Left: c #TYPE_ONEWAY_LEFT
     """
 
     TYPE_PASS_LEFT = 32
@@ -4933,7 +4933,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 222-10.png
+    image html 222-10.png
     </td>
     <td>
     StVO 222-10
@@ -4941,7 +4941,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_PASS_RIGHT
+    Right: c #TYPE_PASS_RIGHT
     """
 
     TYPE_PASS_RIGHT = 33
@@ -4950,7 +4950,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 222.png
+    image html 222.png
     </td>
     <td>
     StVO 222
@@ -4958,7 +4958,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_PASS_LEFT
+    Left: c #TYPE_PASS_LEFT
     """
 
     TYPE_SIDE_LANE_OPEN_FOR_TRAFFIC = 128
@@ -4967,7 +4967,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 223.1-50.png
+    image html 223.1-50.png
     </td>
     <td>
     StVO 223.1-50
@@ -4978,7 +4978,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.1-51.png
+    image html 223.1-51.png
     </td>
     <td>
     StVO 223.1-51
@@ -4989,7 +4989,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.1-52.png
+    image html 223.1-52.png
     </td>
     <td>
     StVO 223.1-52
@@ -5007,7 +5007,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 223.2-50.png
+    image html 223.2-50.png
     </td>
     <td>
     StVO 223.2-50
@@ -5018,7 +5018,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.2-51.png
+    image html 223.2-51.png
     </td>
     <td>
     StVO 223.2-51
@@ -5029,7 +5029,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.2-52.png
+    image html 223.2-52.png
     </td>
     <td>
     StVO 223.2-52
@@ -5047,7 +5047,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 223.3-50.png
+    image html 223.3-50.png
     </td>
     <td>
     StVO 223.3-50
@@ -5058,7 +5058,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.3-51.png
+    image html 223.3-51.png
     </td>
     <td>
     StVO 223.3-51
@@ -5069,7 +5069,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 223.3-52.png
+    image html 223.3-52.png
     </td>
     <td>
     StVO 223.3-52
@@ -5087,7 +5087,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 224.png
+    image html 224.png
     </td>
     <td>
     StVO 224
@@ -5102,46 +5102,46 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td colspan="2">
-    \image html 229.png "StVO 229"
+    image html 229.png "StVO 229"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION
     </td>
     </tr>
     <tr>
     <td>
-    \image html 229-10.png "StVO 229-10"
+    image html 229-10.png "StVO 229-10"
     </td>
     <td>
-    \image html 229-21.png "StVO 229-21"
+    image html 229-21.png "StVO 229-21"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 229-11.png "StVO 229-11"
+    image html 229-11.png "StVO 229-11"
     </td>
     <td>
-    \image html 229-20.png "StVO 229-20"
+    image html 229-20.png "StVO 229-20"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_RIGHT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 229-30.png "StVO 229-30"
+    image html 229-30.png "StVO 229-30"
     </td>
     <td>
-    \image html 229-31.png "StVO 229-31"
+    image html 229-31.png "StVO 229-31"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT_RIGHT
     </td>
     </tr>
@@ -5154,7 +5154,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 237.png
+    image html 237.png
     </td>
     <td>
     StVO 237
@@ -5169,7 +5169,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 238.png
+    image html 238.png
     </td>
     <td>
     StVO 238
@@ -5184,7 +5184,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 239.png
+    image html 239.png
     </td>
     <td>
     StVO 239
@@ -5199,7 +5199,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 240.png
+    image html 240.png
     </td>
     <td>
     StVO 240
@@ -5215,7 +5215,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 241-30.png
+    image html 241-30.png
     </td>
     <td>
     StVO 241-30
@@ -5223,7 +5223,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY
+    Right: c #TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY
     """
 
     TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY = 150
@@ -5233,7 +5233,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 241-31.png
+    image html 241-31.png
     </td>
     <td>
     StVO 241-31
@@ -5241,7 +5241,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY
+    Left: c #TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY
     """
 
     TYPE_PEDESTRIAN_ZONE_BEGIN = 151
@@ -5250,7 +5250,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 242.1.png
+    image html 242.1.png
     </td>
     <td>
     StVO 242.1
@@ -5265,7 +5265,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 242.2.png
+    image html 242.2.png
     </td>
     <td>
     StVO 242.2
@@ -5280,7 +5280,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 244.1.png
+    image html 244.1.png
     </td>
     <td>
     StVO 244.1
@@ -5295,7 +5295,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 244.2.png
+    image html 244.2.png
     </td>
     <td>
     StVO 244.2
@@ -5310,7 +5310,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 245.png
+    image html 245.png
     </td>
     <td>
     StVO 245
@@ -5322,15 +5322,15 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     TYPE_BUS_LANE_BEGIN = 35
     """
     Bus only lane begin.
-    \n
-    End: \c #TYPE_BUS_LANE_END
+    n
+    End: c #TYPE_BUS_LANE_END
     """
 
     TYPE_BUS_LANE_END = 36
     """
     Bus only lane end.
-    \n
-    Begin: \c #TYPE_BUS_LANE_BEGIN
+    n
+    Begin: c #TYPE_BUS_LANE_BEGIN
     """
 
     TYPE_ALL_PROHIBITED = 37
@@ -5339,7 +5339,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 250.png
+    image html 250.png
     </td>
     <td>
     StVO 250
@@ -5355,7 +5355,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 251.png
+    image html 251.png
     </td>
     <td>
     StVO 251
@@ -5370,7 +5370,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 253.png
+    image html 253.png
     </td>
     <td>
     StVO 253
@@ -5378,7 +5378,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note In the German StVO, trucks are defined as motorized
+    note In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     """
 
@@ -5388,7 +5388,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 254.png
+    image html 254.png
     </td>
     <td>
     StVO 254
@@ -5403,7 +5403,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 255.png
+    image html 255.png
     </td>
     <td>
     StVO 255
@@ -5418,7 +5418,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-50.png
+    image html 257-50.png
     </td>
     <td>
     StVO 257-50
@@ -5433,7 +5433,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-51.png
+    image html 257-51.png
     </td>
     <td>
     StVO 257-51
@@ -5448,7 +5448,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-52.png
+    image html 257-52.png
     </td>
     <td>
     StVO 257-52
@@ -5463,7 +5463,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-53.png
+    image html 257-53.png
     </td>
     <td>
     StVO 257-53
@@ -5478,7 +5478,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-54.png
+    image html 257-54.png
     </td>
     <td>
     StVO 257-54
@@ -5493,7 +5493,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-55.png
+    image html 257-55.png
     </td>
     <td>
     StVO 257-55
@@ -5508,7 +5508,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-56.png
+    image html 257-56.png
     </td>
     <td>
     StVO 257-56
@@ -5523,7 +5523,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-57.png
+    image html 257-57.png
     </td>
     <td>
     StVO 257-57
@@ -5538,7 +5538,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 257-58.png
+    image html 257-58.png
     </td>
     <td>
     StVO 257-58
@@ -5546,7 +5546,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note In the German StVO, tractors are defined as motorized
+    note In the German StVO, tractors are defined as motorized
     vehicles that are not allowed to, or cannot, drive faster
     than 25 km/h.
     """
@@ -5557,7 +5557,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 259.png
+    image html 259.png
     </td>
     <td>
     StVO 259
@@ -5572,7 +5572,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 260.png
+    image html 260.png
     </td>
     <td>
     StVO 260
@@ -5588,7 +5588,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 261.png
+    image html 261.png
     </td>
     <td>
     StVO 261
@@ -5604,7 +5604,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 262.png
+    image html 262.png
     </td>
     <td>
     StVO 262
@@ -5613,7 +5613,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </table>
 
     Use
-    \c TrafficSignValue::value and \c
+    c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5624,7 +5624,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 263.png
+    image html 263.png
     </td>
     <td>
     StVO 263
@@ -5632,7 +5632,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5643,7 +5643,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html "264-2,3.png"
+    image html "264-2,3.png"
     </td>
     <td>
     StVO 264
@@ -5651,7 +5651,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5662,7 +5662,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 265.png
+    image html 265.png
     </td>
     <td>
     StVO 265
@@ -5670,7 +5670,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5681,7 +5681,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 266.png
+    image html 266.png
     </td>
     <td>
     StVO 266
@@ -5689,7 +5689,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5699,7 +5699,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 267.png
+    image html 267.png
     </td>
     <td>
     StVO 267
@@ -5714,7 +5714,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 268.png
+    image html 268.png
     </td>
     <td>
     StVO 268
@@ -5729,7 +5729,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 269.png
+    image html 269.png
     </td>
     <td>
     StVO 269
@@ -5745,7 +5745,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 270.1.png
+    image html 270.1.png
     </td>
     <td>
     StVO 270.1
@@ -5753,7 +5753,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_ENVIRONMENTAL_ZONE_END
+    End: c #TYPE_ENVIRONMENTAL_ZONE_END
     """
 
     TYPE_ENVIRONMENTAL_ZONE_END = 46
@@ -5762,7 +5762,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 270.2.png
+    image html 270.2.png
     </td>
     <td>
     StVO 270.2
@@ -5770,7 +5770,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_ENVIRONMENTAL_ZONE_BEGIN
+    Begin: c #TYPE_ENVIRONMENTAL_ZONE_BEGIN
     """
 
     TYPE_NO_U_TURN_LEFT = 47
@@ -5779,7 +5779,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 272.png
+    image html 272.png
     </td>
     <td>
     StVO 272
@@ -5787,7 +5787,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_NO_U_TURN_RIGHT
+    Right: c #TYPE_NO_U_TURN_RIGHT
     """
 
     TYPE_NO_U_TURN_RIGHT = 48
@@ -5797,7 +5797,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html abc.png
+    image html abc.png
     </td>
     <td>
     </td>
@@ -5805,25 +5805,25 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </table>
     -->
 
-    \note This type is to be applied in left-driving countries.
+    note This type is to be applied in left-driving countries.
 
-    Left: \c #TYPE_NO_U_TURN_LEFT
+    Left: c #TYPE_NO_U_TURN_LEFT
     """
 
     TYPE_PRESCRIBED_U_TURN_LEFT = 49
     """
     Prescribed U turn left.
-    \n
-    Right: \c #TYPE_PRESCRIBED_U_TURN_RIGHT
+    n
+    Right: c #TYPE_PRESCRIBED_U_TURN_RIGHT
     """
 
     TYPE_PRESCRIBED_U_TURN_RIGHT = 50
     """
     Prescribed U turn right.
-    \n
-    \note This type is to be applied in left-driving countries.
+    n
+    note This type is to be applied in left-driving countries.
 
-    Left: \c #TYPE_PRESCRIBED_U_TURN_LEFT
+    Left: c #TYPE_PRESCRIBED_U_TURN_LEFT
     """
 
     TYPE_MINIMUM_DISTANCE_FOR_TRUCKS = 51
@@ -5832,7 +5832,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 273.png
+    image html 273.png
     </td>
     <td>
     StVO 273
@@ -5840,7 +5840,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
     """
 
@@ -5850,7 +5850,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 274-30.png
+    image html 274-30.png
     </td>
     <td>
     StVO 274
@@ -5858,10 +5858,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
 
-    End: \c #TYPE_SPEED_LIMIT_END
+    End: c #TYPE_SPEED_LIMIT_END
     """
 
     TYPE_SPEED_LIMIT_ZONE_BEGIN = 53
@@ -5870,7 +5870,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 274.1.png
+    image html 274.1.png
     </td>
     <td>
     StVO 274.1
@@ -5878,10 +5878,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
 
-    End: \c #TYPE_SPEED_LIMIT_ZONE_END
+    End: c #TYPE_SPEED_LIMIT_ZONE_END
     """
 
     TYPE_SPEED_LIMIT_ZONE_END = 54
@@ -5890,7 +5890,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 274.2.png
+    image html 274.2.png
     </td>
     <td>
     StVO 274.2
@@ -5898,10 +5898,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the limit.
 
-    Begin: \c #TYPE_SPEED_LIMIT_ZONE_BEGIN
+    Begin: c #TYPE_SPEED_LIMIT_ZONE_BEGIN
     """
 
     TYPE_MINIMUM_SPEED_BEGIN = 55
@@ -5910,7 +5910,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 275.png
+    image html 275.png
     </td>
     <td>
     StVO 275
@@ -5918,10 +5918,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to set the speed.
 
-    End: \c #TYPE_MINIMUM_SPEED_END
+    End: c #TYPE_MINIMUM_SPEED_END
     """
 
     TYPE_OVERTAKING_BAN_BEGIN = 56
@@ -5930,7 +5930,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 276.png
+    image html 276.png
     </td>
     <td>
     StVO 276
@@ -5938,7 +5938,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_OVERTAKING_BAN_END
+    End: c #TYPE_OVERTAKING_BAN_END
     """
 
     TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN = 57
@@ -5947,7 +5947,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 277.png
+    image html 277.png
     </td>
     <td>
     StVO 277
@@ -5955,7 +5955,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_OVERTAKING_BAN_FOR_TRUCKS_END
+    End: c #TYPE_OVERTAKING_BAN_FOR_TRUCKS_END
     """
 
     TYPE_SPEED_LIMIT_END = 58
@@ -5964,7 +5964,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 278-60.png
+    image html 278-60.png
     </td>
     <td>
     StVO 278
@@ -5972,10 +5972,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to refer to the limit.
 
-    Begin: \c #TYPE_SPEED_LIMIT_BEGIN
+    Begin: c #TYPE_SPEED_LIMIT_BEGIN
     """
 
     TYPE_MINIMUM_SPEED_END = 59
@@ -5984,7 +5984,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 279.png
+    image html 279.png
     </td>
     <td>
     StVO 279
@@ -5992,10 +5992,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to refer to the limit.
 
-    Begin: \c #TYPE_MINIMUM_SPEED_BEGIN
+    Begin: c #TYPE_MINIMUM_SPEED_BEGIN
     """
 
     TYPE_OVERTAKING_BAN_END = 60
@@ -6004,7 +6004,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 280.png
+    image html 280.png
     </td>
     <td>
     StVO 280
@@ -6012,7 +6012,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_OVERTAKING_BAN_BEGIN
+    Begin: c #TYPE_OVERTAKING_BAN_BEGIN
     """
 
     TYPE_OVERTAKING_BAN_FOR_TRUCKS_END = 61
@@ -6021,7 +6021,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 281.png
+    image html 281.png
     </td>
     <td>
     StVO 281
@@ -6029,7 +6029,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN
+    Begin: c #TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN
     """
 
     TYPE_ALL_RESTRICTIONS_END = 62
@@ -6038,7 +6038,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 282.png
+    image html 282.png
     </td>
     <td>
     StVO 282
@@ -6053,46 +6053,46 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td colspan="2">
-    \image html 283.png "StVO 283"
+    image html 283.png "StVO 283"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION
     </td>
     </tr>
     <tr>
     <td>
-    \image html 283-10.png "StVO 283-10"
+    image html 283-10.png "StVO 283-10"
     </td>
     <td>
-    \image html 283-11.png "StVO 283-11"
+    image html 283-11.png "StVO 283-11"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 283-20.png "StVO 283-20"
+    image html 283-20.png "StVO 283-20"
     </td>
     <td>
-    \image html 283-21.png "StVO 283-21"
+    image html 283-21.png "StVO 283-21"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_RIGHT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 283-30.png "StVO 283-30"
+    image html 283-30.png "StVO 283-30"
     </td>
     <td>
-    \image html 283-31.png "StVO 283-31"
+    image html 283-31.png "StVO 283-31"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT_RIGHT
     </td>
     </tr>
@@ -6105,58 +6105,58 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td colspan="2">
-    \image html 286.png "StVO 286"
+    image html 286.png "StVO 286"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION
     </td>
     </tr>
     <tr>
     <td>
-    \image html 286-10.png "StVO 286-10"
+    image html 286-10.png "StVO 286-10"
     </td>
     <td>
-    \image html 286-11.png "StVO 286-11"
+    image html 286-11.png "StVO 286-11"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 286-20.png "StVO 286-20"
+    image html 286-20.png "StVO 286-20"
     </td>
     <td>
-    \image html 286-21.png "StVO 286-21"
+    image html 286-21.png "StVO 286-21"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_RIGHT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 286-30.png "StVO 286-30"
+    image html 286-30.png "StVO 286-30"
     </td>
     <td>
-    \image html 286-31.png "StVO 286-31"
+    image html 286-31.png "StVO 286-31"
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT_RIGHT
     </td>
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 299.png
+    image html 299.png
     </td>
     <td>
     StVO 299
@@ -6170,7 +6170,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 290.1.png
+    image html 290.1.png
     </td>
     <td>
     StVO 290.1
@@ -6178,7 +6178,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_NO_PARKING_ZONE_END
+    End: c #TYPE_NO_PARKING_ZONE_END
     """
 
     TYPE_NO_PARKING_ZONE_END = 66
@@ -6187,7 +6187,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 290.2.png
+    image html 290.2.png
     </td>
     <td>
     StVO 290.2
@@ -6195,7 +6195,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_NO_PARKING_ZONE_BEGIN
+    Begin: c #TYPE_NO_PARKING_ZONE_BEGIN
     """
 
     TYPE_RIGHT_OF_WAY_NEXT_INTERSECTION = 67
@@ -6204,7 +6204,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 301.png
+    image html 301.png
     </td>
     <td>
     StVO 301
@@ -6219,7 +6219,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 306.png
+    image html 306.png
     </td>
     <td>
     StVO 306
@@ -6227,7 +6227,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_RIGHT_OF_WAY_END
+    End: c #TYPE_RIGHT_OF_WAY_END
     """
 
     TYPE_RIGHT_OF_WAY_END = 69
@@ -6236,7 +6236,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 307.png
+    image html 307.png
     </td>
     <td>
     StVO 307
@@ -6244,7 +6244,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_RIGHT_OF_WAY_BEGIN
+    Begin: c #TYPE_RIGHT_OF_WAY_BEGIN
     """
 
     TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION = 70
@@ -6254,7 +6254,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 308.png
+    image html 308.png
     </td>
     <td>
     StVO 308
@@ -6262,7 +6262,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    See also: \c #TYPE_PRIORITY_TO_OPPOSITE_DIRECTION
+    See also: c #TYPE_PRIORITY_TO_OPPOSITE_DIRECTION
     """
 
     TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION_UPSIDE_DOWN = 71
@@ -6272,7 +6272,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(180deg)">
-    \image html 308.png
+    image html 308.png
     </td>
     <td>
     StVO 308, upside down
@@ -6280,7 +6280,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    See also: \c #TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION
+    See also: c #TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION
     """
 
     TYPE_TOWN_BEGIN = 72
@@ -6289,7 +6289,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 310.png
+    image html 310.png
     </td>
     <td>
     StVO 310
@@ -6297,10 +6297,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the town's name and
+    Use c TrafficSignValue::text to denote the town's name and
     district, e.g. "Wilster, Kreis Steinburg".
 
-    End: \c #TYPE_TOWN_END
+    End: c #TYPE_TOWN_END
     """
 
     TYPE_TOWN_END = 73
@@ -6309,7 +6309,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 311.png
+    image html 311.png
     </td>
     <td>
     StVO 311
@@ -6317,10 +6317,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the town's name and
+    Use c TrafficSignValue::text to denote the town's name and
     district, e.g. "Wilster".
 
-    Begin: \c #TYPE_TOWN_BEGIN
+    Begin: c #TYPE_TOWN_BEGIN
     """
 
     TYPE_CAR_PARKING = 74
@@ -6329,7 +6329,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 314.png
+    image html 314.png
     </td>
     <td>
     StVO 314
@@ -6337,13 +6337,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <td>
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 314-50.png
+    image html 314-50.png
     </td>
     <td>
     StVO 314-50
@@ -6352,13 +6352,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Parking house
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 316.png
+    image html 316.png
     </td>
     <td>
     StVO 316
@@ -6367,8 +6367,8 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Park and ride
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
-    #DIRECTION_SCOPE_NO_DIRECTION. Set \c
+    Set c Classification::direction_scope to c
+    #DIRECTION_SCOPE_NO_DIRECTION. Set c
     TrafficSignValue::text to "P+R".
     </td>
     </tr>
@@ -6381,14 +6381,14 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Park and move
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
-    #DIRECTION_SCOPE_NO_DIRECTION. Set \c
+    Set c Classification::direction_scope to c
+    #DIRECTION_SCOPE_NO_DIRECTION. Set c
     TrafficSignValue::text to "P+M".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 317.png
+    image html 317.png
     </td>
     <td>
     StVO 317
@@ -6397,13 +6397,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Hiker's parking
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 318.png
+    image html 318.png
     </td>
     <td>
     StVO 318
@@ -6412,13 +6412,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Parking with parking disk
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_NO_DIRECTION.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 314-10.png
+    image html 314-10.png
     </td>
     <td>
     StVO 314-10
@@ -6426,13 +6426,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <td>
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 314-20.png
+    image html 314-20.png
     </td>
     <td>
     StVO 314-20
@@ -6440,13 +6440,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <td>
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_RIGHT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 314-30.png
+    image html 314-30.png
     </td>
     <td>
     StVO 314-30
@@ -6454,7 +6454,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <td>
     </td>
     <td>
-    Set \c Classification::direction_scope to \c
+    Set c Classification::direction_scope to c
     #DIRECTION_SCOPE_LEFT_RIGHT.
     </td>
     </tr>
@@ -6467,7 +6467,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 314.1.png
+    image html 314.1.png
     </td>
     <td>
     StVO 314.1
@@ -6475,7 +6475,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_CAR_PARKING_ZONE_END
+    End: c #TYPE_CAR_PARKING_ZONE_END
     """
 
     TYPE_CAR_PARKING_ZONE_END = 76
@@ -6484,7 +6484,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 314.2.png
+    image html 314.2.png
     </td>
     <td>
     StVO 314.2
@@ -6492,7 +6492,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_CAR_PARKING_ZONE_BEGIN
+    Begin: c #TYPE_CAR_PARKING_ZONE_BEGIN
     """
 
     TYPE_SIDEWALK_HALF_PARKING_LEFT = 172
@@ -6502,7 +6502,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-50.png
+    image html 315-50.png
     -->
     </td>
     <td>
@@ -6511,7 +6511,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_SIDEWALK_HALF_PARKING_RIGHT
+    Right: c #TYPE_SIDEWALK_HALF_PARKING_RIGHT
     """
 
     TYPE_SIDEWALK_HALF_PARKING_RIGHT = 173
@@ -6520,7 +6520,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 315-55.png
+    image html 315-55.png
     </td>
     <td>
     StVO 315-55
@@ -6528,7 +6528,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_SIDEWALK_HALF_PARKING_LEFT
+    Left: c #TYPE_SIDEWALK_HALF_PARKING_LEFT
     """
 
     TYPE_SIDEWALK_PARKING_LEFT = 174
@@ -6539,7 +6539,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-60.png
+    image html 315-60.png
     -->
     </td>
     <td>
@@ -6548,7 +6548,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_SIDEWALK_PARKING_RIGHT
+    Right: c #TYPE_SIDEWALK_PARKING_RIGHT
     """
 
     TYPE_SIDEWALK_PARKING_RIGHT = 175
@@ -6558,7 +6558,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-65.png
+    image html 315-65.png
     -->
     </td>
     <td>
@@ -6567,7 +6567,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_SIDEWALK_PARKING_LEFT
+    Left: c #TYPE_SIDEWALK_PARKING_LEFT
     """
 
     TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT = 176
@@ -6578,7 +6578,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-70.png
+    image html 315-70.png
     -->
     </td>
     <td>
@@ -6587,7 +6587,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT
+    Right: c #TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT
     """
 
     TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT = 177
@@ -6598,7 +6598,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-75.png
+    image html 315-75.png
     -->
     </td>
     <td>
@@ -6607,7 +6607,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT
+    Left: c #TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT
     """
 
     TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT = 178
@@ -6618,7 +6618,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-80.png
+    image html 315-80.png
     -->
     </td>
     <td>
@@ -6627,7 +6627,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT
+    Right: c #TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT
     """
 
     TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT = 179
@@ -6638,7 +6638,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 315-85.png
+    image html 315-85.png
     -->
     </td>
     <td>
@@ -6647,7 +6647,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT
+    Left: c #TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT
     """
 
     TYPE_LIVING_STREET_BEGIN = 77
@@ -6656,7 +6656,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 325.1.png
+    image html 325.1.png
     </td>
     <td>
     StVO 325.1
@@ -6664,7 +6664,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_LIVING_STREET_END
+    End: c #TYPE_LIVING_STREET_END
     """
 
     TYPE_LIVING_STREET_END = 78
@@ -6673,7 +6673,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 325.2.png
+    image html 325.2.png
     </td>
     <td>
     StVO 325.2
@@ -6681,7 +6681,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_LIVING_STREET_BEGIN
+    Begin: c #TYPE_LIVING_STREET_BEGIN
     """
 
     TYPE_TUNNEL = 79
@@ -6690,7 +6690,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 327.png
+    image html 327.png
     </td>
     <td>
     StVO 327
@@ -6705,16 +6705,16 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 328.png
+    image html 328.png
     </td>
     <td>
     </td>
     </tr>
     </table>
 
-    \note This type is to be applied in left-driving countries.
+    note This type is to be applied in left-driving countries.
 
-    Right: \c #TYPE_EMERGENCY_STOPPING_RIGHT
+    Right: c #TYPE_EMERGENCY_STOPPING_RIGHT
     """
 
     TYPE_EMERGENCY_STOPPING_RIGHT = 81
@@ -6723,7 +6723,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 328.png
+    image html 328.png
     </td>
     <td>
     StVO 328
@@ -6731,7 +6731,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_EMERGENCY_STOPPING_LEFT
+    Left: c #TYPE_EMERGENCY_STOPPING_LEFT
     """
 
     TYPE_HIGHWAY_BEGIN = 82
@@ -6740,7 +6740,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 330.1.png
+    image html 330.1.png
     </td>
     <td>
     StVO 330.1
@@ -6748,7 +6748,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_HIGHWAY_END
+    End: c #TYPE_HIGHWAY_END
     """
 
     TYPE_HIGHWAY_END = 83
@@ -6757,7 +6757,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 330.2.png
+    image html 330.2.png
     </td>
     <td>
     StVO 330.2
@@ -6765,7 +6765,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_HIGHWAY_BEGIN
+    Begin: c #TYPE_HIGHWAY_BEGIN
     """
 
     TYPE_EXPRESSWAY_BEGIN = 84
@@ -6774,7 +6774,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 331.1.png
+    image html 331.1.png
     </td>
     <td>
     StVO 331.1
@@ -6782,7 +6782,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    End: \c #TYPE_EXPRESSWAY_END
+    End: c #TYPE_EXPRESSWAY_END
     """
 
     TYPE_EXPRESSWAY_END = 85
@@ -6791,7 +6791,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 331.2.png
+    image html 331.2.png
     </td>
     <td>
     StVO 331.2
@@ -6799,7 +6799,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Begin: \c #TYPE_EXPRESSWAY_BEGIN
+    Begin: c #TYPE_EXPRESSWAY_BEGIN
     """
 
     TYPE_NAMED_HIGHWAY_EXIT = 183
@@ -6808,7 +6808,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 332.png
+    image html 332.png
     </td>
     <td>
     StVO 332
@@ -6816,7 +6816,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign, e.g. "Mainz Wiesbaden".
     """
 
@@ -6826,7 +6826,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 332.1.png
+    image html 332.1.png
     </td>
     <td>
     StVO 332.1
@@ -6834,7 +6834,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign, e.g. "Mainz Wiesbaden".
     """
 
@@ -6844,7 +6844,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 332.1-20.png
+    image html 332.1-20.png
     </td>
     <td>
     StVO 332.1-20
@@ -6852,7 +6852,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign, e.g. "Duisburg Endeninch".
     """
 
@@ -6862,7 +6862,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 333.png
+    image html 333.png
     </td>
     <td>
     StVO 333
@@ -6877,7 +6877,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 333.1.png
+    image html 333.1.png
     </td>
     <td>
     StVO 333.1
@@ -6893,7 +6893,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 353.png
+    image html 353.png
     -->
     </td>
     <td>
@@ -6909,7 +6909,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 356.png
+    image html 356.png
     </td>
     <td>
     StVO 356
@@ -6924,7 +6924,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 357.png
+    image html 357.png
     </td>
     <td>
     StVO 357
@@ -6939,7 +6939,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 357-50.png
+    image html 357-50.png
     </td>
     <td>
     StVO 357-50
@@ -6950,7 +6950,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 357-51.png
+    image html 357-51.png
     </td>
     <td>
     StVO 357-51
@@ -6961,7 +6961,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 357-52.png
+    image html 357-52.png
     </td>
     <td>
     StVO 357-52
@@ -6979,7 +6979,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 358.png
+    image html 358.png
     </td>
     <td>
     StVO 358
@@ -6994,7 +6994,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 363.png
+    image html 363.png
     </td>
     <td>
     StVO 363
@@ -7009,7 +7009,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-50.png
+    image html 365-50.png
     </td>
     <td>
     StVO 365-50
@@ -7022,7 +7022,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 365-51.png
+    image html 365-51.png
     </td>
     <td>
     StVO 365-51
@@ -7031,7 +7031,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Emergency telephone service
     </td>
     <td>
-    Use \c TrafficSignValue::text for "SOS".
+    Use c TrafficSignValue::text for "SOS".
     </td>
     </tr>
     </table>
@@ -7043,7 +7043,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-52.png
+    image html 365-52.png
     </td>
     <td>
     StVO 365-52
@@ -7056,7 +7056,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 365-53.png
+    image html 365-53.png
     </td>
     <td>
     StVO 365-53
@@ -7065,12 +7065,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     LPG filling station.
     </td>
     <td>
-    Use \c TrafficSignValue::text for "LPG".
+    Use c TrafficSignValue::text for "LPG".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 365-54.png
+    image html 365-54.png
     </td>
     <td>
     StVO 365-54
@@ -7079,12 +7079,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     CNG filling station.
     </td>
     <td>
-    Use \c TrafficSignValue::text for "CNG".
+    Use c TrafficSignValue::text for "CNG".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 365-65.png
+    image html 365-65.png
     </td>
     <td>
     StVO 365-65
@@ -7093,12 +7093,12 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Charging station for electric vehicles.
     </td>
     <td>
-    Use \c TrafficSignValue::text for "E".
+    Use c TrafficSignValue::text for "E".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 365-66.png
+    image html 365-66.png
     </td>
     <td>
     StVO 365-66
@@ -7107,7 +7107,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     H2 filling station.
     </td>
     <td>
-    Use \c TrafficSignValue::text for "H2".
+    Use c TrafficSignValue::text for "H2".
     </td>
     </tr>
     </table>
@@ -7119,7 +7119,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-55.png
+    image html 365-55.png
     </td>
     <td>
     StVO 365-55
@@ -7134,7 +7134,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-56.png
+    image html 365-56.png
     </td>
     <td>
     StVO 365-56
@@ -7149,7 +7149,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-57.png
+    image html 365-57.png
     </td>
     <td>
     StVO 365-57
@@ -7164,7 +7164,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-58.png
+    image html 365-58.png
     </td>
     <td>
     StVO 365-58
@@ -7179,7 +7179,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-59.png
+    image html 365-59.png
     </td>
     <td>
     StVO 365-59
@@ -7194,7 +7194,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-61.png
+    image html 365-61.png
     </td>
     <td>
     StVO 365-61
@@ -7209,7 +7209,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-62.png
+    image html 365-62.png
     </td>
     <td>
     StVO 365-62
@@ -7224,7 +7224,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-63.png
+    image html 365-63.png
     </td>
     <td>
     StVO 365-63
@@ -7239,7 +7239,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-64.png
+    image html 365-64.png
     </td>
     <td>
     StVO 365-64
@@ -7254,7 +7254,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-67.png
+    image html 365-67.png
     </td>
     <td>
     StVO 365-67
@@ -7265,7 +7265,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 365-68.png
+    image html 365-68.png
     </td>
     <td>
     StVO 365-68
@@ -7281,7 +7281,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 380.png
+    image html 380.png
     -->
     </td>
     <td>
@@ -7290,7 +7290,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \c TrafficSignValue::value and \c
+    c TrafficSignValue::value and c
     TrafficSignValue::value_unit.
     """
 
@@ -7301,7 +7301,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 381.png
+    image html 381.png
     -->
     </td>
     <td>
@@ -7310,7 +7310,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \c TrafficSignValue::value and \c
+    c TrafficSignValue::value and c
     TrafficSignValue::value_unit.
     """
 
@@ -7320,7 +7320,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 385.png
+    image html 385.png
     </td>
     <td>
     StVO 385
@@ -7328,7 +7328,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the town indicated in
+    Use c TrafficSignValue::text to denote the town indicated in
     the sign.
     """
 
@@ -7338,7 +7338,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 386.1.png
+    image html 386.1.png
     </td>
     <td>
     StVO 386.1
@@ -7346,7 +7346,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the attraction
+    Use c TrafficSignValue::text to denote the attraction
     indicated in the sign.
     """
 
@@ -7356,7 +7356,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 386.2.png
+    image html 386.2.png
     </td>
     <td>
     StVO 386.2
@@ -7364,7 +7364,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the route indicated
+    Use c TrafficSignValue::text to denote the route indicated
     in the sign.
     """
 
@@ -7374,7 +7374,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 386.3.png
+    image html 386.3.png
     </td>
     <td>
     StVO 386.3
@@ -7382,7 +7382,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the area indicated in
+    Use c TrafficSignValue::text to denote the area indicated in
     the sign.
     """
 
@@ -7393,7 +7393,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 388.png
+    image html 388.png
     -->
     </td>
     <td>
@@ -7411,7 +7411,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 389.png
+    image html 389.png
     -->
     </td>
     <td>
@@ -7427,7 +7427,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 390.png
+    image html 390.png
     </td>
     <td>
     StVO 390
@@ -7442,7 +7442,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 390.2.png
+    image html 390.2.png
     </td>
     <td>
     StVO 390.2
@@ -7457,7 +7457,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 391.png
+    image html 391.png
     </td>
     <td>
     StVO 391
@@ -7473,7 +7473,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 392.png
+    image html 392.png
     -->
     </td>
     <td>
@@ -7489,7 +7489,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 393.png
+    image html 393.png
     </td>
     <td>
     StVO 393
@@ -7505,9 +7505,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 394.png "StVO 394"
+    image html 394.png "StVO 394"
     <td>
-    \image html 394-50.png "StVO 394-50"
+    image html 394-50.png "StVO 394-50"
     </tr>
     </table>
     """
@@ -7518,7 +7518,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 401.png
+    image html 401.png
     </td>
     <td>
     StVO 401
@@ -7533,7 +7533,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 405.png
+    image html 405.png
     </td>
     <td>
     StVO 405
@@ -7541,7 +7541,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the route number
+    Use c TrafficSignValue::text to denote the route number
     indicated in the sign.
     """
 
@@ -7552,13 +7552,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 406-50.png "StVO 406-50"
+    image html 406-50.png "StVO 406-50"
     <td>
-    \image html 406-51.png "StVO 406-51"
+    image html 406-51.png "StVO 406-51"
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the route number
+    Use c TrafficSignValue::text to denote the route number
     indicated in the sign.
     """
 
@@ -7568,7 +7568,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 410.png
+    image html 410.png
     </td>
     <td>
     StVO 410
@@ -7576,7 +7576,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the route number
+    Use c TrafficSignValue::text to denote the route number
     indicated in the sign.
     """
 
@@ -7586,7 +7586,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 415-10.png
+    image html 415-10.png
     </td>
     <td>
     StVO 415-10
@@ -7594,7 +7594,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT
+    Right: c #TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT
     """
 
     TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT = 233
@@ -7604,7 +7604,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 415-20.png
+    image html 415-20.png
     -->
     </td>
     <td>
@@ -7613,7 +7613,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT
+    Left: c #TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT
     """
 
     TYPE_PRIMARY_ROAD_DIRECTION_LEFT = 234
@@ -7622,7 +7622,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 418-10.png
+    image html 418-10.png
     </td>
     <td>
     StVO 418-10
@@ -7630,7 +7630,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_PRIMARY_ROAD_DIRECTION_RIGHT
+    Right: c #TYPE_PRIMARY_ROAD_DIRECTION_RIGHT
     """
 
     TYPE_PRIMARY_ROAD_DIRECTION_RIGHT = 235
@@ -7640,7 +7640,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 418-20.png
+    image html 418-20.png
     -->
     </td>
     <td>
@@ -7649,7 +7649,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_PRIMARY_ROAD_DIRECTION_LEFT
+    Left: c #TYPE_PRIMARY_ROAD_DIRECTION_LEFT
     """
 
     TYPE_SECONDARY_ROAD_DIRECTION_LEFT = 236
@@ -7658,7 +7658,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 419-10.png
+    image html 419-10.png
     </td>
     <td>
     StVO 419-10
@@ -7666,10 +7666,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign.
 
-    Right: \c #TYPE_SECONDARY_ROAD_DIRECTION_RIGHT
+    Right: c #TYPE_SECONDARY_ROAD_DIRECTION_RIGHT
     """
 
     TYPE_SECONDARY_ROAD_DIRECTION_RIGHT = 237
@@ -7678,7 +7678,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 419-20.png
+    image html 419-20.png
     </td>
     <td>
     StVO 419-20
@@ -7686,10 +7686,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign.
 
-    Left: \c #TYPE_SECONDARY_ROAD_DIRECTION_LEFT
+    Left: c #TYPE_SECONDARY_ROAD_DIRECTION_LEFT
     """
 
     TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT = 238
@@ -7698,15 +7698,15 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 421-10.png "StVO 421-10"
+    image html 421-10.png "StVO 421-10"
     <td>
-    \image html 421-11.png "StVO 421-11"
+    image html 421-11.png "StVO 421-11"
     <td>
-    \image html 421-12.png "StVO 421-12"
+    image html 421-12.png "StVO 421-12"
     </tr>
     </table>
 
-    Right: \c #TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT
+    Right: c #TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT
     """
 
     TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT = 239
@@ -7715,11 +7715,11 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 421-10.png
+    image html 421-10.png
     <td style="transform:scaleX(-1)">
-    \image html 421-11.png
+    image html 421-11.png
     <td style="transform:scaleX(-1)">
-    \image html 421-12.png
+    image html 421-12.png
     </tr>
     <tr style="font-weight:bold">
     <td>
@@ -7731,7 +7731,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT
+    Left: c #TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT
     """
 
     TYPE_ROUTING_DESIGNATED_ACTORS = 240
@@ -7740,26 +7740,26 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 422-10.png "StVO 422-10"
+    image html 422-10.png "StVO 422-10"
     <td>
-    \image html 422-12.png "StVO 422-12"
+    image html 422-12.png "StVO 422-12"
     <td>
-    \image html 422-14.png "StVO 422-14"
+    image html 422-14.png "StVO 422-14"
     <td>
-    \image html 422-16.png "StVO 422-16"
+    image html 422-16.png "StVO 422-16"
     </tr>
     </table>
     Routing for designated type of vehicle, align left.
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 422-11.png "StVO 422-11"
+    image html 422-11.png "StVO 422-11"
     <td>
-    \image html 422-13.png "StVO 422-13"
+    image html 422-13.png "StVO 422-13"
     <td>
-    \image html 422-15.png "StVO 422-15"
+    image html 422-15.png "StVO 422-15"
     <td>
-    \image html 422-17.png "StVO 422-17"
+    image html 422-17.png "StVO 422-17"
     </tr>
     </table>
     Direction preannouncement sign for designated type of
@@ -7767,11 +7767,11 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 442-10.png "StVO 442-10"
+    image html 442-10.png "StVO 442-10"
     <td>
-    \image html 442-12.png "StVO 442-12"
+    image html 442-12.png "StVO 442-12"
     <td>
-    \image html 442-13.png "StVO 442-13"
+    image html 442-13.png "StVO 442-13"
     </tr>
     </table>
 
@@ -7779,13 +7779,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 422-10.png
+    image html 422-10.png
     <td style="transform:scaleX(-1)">
-    \image html 422-12.png
+    image html 422-12.png
     <td style="transform:scaleX(-1)">
-    \image html 422-14.png
+    image html 422-14.png
     <td style="transform:scaleX(-1)">
-    \image html 422-16.png
+    image html 422-16.png
     </tr>
     <tr style="font-weight:bold">
     <td>
@@ -7802,13 +7802,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 422-11.png
+    image html 422-11.png
     <td style="transform:scaleX(-1)">
-    \image html 422-13.png
+    image html 422-13.png
     <td style="transform:scaleX(-1)">
-    \image html 422-15.png
+    image html 422-15.png
     <td style="transform:scaleX(-1)">
-    \image html 422-17.png
+    image html 422-17.png
     </tr>
     <tr style="font-weight:bold">
     <td>
@@ -7826,11 +7826,11 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 442-10.png
+    image html 442-10.png
     <td style="transform:scaleX(-1)">
-    \image html 442-12.png
+    image html 442-12.png
     <td style="transform:scaleX(-1)">
-    \image html 442-13.png
+    image html 442-13.png
     </tr>
     <tr style="font-weight:bold">
     <td>
@@ -7845,17 +7845,17 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 422-30.png "StVO 422-30"
+    image html 422-30.png "StVO 422-30"
     <td>
-    \image html 422-32.png "StVO 422-32"
+    image html 422-32.png "StVO 422-32"
     <td>
-    \image html 422-34.png "StVO 422-34"
+    image html 422-34.png "StVO 422-34"
     <td>
-    \image html 422-36.png "StVO 422-36"
+    image html 422-36.png "StVO 422-36"
     </tr>
     </table>
 
-    \note OSI 4.0 will describe the actors and arrows similar to
+    note OSI 4.0 will describe the actors and arrows similar to
     the supplementary signs approach.
     """
 
@@ -7865,7 +7865,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 430-10.png
+    image html 430-10.png
     </td>
     <td>
     StVO 430-10
@@ -7873,7 +7873,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_DIRECTION_TO_HIGHWAY_RIGHT
+    Right: c #TYPE_DIRECTION_TO_HIGHWAY_RIGHT
     """
 
     TYPE_DIRECTION_TO_HIGHWAY_RIGHT = 108
@@ -7883,7 +7883,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 430-20.png
+    image html 430-20.png
     -->
     </td>
     <td>
@@ -7892,7 +7892,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_DIRECTION_TO_HIGHWAY_LEFT
+    Left: c #TYPE_DIRECTION_TO_HIGHWAY_LEFT
     """
 
     TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT = 127
@@ -7901,7 +7901,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 432-10.png
+    image html 432-10.png
     </td>
     <td>
     StVO 432-10
@@ -7909,10 +7909,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign.
 
-    Right: \c #TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT
+    Right: c #TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT
     """
 
     TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT = 136
@@ -7922,7 +7922,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 432-20.png
+    image html 432-20.png
     -->
     </td>
     <td>
@@ -7931,10 +7931,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the destination
+    Use c TrafficSignValue::text to denote the destination
     indicated in the sign.
 
-    Left: \c #TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT
+    Left: c #TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT
     """
 
     TYPE_CONSOLIDATED_DIRECTIONS = 118
@@ -7943,13 +7943,13 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 434-50.png "StVO 434-50"
+    image html 434-50.png "StVO 434-50"
     <td>
-    \image html 434-51.png "StVO 434-51"
+    image html 434-51.png "StVO 434-51"
     <td>
-    \image html 434-52.png "StVO 434-52"
+    image html 434-52.png "StVO 434-52"
     <td>
-    \image html 434-53.png "StVO 434-53"
+    image html 434-53.png "StVO 434-53"
     </tr>
     </table>
     """
@@ -7960,7 +7960,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 437.png
+    image html 437.png
     </td>
     <td>
     StVO 437
@@ -7968,7 +7968,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the street name.
+    Use c TrafficSignValue::text to denote the street name.
     """
 
     TYPE_DIRECTION_PREANNOUNCEMENT = 120
@@ -7977,7 +7977,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 438.png
+    image html 438.png
     </td>
     <td>
     StVO 438
@@ -7992,7 +7992,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 439.png
+    image html 439.png
     </td>
     <td>
     StVO 439
@@ -8007,7 +8007,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 440.png
+    image html 440.png
     </td>
     <td>
     StVO 440
@@ -8022,7 +8022,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 448.png
+    image html 448.png
     </td>
     <td>
     StVO 448
@@ -8030,8 +8030,8 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
-    TrafficSignValue::value_unit to set the distance. Use \c
+    Use c TrafficSignValue::value and c
+    TrafficSignValue::value_unit to set the distance. Use c
     TrafficSignValue::text to denote the highway and the
     direction indicated in the sign, e.g. "26 Duesseldorf -
     Benrath".
@@ -8043,7 +8043,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 448-50.png
+    image html 448-50.png
     </td>
     <td>
     StVO 448-50
@@ -8051,8 +8051,8 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
-    TrafficSignValue::value_unit to set the distance. Use \c
+    Use c TrafficSignValue::value and c
+    TrafficSignValue::value_unit to set the distance. Use c
     TrafficSignValue::text to denote the destination indicated in
     the sign.
     """
@@ -8063,7 +8063,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 448.1.png
+    image html 448.1.png
     </td>
     <td>
     StVO 448.1
@@ -8078,7 +8078,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 449.png
+    image html 449.png
     </td>
     <td>
     StVO 449
@@ -8093,24 +8093,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 450-50.png "StVO 450-50"
+    image html 450-50.png "StVO 450-50"
     <td>
-    \image html 450-51.png "StVO 450-51"
+    image html 450-51.png "StVO 450-51"
     <td>
-    \image html 450-52.png "StVO 450-52"
+    image html 450-52.png "StVO 450-52"
     <td>
-    \image html 450-53.png "StVO 450-53"
+    image html 450-53.png "StVO 450-53"
     <td>
-    \image html 450-54.png "StVO 450-54"
+    image html 450-54.png "StVO 450-54"
     <td>
-    \image html 450-55.png "StVO 450-55"
+    image html 450-55.png "StVO 450-55"
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit to specify the distance in m
-    or the displayed number of stripes (in that case, set \c
-    TrafficSignValue::value_unit to \c
+    or the displayed number of stripes (in that case, set c
+    TrafficSignValue::value_unit to c
     TrafficSignValue::UNIT_NO_UNIT.).
     """
 
@@ -8120,9 +8120,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 453.png "StVO 453"
+    image html 453.png "StVO 453"
     <td>
-    \image html 453-50.png "StVO 453-50"
+    image html 453-50.png "StVO 453-50"
     </tr>
     </table>
     """
@@ -8133,7 +8133,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 454-10.png
+    image html 454-10.png
     </td>
     <td>
     StVO 454-10
@@ -8141,7 +8141,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_DETOUR_RIGHT
+    Right: c #TYPE_DETOUR_RIGHT
     """
 
     TYPE_DETOUR_RIGHT = 182
@@ -8151,7 +8151,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 454-20.png
+    image html 454-20.png
     -->
     </td>
     <td>
@@ -8160,7 +8160,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_DETOUR_LEFT
+    Left: c #TYPE_DETOUR_LEFT
     """
 
     TYPE_NUMBERED_DETOUR = 131
@@ -8169,7 +8169,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 455.1.png
+    image html 455.1.png
     </td>
     <td>
     StVO 455.1
@@ -8177,10 +8177,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the alternative
+    Use c TrafficSignValue::text to denote the alternative
     routing name indicated in the sign.
 
-    \note OSI 4.0 will describe the arrows similar to the
+    note OSI 4.0 will describe the arrows similar to the
     supplementary signs approach.
     """
 
@@ -8190,7 +8190,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 457.1.png
+    image html 457.1.png
     </td>
     <td>
     StVO 457.1
@@ -8205,7 +8205,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 457.2.png
+    image html 457.2.png
     </td>
     <td>
     StVO 457.2
@@ -8220,7 +8220,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 458.png
+    image html 458.png
     </td>
     <td>
     StVO 458
@@ -8235,7 +8235,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 460-50.png
+    image html 460-50.png
     </td>
     <td>
     StVO 460-50
@@ -8246,7 +8246,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 460-10.png
+    image html 460-10.png
     </td>
     <td>
     StVO 460-10
@@ -8259,7 +8259,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 460-11.png
+    image html 460-11.png
     -->
     </td>
     <td>
@@ -8271,7 +8271,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 460-12.png
+    image html 460-12.png
     </td>
     <td>
     StVO 460-12
@@ -8283,7 +8283,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 460-20.png
+    image html 460-20.png
     -->
     </td>
     <td>
@@ -8297,7 +8297,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 460-21.png
+    image html 460-21.png
     -->
     </td>
     <td>
@@ -8310,7 +8310,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 460-22.png
+    image html 460-22.png
     -->
     </td>
     <td>
@@ -8323,7 +8323,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 460-30.png
+    image html 460-30.png
     </td>
     <td>
     StVO 460-30
@@ -8334,10 +8334,10 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Use \c TrafficSignValue::text to denote the alternative
+    Use c TrafficSignValue::text to denote the alternative
     routing name indicated in the sign.
 
-    \note OSI 4.0 will describe the arrows similar to the
+    note OSI 4.0 will describe the arrows similar to the
     supplementary signs approach.
     """
 
@@ -8347,7 +8347,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 466.png
+    image html 466.png
     </td>
     <td>
     StVO 466
@@ -8362,25 +8362,25 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 467.1-10.png
+    image html 467.1-10.png
     </td>
     <td>
     StVO 467.1-10
     </td>
     <td>
-    Set \c Classification::direction_scope as \c
+    Set c Classification::direction_scope as c
     DIRECTION_SCOPE_LEFT.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 467.1-10.png
+    image html 467.1-10.png
     </td>
     <td>
     StVO 467.1-20
     </td>
     <td>
-    Set \c Classification::direction_scope as \c
+    Set c Classification::direction_scope as c
     DIRECTION_SCOPE_RIGHT.
     </td>
     </tr>
@@ -8393,7 +8393,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 467.2.png
+    image html 467.2.png
     </td>
     <td>
     StVO 467.2
@@ -8409,7 +8409,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 501-10.png
+    image html 501-10.png
     -->
     </td>
     <td>
@@ -8421,7 +8421,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 501-11.png
+    image html 501-11.png
     </td>
     <td>
     StVO 501-11
@@ -8433,7 +8433,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 501-12.png
+    image html 501-12.png
     -->
     </td>
     <td>
@@ -8445,7 +8445,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 505-11.png
+    image html 505-11.png
     </td>
     <td>
     (StVO 505-11)
@@ -8457,7 +8457,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 505-12.png
+    image html 505-12.png
     </td>
     <td>
     (StVO 505-12)
@@ -8469,7 +8469,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT
+    Right: c #TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT
     """
 
     TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT = 193
@@ -8479,7 +8479,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 501-20.png
+    image html 501-20.png
     -->
     </td>
     <td>
@@ -8491,7 +8491,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 501-11.png
+    image html 501-11.png
     </td>
     <td>
     StVO 501-21
@@ -8503,7 +8503,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 501-22.png
+    image html 501-22.png
     -->
     </td>
     <td>
@@ -8516,7 +8516,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 505-21.png
+    image html 505-21.png
     -->
     </td>
     <td>
@@ -8530,7 +8530,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 505-22.png
+    image html 505-22.png
     -->
     </td>
     <td>
@@ -8543,7 +8543,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Left: \c #TYPE_ANNOUNCE_LANE_TRANSITION_LEFT
+    Left: c #TYPE_ANNOUNCE_LANE_TRANSITION_LEFT
     """
 
     TYPE_ANNOUNCE_RIGHT_LANE_END = 90
@@ -8552,7 +8552,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 531-10.png
+    image html 531-10.png
     </td>
     <td>
     StVO 531-10
@@ -8560,14 +8560,14 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
     <!--
-    \image tml 297.1-21.png
+    image tml 297.1-21.png
     -->
     </td>
     <td>
@@ -8583,7 +8583,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 531-10.png
+    image html 531-10.png
     </td>
     <td>
     StVO 531-20
@@ -8591,14 +8591,14 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    As symbolic road marking \c
+    As symbolic road marking c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN.
 
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
     <!--
-    \image html 297.1-21.png
+    image html 297.1-21.png
     -->
     </td>
     <td>
@@ -8615,7 +8615,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 545-11.png
+    image html 545-11.png
     </td>
     <td>
     (StVO 545-11)
@@ -8629,7 +8629,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>-->
 
-    Left: \c #TYPE_ANNOUNCE_LEFT_LANE_BEGIN
+    Left: c #TYPE_ANNOUNCE_LEFT_LANE_BEGIN
     """
 
     TYPE_ANNOUNCE_LEFT_LANE_BEGIN = 116
@@ -8638,7 +8638,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 545-11.png
+    image html 545-11.png
     </td>
     <td>
     (StVO 545-11)
@@ -8652,7 +8652,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    Right: \c #TYPE_ANNOUNCE_RIGHT_LANE_BEGIN
+    Right: c #TYPE_ANNOUNCE_RIGHT_LANE_BEGIN
     """
 
     TYPE_ANNOUNCE_LANE_CONSOLIDATION = 117
@@ -8662,7 +8662,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 551-20.png
+    image html 551-20.png
     -->
     </td>
     <td>
@@ -8675,7 +8675,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 551-21.png
+    image html 551-21.png
     </td>
     <td>
     StVO 551-21
@@ -8688,7 +8688,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 551-22.png
+    image html 551-22.png
     -->
     </td>
     <td>
@@ -8702,7 +8702,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 551-23.png
+    image html 551-23.png
     -->
     </td>
     <td>
@@ -8716,7 +8716,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 551-24.png
+    image html 551-24.png
     -->
     </td>
     <td>
@@ -8736,7 +8736,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 590-10.png
+    image html 590-10.png
     </td>
     <td>
     StVO 590-10
@@ -8748,7 +8748,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 590-11.png
+    image html 590-11.png
     -->
     </td>
     <td>
@@ -8760,7 +8760,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 590-10.png
+    image html 590-10.png
     </td>
     <td>
     </td>
@@ -8786,7 +8786,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 600-25.png
+    image html 600-25.png
     </td>
     <td>
     StVO 600
@@ -8802,11 +8802,11 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 605-10.png "StVO 605"
+    image html 605-10.png "StVO 605"
     <td>
-    \image html 628-10.png "StVO 628"
+    image html 628-10.png "StVO 628"
     <td>
-    \image html 629-10.png "StVO 629"
+    image html 629-10.png "StVO 629"
     </tr>
     </table>
 
@@ -8817,7 +8817,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-10, -12, -13 and -14
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
@@ -8825,7 +8825,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-11
     </td>
     <td>
-    Set \c Classification::direction_scope as \c
+    Set c Classification::direction_scope as c
     #DIRECTION_SCOPE_RIGHT.
     </td>
     </tr>
@@ -8834,7 +8834,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-20, -22, -23 and -24
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     <tr>
@@ -8842,7 +8842,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     StVO X-21
     </td>
     <td>
-    Set \c Classification::direction_scope as \c
+    Set c Classification::direction_scope as c
     #DIRECTION_SCOPE_LEFT.
     </td>
     </tr>
@@ -8855,7 +8855,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 610-41.png
+    image html 610-41.png
     </td>
     <td>
     StVO 610
@@ -8870,7 +8870,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 615.png
+    image html 615.png
     </td>
     <td>
     StVO 615
@@ -8881,7 +8881,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 616-30.png
+    image html 616-30.png
     </td>
     <td>
     StVO 616-30
@@ -8893,7 +8893,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 616-31.png
+    image html 616-31.png
     -->
     </td>
     <td>
@@ -8905,7 +8905,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note Additional traffic signs are modeled as separate main
+    note Additional traffic signs are modeled as separate main
     signs.
     """
 
@@ -8915,7 +8915,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 620-40.png
+    image html 620-40.png
     </td>
     <td>
     StVO 620-40
@@ -8926,7 +8926,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 620-41.png
+    image html 620-41.png
     </td>
     <td>
     StVO 621-40
@@ -8937,7 +8937,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note No reflecting color is specified.
+    note No reflecting color is specified.
     """
 
     TYPE_DIRECTIONAL_BOARD_WARNING = 113
@@ -8945,40 +8945,40 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     Directional board used for warning and guiding purposes
     (red/white stripes - StVO 625).
 
-    Use the optional attribute \c Classification::direction_scope
+    Use the optional attribute c Classification::direction_scope
     to specify the direction the wedge symbols are pointing at.
 
     Variants (here X is any of 0, 1, 2, 3):
     <table border="0">
     <tr>
     <td>
-    \image html 625-11.png
+    image html 625-11.png
     </td>
     <td>
     StVO 625-1X
     </td>
     <td>
-    - Set \c Classification::direction_scope as \c
+    - Set c Classification::direction_scope as c
     #DIRECTION_SCOPE_LEFT.
-    - Optionally, use \c TrafficSignValue::value to specify the
-    number of wedges on the board. If you do so, set \c
-    TrafficSignValue::value_unit to \c
+    - Optionally, use c TrafficSignValue::value to specify the
+    number of wedges on the board. If you do so, set c
+    TrafficSignValue::value_unit to c
     TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 625-11.png
+    image html 625-11.png
     </td>
     <td>
     StVO 625-2X
     </td>
     <td>
-    - Set \c Classification::direction_scope as \c
+    - Set c Classification::direction_scope as c
     DIRECTION_SCOPE_RIGHT.
-    - Optionally, use \c TrafficSignValue::value to specify the
-    number of wedges on the board. If you do so, set \c
-    TrafficSignValue::value_unit to \c
+    - Optionally, use c TrafficSignValue::value to specify the
+    number of wedges on the board. If you do so, set c
+    TrafficSignValue::value_unit to c
     TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
@@ -8991,24 +8991,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 626-10.png
+    image html 626-10.png
     </td>
     <td>
     StVO 626-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 626-10.png
+    image html 626-10.png
     </td>
     <td>
     StVO 626-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -9020,7 +9020,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 626-30.png
+    image html 626-30.png
     </td>
     <td>
     StVO 626-30, 626-31
@@ -9035,24 +9035,24 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 630.png
+    image html 630.png
     </td>
     <td>
     StVO 630-10
     </td>
     <td>
-    Set \c #vertically_mirrored to \c false.
+    Set c #vertically_mirrored to c false.
     </td>
     </tr>
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 630.png
+    image html 630.png
     </td>
     <td>
     StVO 630-20
     </td>
     <td>
-    Set \c #vertically_mirrored to \c true.
+    Set c #vertically_mirrored to c true.
     </td>
     </tr>
     </table>
@@ -9064,7 +9064,7 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 720.png
+    image html 720.png
     </td>
     <td>
     StVO 720
@@ -9254,7 +9254,7 @@ class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
     """
     Residents
 
-    \note In the German StVO, typically denoted with the text
+    note In the German StVO, typically denoted with the text
     "Anlieger" or "Bewohner"
     """
 
@@ -9272,7 +9272,7 @@ class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
     """
     Tractors
 
-    \note In the German StVO, tractors are defined as
+    note In the German StVO, tractors are defined as
     motorized vehicles that are not allowed to, or cannot,
     drive faster than 25 km/h
     """
@@ -9291,7 +9291,7 @@ class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
     """
     Trucks
 
-    \note
+    note
     In the German StVO, trucks are defined as
     motorized vehicles that are heavier than 3.5 t
     """
@@ -9556,19 +9556,19 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Definition of supplementary sign types.
 
-    For general supplementary signs use \c #TYPE_TEXT.
-    Supplementary signs with general space restrictions use \c
+    For general supplementary signs use c #TYPE_TEXT.
+    Supplementary signs with general space restrictions use c
     #TYPE_SPACE. Supplementary signs with general time restrictions
-    use \c #TYPE_TIME. Supplementary signs with displayed arrow
-    directions use \c #TYPE_ARROW. Supplementary signs constraint to
-    one type of actors use \c #TYPE_CONSTRAINED_TO. Supplementary
-    signs that will exclude one type of actors use \c #TYPE_EXCEPT.
+    use c #TYPE_TIME. Supplementary signs with displayed arrow
+    directions use c #TYPE_ARROW. Supplementary signs constraint to
+    one type of actors use c #TYPE_CONSTRAINED_TO. Supplementary
+    signs that will exclude one type of actors use c #TYPE_EXCEPT.
     If supplementary signs combine contraints, restrictions, or plain
-    text, \c Type is used in descending order in the following
-    sequence: \c #TYPE_EXCEPT, \c #TYPE_CONSTRAINED_TO, \c
-    #TYPE_ARROW, \c #TYPE_TIME, \c #TYPE_SPACE, \c #TYPE_TEXT.
+    text, c Type is used in descending order in the following
+    sequence: c #TYPE_EXCEPT, c #TYPE_CONSTRAINED_TO, c
+    #TYPE_ARROW, c #TYPE_TIME, c #TYPE_SPACE, c #TYPE_TEXT.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -9595,13 +9595,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     TYPE_TEXT = 41
     """
     Text sign.
-    \n
+    n
     Use it as a canvas for text-only signs:
-    - Use \c TrafficSignValue::value to indicate a numerical
+    - Use c TrafficSignValue::value to indicate a numerical
     value indicated on the sign. Accompany this value with an
-    indication of its unit of measure given by \c
+    indication of its unit of measure given by c
     TrafficSignValue::value_unit.
-    - Use \c TrafficSignValue::text to indicate a string of text
+    - Use c TrafficSignValue::text to indicate a string of text
     indicated on the sign.
 
     The following table summarizes possible configurations for
@@ -9616,7 +9616,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c TrafficSignValue::text
+    c TrafficSignValue::text
     </th>
     <th>
     Meaning and Remarks
@@ -9624,11 +9624,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-30.png
+    image html 1007-30.png
     </td>
     <td>
     StVO 1007-30  (StVO 2017)
-    \anchor OIL_TEXT
+    anchor OIL_TEXT
     </td>
     <td>
     &rdquo;&Ouml;lspur&rdquo;
@@ -9636,18 +9636,18 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Trail of oil hazard.
     <br>
-    \note The identifier "StVO 1007-30" is currently used to
+    note The identifier "StVO 1007-30" is currently used to
     denote the hazard of oil trails. Prior to the edition of
     2017 of the Catalog of Street Signs of the Federal Road
     Research Institute of Germany - BASt, it was used to denote a
     restriction of the validity of the traffic sign to snowy /
     icy conditions.
-    See \c #TYPE_SNOW.
+    See c #TYPE_SNOW.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1007-31.png
+    image html 1007-31.png
     </td>
     <td>
     StVO 1007-31
@@ -9661,7 +9661,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-32.png
+    image html 1007-32.png
     </td>
     <td>
     StVO 1007-32
@@ -9675,7 +9675,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-33.png
+    image html 1007-33.png
     </td>
     <td>
     StVO 1007-33
@@ -9689,7 +9689,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-34.png
+    image html 1007-34.png
     </td>
     <td>
     StVO 1007-34
@@ -9703,7 +9703,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-35.png
+    image html 1007-35.png
     </td>
     <td>
     StVO 1007-35
@@ -9717,7 +9717,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-36.png
+    image html 1007-36.png
     </td>
     <td>
     StVO 1007-36
@@ -9731,7 +9731,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-37.png
+    image html 1007-37.png
     </td>
     <td>
     StVO 1007-37
@@ -9745,7 +9745,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-38.png
+    image html 1007-38.png
     </td>
     <td>
     StVO 1007-38
@@ -9759,7 +9759,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-39.png
+    image html 1007-39.png
     </td>
     <td>
     StVO 1007-39
@@ -9773,11 +9773,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-50.png
+    image html 1007-50.png
     </td>
     <td>
     StVO 1007-50
-    \anchor ACCIDENT_TEXT
+    anchor ACCIDENT_TEXT
     </td>
     <td>
     "Unfall"
@@ -9785,12 +9785,12 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Accident hazard.
     <br>
-    See \c #TYPE_ACCIDENT
+    See c #TYPE_ACCIDENT
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1007-51.png
+    image html 1007-51.png
     </td>
     <td>
     StVO 1007-51
@@ -9804,7 +9804,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-52.png
+    image html 1007-52.png
     </td>
     <td>
     StVO 1007-52
@@ -9818,7 +9818,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-53.png
+    image html 1007-53.png
     </td>
     <td>
     StVO 1007-53
@@ -9832,7 +9832,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-54.png
+    image html 1007-54.png
     </td>
     <td>
     StVO 1007-54
@@ -9846,7 +9846,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-57.png
+    image html 1007-57.png
     </td>
     <td>
     StVO 1007-57
@@ -9860,7 +9860,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-58.png
+    image html 1007-58.png
     </td>
     <td>
     StVO 1007-58
@@ -9874,7 +9874,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-60.png
+    image html 1007-60.png
     </td>
     <td>
     StVO 1007-60
@@ -9888,7 +9888,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-61.png
+    image html 1007-61.png
     </td>
     <td>
     StVO 1007-61
@@ -9901,7 +9901,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </td>
     <tr>
     <td>
-    \image html 1007-62.png
+    image html 1007-62.png
     </td>
     <td>
     StVO 1007-62
@@ -9915,7 +9915,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1008-30.png
+    image html 1008-30.png
     </td>
     <td>
     StVO 1008-30
@@ -9929,7 +9929,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1008-31.png
+    image html 1008-31.png
     </td>
     <td>
     StVO 1008-31
@@ -9943,7 +9943,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1008-32.png
+    image html 1008-32.png
     </td>
     <td>
     StVO 1008-32
@@ -9957,7 +9957,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1008-33.png
+    image html 1008-33.png
     </td>
     <td>
     StVO 1008-33
@@ -9971,7 +9971,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1008-34.png
+    image html 1008-34.png
     </td>
     <td>
     StVO 1008-34
@@ -9985,7 +9985,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-30n.png
+    image html 1012-30n.png
     </td>
     <td>
     StVO 1012-30 (StVO 2017)
@@ -9995,19 +9995,19 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </td>
     <td>
     Loading zone.
-    \anchor LOADING_ZONE_TEXT
-    \note The identifier "StVO 1012-30" is currently used to
+    anchor LOADING_ZONE_TEXT
+    note The identifier "StVO 1012-30" is currently used to
     denote a loading zone. Prior to the edition of 2017 of
     the Catalog of Street Signs of the Federal Road Research
     Institute of Germany - BASt, it was used to denote
     the beginning of the validity of regulation prescribed by
-    the \c MainSign.
-    See [\c Begin](\ref BEGIN_TEXT).
+    the c MainSign.
+    See [c Begin](ref BEGIN_TEXT).
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1012-30a.png
+    image html 1012-30a.png
     </td>
     <td>
     StVO 1012-30
@@ -10017,19 +10017,19 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </td>
     <td>
     Begin
-    \anchor BEGIN_TEXT
-    \note The identifier "StVO 1012-30" is currently used to
+    anchor BEGIN_TEXT
+    note The identifier "StVO 1012-30" is currently used to
     denote a loading zone. Prior to the edition of 2017 of
     the Catalog of Street Signs of the Federal Road Research
     Institute of Germany - BASt, it was used to denote
     the beginning of the validity of regulation prescribed by
-    the \c MainSign.
-    See [\c Loading zone](\ref LOADING_ZONE_TEXT).
+    the c MainSign.
+    See [c Loading zone](ref LOADING_ZONE_TEXT).
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1012-31.png
+    image html 1012-31.png
     </td>
     <td>
     StVO 1012-31
@@ -10043,7 +10043,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-34.png
+    image html 1012-34.png
     </td>
     <td>
     StVO 1012-34
@@ -10054,14 +10054,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     All green signals ("green wave") at certain speed.
     <br>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. km/h) to indicate the
     speed.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1012-35.png
+    image html 1012-35.png
     </td>
     <td>
     StVO 1012-35
@@ -10075,11 +10075,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-36.png
+    image html 1012-36.png
     </td>
     <td>
     StVO 1012-36
-    \anchor NOISE_PROTECTION_TEXT
+    anchor NOISE_PROTECTION_TEXT
     </td>
     <td>
     &rdquo;L&auml;rmschutz&rdquo;
@@ -10088,12 +10088,12 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     Noise protection.
     <br>
     See also:
-    [\c Noise protection with time limit](\ref NOISE_PROTECTION2)
+    [c Noise protection with time limit](ref NOISE_PROTECTION2)
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1012-37.png
+    image html 1012-37.png
     </td>
     <td>
     StVO 1012-37
@@ -10107,7 +10107,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-38.png
+    image html 1012-38.png
     </td>
     <td>
     StVO 1012-38
@@ -10121,7 +10121,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-50.png
+    image html 1012-50.png
     </td>
     <td>
     StVO 1012-50
@@ -10135,7 +10135,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-51.png
+    image html 1012-51.png
     </td>
     <td>
     StVO 1012-51
@@ -10149,7 +10149,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-52.png
+    image html 1012-52.png
     </td>
     <td>
     StVO 1012-52
@@ -10163,7 +10163,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-53.png
+    image html 1012-53.png
     </td>
     <td>
     StVO 1012-53
@@ -10177,7 +10177,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1013-50.png
+    image html 1013-50.png
     </td>
     <td>
     StVO 1013-50
@@ -10191,7 +10191,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1013-51.png
+    image html 1013-51.png
     </td>
     <td>
     StVO 1013-51
@@ -10205,7 +10205,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1014-50.png
+    image html 1014-50.png
     </td>
     <td>
     StVO 1014-50
@@ -10219,7 +10219,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1028-31.png
+    image html 1028-31.png
     </td>
     <td>
     StVO 1028-31
@@ -10233,7 +10233,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-30.png
+    image html 1053-30.png
     </td>
     <td>
     StVO 1053-30
@@ -10247,7 +10247,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-31.png
+    image html 1053-31.png
     </td>
     <td>
     StVO 1053-31
@@ -10261,7 +10261,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-32.png
+    image html 1053-32.png
     </td>
     <td>
     StVO 1053-32
@@ -10275,7 +10275,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-34.png
+    image html 1053-34.png
     </td>
     <td>
     StVO 1053-34
@@ -10289,7 +10289,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-36.png
+    image html 1053-36.png
     </td>
     <td>
     StVO 1053-36
@@ -10303,7 +10303,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-52.png
+    image html 1053-52.png
     </td>
     <td>
     StVO 1053-52
@@ -10317,7 +10317,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-53.png
+    image html 1053-53.png
     </td>
     <td>
     StVO 1053-53
@@ -10336,14 +10336,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     TYPE_SPACE = 39
     """
     Text sign with distance indication.
-    \n
+    n
     Use it as a canvas for text signs that make reference to a
     point or area in space:
-    - Use \c TrafficSignValue::value to include the distance
+    - Use c TrafficSignValue::value to include the distance
     indicated in the sign. Accompany this value with an
-    indication of its unit of measure given by \c
+    indication of its unit of measure given by c
     TrafficSignValue::value_unit (e.g. m),
-    - Use \c TrafficSignValue::text to indicate the sign's
+    - Use c TrafficSignValue::text to indicate the sign's
     specific text,
 
     The following table summarizes possible configurations for
@@ -10358,7 +10358,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c TrafficSignValue member(s)
+    c TrafficSignValue member(s)
     </th>
     <th>
     Meaning and Remarks
@@ -10366,7 +10366,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1004-32.png
+    image html 1004-32.png
     </td>
     <td>
     StVO 1004-32
@@ -10380,7 +10380,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1005-30.png
+    image html 1005-30.png
     </td>
     <td>
     StVO 1005-30
@@ -10394,7 +10394,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1007-59.png
+    image html 1007-59.png
     </td>
     <td>
     StVO 1007-59
@@ -10408,7 +10408,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1013-52.png
+    image html 1013-52.png
     </td>
     <td>
     StVO 1013-52
@@ -10422,7 +10422,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1028-33.png
+    image html 1028-33.png
     </td>
     <td>
     StVO 1028-33
@@ -10436,10 +10436,10 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     If there is a prohibition for all vehicles, the street can
     still be used up to a certain point. To indicate the point,
     use one of the following alternatives:
-    - A numerical value described by \c TrafficSignValue::value
-    and \c TrafficSignValue::value_unit (e.g. m) to indicate
+    - A numerical value described by c TrafficSignValue::value
+    and c TrafficSignValue::value_unit (e.g. m) to indicate
     the point as a distance from the sign.
-    - A text described by \c TrafficSignValue::text in order to
+    - A text described by c TrafficSignValue::text in order to
     describe the point's location verbally, e.g. "Baugebiet ...".
     </td>
     </tr>
@@ -10449,27 +10449,27 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     TYPE_TIME = 26
     """
     Text sign with time indication.
-    \n
+    n
     Use it as a canvas for text signs that make:
     reference to a point in time or a time range.
-    - Use one or more \c TrafficSignValue messages to include
+    - Use one or more c TrafficSignValue messages to include
     the times indicated in the sign. Accompany each value with an
-    indication of its unit of measure given by \c
+    indication of its unit of measure given by c
     TrafficSignValue::value_unit, e.g. h.
-    - For each \c TrafficSignValue, \c TrafficSignValue::value
+    - For each c TrafficSignValue, c TrafficSignValue::value
     indicates the time elapsed since midnight every day.
-    - Use the \c TrafficSignValue::text member of the
-    first \c TrafficSignValue message to indicate the sign's
+    - Use the c TrafficSignValue::text member of the
+    first c TrafficSignValue message to indicate the sign's
     specific text.
 
-    \note
-    - Time interval need two \c TrafficSignValue messages,
+    note
+    - Time interval need two c TrafficSignValue messages,
     one to indicate their start and one to indicate their end.
     - In case more than one time range is required, the
-    \c TrafficSignValue::value member of the first \c
+    c TrafficSignValue::value member of the first c
     TrafficSignValue message is interpreted as the beginning of
-    the first interval, the \c TrafficSignValue::value member of
-    the second \c TrafficSignValue message is interpreted as the
+    the first interval, the c TrafficSignValue::value member of
+    the second c TrafficSignValue message is interpreted as the
     end of the first interval, and so on.
 
     The following table summarizes possible configurations for
@@ -10484,7 +10484,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c TrafficSignValue member(s)
+    c TrafficSignValue member(s)
     </th>
     <th>
     Meaning and Remarks
@@ -10492,7 +10492,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1040-30.png
+    image html 1040-30.png
     </td>
     <td>
     StVO 1040-30
@@ -10506,11 +10506,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1040-31.png
+    image html 1040-31.png
     </td>
     <td>
     StVO 1040-31
-    \anchor StVO_1040-31
+    anchor StVO_1040-31
     </td>
     <td>
     Two time ranges
@@ -10518,13 +10518,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Time range for validity of traffic sign - two ranges.
     <br>
-    For each time range, include a pair of \c TrafficSignValue
-    messages according to the [\c rules above](\ref TYPE_TIME).
+    For each time range, include a pair of c TrafficSignValue
+    messages according to the [c rules above](ref TYPE_TIME).
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1040-34.png
+    image html 1040-34.png
     </td>
     <td>
     StVO 1040-34
@@ -10535,26 +10535,26 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Restricted from point in time.
     <br>
-    - Use three \c TrafficSignValue messages to indicate
+    - Use three c TrafficSignValue messages to indicate
     respectively the day of the month, the month of the year,
     and the hour of the day corresponding to the start of the
     restriction.
-    - The first two \c TrafficSignValue::value_unit should be
-    set to \c TrafficSignValue::UNIT_NO_UNIT.
-    - For the last \c TrafficSignValue, \c
+    - The first two c TrafficSignValue::value_unit should be
+    set to c TrafficSignValue::UNIT_NO_UNIT.
+    - For the last c TrafficSignValue, c
     TrafficSignValue::value indicates the time elapsed since
-    midnight of the corresponding day, and \c
+    midnight of the corresponding day, and c
     TrafficSignValue::value_unit indicates the unit this time is
     expressed in, e.g. in min.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1040-35.png
+    image html 1040-35.png
     </td>
     <td>
     StVO 1040-35
-    \anchor NOISE_PROTECTION2
+    anchor NOISE_PROTECTION2
     </td>
     <td>
     &rdquo;L&auml;rmschutz&rdquo; + time range
@@ -10562,13 +10562,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Noise protection with time limit.
     <br>
-    See [\c Noise protection](\ref NOISE_PROTECTION_TEXT).
+    See [c Noise protection](ref NOISE_PROTECTION_TEXT).
     </tt>
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1040-36.png
+    image html 1040-36.png
     </td>
     <td>
     StVO 1040-36
@@ -10582,7 +10582,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-30.png
+    image html 1042-30.png
     </td>
     <td>
     StVO 1042-30
@@ -10596,11 +10596,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-31.png
+    image html 1042-31.png
     </td>
     <td>
     StVO 1042-31
-    \anchor StVO_1042-31
+    anchor StVO_1042-31
     </td>
     <td>
     "werktags" + time range
@@ -10611,7 +10611,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-32.png
+    image html 1042-32.png
     </td>
     <td>
     StVO 1042-32
@@ -10622,15 +10622,15 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Restricted to working days with two time intervals.
     <br>
-    For each time range, include a pair of \c TrafficSignValue
-    messages according to the [\c rules above](\ref TYPE_TIME).
+    For each time range, include a pair of c TrafficSignValue
+    messages according to the [c rules above](ref TYPE_TIME).
     <br>
-    See also: [\c Two time ranges](\ref StVO_1040-31).
+    See also: [c Two time ranges](ref StVO_1040-31).
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1042-33.png
+    image html 1042-33.png
     </td>
     <td>
     StVO 1042-33
@@ -10645,7 +10645,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-34.png
+    image html 1042-34.png
     </td>
     <td>
     StVO 1042-34
@@ -10659,7 +10659,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-35.png
+    image html 1042-35.png
     </td>
     <td>
     StVO 1042-35
@@ -10673,7 +10673,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-36.png
+    image html 1042-36.png
     </td>
     <td>
     StVO 1042-36
@@ -10685,17 +10685,17 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     School bus, restricted to daytimes
     <br>
-    For each time range, include a pair of \c
+    For each time range, include a pair of c
     TrafficSignValue messages according to the
-    [\c rules above](\ref TYPE_TIME).
+    [c rules above](ref TYPE_TIME).
     <br>
-    See also: [\c Two time ranges](\ref StVO_1040-31),
-    [\c Working days except Saturdays](\ref StVO_1042-38).
+    See also: [c Two time ranges](ref StVO_1040-31),
+    [c Working days except Saturdays](ref StVO_1042-38).
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1042-37.png
+    image html 1042-37.png
     </td>
     <td>
     StVO 1042-37
@@ -10709,11 +10709,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-38.png
+    image html 1042-38.png
     </td>
     <td>
     StVO 1042-38
-    \anchor StVO_1042-38
+    anchor StVO_1042-38
     </td>
     <td>
     &rdquo;werktags au&szlig;er samstags&rdquo;
@@ -10724,7 +10724,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-51.png
+    image html 1042-51.png
     </td>
     <td>
     StVO 1042-51
@@ -10738,7 +10738,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1042-53.png
+    image html 1042-53.png
     </td>
     <td>
     StVO 1042-53
@@ -10750,7 +10750,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     Way to or from school with time limit on working days.
     <br>
     See also
-    [\c Working days with time limit](\ref StVO_1042-31).
+    [c Working days with time limit](ref StVO_1042-31).
     </td>
     </tr>
     </table>
@@ -10759,8 +10759,8 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     TYPE_ARROW = 30
     """
     A supplementary sign showing a direction alone.
-    \n
-    Use together with the message \c Classification::arrow. The
+    n
+    Use together with the message c Classification::arrow. The
     following signs can be built:
     <table cellspacing="0" cellpadding="0">
     <tr>
@@ -10776,7 +10776,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1000-13.png
+    image html 1000-13.png
     </td>
     <td>
     StVO 1000-13
@@ -10784,13 +10784,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Detour sign, three-quarter circle.
     <br>
-    Set \c Classification::arrow to \c
+    Set c Classification::arrow to c
     Arrow::DIRECTION_CIRCLE_90_DEG_LEFT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-23.png
+    image html 1000-23.png
     </td>
     <td>
     StVO 1000-23
@@ -10798,13 +10798,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Detour sign, one-quarter circle.
     <br>
-    Set \c Classification::arrow to \c
+    Set c Classification::arrow to c
     Arrow::DIRECTION_CIRCLE_90_DEG_RIGHT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-30.png
+    image html 1000-30.png
     </td>
     <td>
     StVO 1000-30
@@ -10812,14 +10812,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Bidirectional traffic sideways.
     <br>
-    Use two \c Classification::arrow messages. Set one to \c
-    Arrow::DIRECTION_DIRECT_90_DEG_RIGHT and the other one to \c
+    Use two c Classification::arrow messages. Set one to c
+    Arrow::DIRECTION_DIRECT_90_DEG_RIGHT and the other one to c
     Arrow::DIRECTION_DIRECT_90_DEG_LEFT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-31.png
+    image html 1000-31.png
     </td>
     <td>
     StVO 1000-31
@@ -10827,14 +10827,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Bidirectional traffic back and forth.
     <br>
-    Use two \c Classification::arrow messages. Set one to \c
-    Arrow::DIRECTION_DIRECT_0_DEG and the other one to \c
+    Use two c Classification::arrow messages. Set one to c
+    Arrow::DIRECTION_DIRECT_0_DEG and the other one to c
     Arrow::DIRECTION_DIRECT_180_DEG.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-34.png
+    image html 1000-34.png
     </td>
     <td>
     StVO 1000-34
@@ -10842,7 +10842,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <td>
     Detour sign, semicircle.
     <br>
-    Set \c Classification::arrow to \c
+    Set c Classification::arrow to c
     Arrow::DIRECTION_CIRCLE_0_DEG.
     </td>
     </tr>
@@ -10853,8 +10853,8 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     The list of traffic actors to which the main sign's
     regulation is constrained to.
-    \n
-    Use as many members of the \c Actor enumerator as needed to
+    n
+    Use as many members of the c Actor enumerator as needed to
     denote the related traffic actors.
 
     The following tables summarize possible configurations for
@@ -10868,7 +10868,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c Actor
+    c Actor
     </th>
     <th>
     Meaning and Remarks
@@ -10876,85 +10876,85 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1000-12.png
+    image html 1000-12.png
     </td>
     <td>
     StVO 1000-12
     </td>
     <td>
-    \c #ACTOR_PEDESTRIANS
+    c #ACTOR_PEDESTRIANS
     </td>
     <td>
     Use sidewalk on left side of roadway.
     <br>
-    Set \c Classification::arrow to \c
+    Set c Classification::arrow to c
     Arrow::DIRECTION_DIRECT_90_DEG_LEFT.
     </td>
     </tr>
     <tr>
     <td>
     <!--
-    \image html 1000-22.png
+    image html 1000-22.png
     -->
     </td>
     <td>
     StVO 1000-22
     </td>
     <td>
-    \c #ACTOR_PEDESTRIANS
+    c #ACTOR_PEDESTRIANS
     </td>
     <td>
     Use sidewalk on right side of roadway.
     <br>
-    Set \c Classification::arrow to \c
+    Set c Classification::arrow to c
     Arrow::DIRECTION_DIRECT_90_DEG_RIGHT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-32.png
+    image html 1000-32.png
     </td>
     <td>
     StVO 1000-32
     </td>
     <td>
-    \c #ACTOR_BICYCLES
+    c #ACTOR_BICYCLES
     </td>
     <td>
     Bidirectional traffic bicycles sideways.
     <br>
-    Use two \c Classification::arrow messages. Set one to \c
-    Arrow::DIRECTION_DIRECT_90_DEG_RIGHT and the other one to \c
+    Use two c Classification::arrow messages. Set one to c
+    Arrow::DIRECTION_DIRECT_90_DEG_RIGHT and the other one to c
     Arrow::DIRECTION_DIRECT_90_DEG_LEFT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1000-33.png
+    image html 1000-33.png
     </td>
     <td>
     StVO 1000-33
     </td>
     <td>
-    \c #ACTOR_BICYCLES
+    c #ACTOR_BICYCLES
     </td>
     <td>
     Bidirectional traffic bicyclesback and forth.
     <br>
-    Use two \c Classification::arrow messages. Set one to \c
-    Arrow::DIRECTION_DIRECT_0_DEG and the other one to \c
+    Use two c Classification::arrow messages. Set one to c
+    Arrow::DIRECTION_DIRECT_0_DEG and the other one to c
     Arrow::DIRECTION_DIRECT_180_DEG.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1010-50.png
+    image html 1010-50.png
     </td>
     <td>
     StVO 1010-50
     </td>
     <td>
-    \c #ACTOR_MOTORIZED_MULTITRACK_VEHICLES
+    c #ACTOR_MOTORIZED_MULTITRACK_VEHICLES
     </td>
     <td>
     Motorized multi-track vehicles.
@@ -10962,17 +10962,17 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-51.png
+    image html 1010-51.png
     </td>
     <td>
     StVO 1010-51
     </td>
     <td>
-    \c #ACTOR_TRUCKS
+    c #ACTOR_TRUCKS
     </td>
     <td>
     Trucks.
-    \note
+    note
     - In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     - This supplementary sign also denotes the trucks' tractor
@@ -10983,13 +10983,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-52.png
+    image html 1010-52.png
     </td>
     <td>
     StVO 1010-52
     </td>
     <td>
-    \c #ACTOR_BICYCLES
+    c #ACTOR_BICYCLES
     </td>
     <td>
     Bicycles.
@@ -10997,13 +10997,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-53.png
+    image html 1010-53.png
     </td>
     <td>
     StVO 1010-53
     </td>
     <td>
-    \c #ACTOR_PEDESTRIANS
+    c #ACTOR_PEDESTRIANS
     </td>
     <td>
     Pedestrians.
@@ -11011,13 +11011,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-54.png
+    image html 1010-54.png
     </td>
     <td>
     StVO 1010-54
     </td>
     <td>
-    \c #ACTOR_HORSE_RIDERS
+    c #ACTOR_HORSE_RIDERS
     </td>
     <td>
     Horse riders.
@@ -11025,13 +11025,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-55.png
+    image html 1010-55.png
     </td>
     <td>
     StVO 1010-55
     </td>
     <td>
-    \c #ACTOR_CATTLE
+    c #ACTOR_CATTLE
     </td>
     <td>
     Cattles.
@@ -11039,13 +11039,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-56.png
+    image html 1010-56.png
     </td>
     <td>
     StVO 1010-56
     </td>
     <td>
-    \c #ACTOR_TRAMS
+    c #ACTOR_TRAMS
     </td>
     <td>
     Trams.
@@ -11053,13 +11053,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-57.png
+    image html 1010-57.png
     </td>
     <td>
     StVO 1010-57
     </td>
     <td>
-    \c #ACTOR_BUSES
+    c #ACTOR_BUSES
     </td>
     <td>
     Buses.
@@ -11067,13 +11067,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-58.png
+    image html 1010-58.png
     </td>
     <td>
     StVO 1010-58
     </td>
     <td>
-    \c #ACTOR_CARS
+    c #ACTOR_CARS
     </td>
     <td>
     Passenger cars.
@@ -11081,13 +11081,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-59.png
+    image html 1010-59.png
     </td>
     <td>
     StVO 1010-59
     </td>
     <td>
-    \c #ACTOR_CARS_WITH_TRAILERS
+    c #ACTOR_CARS_WITH_TRAILERS
     </td>
     <td>
     Passenger cars with trailers.
@@ -11095,13 +11095,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-60.png
+    image html 1010-60.png
     </td>
     <td>
     StVO 1010-60
     </td>
     <td>
-    \c #ACTOR_TRUCKS_WITH_TRAILERS
+    c #ACTOR_TRUCKS_WITH_TRAILERS
     </td>
     <td>
     Trucks with trailers.
@@ -11109,30 +11109,30 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-61.png
+    image html 1010-61.png
     </td>
     <td>
     StVO 1010-61
     </td>
     <td>
-    \c #ACTOR_TRACTORS
+    c #ACTOR_TRACTORS
     </td>
     <td>
     Tractors.
-    \note In the German StVO, tractors are defined as motorized
+    note In the German StVO, tractors are defined as motorized
     vehicles that are not allowed to, or cannot, drive faster
     than 25 km/h.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1010-62.png
+    image html 1010-62.png
     </td>
     <td>
     StVO 1010-62
     </td>
     <td>
-    \c #ACTOR_MOTORCYCLES
+    c #ACTOR_MOTORCYCLES
     </td>
     <td>
     Motorbikes.
@@ -11140,13 +11140,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-63.png
+    image html 1010-63.png
     </td>
     <td>
     StVO 1010-63
     </td>
     <td>
-    \c #ACTOR_MOPEDS
+    c #ACTOR_MOPEDS
     </td>
     <td>
     Mopeds.
@@ -11154,13 +11154,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-64.png
+    image html 1010-64.png
     </td>
     <td>
     StVO 1010-64
     </td>
     <td>
-    \c #ACTOR_HORSE_CARRIAGES
+    c #ACTOR_HORSE_CARRIAGES
     </td>
     <td>
     Horse carriages.
@@ -11168,13 +11168,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-65.png
+    image html 1010-65.png
     </td>
     <td>
     StVO 1010-65
     </td>
     <td>
-    \c #ACTOR_EBIKES
+    c #ACTOR_EBIKES
     </td>
     <td>
     E-bikes.
@@ -11182,30 +11182,30 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-66.png
+    image html 1010-66.png
     </td>
     <td>
     StVO 1010-66
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Electric vehicles.
     <br>
-    See also: [\c StVO 1050-33](\ref EV_T).
-    \anchor EV_I
+    See also: [c StVO 1050-33](ref EV_T).
+    anchor EV_I
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1010-67.png
+    image html 1010-67.png
     </td>
     <td>
     StVO 1010-67
     </td>
     <td>
-    \c #ACTOR_CAMPERS
+    c #ACTOR_CAMPERS
     </td>
     <td>
     Campers.
@@ -11213,49 +11213,49 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1012-32.png
+    image html 1012-32.png
     </td>
     <td>
     StVO 1012-32
     </td>
     <td>
-    \c #ACTOR_BICYCLES
+    c #ACTOR_BICYCLES
     </td>
     <td>
     Cyclists must walk.
     <br>
-    Set \c TrafficSignValue::text as "absteigen".
+    Set c TrafficSignValue::text as "absteigen".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1049-11.png
+    image html 1049-11.png
     </td>
     <td>
     StVO 1049-11
     </td>
     <td>
-    \c #ACTOR_TRACTORS
+    c #ACTOR_TRACTORS
     </td>
     <td>
     Overtaking of tractors allowed.
     <br>
-    Set \c TrafficSignValue::text as
+    Set c TrafficSignValue::text as
     &rdquo;d&uuml;rfen &uuml;berholt werden&rdquo;.
-    \note In the German StVO, tractors are defined as motorized
+    note In the German StVO, tractors are defined as motorized
     vehicles that are not allowed to, or cannot, drive faster
     than 25 km/h.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1050-30.png
+    image html 1050-30.png
     </td>
     <td>
     StVO 1050-30
     </td>
     <td>
-    \c #ACTOR_TAXIS
+    c #ACTOR_TAXIS
     </td>
     <td>
     Taxis.
@@ -11263,70 +11263,70 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1050-31.png
+    image html 1050-31.png
     </td>
     <td>
     StVO 1050-31
     </td>
     <td>
-    \c #ACTOR_TAXIS
+    c #ACTOR_TAXIS
     </td>
     <td>
     A number of taxis.
     <br>
-    Use \c TrafficSignValue::value to indicate the number of
-    taxis. Set \c TrafficSignValue::value_unit to \c
+    Use c TrafficSignValue::value to indicate the number of
+    taxis. Set c TrafficSignValue::value_unit to c
     TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1050-32.png
+    image html 1050-32.png
     </td>
     <td>
     StVO 1050-32
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Electric vehicles during the charging process.
     <br>
-    Set \c TrafficSignValue::text as &rdquo;w&auml;hrend des
+    Set c TrafficSignValue::text as &rdquo;w&auml;hrend des
     Ladevorgangs&rdquo;.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1050-33.png
+    image html 1050-33.png
     </td>
     <td>
     StVO 1050-33
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Electric vehicles.
     <br>
-    See also: [\c StVO 1010-66](\ref EV_I).
-    \anchor EV_T
+    See also: [c StVO 1010-66](ref EV_I).
+    anchor EV_T
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1060-32.png
+    image html 1060-32.png
     </td>
     <td>
     StVO 1060-32
     </td>
     <td>
-    Two actors \c #ACTOR_BUSES and \c #ACTOR_CARS_WITH_TRAILERS.
+    Two actors c #ACTOR_BUSES and c #ACTOR_CARS_WITH_TRAILERS.
     </td>
     <td>
     Buses and cars with trailers.
     <br>
-    Set \c TrafficSignValue::text as "auch".
+    Set c TrafficSignValue::text as "auch".
     </td>
     </tr>
     </table>
@@ -11335,7 +11335,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     actors for which the main sign's regulation applies
     exclusively can be constructed.
 
-    \note
+    note
     In the German StVO, these signs typically include the word
     "Nur".
 
@@ -11348,7 +11348,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c
+    c
     Actor
     </th>
     <th>
@@ -11357,13 +11357,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1044-10.png
+    image html 1044-10.png
     </td>
     <td>
     StVO 1044-10
     </td>
     <td>
-    \c #ACTOR_DISABLED_PERSONS
+    c #ACTOR_DISABLED_PERSONS
     </td>
     <td>
     Only disabled persons with an exceptional walking disability
@@ -11372,66 +11372,66 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1044-11.png
+    image html 1044-11.png
     </td>
     <td>
     StVO 1044-11
     </td>
     <td>
-    \c #ACTOR_DISABLED_PERSONS
+    c #ACTOR_DISABLED_PERSONS
     </td>
     <td>
     Only disabled persons with parking permit.
     <br>
-    Set \c TrafficSignValue::text as "mit Parkausweis
+    Set c TrafficSignValue::text as "mit Parkausweis
     Nr. XXXX".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1044-12.png
+    image html 1044-12.png
     </td>
     <td>
     StVO 1044-12
     </td>
     <td>
-    \c#ACTOR_DISABLED_PERSONS
+    c#ACTOR_DISABLED_PERSONS
     </td>
     <td>
     Only disabled persons with an exceptional walking disability
     and blind persons, with number of parking places.
     <br>
-    Use \c TrafficSignValue::value to indicate the number of
-    parking places. Set \c TrafficSignValue::value_unit to \c
-    TrafficSignValue::UNIT_NO_UNIT. Set \c
+    Use c TrafficSignValue::value to indicate the number of
+    parking places. Set c TrafficSignValue::value_unit to c
+    TrafficSignValue::UNIT_NO_UNIT. Set c
     TrafficSignValue::text as &rdquo;Parkst&auml;nde&rdquo;.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1044-30.png
+    image html 1044-30.png
     </td>
     <td>
     StVO 1044-30
     </td>
     <td>
-    \c #ACTOR_RESIDENTS
+    c #ACTOR_RESIDENTS
     </td>
     <td>
     Only residents with parking permit.
     <br>
-    Set \c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
+    Set c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1048-14.png
+    image html 1048-14.png
     </td>
     <td>
     StVO 1048-14
     </td>
     <td>
-    \c #ACTOR_TRUCKS_WITH_SEMITRAILERS
+    c #ACTOR_TRUCKS_WITH_SEMITRAILERS
     </td>
     <td>
     Only trucks with semi-trailers.
@@ -11439,14 +11439,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1048-15.png
+    image html 1048-15.png
     </td>
     <td>
     StVO 1048-15
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_TRUCKS_WITH_SEMITRAILERS
-    and the other one set to \c #ACTOR_TRUCKS_WITH_TRAILERS.
+    Two actors: one set to c #ACTOR_TRUCKS_WITH_SEMITRAILERS
+    and the other one set to c #ACTOR_TRUCKS_WITH_TRAILERS.
     </td>
     <td>
     Only trucks with trailers and trucks with semi-trailers.
@@ -11454,13 +11454,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1048-18.png
+    image html 1048-18.png
     </td>
     <td>
     StVO 1048-18
     </td>
     <td>
-    \c #ACTOR_RAILROAD_TRAFFIC
+    c #ACTOR_RAILROAD_TRAFFIC
     </td>
     <td>
     Only railroad traffic.
@@ -11468,18 +11468,18 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1048-20.png
+    image html 1048-20.png
     </td>
     <td>
     StVO 1048-20
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_CARS_WITH_TRAILERS
-    and the other one set to \c #ACTOR_TRUCKS.
+    Two actors: one set to c #ACTOR_CARS_WITH_TRAILERS
+    and the other one set to c #ACTOR_TRUCKS.
     </td>
     <td>
     Only trucks with trailers and trucks with semi-trailers.
-    \note
+    note
     - In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     - This supplementary sign also denotes the trucks'
@@ -11490,13 +11490,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1049-12.png
+    image html 1049-12.png
     </td>
     <td>
     StVO 1049-12
     </td>
     <td>
-    \c #ACTOR_MILITARY_VEHICLES
+    c #ACTOR_MILITARY_VEHICLES
     </td>
     <td>
     Only military vehicles.
@@ -11504,19 +11504,19 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1049-13.png
+    image html 1049-13.png
     </td>
     <td>
     StVO 1049-13
     </td>
     <td>
-    Three actors, set to respectively \c #ACTOR_TRUCKS, \c
-    #ACTOR_BUSES and \c #ACTOR_CARS_WITH_TRAILERS.
+    Three actors, set to respectively c #ACTOR_TRUCKS, c
+    #ACTOR_BUSES and c #ACTOR_CARS_WITH_TRAILERS.
     </td>
     <td>
     Only trucks, buses, passenger cars with trailers.
     <br>
-    \note
+    note
     - In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     - This supplementary sign also denotes the trucks' tractor
@@ -11525,13 +11525,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1052-30.png
+    image html 1052-30.png
     </td>
     <td>
     StVO 1052-30
     </td>
     <td>
-    \c #ACTOR_HAZARDOUS_GOODS_VEHICLES
+    c #ACTOR_HAZARDOUS_GOODS_VEHICLES
     </td>
     <td>
     Only hazardous goods vehicles.
@@ -11539,13 +11539,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1052-31.png
+    image html 1052-31.png
     </td>
     <td>
     StVO 1052-31
     </td>
     <td>
-    \c #ACTOR_WATER_POLLUTANT_VEHICLES
+    c #ACTOR_WATER_POLLUTANT_VEHICLES
     </td>
     <td>
     Only water pollutant vehicles.
@@ -11565,7 +11565,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c Actor
+    c Actor
     </th>
     <th>
     Meaning and Remarks
@@ -11573,13 +11573,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-10.png
+    image html 1010-10.png
     </td>
     <td>
     StVO 1010-10
     </td>
     <td>
-    \c #ACTOR_CHILDREN
+    c #ACTOR_CHILDREN
     </td>
     <td>
     Children playing on the road and shoulder allowed.
@@ -11587,109 +11587,109 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1010-11.png
+    image html 1010-11.png
     </td>
     <td>
     StVO 1010-11
     </td>
     <td>
-    \c #ACTOR_WINTER_SPORTSPEOPLE
+    c #ACTOR_WINTER_SPORTSPEOPLE
     </td>
     <td>
     Winter sports allowed.
     <br>
-    Use \c TrafficSignValue::value to indicate the number
+    Use c TrafficSignValue::value to indicate the number
     of taxis.
-    Set \c TrafficSignValue::value_unit to \c
+    Set c TrafficSignValue::value_unit to c
     TrafficSignValue::UNIT_NO_UNIT.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1010-12.png
+    image html 1010-12.png
     </td>
     <td>
     StVO 1010-12
     </td>
     <td>
-    \c#ACTOR_TRAILERS
+    c#ACTOR_TRAILERS
     </td>
     <td>
     Trailers allowed.
-    \note In the German StVO, this sign states that Trailers can
+    note In the German StVO, this sign states that Trailers can
     park here without the usual two week temporal parking
     restriction.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1010-13.png
+    image html 1010-13.png
     </td>
     <td>
     StVO 1010-13
     </td>
     <td>
-    \c #ACTOR_CARAVANS
+    c #ACTOR_CARAVANS
     </td>
     <td>
     Caravans allowed.
-    \note In the German StVO, this sign states that Caravans can
+    note In the German StVO, this sign states that Caravans can
     park here without the usual two week temporal parking
     restriction.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1040-10.png
+    image html 1040-10.png
     </td>
     <td>
     StVO 1040-10
     </td>
     <td>
-    \c #ACTOR_WINTER_SPORTSPEOPLE
+    c #ACTOR_WINTER_SPORTSPEOPLE
     </td>
     <td>
     Winter sports within time range allowed.
     <br>
     In order to indicate an allowance limited by a time period,
-    use one \c TrafficSignValue message to indicate its start and
-    one \c TrafficSignValue message to indicate its end. For
-    each \c TrafficSignValue, \c TrafficSignValue::value
-    indicates the time elapsed since midnight every day, and \c
+    use one c TrafficSignValue message to indicate its start and
+    one c TrafficSignValue message to indicate its end. For
+    each c TrafficSignValue, c TrafficSignValue::value
+    indicates the time elapsed since midnight every day, and c
     TrafficSignValue::value_unit indicates the unit this time is
     expressed in, e.g. in min.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1007-55.png
+    image html 1007-55.png
     </td>
     <td>
     StVO 1007-55
     </td>
     <td>
-    \c #ACTOR_WINTER_SPORTSPEOPLE
+    c #ACTOR_WINTER_SPORTSPEOPLE
     </td>
     <td>
     Ski run crosses.
     <br>
-    Set \c TrafficSignValue::text as "kreuzt".
+    Set c TrafficSignValue::text as "kreuzt".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1007-56.png
+    image html 1007-56.png
     </td>
     <td>
     StVO 1007-56
     </td>
     <td>
-    \c #ACTOR_WINTER_SPORTSPEOPLE
+    c #ACTOR_WINTER_SPORTSPEOPLE
     </td>
     <td>
     Ski trail.
     <br>
-    Set \c TrafficSignValue::text as "kreuzt".
+    Set c TrafficSignValue::text as "kreuzt".
     </td>
     </tr>
     </table>
@@ -11698,36 +11698,36 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1006-30.png
+    image html 1006-30.png
     </td>
     <td>
     StVO
     1006-30
     </td>
     <td>
-    \c #ACTOR_CARS_WITH_CARAVANS
+    c #ACTOR_CARS_WITH_CARAVANS
     </td>
     <td>
     Slide danger for car/caravan combinations under strong winds.
     <br>
-    Set \c TrafficSignValue::text as "Schleudergefahr".
+    Set c TrafficSignValue::text as "Schleudergefahr".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1012-33.png
+    image html 1012-33.png
     </td>
     <td>
     StVO
     1012-33
     </td>
     <td>
-    \c #ACTOR_MOPEDS
+    c #ACTOR_MOPEDS
     </td>
     <td>
     No mopeds.
     <br>
-    Set \c TrafficSignValue::text as "keine".
+    Set c TrafficSignValue::text as "keine".
     </td>
     </tr>
     </table>
@@ -11739,11 +11739,11 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     The list of traffic actors for which the main sign's
     regulation does not apply or have a special driving
     allowance.
-    \n
-    Use as many members of the \c Actor enumerator
+    n
+    Use as many members of the c Actor enumerator
     as needed to denote the excepted traffic actors:
 
-    \note
+    note
     In the German StVO, these signs include the word "frei".
 
     The following table summarizes possible configurations for
@@ -11758,7 +11758,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     StVO-No.
     </th>
     <th>
-    \c Actor
+    c Actor
     </th>
     <th>
     Meaning and Remarks
@@ -11766,30 +11766,30 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1020-11.png
+    image html 1020-11.png
     </td>
     <td>
     StVO 1020-11
     </td>
     <td>
-    \c #ACTOR_DISABLED_PERSONS
+    c #ACTOR_DISABLED_PERSONS
     </td>
     <td>
     Except disabled persons with parking permit.
     <br>
-    Set \c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
+    Set c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1020-12.png
+    image html 1020-12.png
     </td>
     <td>
     StVO 1020-12
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_BICYCLES and the other one
-    set to \c #ACTOR_RESIDENTS.
+    Two actors: one set to c #ACTOR_BICYCLES and the other one
+    set to c #ACTOR_RESIDENTS.
     </td>
     <td>
     Except cyclists and residents.
@@ -11797,13 +11797,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1020-14.png
+    image html 1020-14.png
     </td>
     <td>
     StVO 1020-14
     </td>
     <td>
-    \c #ACTOR_WINTER_SPORTSPEOPLE
+    c #ACTOR_WINTER_SPORTSPEOPLE
     </td>
     <td>
     Except winter sportspeople.
@@ -11811,13 +11811,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1020-30.png
+    image html 1020-30.png
     </td>
     <td>
     StVO 1020-30
     </td>
     <td>
-    \c #ACTOR_RESIDENTS
+    c #ACTOR_RESIDENTS
     </td>
     <td>
     Except residents.
@@ -11825,46 +11825,46 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1020-31.png
+    image html 1020-31.png
     </td>
     <td>
     StVO 1020-31
     </td>
     <td>
-    \c #ACTOR_RESIDENTS
+    c #ACTOR_RESIDENTS
     </td>
     <td>
     Except residents or free parking.
     </td>
     <br>
-    Set \c TrafficSignValue::text as "oder Parken".
+    Set c TrafficSignValue::text as "oder Parken".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1020-32.png
+    image html 1020-32.png
     </td>
     <td>
     StVO 1020-32
     </td>
     <td>
-    \c #ACTOR_RESIDENTS
+    c #ACTOR_RESIDENTS
     </td>
     <td>
     Except residents with parking permit.
     <br>
-    Set \c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
+    Set c TrafficSignValue::text as "mit Parkausweis Nr. XXXX".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1022-10.png
+    image html 1022-10.png
     </td>
     <td>
     StVO 1022-10
     </td>
     <td>
-    \c #ACTOR_BICYCLES
+    c #ACTOR_BICYCLES
     </td>
     <td>
     Except bicycles.
@@ -11872,13 +11872,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1022-11.png
+    image html 1022-11.png
     </td>
     <td>
     StVO 1022-11
     </td>
     <td>
-    \c #ACTOR_MOPEDS
+    c #ACTOR_MOPEDS
     </td>
     <td>
     Except mopeds.
@@ -11886,13 +11886,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1022-12.png
+    image html 1022-12.png
     </td>
     <td>
     StVO 1022-12
     </td>
     <td>
-    \c #ACTOR_MOTORCYCLES
+    c #ACTOR_MOTORCYCLES
     </td>
     <td>
     Except motorcycles.
@@ -11900,13 +11900,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1022-13.png
+    image html 1022-13.png
     </td>
     <td>
     StVO 1022-13
     </td>
     <td>
-    \c #ACTOR_EBIKES
+    c #ACTOR_EBIKES
     </td>
     <td>
     Except e-bikes.
@@ -11914,14 +11914,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1022-14.png
+    image html 1022-14.png
     </td>
     <td>
     StVO 1022-14
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_BICYCLES and the other one
-    set to \c #ACTOR_MOPEDS.
+    Two actors: one set to c #ACTOR_BICYCLES and the other one
+    set to c #ACTOR_MOPEDS.
     </td>
     <td>
     Except bicycles and mopeds.
@@ -11929,14 +11929,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1022-15.png
+    image html 1022-15.png
     </td>
     <td>
     StVO 1022-15
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_EBIKES and the other one
-    set to \c #ACTOR_MOPEDS.
+    Two actors: one set to c #ACTOR_EBIKES and the other one
+    set to c #ACTOR_MOPEDS.
     </td>
     <td>
     Except e-bikes and mopeds.
@@ -11944,13 +11944,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-10.png
+    image html 1024-10.png
     </td>
     <td>
     StVO 1024-10
     </td>
     <td>
-    \c #ACTOR_CARS
+    c #ACTOR_CARS
     </td>
     <td>
     Except passenger cars.
@@ -11958,13 +11958,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-11.png
+    image html 1024-11.png
     </td>
     <td>
     StVO 1024-11
     </td>
     <td>
-    \c #ACTOR_CARS_WITH_TRAILERS
+    c #ACTOR_CARS_WITH_TRAILERS
     </td>
     <td>
     Except passenger cars with trailers.
@@ -11972,17 +11972,17 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-12.png
+    image html 1024-12.png
     </td>
     <td>
     StVO 1024-12
     </td>
     <td>
-    \c #ACTOR_TRUCKS
+    c #ACTOR_TRUCKS
     </td>
     <td>
     Except trucks, their tractor unit and their trailers.
-    \note
+    note
     - In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     - This supplementary sign also denotes the trucks' tractor
@@ -11993,17 +11993,17 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-13.png
+    image html 1024-13.png
     </td>
     <td>
     StVO 1024-13
     </td>
     <td>
-    \c #ACTOR_TRUCKS_WITH_TRAILERS
+    c #ACTOR_TRUCKS_WITH_TRAILERS
     </td>
     <td>
     Except trucks with trailers.
-    \note
+    note
     - In the German StVO, trucks are defined as motorized
     vehicles that are heavier than 3.5 t.
     - This supplementary sign also denotes the trucks' tractor
@@ -12014,13 +12014,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-14.png
+    image html 1024-14.png
     </td>
     <td>
     StVO 1024-14
     </td>
     <td>
-    \c #ACTOR_BUSES
+    c #ACTOR_BUSES
     </td>
     <td>
     Except buses.
@@ -12028,13 +12028,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-15.png
+    image html 1024-15.png
     </td>
     <td>
     StVO 1024-15
     </td>
     <td>
-    \c #ACTOR_RAILROAD_TRAFFIC
+    c #ACTOR_RAILROAD_TRAFFIC
     </td>
     <td>
     Except railroad traffic.
@@ -12042,13 +12042,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-16.png
+    image html 1024-16.png
     </td>
     <td>
     StVO 1024-16
     </td>
     <td>
-    \c #ACTOR_TRAMS
+    c #ACTOR_TRAMS
     </td>
     <td>
     Except trams.
@@ -12056,30 +12056,30 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-17.png
+    image html 1024-17.png
     </td>
     <td>
     StVO 1024-17
     </td>
     <td>
-    \c #ACTOR_TRACTORS
+    c #ACTOR_TRACTORS
     </td>
     <td>
     Except tractors.
-    \note In the German StVO, tractors are defined as motorized
+    note In the German StVO, tractors are defined as motorized
     vehicles that are not allowed to, or cannot, drive faster
     than 25 km/h.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1024-18.png
+    image html 1024-18.png
     </td>
     <td>
     StVO 1024-18
     </td>
     <td>
-    \c #ACTOR_HORSE_CARRIAGES
+    c #ACTOR_HORSE_CARRIAGES
     </td>
     <td>
     Except horse carriages.
@@ -12087,63 +12087,63 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1024-19.png
+    image html 1024-19.png
     </td>
     <td>
     StVO 1024-19
     </td>
     <td>
-    \c #ACTOR_CAMPERS
+    c #ACTOR_CAMPERS
     </td>
     <td>
     Except campers with a maximum allowed mass.
     <br>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. t) to indicate the mass.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1024-20.png
+    image html 1024-20.png
     </td>
     <td>
     StVO 1024-20
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Except electric vehicles.
     <br>
-    See also: [\c StVO 1026-61](\ref EV_EXCEPT_T).
-    \anchor EV_EXCEPT_I
+    See also: [c StVO 1026-61](ref EV_EXCEPT_T).
+    anchor EV_EXCEPT_I
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1026-31.png
+    image html 1026-31.png
     </td>
     <td>
     StVO 1026-31
     </td>
     <td>
-    \c #ACTOR_BUSES
+    c #ACTOR_BUSES
     </td>
     <td>
     Except buses in occasional service.
     <br>
-    Set \c TrafficSignValue::text as "im Gelegenheitsverkehr".
+    Set c TrafficSignValue::text as "im Gelegenheitsverkehr".
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1026-32.png
+    image html 1026-32.png
     </td>
     <td>
     StVO 1026-32
     </td>
     <td>
-    \c #ACTOR_PUBLIC_TRANSPORT_VEHICLES
+    c #ACTOR_PUBLIC_TRANSPORT_VEHICLES
     </td>
     <td>
     Except public transport vehicles.
@@ -12151,13 +12151,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-33.png
+    image html 1026-33.png
     </td>
     <td>
     StVO 1026-33
     </td>
     <td>
-    \c #ACTOR_EMERGENCY_VEHICLES
+    c #ACTOR_EMERGENCY_VEHICLES
     </td>
     <td>
     Except emergency vehicles.
@@ -12165,13 +12165,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-34.png
+    image html 1026-34.png
     </td>
     <td>
     StVO 1026-34
     </td>
     <td>
-    \c #ACTOR_MEDICAL_VEHICLES
+    c #ACTOR_MEDICAL_VEHICLES
     </td>
     <td>
     Except medical vehicles.
@@ -12179,13 +12179,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-35.png
+    image html 1026-35.png
     </td>
     <td>
     StVO 1026-35
     </td>
     <td>
-    \c #ACTOR_DELIVERY_VEHICLES
+    c #ACTOR_DELIVERY_VEHICLES
     </td>
     <td>
     Except delivery vehicles.
@@ -12193,13 +12193,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-36.png
+    image html 1026-36.png
     </td>
     <td>
     StVO 1026-36
     </td>
     <td>
-    \c #ACTOR_AGRICULTURAL_VEHICLES
+    c #ACTOR_AGRICULTURAL_VEHICLES
     </td>
     <td>
     Except agricultural vehicles.
@@ -12207,13 +12207,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-37.png
+    image html 1026-37.png
     </td>
     <td>
     StVO 1026-37
     </td>
     <td>
-    \c #ACTOR_FORESTRY_VEHICLES
+    c #ACTOR_FORESTRY_VEHICLES
     </td>
     <td>
     Except forestry vehicles.
@@ -12221,14 +12221,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-38.png
+    image html 1026-38.png
     </td>
     <td>
     StVO 1026-38
     </td>
     <td>
-    Two actors: one set to \c #ACTOR_FORESTRY_VEHICLES and
-    the other one set to \c #ACTOR_AGRICULTURAL_VEHICLES.
+    Two actors: one set to c #ACTOR_FORESTRY_VEHICLES and
+    the other one set to c #ACTOR_AGRICULTURAL_VEHICLES.
     </td>
     <td>
     Except agricultural and forestry vehicles.
@@ -12236,13 +12236,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-39.png
+    image html 1026-39.png
     </td>
     <td>
     StVO 1026-39
     </td>
     <td>
-    \c #ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES
+    c #ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES
     </td>
     <td>
     Except operational and utility vehicles.
@@ -12250,47 +12250,47 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-60.png
+    image html 1026-60.png
     </td>
     <td>
     StVO 1026-60
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Except electric vehicles during the charging process.
     <br>
-    Set \c TrafficSignValue::text as
+    Set c TrafficSignValue::text as
     &rdquo;w&auml;hrend des Ladevorgangs&rdquo;
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1026-61.png
+    image html 1026-61.png
     </td>
     <td>
     StVO 1026-61
     </td>
     <td>
-    \c #ACTOR_ELECTRIC_VEHICLES
+    c #ACTOR_ELECTRIC_VEHICLES
     </td>
     <td>
     Except electric vehicles.
     <br>
-    See also: [\c StVO 1024-20](\ref EV_EXCEPT_I).
-    \anchor EV_EXCEPT_T
+    See also: [c StVO 1024-20](ref EV_EXCEPT_I).
+    anchor EV_EXCEPT_T
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1026-62.png
+    image html 1026-62.png
     </td>
     <td>
     StVO 1026-62
     </td>
     <td>
-    \c #ACTOR_SLURRY_TRANSPORT
+    c #ACTOR_SLURRY_TRANSPORT
     </td>
     <td>
     Except slurry transport.
@@ -12298,13 +12298,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1026-63.png
+    image html 1026-63.png
     </td>
     <td>
     StVO 1026-63
     </td>
     <td>
-    \c #ACTOR_EBIKES
+    c #ACTOR_EBIKES
     </td>
     <td>
     Except e-bikes.
@@ -12312,13 +12312,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1028-30.png
+    image html 1028-30.png
     </td>
     <td>
     StVO 1028-30
     </td>
     <td>
-    \c #ACTOR_CONSTRUCTION_VEHICLES
+    c #ACTOR_CONSTRUCTION_VEHICLES
     </td>
     <td>
     Except construction vehicles.
@@ -12326,29 +12326,29 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1028-32.png
+    image html 1028-32.png
     </td>
     <td>
     StVO 1028-32
     </td>
     <td>
-    \c #ACTOR_RESIDENTS
+    c #ACTOR_RESIDENTS
     </td>
     <td>
     Exception for residents up to construction site.
     <br>
-    Set \c TrafficSignValue::text as "bis Baustelle"
+    Set c TrafficSignValue::text as "bis Baustelle"
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1028-34.png
+    image html 1028-34.png
     </td>
     <td>
     StVO 1028-34
     </td>
     <td>
-    \c #ACTOR_FERRY_USERS
+    c #ACTOR_FERRY_USERS
     </td>
     <td>
     Except ferry users.
@@ -12356,54 +12356,54 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1031-50.png
+    image html 1031-50.png
     </td>
     <td>
     StVO 1031-50
     </td>
     <td>
-    Three actors, set to respectively \c
+    Three actors, set to respectively c
     #ACTOR_VEHICLES_WITH_RED_BADGES,
-    \c #ACTOR_VEHICLES_WITH_YELLOW_BADGES and \c
+    c #ACTOR_VEHICLES_WITH_YELLOW_BADGES and c
     #ACTOR_VEHICLES_WITH_GREEN_BADGES
     </td>
     <td>
     Vehicles with red, yellow or green badges allowed
-    \note Exemption from traffic ban according to 40(1) of the
+    note Exemption from traffic ban according to 40(1) of the
     Federal Immission Control Act.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1031-51.png
+    image html 1031-51.png
     </td>
     <td>
     StVO 1031-51
     </td>
     <td>
-    Two actors, set to respectively \c
-    #ACTOR_VEHICLES_WITH_YELLOW_BADGES and \c
+    Two actors, set to respectively c
+    #ACTOR_VEHICLES_WITH_YELLOW_BADGES and c
     #ACTOR_VEHICLES_WITH_GREEN_BADGES
     </td>
     <td>
     Vehicles with yellow or green badges allowed
-    \note Exemption from traffic ban according to 40(1) of the
+    note Exemption from traffic ban according to 40(1) of the
     Federal Immission Control Act.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1031-52.png
+    image html 1031-52.png
     </td>
     <td>
     StVO 1031-52
     </td>
     <td>
-    \c #ACTOR_VEHICLES_WITH_GREEN_BADGES
+    c #ACTOR_VEHICLES_WITH_GREEN_BADGES
     </td>
     <td>
     Vehicles with green badges allowed
-    \note Exemption from traffic ban according to 40(1) of the
+    note Exemption from traffic ban according to 40(1) of the
     Federal Immission Control Act.
     </td>
     </tr>
@@ -12416,27 +12416,27 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 1001-30.png "StVO 1001-30"
+    image html 1001-30.png "StVO 1001-30"
     <td>
     <!--
-    \image html 1001-31.png
+    image html 1001-31.png
     -->
     <td>
     <B>
     StVO 1001-31
     </B>
     <td>
-    \image html 1001-32.png "StVO 1001-32"
+    image html 1001-32.png "StVO 1001-32"
     <td>
-    \image html 1001-33.png "StVO 1001-33"
+    image html 1001-33.png "StVO 1001-33"
     <td>
-    \image html 1001-34.png "StVO 1001-34"
+    image html 1001-34.png "StVO 1001-34"
     <td>
-    \image html 1001-35.png "StVO 1001-35"
+    image html 1001-35.png "StVO 1001-35"
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. m) to indicate the
     distance.
     """
@@ -12447,7 +12447,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1002-10.png
+    image html 1002-10.png
     </td>
     <td>
     StVO 1002-10
@@ -12462,7 +12462,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleY(-1)">
-    \image html 1002-10.png
+    image html 1002-10.png
     </td>
     <td>
     StVO 1002-11
@@ -12477,7 +12477,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-12
@@ -12492,7 +12492,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1) rotate(-90deg)">
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-13
@@ -12507,7 +12507,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleY(-1)">
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-14
@@ -12522,7 +12522,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(270deg)">
-    \image html 1002-10.png
+    image html 1002-10.png
     </td>
     <td>
     StVO 1002-20
@@ -12537,7 +12537,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(180deg)">
-    \image html 1002-10.png
+    image html 1002-10.png
     </td>
     <td>
     StVO 1002-21
@@ -12552,7 +12552,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-22
@@ -12567,7 +12567,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(-90deg)">
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-23
@@ -12582,7 +12582,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:rotate(180deg)">
-    \image html 1002-12.png
+    image html 1002-12.png
     </td>
     <td>
     StVO 1002-24
@@ -12597,16 +12597,16 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1004-30.png "StVO 1004-30"
+    image html 1004-30.png "StVO 1004-30"
     <td>
-    \image html 1004-31.png "StVO 1004-31"
+    image html 1004-31.png "StVO 1004-31"
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. m) to indicate the
     distance.
 
-    \note For OSI 4.0 compatibility use \c #TYPE_SPACE instead.
+    note For OSI 4.0 compatibility use c #TYPE_SPACE instead.
     """
 
     TYPE_STOP_IN = 25
@@ -12615,18 +12615,18 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1004-32.png
+    image html 1004-32.png
     </td>
     <td>
     StVO 1004-32
     </td>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. m) to indicate the
     distance.
 
-    \note For OSI 4.0 compatibility use \c #TYPE_SPACE instead.
+    note For OSI 4.0 compatibility use c #TYPE_SPACE instead.
     """
 
     TYPE_LEFT_ARROW = 11
@@ -12635,7 +12635,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1000-10.png
+    image html 1000-10.png
     </td>
     <td>
     StVO 1000-10
@@ -12643,7 +12643,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note For OSI 4.0 compatibility use \c #TYPE_ARROW instead.
+    note For OSI 4.0 compatibility use c #TYPE_ARROW instead.
     """
 
     TYPE_LEFT_BEND_ARROW = 13
@@ -12652,7 +12652,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1000-11.png
+    image html 1000-11.png
     </td>
     <td>
     StVO 1000-11
@@ -12660,7 +12660,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note For OSI 4.0 compatibility use \c #TYPE_ARROW instead.
+    note For OSI 4.0 compatibility use c #TYPE_ARROW instead.
     """
 
     TYPE_RIGHT_ARROW = 12
@@ -12669,7 +12669,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 1000-10.png
+    image html 1000-10.png
     </td>
     <td>
     StVO 1000-20
@@ -12677,7 +12677,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note For OSI 4.0 compatibility use \c #TYPE_ARROW instead.
+    note For OSI 4.0 compatibility use c #TYPE_ARROW instead.
     """
 
     TYPE_RIGHT_BEND_ARROW = 14
@@ -12686,7 +12686,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td style="transform:scaleX(-1)">
-    \image html 1000-11.png
+    image html 1000-11.png
     </td>
     <td>
     StVO 1000-21
@@ -12694,7 +12694,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note For OSI 4.0 compatibility use \c #TYPE_ARROW instead.
+    note For OSI 4.0 compatibility use c #TYPE_ARROW instead.
     """
 
     TYPE_ACCIDENT = 40
@@ -12703,7 +12703,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 1006-31.png
+    image html 1006-31.png
     </td>
     <td>
     StVO 1006-31
@@ -12711,7 +12711,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    See also: [\c TYPE_TEXT](\ref ACCIDENT_TEXT).
+    See also: [c TYPE_TEXT](ref ACCIDENT_TEXT).
     """
 
     TYPE_SNOW = 9
@@ -12722,7 +12722,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <tr>
     <td>
     <!--
-    \image html 1007-30.png
+    image html 1007-30.png
     -->
     </td>
     <td>
@@ -12731,13 +12731,13 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note The identifier "StVO 1007-30" was used to denote a
+    note The identifier "StVO 1007-30" was used to denote a
     restriction of the validity of the traffic sign to snowy /
     icy conditions until the edition of 2013 of the official
     Catalog of Street Signs of the Federal Road Research
     Institute of Germany - BASt. Since the edition corresponding
     to 2017, "StVO 1007-30" is used to denote the hazard of oil
-    trails. See [\c TYPE_OIL](\ref OIL_TEXT).
+    trails. See [c TYPE_OIL](ref OIL_TEXT).
     """
 
     TYPE_FOG = 8
@@ -12747,7 +12747,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1007-61.png
+    image html 1007-61.png
     </td>
     <td>
     StVO 1007-61
@@ -12755,7 +12755,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     </table>
 
-    \note For OSI 4.0 compatibility use \c #TYPE_TEXT instead.
+    note For OSI 4.0 compatibility use c #TYPE_TEXT instead.
     """
 
     TYPE_ROLLING_HIGHWAY_INFORMATION = 48
@@ -12764,7 +12764,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1010-14.png
+    image html 1010-14.png
     </td>
     <td>
     StVO 1010-14
@@ -12779,7 +12779,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1010-15.png
+    image html 1010-15.png
     </td>
     <td>
     StVO 1010-15
@@ -12794,27 +12794,27 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 1040-30.png "StVO 1040-30"
+    image html 1040-30.png "StVO 1040-30"
     <td>
-    \image html 1042-33.png "StVO 1042-33"
+    image html 1042-33.png "StVO 1042-33"
     </tr>
     </table>
 
-    - Use one \c TrafficSignValue message to indicate the start
-    of the time range and one \c TrafficSignValue message to
-    indicate the end of the time range. For each \c
-    TrafficSignValue, \c TrafficSignValue::value indicates
-    the time elapsed since midnight each day, and \c
+    - Use one c TrafficSignValue message to indicate the start
+    of the time range and one c TrafficSignValue message to
+    indicate the end of the time range. For each c
+    TrafficSignValue, c TrafficSignValue::value indicates
+    the time elapsed since midnight each day, and c
     TrafficSignValue::value_unit indicates the unit this time is
     expressed in, e.g. in min.
     - If including start and end days of the week, include two
-    additional \c TrafficSignValue messages. For these messages,
-    use \c TrafficSignValue::value_unit as \c
-    TrafficSignValue::UNIT_NO_UNIT and \c
-    TrafficSignValue::value as an \c integer from 1 to 7,
+    additional c TrafficSignValue messages. For these messages,
+    use c TrafficSignValue::value_unit as c
+    TrafficSignValue::UNIT_NO_UNIT and c
+    TrafficSignValue::value as an c integer from 1 to 7,
     where 1 denotes Monday and 7 denotes Sunday.
 
-    \note For OSI 4.0 compatibility use \c #TYPE_TIME instead.
+    note For OSI 4.0 compatibility use c #TYPE_TIME instead.
     """
 
     TYPE_PARKING_DISC_TIME_RESTRICTION = 43
@@ -12823,7 +12823,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1040-32.png
+    image html 1040-32.png
     </td>
     <td>
     StVO 1040-32
@@ -12832,14 +12832,14 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     Parking disc restriction
     </td>
     <td>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. min) to indicate the
     allowed duration of parking.
     </td>
     </tr>
     <tr>
     <td>
-    \image html 1040-33.png
+    image html 1040-33.png
     </td>
     <td>
     StVO 1040-33
@@ -12848,9 +12848,9 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     Parking disc restriction for marked parking areas
     </td>
     <td>
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. min) to indicate the
-    allowed duration of parking. Set \c TrafficSignValue::text
+    allowed duration of parking. Set c TrafficSignValue::text
     to &rdquo;in gekennzeichneten Fl&auml;chen&rdquo;.
     </td>
     </tr>
@@ -12864,15 +12864,15 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table border="0">
     <tr>
     <td>
-    \image html 1053-33.png "StVO 1053-33"
+    image html 1053-33.png "StVO 1053-33"
     <td>
-    \image html 1053-37.png "StVO 1053-37"
+    image html 1053-37.png "StVO 1053-37"
     <td>
-    \image html 1060-33.png "StVO 1060-33"
+    image html 1060-33.png "StVO 1060-33"
     </tr>
     </table>
 
-    Use \c TrafficSignValue::value and \c
+    Use c TrafficSignValue::value and c
     TrafficSignValue::value_unit (e.g. in t) to indicate the
     weight.
     """
@@ -12883,7 +12883,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1053-35.png
+    image html 1053-35.png
     </td>
     <td>
     StVO 1053-35
@@ -12898,7 +12898,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1053-38.png
+    image html 1053-38.png
     </td>
     <td>
     StVO 1053-38
@@ -12909,7 +12909,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     </tr>
     <tr>
     <td>
-    \image html 1053-39.png
+    image html 1053-39.png
     </td>
     <td>
     StVO 1053-39
@@ -12927,7 +12927,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <table cellspacing="0" cellpadding="0">
     <tr>
     <td>
-    \image html 1060-31.png
+    image html 1060-31.png
     </td>
     <td>
     StVO 1060-31
@@ -12949,7 +12949,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Combined restriction of the validity of the traffic sign to
     rainy or snowy conditions denoted by a single supplementary
-    sign (instead of two signs of \c #TYPE_RAIN and \c #TYPE_SNOW
+    sign (instead of two signs of c #TYPE_RAIN and c #TYPE_SNOW
     respectively).
 
     (StVO -, Austria)
@@ -12969,7 +12969,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Trucks.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -12977,7 +12977,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Tractors may be passed.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -12985,7 +12985,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Vehicles transporting hazardous goods.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -12993,7 +12993,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Trailers.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -13001,7 +13001,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Zone.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -13009,7 +13009,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Motorcycles.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -13017,7 +13017,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Motorcycles allowed.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -13025,7 +13025,7 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     """
     Cars.
 
-    \note For OSI 4.0 compatibility use the message \c Actor
+    note For OSI 4.0 compatibility use the message c Actor
     instead.
     """
 
@@ -13057,7 +13057,7 @@ class TrafficSignVariability(betterproto2.Enum):
     Sign that can change semantically and/or positionally, i.e. it is
     left unspecified in which way the sign may change.
 
-    \note This value represents a legacy definition. If possible, please
+    note This value represents a legacy definition. If possible, please
     use the more specific values below to indicate the exact nature of
     variability.
     """
@@ -13203,7 +13203,7 @@ class TrafficSignValueUnit(betterproto2.Enum):
     Day of the week.
     Days since Monday. Monday = 0; Tuesday = 1; ...
 
-    \note For consistency this field will be renamed to UNIT_DAY_OF_WEEK in v4.0.0 .
+    note For consistency this field will be renamed to UNIT_DAY_OF_WEEK in v4.0.0 .
     """
 
     UNIT_PERCENTAGE = 14
@@ -13307,20 +13307,20 @@ class UltrasonicSpecificObjectDataTrilaterationStatus(betterproto2.Enum):
 class BaseMoving(betterproto2.Message):
     """
 
-    \brief The base attributes of an object that is moving.
+    brief The base attributes of an object that is moving.
 
-    This includes the \c MovingObject messages.
+    This includes the c MovingObject messages.
 
-    \image html OSI_BaseMoving.svg
+    image html OSI_BaseMoving.svg
 
-    \image html OSI_BaseMoving_Top.svg
+    image html OSI_BaseMoving_Top.svg
 
     E.g. a vehicle is a base moving object.
 
     All coordinates and orientations from ground truth objects are relative to
     the global ground truth frame. All coordinates and orientations
     from detected objects are relative to the host vehicle frame
-    (see: \c MovingObject vehicle reference point).
+    (see: c MovingObject vehicle reference point).
     """
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -13329,10 +13329,10 @@ class BaseMoving(betterproto2.Message):
     """
     The 3D dimension of the moving object (its bounding box).
 
-    \note The \c #dimension must completely enclose the geometry of the
-    \c BaseMoving with the exception of the side mirrors for vehicles.
+    note The c #dimension must completely enclose the geometry of the
+    c BaseMoving with the exception of the side mirrors for vehicles.
 
-    \note The bounding box does NOT include side mirrors for vehicles.
+    note The bounding box does NOT include side mirrors for vehicles.
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -13351,12 +13351,12 @@ class BaseMoving(betterproto2.Message):
     noted in the parent frame. The orientation becomes global/absolute if
     the parent frame is inertial (all parent frames up to ground truth).
 
-    \f$ Origin_{\text{base moving entity}} :=
-    Rotation_{yaw,pitch,roll}( \f$ \c #orientation \f$ )*
-    (Origin_{\text{parent coord system}} -
-    \f$ \c #position \f$ ) \f$
+    f$ Origin_{text{base moving entity}} :=
+    Rotation_{yaw,pitch,roll}( f$ c #orientation f$ )*
+    (Origin_{text{parent coord system}} -
+    f$ c #position f$ ) f$
 
-    \note There may be some constraints how to align the orientation w.r.t.
+    note There may be some constraints how to align the orientation w.r.t.
     to some stationary object's or entity's definition.
     """
 
@@ -13368,8 +13368,8 @@ class BaseMoving(betterproto2.Message):
     noted in the parent frame. The velocity becomes global/absolute if
     the parent frame does is inertial (all parent frames up to ground truth).
 
-    \c #position \f$ (t) := \f$ \c #position \f$ (t-dt)+ \f$ \c #velocity \f$
-    *dt \f$
+    c #position f$ (t) := f$ c #position f$ (t-dt)+ f$ c #velocity f$
+    *dt f$
     """
 
     acceleration: "Vector3D | None" = betterproto2.field(
@@ -13380,11 +13380,11 @@ class BaseMoving(betterproto2.Message):
     noted in the parent frame. The acceleration becomes global/absolute if
     the parent frame is inertial (all parent frames up to ground truth).
 
-    \c #position \f$ (t) := \f$ \c #position \f$ (t-dt)+ \f$ \c #velocity \f$
-    *dt+ \f$ \c #acceleration \f$ /2*dt^2\f$
+    c #position f$ (t) := f$ c #position f$ (t-dt)+ f$ c #velocity f$
+    *dt+ f$ c #acceleration f$ /2*dt^2f$
 
-    \c #velocity \f$ (t) := \f$ \c #velocity \f$ (t-dt)+ \f$ \c #acceleration
-    \f$ *dt \f$
+    c #velocity f$ (t) := f$ c #velocity f$ (t-dt)+ f$ c #acceleration
+    f$ *dt f$
     """
 
     orientation_rate: "Orientation3D | None" = betterproto2.field(
@@ -13397,14 +13397,14 @@ class BaseMoving(betterproto2.Message):
     The orientation becomes global/absolute if the parent frame is inertial
     (all parent frames up to ground truth).
 
-    \c #orientation \f$ .yaw(t) := \f$ \c #orientation_rate \f$ .yaw(t) * dt
-    + \f$ \c #orientation \f$ .yaw(t-dt) \f$
+    c #orientation f$ .yaw(t) := f$ c #orientation_rate f$ .yaw(t) * dt
+    + f$ c #orientation f$ .yaw(t-dt) f$
 
-    \c #orientation \f$ .pitch(t) := \f$ \c #orientation_rate \f$ .pitch(t) *
-    dt + \f$ \c #orientation \f$ .pitch(t-dt) \f$
+    c #orientation f$ .pitch(t) := f$ c #orientation_rate f$ .pitch(t) *
+    dt + f$ c #orientation f$ .pitch(t-dt) f$
 
-    \c #orientation \f$ .roll(t) := \f$ \c #orientation_rate \f$ .roll(t) *
-    dt + \f$ \c #orientation \f$ .roll(t-dt)\f$
+    c #orientation f$ .roll(t) := f$ c #orientation_rate f$ .roll(t) *
+    dt + f$ c #orientation f$ .roll(t-dt)f$
     """
 
     orientation_acceleration: "Orientation3D | None" = betterproto2.field(
@@ -13417,16 +13417,16 @@ class BaseMoving(betterproto2.Message):
     frame. The orientation becomes global/absolute if the parent frame is
     inertial (all parent frames up to ground truth).
 
-    \c #orientation_rate \f$ .yaw(t) := \f$ \c #orientation_acceleration \f$
-    .yaw(t) * dt + \f$ \c #orientation_rate \f$ .yaw(t-dt) \f$
+    c #orientation_rate f$ .yaw(t) := f$ c #orientation_acceleration f$
+    .yaw(t) * dt + f$ c #orientation_rate f$ .yaw(t-dt) f$
 
-    \c #orientation_rate \f$ .pitch(t) := \f$ \c #orientation_acceleration
-    \f$ .pitch(t) * dt
-    + \f$ \c #orientation_rate \f$ .pitch(t-dt) \f$
+    c #orientation_rate f$ .pitch(t) := f$ c #orientation_acceleration
+    f$ .pitch(t) * dt
+    + f$ c #orientation_rate f$ .pitch(t-dt) f$
 
-    \c #orientation_rate \f$ .roll(t) := \f$ \c #orientation_acceleration \f$
+    c #orientation_rate f$ .roll(t) := f$ c #orientation_acceleration f$
     .roll(t) * dt +
-     \f$ \c #orientation_rate \f$ .roll(t-dt) \f$
+     f$ c #orientation_rate f$ .roll(t-dt) f$
     """
 
     base_polygon: "list[Vector2D]" = betterproto2.field(
@@ -13435,7 +13435,7 @@ class BaseMoving(betterproto2.Message):
     """
     Usage as ground truth:
     The two dimensional (flat) contour of the object. This is an extension of
-    the concept of a bounding box as defined by \c Dimension3d. The contour
+    the concept of a bounding box as defined by c Dimension3d. The contour
     is the projection of the object's outline onto the z-plane in the object
     frame (independent of its current position and orientation). The height
     is the same as the height of the bounding box.
@@ -13457,17 +13457,17 @@ class BaseMoving(betterproto2.Message):
         9, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    Sub-divisions of the overall bounding box of the \c BaseMoving object.
+    Sub-divisions of the overall bounding box of the c BaseMoving object.
 
     The bounding box sections can include side mirrors, cargo, etc. for
     vehicles, as well as body-part sections for pedestrians. Note that for
-    more precise pedestrian information \c PedestrianAttributes can be used.
+    more precise pedestrian information c PedestrianAttributes can be used.
 
-    \note The bounding box sub-divisions can extend beyond the overall
+    note The bounding box sub-divisions can extend beyond the overall
     bounding box, however no actual geometry must reside outside of the
     overall bounding box, with the specific exception of the side mirrors.
 
-    \note If any sub-divisions are provided, then they must cover all
+    note If any sub-divisions are provided, then they must cover all
     occupied space of the overall bounding box. In other words, a consumer
     of this data is guaranteed that any part of the overall bounding box
     that is not covered by any sub-division is free of physical objects,
@@ -13482,17 +13482,17 @@ default_message_pool.register_message("osi3", "BaseMoving", BaseMoving)
 class BaseStationary(betterproto2.Message):
     """
 
-    \brief The base attributes of a stationary object or entity.
+    brief The base attributes of a stationary object or entity.
 
-    This includes the \c StationaryObject , \c TrafficSign ,
-    \c TrafficLight , \c RoadMarking messages.
+    This includes the c StationaryObject , c TrafficSign ,
+    c TrafficLight , c RoadMarking messages.
 
-    \image html OSI_BaseStationary.svg
+    image html OSI_BaseStationary.svg
 
     All coordinates and orientations from ground truth objects are relative to
     the global ground truth frame (see image). (All coordinates and orientations
     from detected objects are relative to the host vehicle frame (see:
-    \c Vehicle vehicle reference point).)
+    c Vehicle vehicle reference point).)
     """
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -13502,8 +13502,8 @@ class BaseStationary(betterproto2.Message):
     The 3D dimensions of the stationary object (bounding box), e.g. a
     landmark.
 
-    \note The \c #dimension must completely enclose the geometry of the
-    \c BaseStationary .
+    note The c #dimension must completely enclose the geometry of the
+    c BaseStationary .
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -13522,12 +13522,12 @@ class BaseStationary(betterproto2.Message):
     frame, noted in the parent frame. The orientation becomes global/absolute
     if the parent frame is inertial (all parent frames up to ground truth).
 
-    \f$ Origin_{\text{base stationary entity}} :=
-    Rotation_{yaw,pitch,roll}( \f$ \c #orientation \f$ )*
-    (Origin_{\text{parent coord system}} -
-    \f$ \c #position \f$ )\f$
+    f$ Origin_{text{base stationary entity}} :=
+    Rotation_{yaw,pitch,roll}( f$ c #orientation f$ )*
+    (Origin_{text{parent coord system}} -
+    f$ c #position f$ )f$
 
-    \note There may be some constraints how to align the orientation w.r.t.
+    note There may be some constraints how to align the orientation w.r.t.
     to some stationary object's or entity's definition.
     """
 
@@ -13537,7 +13537,7 @@ class BaseStationary(betterproto2.Message):
     """
     Usage as ground truth:
     The two dimensional (flat) contour of the object. This is an extension of
-    the concept of a bounding box as defined by \c Dimension3d. The contour
+    the concept of a bounding box as defined by c Dimension3d. The contour
     is the projection of the object's outline onto the z-plane in the object
     frame (independent of its current position and orientation). The height
     is the same as the height of the bounding box.
@@ -13560,16 +13560,16 @@ class BaseStationary(betterproto2.Message):
         5, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    Sub-divisions of the overall bounding box of the \c BaseStationary object.
+    Sub-divisions of the overall bounding box of the c BaseStationary object.
 
     The bounding box sections can include separate parts on partially-opaque
     objects such as trees with a distinction between trunk and crown.
 
-    \note The bounding box sub-divisions can extend beyond the overall
+    note The bounding box sub-divisions can extend beyond the overall
     bounding box, however no actual geometry must reside outside of the
     overall bounding box.
 
-    \note If any sub-divisions are provided, then they must cover all
+    note If any sub-divisions are provided, then they must cover all
     occupied space of the overall bounding box. In other words, a consumer
     of this data is guaranteed that any part of the overall bounding box
     that is not covered by any sub-division is free of physical objects,
@@ -13583,20 +13583,20 @@ default_message_pool.register_message("osi3", "BaseStationary", BaseStationary)
 @dataclass(eq=False, repr=False)
 class BoundingBox(betterproto2.Message):
     """
-    \brief A bounding box description.
+    brief A bounding box description.
 
     A bounding box representing a sub-section of its parent's overall
-    dimension, either that of a \c BaseMoving or \c BaseStationary .
+    dimension, either that of a c BaseMoving or c BaseStationary .
 
-    The parent frame of the \c BoundingBox is identical to the parent frame
-    of the \c MovingObject or \c StationaryObject it is associated to. For
+    The parent frame of the c BoundingBox is identical to the parent frame
+    of the c MovingObject or c StationaryObject it is associated to. For
     example, if the parent object coordinates are given relative to the
-    global coordinate system, then the \c BoundingBox coordinates are also
+    global coordinate system, then the c BoundingBox coordinates are also
     given relative to the global coordinate system.
 
-    \note The overall bounding box of the object is still defined using the
-    dimension, position and orientation of the \c BaseMoving or
-    \c BaseStationary .
+    note The overall bounding box of the object is still defined using the
+    dimension, position and orientation of the c BaseMoving or
+    c BaseStationary .
     """
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -13611,9 +13611,9 @@ class BoundingBox(betterproto2.Message):
     )
     """
     The 3D position of the bounding box. The position is the center
-    of the bounding box and the pivot for the \c dimension and \c orientation.
+    of the bounding box and the pivot for the c dimension and c orientation.
 
-    \note The position should be within the same coordinate frame as
+    note The position should be within the same coordinate frame as
     its parent, not relative to coordinate frame of the parent object.
     The position becomes global/absolute if the parent frame is inertial
     (all parent frames up to ground truth).
@@ -13625,24 +13625,28 @@ class BoundingBox(betterproto2.Message):
     """
     The 3D orientation of the bounding box.
 
-    \note The orientation should be within the same coordinate frame as
+    note The orientation should be within the same coordinate frame as
     its parent, not relative to the coordinate frame of the parent object.
     The orientation becomes global/absolute if the parent frame is inertial
     (all parent frames up to ground truth).
     """
 
     contained_object_type: "BoundingBoxType" = betterproto2.field(
-        4, betterproto2.TYPE_ENUM, default_factory=lambda: BoundingBoxType.try_value(0)
+        4,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: BoundingBoxType(0),
     )
     """
     The type of object contained in the bounding box.
     """
 
-    model_reference: "str" = betterproto2.field(5, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        5, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the bounding box.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models. This means the coordinate system, model origin, and model
     orientation are also implementation-specific.
     """
@@ -13655,21 +13659,23 @@ default_message_pool.register_message("osi3", "BoundingBox", BoundingBox)
 class CameraDetection(betterproto2.Message):
     """
 
-    \brief Camera detection from the sensor.
+    brief Camera detection from the sensor.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the detection not based on history. Value does
     not depend on any past experience with similar detections.
 
-    \note Used as confidence measure where a low value means less confidence
+    note Used as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -13678,28 +13684,28 @@ class CameraDetection(betterproto2.Message):
     """
     ID of the detected object this detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
     time_difference: "Timestamp | None" = betterproto2.field(
         3, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    Difference to the base timestamp \c
+    Difference to the base timestamp c
     SensorDetectionHeader::measurement_time.
 
     The timestamp of this detection :=
-    \c SensorDetectionHeader::measurement_time + \c #time_difference.
+    c SensorDetectionHeader::measurement_time + c #time_difference.
     """
 
     image_shape_type: "CameraDetectionImageShapeType" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: CameraDetectionImageShapeType.try_value(0),
+        default_factory=lambda: CameraDetectionImageShapeType(0),
     )
     """
     Definition of the image shape type of this detection.
@@ -13711,7 +13717,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is background.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_foreground: "bool" = betterproto2.field(
@@ -13720,35 +13726,43 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is foreground.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_flat: "bool" = betterproto2.field(7, betterproto2.TYPE_BOOL)
+    shape_classification_flat: "bool" = betterproto2.field(
+        7, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is flat.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_upright: "bool" = betterproto2.field(8, betterproto2.TYPE_BOOL)
+    shape_classification_upright: "bool" = betterproto2.field(
+        8, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is upright.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_ground: "bool" = betterproto2.field(9, betterproto2.TYPE_BOOL)
+    shape_classification_ground: "bool" = betterproto2.field(
+        9, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is ground.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_sky: "bool" = betterproto2.field(10, betterproto2.TYPE_BOOL)
+    shape_classification_sky: "bool" = betterproto2.field(
+        10, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is sky.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_vegetation: "bool" = betterproto2.field(
@@ -13757,14 +13771,16 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is vegetation.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_road: "bool" = betterproto2.field(12, betterproto2.TYPE_BOOL)
+    shape_classification_road: "bool" = betterproto2.field(
+        12, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is a road.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_non_driving_lane: "bool" = betterproto2.field(
@@ -13773,7 +13789,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a non-driving lane (e.g. sidewalk).
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_non_road: "bool" = betterproto2.field(
@@ -13782,7 +13798,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is non-road (e.g. traffic island).
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_stationary_object: "bool" = betterproto2.field(
@@ -13791,7 +13807,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a stationary object.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_moving_object: "bool" = betterproto2.field(
@@ -13800,7 +13816,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a possible moving object.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_landmark: "bool" = betterproto2.field(
@@ -13809,7 +13825,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a landmark.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_traffic_sign: "bool" = betterproto2.field(
@@ -13818,7 +13834,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a traffic sign.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_traffic_light: "bool" = betterproto2.field(
@@ -13827,7 +13843,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a traffic light.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_road_marking: "bool" = betterproto2.field(
@@ -13836,7 +13852,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a road marking sign.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_vehicle: "bool" = betterproto2.field(
@@ -13845,7 +13861,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a vehicle.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_pedestrian: "bool" = betterproto2.field(
@@ -13854,14 +13870,16 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a pedestrian.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
-    shape_classification_animal: "bool" = betterproto2.field(23, betterproto2.TYPE_BOOL)
+    shape_classification_animal: "bool" = betterproto2.field(
+        23, betterproto2.TYPE_BOOL
+    )
     """
     The defined shape is an animal.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_pedestrian_front: "bool" = betterproto2.field(
@@ -13870,7 +13888,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a pedestrian seen by the sensor from the front.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_pedestrian_side: "bool" = betterproto2.field(
@@ -13879,7 +13897,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a pedestrian seen by the sensor from the side.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_pedestrian_rear: "bool" = betterproto2.field(
@@ -13888,7 +13906,7 @@ class CameraDetection(betterproto2.Message):
     """
     The defined shape is a pedestrian seen by the sensor from the rear.
     The probability for this classification is at least
-    \c #shape_classification_probability.
+    c #shape_classification_probability.
     """
 
     shape_classification_probability: "float" = betterproto2.field(
@@ -13898,33 +13916,35 @@ class CameraDetection(betterproto2.Message):
     This probability defines the minimum probability for each selected
     shape classification.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     color: "CameraDetectionColor" = betterproto2.field(
         28,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: CameraDetectionColor.try_value(0),
+        default_factory=lambda: CameraDetectionColor(0),
     )
     """
     The dominant color of the shape.
 
-    \attention DEPRECATED: This color enum will be removed in version
-    4.0.0. Use the field \c #color_description (\c ColorDescription)
+    attention DEPRECATED: This color enum will be removed in version
+    4.0.0. Use the field c #color_description (c ColorDescription)
     instead.
     """
 
-    color_probability: "float" = betterproto2.field(29, betterproto2.TYPE_DOUBLE)
+    color_probability: "float" = betterproto2.field(
+        29, betterproto2.TYPE_DOUBLE
+    )
     """
     The probability of the shape's color.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     ambiguity_id: "Identifier | None" = betterproto2.field(
@@ -13935,22 +13955,26 @@ class CameraDetection(betterproto2.Message):
     probability or color and color probability, all detections in this cycle
     have the same ambiguity ID.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
     """
 
-    first_point_index: "int" = betterproto2.field(31, betterproto2.TYPE_UINT32)
+    first_point_index: "int" = betterproto2.field(
+        31, betterproto2.TYPE_UINT32
+    )
     """
     Index of the first point in the camera detection.
     """
 
-    number_of_points: "int" = betterproto2.field(32, betterproto2.TYPE_UINT32)
+    number_of_points: "int" = betterproto2.field(
+        32, betterproto2.TYPE_UINT32
+    )
     """
     Number of points which defines the shape.
-    \c #image_shape_type may restrict the number of possible values.
+    c #image_shape_type may restrict the number of possible values.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     color_description: "ColorDescription | None" = betterproto2.field(
@@ -13969,7 +13993,7 @@ default_message_pool.register_message("osi3", "CameraDetection", CameraDetection
 class CameraDetectionData(betterproto2.Message):
     """
 
-    \brief Data from one camera sensor including a list of detections.
+    brief Data from one camera sensor including a list of detections.
     """
 
     header: "SensorDetectionHeader | None" = betterproto2.field(
@@ -14010,19 +14034,21 @@ default_message_pool.register_message(
 class CameraDetectionSpecificHeader(betterproto2.Message):
     """
 
-    \brief Specific header extension for camera sensors.
+    brief Specific header extension for camera sensors.
     """
 
-    number_of_valid_points: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
+    number_of_valid_points: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT32
+    )
     """
     The current number of points which all detections in the detections list
     refer.
 
-    \note This value has to be set if the list contains invalid points.
+    note This value has to be set if the list contains invalid points.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -14035,21 +14061,23 @@ default_message_pool.register_message(
 class CameraPoint(betterproto2.Message):
     """
 
-    \brief Camera point from the sensor.
+    brief Camera point from the sensor.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the point not based on history. Value does
     not depend on any past experience with similar points.
 
-    \note Used as confidence measure where a low value means less confidence
+    note Used as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     point: "Spherical3D | None" = betterproto2.field(
@@ -14075,7 +14103,7 @@ default_message_pool.register_message("osi3", "CameraPoint", CameraPoint)
 class CameraSensorView(betterproto2.Message):
     """
 
-    \brief Definition of the camera sensor view.
+    brief Definition of the camera sensor view.
 
     Camera specific sensor view data.
     """
@@ -14087,7 +14115,9 @@ class CameraSensorView(betterproto2.Message):
     Camera view configuration valid at the time the data was created.
     """
 
-    image_data: "bytes" = betterproto2.field(2, betterproto2.TYPE_BYTES)
+    image_data: "bytes" = betterproto2.field(
+        2, betterproto2.TYPE_BYTES
+    )
     """
     Raw image data.
 
@@ -14105,7 +14135,7 @@ default_message_pool.register_message("osi3", "CameraSensorView", CameraSensorVi
 class CameraSensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the Camera Sensor View to be provided
+    brief The configuration settings for the Camera Sensor View to be provided
     by the environment simulation.
     """
 
@@ -14132,22 +14162,22 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     governs the sensor-relative coordinates in features detected by this
     detector.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -14161,54 +14191,64 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
 
-    number_of_pixels_horizontal: "int" = betterproto2.field(6, betterproto2.TYPE_UINT32)
+    number_of_pixels_horizontal: "int" = betterproto2.field(
+        6, betterproto2.TYPE_UINT32
+    )
     """
     Number of pixels to produce across horizontal field of view.
 
-    \note This is a characteristic of the rendering engine of the
+    note This is a characteristic of the rendering engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    number_of_pixels_vertical: "int" = betterproto2.field(7, betterproto2.TYPE_UINT32)
+    number_of_pixels_vertical: "int" = betterproto2.field(
+        7, betterproto2.TYPE_UINT32
+    )
     """
     Number of pixels to produce across horizontal field of view.
 
-    \note This is a characteristic of the rendering engine of the
+    note This is a characteristic of the rendering engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     channel_format: "list[CameraSensorViewConfigurationChannelFormat]" = (
-        betterproto2.field(8, betterproto2.TYPE_ENUM, repeated=True)
+        betterproto2.field(
+            8, betterproto2.TYPE_ENUM, repeated=True
+        )
     )
     """
     Format for image data (includes number, kind and format of channels).
@@ -14225,33 +14265,37 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     must be no value, indicating that the simulation environment
     cannot provide image data in one of the requested formats.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    samples_per_pixel: "int" = betterproto2.field(9, betterproto2.TYPE_UINT32)
+    samples_per_pixel: "int" = betterproto2.field(
+        9, betterproto2.TYPE_UINT32
+    )
     """
     Number of samples per pixel.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    max_number_of_interactions: "int" = betterproto2.field(10, betterproto2.TYPE_UINT32)
+    max_number_of_interactions: "int" = betterproto2.field(
+        10, betterproto2.TYPE_UINT32
+    )
     """
     Maximum number of interactions to take into account.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     wavelength_data: "list[WavelengthData]" = betterproto2.field(
@@ -14266,7 +14310,7 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     pixel_order: "CameraSensorViewConfigurationPixelOrder" = betterproto2.field(
         12,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: CameraSensorViewConfigurationPixelOrder.try_value(0),
+        default_factory=lambda: CameraSensorViewConfigurationPixelOrder(0),
     )
     """
     Indicates if and how the the pixel data is ordered
@@ -14275,7 +14319,7 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     pixel order (left-to-right, top-to-bottom). The other values can
     be used to indicate/request mirroring (right to left or bottom to top).
 
-    \note For rotations of the pixel data, use the camera coordinate system.
+    note For rotations of the pixel data, use the camera coordinate system.
     """
 
 
@@ -14288,7 +14332,7 @@ default_message_pool.register_message(
 class CameraSpecificObjectData(betterproto2.Message):
     """
 
-    \brief Message encapsulates all data for detected objects that is specific to
+    brief Message encapsulates all data for detected objects that is specific to
     camera sensors.
 
     currently no fields.
@@ -14306,33 +14350,41 @@ default_message_pool.register_message(
 class ColorCmyk(betterproto2.Message):
     """
 
-    \brief CMYK colors model
+    brief CMYK colors model
 
     ColorCMYK provides values for cyan, magenta, yellow and key/black.
     """
 
-    cyan: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    cyan: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Cyan ratio
 
     Range: [0,1]
     """
 
-    magenta: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    magenta: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Magenta ratio
 
     Range: [0,1]
     """
 
-    yellow: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    yellow: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Yellow ratio
 
     Range: [0,1]
     """
 
-    key: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    key: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Black ratio
 
@@ -14347,7 +14399,7 @@ default_message_pool.register_message("osi3", "ColorCMYK", ColorCmyk)
 class ColorDescription(betterproto2.Message):
     """
 
-    \brief The description of a color within available color spaces.
+    brief The description of a color within available color spaces.
 
     ColorDescription represents the visual, non-semantic appearance of an object, structure or feature within various available color spaces.
 
@@ -14405,12 +14457,14 @@ default_message_pool.register_message("osi3", "ColorDescription", ColorDescripti
 class ColorGrey(betterproto2.Message):
     """
 
-    \brief Grayscale color model
+    brief Grayscale color model
 
     ColorGrey defines a grayscale.
     """
 
-    grey: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    grey: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Definition of a grayscale
 
@@ -14425,12 +14479,14 @@ default_message_pool.register_message("osi3", "ColorGrey", ColorGrey)
 class ColorHsv(betterproto2.Message):
     """
 
-    \brief HSV color model
+    brief HSV color model
 
     ColorHSV provides values for hue, saturation and value/brightness.
     """
 
-    hue: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    hue: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Hue
 
@@ -14438,14 +14494,18 @@ class ColorHsv(betterproto2.Message):
     Range: [0,360[
     """
 
-    saturation: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    saturation: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Saturation
 
     Range: [0,1]
     """
 
-    value: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    value: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Value
 
@@ -14460,26 +14520,32 @@ default_message_pool.register_message("osi3", "ColorHSV", ColorHsv)
 class ColorLuv(betterproto2.Message):
     """
 
-    \brief LUV color model
+    brief LUV color model
 
     ColorLUV provides values for luminance, U- and V-coordinate.
     """
 
-    luminance: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    luminance: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Luminance
 
     Range: [0,1]
     """
 
-    u: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    u: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     U-coordinate
 
     Range: [0,1]
     """
 
-    v: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    v: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     V-Coordinate
 
@@ -14494,26 +14560,32 @@ default_message_pool.register_message("osi3", "ColorLUV", ColorLuv)
 class ColorRgb(betterproto2.Message):
     """
 
-    \brief RGB color model
+    brief RGB color model
 
     ColorRGB provides values for red, green and blue.
     """
 
-    red: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    red: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Red ratio
 
     Range: [0,1]
     """
 
-    green: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    green: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Green ratio
 
     Range: [0,1]
     """
 
-    blue: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    blue: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Blue ratio
 
@@ -14528,33 +14600,41 @@ default_message_pool.register_message("osi3", "ColorRGB", ColorRgb)
 class ColorRgbir(betterproto2.Message):
     """
 
-    \brief RGBIR color model
+    brief RGBIR color model
 
     ColorRGBIR provides values for red, green, blue and infrared.
     """
 
-    red: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    red: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Red ratio
 
     Range: [0,1]
     """
 
-    green: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    green: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Green ratio
 
     Range: [0,1]
     """
 
-    blue: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    blue: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Blue ratio
 
     Range: [0,1]
     """
 
-    infrared: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    infrared: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Infrared
 
@@ -14569,7 +14649,7 @@ default_message_pool.register_message("osi3", "ColorRGBIR", ColorRgbir)
 class DetectedEntityHeader(betterproto2.Message):
     """
 
-    \brief The header attributes of each detected entity.
+    brief The header attributes of each detected entity.
     """
 
     measurement_time: "Timestamp | None" = betterproto2.field(
@@ -14580,12 +14660,14 @@ class DetectedEntityHeader(betterproto2.Message):
     was processed or at which it is transmitted) in the global synchronized
     time.
 
-    \note See \c SensorData::timestamp and \c
+    note See c SensorData::timestamp and c
     SensorData::last_measurement_time for detailed discussions on the
     semantics of time-related fields.
     """
 
-    cycle_counter: "int" = betterproto2.field(2, betterproto2.TYPE_UINT64)
+    cycle_counter: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT64
+    )
     """
     Continuous up counter to identify the cycle.
     """
@@ -14593,7 +14675,7 @@ class DetectedEntityHeader(betterproto2.Message):
     data_qualifier: "DetectedEntityHeaderDataQualifier" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectedEntityHeaderDataQualifier.try_value(0),
+        default_factory=lambda: DetectedEntityHeaderDataQualifier(0),
     )
     """
     Data Qualifier expresses to what extent the content of this event can be
@@ -14610,7 +14692,7 @@ default_message_pool.register_message(
 class DetectedItemHeader(betterproto2.Message):
     """
 
-    \brief The common information for a detected item as estimated by the
+    brief The common information for a detected item as estimated by the
     sensor.
     """
 
@@ -14619,11 +14701,11 @@ class DetectedItemHeader(betterproto2.Message):
     )
     """
     Specific ID of the detected item as assigned by the sensor internally.
-    Needs not to match with \c #ground_truth_id.
+    Needs not to match with c #ground_truth_id.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     ground_truth_id: "list[Identifier]" = betterproto2.field(
@@ -14633,27 +14715,31 @@ class DetectedItemHeader(betterproto2.Message):
     The ID of the original detected item in the ground truth.
     """
 
-    existence_probability: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this detected item really exists, not
     based on history.
 
-    \note Use as confidence measure where a low value means less confidence
+    note Use as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    age: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    age: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     The amount of time that this detected object has been continuously
     observed/tracked.
 
-    \note
-    \f$ Timestamp - Age := \f$ 'point in time' when the object has
+    note
+    f$ Timestamp - Age := f$ 'point in time' when the object has
     been observed for the first time.
 
     Unit: s
@@ -14662,7 +14748,7 @@ class DetectedItemHeader(betterproto2.Message):
     measurement_state: "DetectedItemHeaderMeasurementState" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectedItemHeaderMeasurementState.try_value(0),
+        default_factory=lambda: DetectedItemHeaderMeasurementState(0),
     )
     """
     The measurement state.
@@ -14674,12 +14760,12 @@ class DetectedItemHeader(betterproto2.Message):
     """
     A list of physical sensors which detected this detected item.
 
-    If \c SensorData has detected entities and all detections are missing,
+    If c SensorData has detected entities and all detections are missing,
     then e.g. the number of sensors can confirm the
-    \c #existence_probability.
+    c #existence_probability.
 
-    \note This information can be determined via the detected entities'
-    detections ( \c ...Detection::object_id = 'this detected item' ) and
+    note This information can be determined via the detected entities'
+    detections ( c ...Detection::object_id = 'this detected item' ) and
     the sensors (their IDs) to which these detections belong.
     """
 
@@ -14691,7 +14777,7 @@ default_message_pool.register_message("osi3", "DetectedItemHeader", DetectedItem
 class DetectedLane(betterproto2.Message):
     """
 
-    \brief A lane segment as detected by the sensor.
+    brief A lane segment as detected by the sensor.
     """
 
     header: "DetectedItemHeader | None" = betterproto2.field(
@@ -14716,22 +14802,24 @@ default_message_pool.register_message("osi3", "DetectedLane", DetectedLane)
 class DetectedLaneCandidateLane(betterproto2.Message):
     """
 
-    \brief A candidate for a detected lane as estimated by the
+    brief A candidate for a detected lane as estimated by the
     sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     classification: "LaneClassification | None" = betterproto2.field(
@@ -14740,8 +14828,8 @@ class DetectedLaneCandidateLane(betterproto2.Message):
     """
     The classification of one lane that defines this candidate.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -14754,9 +14842,9 @@ default_message_pool.register_message(
 class DetectedLaneBoundary(betterproto2.Message):
     """
 
-    \brief A lane boundary segment as detected by the sensor.
+    brief A lane boundary segment as detected by the sensor.
 
-    \image html OSI_DetectedLaneBoundary.svg
+    image html OSI_DetectedLaneBoundary.svg
 
     The parent frame of a detected lane boundary is the virtual sensor coordinate
     system.
@@ -14790,16 +14878,16 @@ class DetectedLaneBoundary(betterproto2.Message):
     The list of individual points defining the location of the lane boundary
     (as a list of segments).
 
-    Since a \c BoundaryPoint is part of a sequence, only the position
+    Since a c BoundaryPoint is part of a sequence, only the position
     attribute has to be set for each instance. All other values will be
-    reused from the previous \c BoundaryPoint in the sequence or set to
+    reused from the previous c BoundaryPoint in the sequence or set to
     default values if there is none or it was never set. For dashed lines,
-    one \c LaneBoundary::BoundaryPoint has to be at the start and another at
-    the end of each dashed line segment. For Botts' dots lines, one \c
+    one c LaneBoundary::BoundaryPoint has to be at the start and another at
+    the end of each dashed line segment. For Botts' dots lines, one c
     LaneBoundary::BoundaryPoint position has to define each Botts' dot.
 
-    \attention For \c LaneBoundary::BoundaryPoint the same rules regarding
-    maximum distance and approximation error apply as for \c
+    attention For c LaneBoundary::BoundaryPoint the same rules regarding
+    maximum distance and approximation error apply as for c
     Lane::Classification::centerline.
     """
 
@@ -14807,9 +14895,9 @@ class DetectedLaneBoundary(betterproto2.Message):
         4, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    The root mean squared error of the \c LaneBoundary::BoundaryPoint.
-    Each \c #candidate has the same \c #boundary_line points and exact
-    one \c #boundary_line_rmse rmse confidence value is
+    The root mean squared error of the c LaneBoundary::BoundaryPoint.
+    Each c #candidate has the same c #boundary_line points and exact
+    one c #boundary_line_rmse rmse confidence value is
     specified which is suitable for all candidates.
     """
 
@@ -14817,15 +14905,15 @@ class DetectedLaneBoundary(betterproto2.Message):
         5, betterproto2.TYPE_DOUBLE, repeated=True
     )
     """
-    Confidence of the segments of the \c LaneBoundary::BoundaryPoint.
-    Each \c #candidate has the same \c #boundary_line points and exact
-    one \c #boundary_line_confidences confidence value is
+    Confidence of the segments of the c LaneBoundary::BoundaryPoint.
+    Each c #candidate has the same c #boundary_line points and exact
+    one c #boundary_line_confidences confidence value is
     specified which is suitable for all candidates.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     color_description: "ColorDescription | None" = betterproto2.field(
@@ -14834,9 +14922,9 @@ class DetectedLaneBoundary(betterproto2.Message):
     """
     The visual color of the material of the lane boundary.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance. For semantic classification of the lane boundary use the color
-    field in \c CandidateLaneBoundary::classification.
+    field in c CandidateLaneBoundary::classification.
     """
 
 
@@ -14849,22 +14937,24 @@ default_message_pool.register_message(
 class DetectedLaneBoundaryCandidateLaneBoundary(betterproto2.Message):
     """
 
-    \brief A candidate for a detected lane boundary as estimated by the
+    brief A candidate for a detected lane boundary as estimated by the
     sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     classification: "LaneBoundaryClassification | None" = betterproto2.field(
@@ -14873,8 +14963,8 @@ class DetectedLaneBoundaryCandidateLaneBoundary(betterproto2.Message):
     """
     The classification of one lane boundary that defines this candidate.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -14889,7 +14979,7 @@ default_message_pool.register_message(
 class DetectedMovingObject(betterproto2.Message):
     """
 
-    \brief Moving object in the environment as detected and perceived by the
+    brief Moving object in the environment as detected and perceived by the
     sensor.
 
     The parent frame of a detected moving object is the virtual sensor coordinate
@@ -14915,8 +15005,8 @@ class DetectedMovingObject(betterproto2.Message):
     """
     The base parameters of the moving object.
 
-    \note The bounding box does NOT include mirrors for vehicles.
-    \note The height includes the ground_clearance. It always goes from the
+    note The bounding box does NOT include mirrors for vehicles.
+    note The height includes the ground_clearance. It always goes from the
     top to the ground.
     """
 
@@ -14925,21 +15015,21 @@ class DetectedMovingObject(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    moving object (e.g. car). \c MovingObject::base has to be
-    identical for all \c #candidate moving objects.
+    moving object (e.g. car). c MovingObject::base has to be
+    identical for all c #candidate moving objects.
     """
 
     reference_point: "DetectedMovingObjectReferencePoint" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectedMovingObjectReferencePoint.try_value(0),
+        default_factory=lambda: DetectedMovingObjectReferencePoint(0),
     )
     """
     Reference point location specification of the sensor measurement
     (required to decouple sensor measurement, position and bounding box
     estimation) as used by the sensor (model).
 
-    \note Note that the value of this field has no impact on the value of
+    note Note that the value of this field has no impact on the value of
     object::position, which always references the center of the object /
     bounding box.
     """
@@ -14947,25 +15037,27 @@ class DetectedMovingObject(betterproto2.Message):
     movement_state: "DetectedMovingObjectMovementState" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectedMovingObjectMovementState.try_value(0),
+        default_factory=lambda: DetectedMovingObjectMovementState(0),
     )
     """
     Actual movement state w.r.t. the moving object history.
     """
 
-    percentage_side_lane_left: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    percentage_side_lane_left: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Percentage side lane left.
 
     Percentage value of the object width in the corresponding lane.
 
-    \note DEPRECATED: Use assigned_lane_percentage in MovingObjectClassification
+    note DEPRECATED: Use assigned_lane_percentage in MovingObjectClassification
     instead.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 100
-    \endrules
+    endrules
     """
 
     percentage_side_lane_right: "float" = betterproto2.field(
@@ -14976,13 +15068,13 @@ class DetectedMovingObject(betterproto2.Message):
 
     Percentage value of the object width in the corresponding lane.
 
-    \note DEPRECATED: Use assigned_lane_percentage in MovingObjectClassification
+    note DEPRECATED: Use assigned_lane_percentage in MovingObjectClassification
     instead.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 100
-    \endrules
+    endrules
     """
 
     candidate: "list[DetectedMovingObjectCandidateMovingObject]" = betterproto2.field(
@@ -15006,7 +15098,7 @@ class DetectedMovingObject(betterproto2.Message):
     """
     Additional data that is specific to radar sensors.
 
-    \note Field needs not to be set if simulated sensor is not a radar
+    note Field needs not to be set if simulated sensor is not a radar
     sensor.
     """
 
@@ -15016,7 +15108,7 @@ class DetectedMovingObject(betterproto2.Message):
     """
     Additional data that is specific to lidar sensors.
 
-    \note Field needs not to be set if simulated sensor is not a lidar
+    note Field needs not to be set if simulated sensor is not a lidar
     sensor.
     """
 
@@ -15026,7 +15118,7 @@ class DetectedMovingObject(betterproto2.Message):
     """
     Additional data that is specific to camera sensors.
 
-    \note Field needs not to be set if simulated sensor is not a camera
+    note Field needs not to be set if simulated sensor is not a camera
     sensor.
     """
 
@@ -15036,7 +15128,7 @@ class DetectedMovingObject(betterproto2.Message):
     """
     Additional data that is specific to ultrasonic sensors.
 
-    \note Field needs not to be set if simulated sensor is not an ultrasonic
+    note Field needs not to be set if simulated sensor is not an ultrasonic
     sensor.
     """
 
@@ -15050,43 +15142,49 @@ default_message_pool.register_message(
 class DetectedMovingObjectCandidateMovingObject(betterproto2.Message):
     """
 
-    \brief A candidate for a detected moving object as estimated by the
+    brief A candidate for a detected moving object as estimated by the
     sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     type: "MovingObjectType" = betterproto2.field(
-        2, betterproto2.TYPE_ENUM, default_factory=lambda: MovingObjectType.try_value(0)
+        2,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: MovingObjectType(0),
     )
     """
     The description of the moving object (e.g. car).
     """
 
     vehicle_classification: "MovingObjectVehicleClassification | None" = (
-        betterproto2.field(3, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            3, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Specific information about the classification of the vehicle.
 
-    \note This field is mandatory if the \c CandidateMovingObject::type
-    is \c MovingObject::TYPE_VEHICLE .
+    note This field is mandatory if the c CandidateMovingObject::type
+    is c MovingObject::TYPE_VEHICLE .
 
-    \rules
+    rules
     check_if this.type is_equal_to 2 else do_check is_set
-    \endrules
+    endrules
     """
 
     head_pose: "Orientation3D | None" = betterproto2.field(
@@ -15102,14 +15200,14 @@ class DetectedMovingObjectCandidateMovingObject(betterproto2.Message):
     ``View_normal_base_coord_system =
     Inverse_Rotation(#head_pose)*Unit_vector_x``
 
-    \note This field is mandatory if the \c CandidateMovingObject.type is
-    \c MovingObject::TYPE_PEDESTRIAN
+    note This field is mandatory if the c CandidateMovingObject.type is
+    c MovingObject::TYPE_PEDESTRIAN
 
-    \rules
+    rules
     check_if this.type is_equal_to 3 else do_check is_set
-    \endrules
+    endrules
 
-    \par Reference:
+    par Reference:
 
     [1] Patton, K. T. & Thibodeau, G. A. (2015). <em>Anatomy & Physiology</em>. 9th Edition. Elsevier. Missouri, U.S.A. ISBN 978-0-323-34139-4. p. 1229.
     """
@@ -15128,19 +15226,21 @@ class DetectedMovingObjectCandidateMovingObject(betterproto2.Message):
     ``View_normal_base_coord_system =
     Inverse_Rotation(#upper_body_pose)*Unit_vector_x``
 
-    \note This field is mandatory if the \c CandidateMovingObject::type
-    is \c MovingObject::TYPE_PEDESTRIAN
+    note This field is mandatory if the c CandidateMovingObject::type
+    is c MovingObject::TYPE_PEDESTRIAN
 
-    \rules
+    rules
     check_if this.type is_equal_to 3 else do_check is_set
-    \endrules
+    endrules
 
-    \par Reference:
+    par Reference:
     [1] Patton, K. T. & Thibodeau, G. A. (2015). <em>Anatomy & Physiology</em>. 9th Edition. Elsevier. Missouri, U.S.A. ISBN 978-0-323-34139-4. p. 1229.
     """
 
     moving_object_classification: "MovingObjectMovingObjectClassification | None" = (
-        betterproto2.field(6, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            6, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Specific information about the classification of a moving object.
@@ -15158,7 +15258,7 @@ default_message_pool.register_message(
 class DetectedOccupant(betterproto2.Message):
     """
 
-    \brief A vehicle occupant as detected and perceived by an interior sensor.
+    brief A vehicle occupant as detected and perceived by an interior sensor.
     """
 
     header: "DetectedItemHeader | None" = betterproto2.field(
@@ -15184,22 +15284,24 @@ default_message_pool.register_message("osi3", "DetectedOccupant", DetectedOccupa
 class DetectedOccupantCandidateOccupant(betterproto2.Message):
     """
 
-    \brief A candidate for a detected occupant as estimated by
+    brief A candidate for a detected occupant as estimated by
     the sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     classification: "OccupantClassification | None" = betterproto2.field(
@@ -15208,8 +15310,8 @@ class DetectedOccupantCandidateOccupant(betterproto2.Message):
     """
     The detected vehicle occupant classification.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -15222,15 +15324,15 @@ default_message_pool.register_message(
 class DetectedRoadMarking(betterproto2.Message):
     """
 
-    \brief A road marking in the environment as detected by the sensor.
+    brief A road marking in the environment as detected by the sensor.
 
-    \image html OSI_DetectedRoadMarking.svg
+    image html OSI_DetectedRoadMarking.svg
 
-    The figure shows two STOP road markings (\c
-    DetectedRoadMarking::CandidateRoadMarking::classification). STOP \c
-    RoadMarking::Classification::type == \c
-    RoadMarking::Classification::TYPE_TEXTUAL_TRAFFIC_SIGN is marked, STOP \c
-    RoadMarking::Classification::type == \c
+    The figure shows two STOP road markings (c
+    DetectedRoadMarking::CandidateRoadMarking::classification). STOP c
+    RoadMarking::Classification::type == c
+    RoadMarking::Classification::TYPE_TEXTUAL_TRAFFIC_SIGN is marked, STOP c
+    RoadMarking::Classification::type == c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN is not marked.
 
     The parent frame of a detected road marking is the virtual sensor coordinate
@@ -15256,19 +15358,19 @@ class DetectedRoadMarking(betterproto2.Message):
     """
     The base parameters of the road marking.
 
-    The orientation of the bounding box \c #base
-    \c BaseStationary::orientation is defined as follows:
-    The z-axis of the \c BaseStationary::orientation is the vector from the
+    The orientation of the bounding box c #base
+    c BaseStationary::orientation is defined as follows:
+    The z-axis of the c BaseStationary::orientation is the vector from the
     'bottom' to the 'top' of the road marking's (i.e. painted traffic sign)
     2D image area.
     (Normally it is in the ground truth xy-plain.)
-    The x-axis of the \c BaseStationary::orientation is the view normal of
+    The x-axis of the c BaseStationary::orientation is the view normal of
     the road marking's 2D image area.
     Normally this x-axis points to the sky.
 
-    \note If a valid unidirectional road marking is assigned to the host
+    note If a valid unidirectional road marking is assigned to the host
     vehicle's current lane and the driving direction of the latter roughly
-    matches the z-axis of the \c #base \c BaseStationary::orientation then
+    matches the z-axis of the c #base c BaseStationary::orientation then
     the road marking is of relevance to (i.e. in effect for) the host
     vehicle.
     """
@@ -15278,8 +15380,8 @@ class DetectedRoadMarking(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    road marking. \c RoadMarking::base has to be identical for
-    all \c #candidate road markings.
+    road marking. c RoadMarking::base has to be identical for
+    all c #candidate road markings.
     """
 
     candidate: "list[DetectedRoadMarkingCandidateRoadMarking]" = betterproto2.field(
@@ -15296,9 +15398,9 @@ class DetectedRoadMarking(betterproto2.Message):
     """
     The visual color of the material of the road marking.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance. For semantic classification of the road marking use the color
-    field in \c CandidateRoadMarking::classification.
+    field in c CandidateRoadMarking::classification.
     """
 
 
@@ -15311,22 +15413,24 @@ default_message_pool.register_message(
 class DetectedRoadMarkingCandidateRoadMarking(betterproto2.Message):
     """
 
-    \brief A candidate for a detected road marking as estimated by the
+    brief A candidate for a detected road marking as estimated by the
     sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     classification: "RoadMarkingClassification | None" = betterproto2.field(
@@ -15335,8 +15439,8 @@ class DetectedRoadMarkingCandidateRoadMarking(betterproto2.Message):
     """
     The classification of the road marking.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -15351,10 +15455,10 @@ default_message_pool.register_message(
 class DetectedStationaryObject(betterproto2.Message):
     """
 
-    \brief A stationary object (e.g. landmark) in the environment as detected by
+    brief A stationary object (e.g. landmark) in the environment as detected by
     the sensor.
 
-    \image html OSI_DetectedStationaryObject.svg
+    image html OSI_DetectedStationaryObject.svg
 
     The parent frame of a detected stationary object is the virtual sensor
     coordinate system.
@@ -15385,12 +15489,14 @@ class DetectedStationaryObject(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    stationary object (e.g. landmark). \c StationaryObject::base has to be
-    identical for all \c #candidate stationary objects.
+    stationary object (e.g. landmark). c StationaryObject::base has to be
+    identical for all c #candidate stationary objects.
     """
 
     candidate: "list[DetectedStationaryObjectCandidateStationaryObject]" = (
-        betterproto2.field(4, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            4, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     A list of candidates for this stationary object as estimated by the
@@ -15410,7 +15516,7 @@ class DetectedStationaryObject(betterproto2.Message):
     """
     Additional data that is specific to radar sensors.
 
-    \note Field needs not to be set if simulated sensor is not a radar
+    note Field needs not to be set if simulated sensor is not a radar
     sensor.
     """
 
@@ -15420,7 +15526,7 @@ class DetectedStationaryObject(betterproto2.Message):
     """
     Additional data that is specific to lidar sensors.
 
-    \note Field needs not to be set if simulated sensor is not a lidar
+    note Field needs not to be set if simulated sensor is not a lidar
     sensor.
     """
 
@@ -15430,7 +15536,7 @@ class DetectedStationaryObject(betterproto2.Message):
     """
     Additional data that is specific to camera sensors.
 
-    \note Field needs not to be set if simulated sensor is not a camera
+    note Field needs not to be set if simulated sensor is not a camera
     sensor.
     """
 
@@ -15440,7 +15546,7 @@ class DetectedStationaryObject(betterproto2.Message):
     """
     Additional data that is specific to ultrasonic sensors.
 
-    \note Field needs not to be set if simulated sensor is not an ultrasonic
+    note Field needs not to be set if simulated sensor is not an ultrasonic
     sensor.
     """
 
@@ -15454,22 +15560,24 @@ default_message_pool.register_message(
 class DetectedStationaryObjectCandidateStationaryObject(betterproto2.Message):
     """
 
-    \brief A candidate for a detected stationary object as estimated
+    brief A candidate for a detected stationary object as estimated
     by the sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     classification: "StationaryObjectClassification | None" = betterproto2.field(
@@ -15491,9 +15599,9 @@ default_message_pool.register_message(
 class DetectedTrafficLight(betterproto2.Message):
     """
 
-    \brief A traffic light in the environment as detected by the sensor.
+    brief A traffic light in the environment as detected by the sensor.
 
-    \image html OSI_DetectedTrafficLight.svg
+    image html OSI_DetectedTrafficLight.svg
 
     One detected traffic light message defines a single 'bulb' and not a box of
     several bulbs, e.g. red, yellow, green are three separate detected traffic
@@ -15522,7 +15630,7 @@ class DetectedTrafficLight(betterproto2.Message):
     """
     The base parameters of the traffic light.
 
-    \c BaseStationary::orientation x-axis is view normal of the traffic
+    c BaseStationary::orientation x-axis is view normal of the traffic
     light's icon.
     """
 
@@ -15531,8 +15639,8 @@ class DetectedTrafficLight(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    traffic light's geometry. \c TrafficLight::base has to be identical
-    for all \c #candidate traffic lights.
+    traffic light's geometry. c TrafficLight::base has to be identical
+    for all c #candidate traffic lights.
     """
 
     candidate: "list[DetectedTrafficLightCandidateTrafficLight]" = betterproto2.field(
@@ -15549,9 +15657,9 @@ class DetectedTrafficLight(betterproto2.Message):
     """
     The visual color of the traffic light.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance.  For semantic classification of the traffic light use the color
-    field in \c CandidateTrafficLight::classification.
+    field in c CandidateTrafficLight::classification.
     """
 
 
@@ -15564,22 +15672,24 @@ default_message_pool.register_message(
 class DetectedTrafficLightCandidateTrafficLight(betterproto2.Message):
     """
 
-    \brief A candidate for a detected traffic light as estimated by
+    brief A candidate for a detected traffic light as estimated by
     the sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This probability is
+    note The sum of all c #probability must be one. This probability is
     given under the condition of
-    \c DetectedItemHeader::existence_probability.
+    c DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     classification: "TrafficLightClassification | None" = betterproto2.field(
@@ -15588,8 +15698,8 @@ class DetectedTrafficLightCandidateTrafficLight(betterproto2.Message):
     """
     The classification of one traffic light that define this candidate.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -15604,14 +15714,14 @@ default_message_pool.register_message(
 class DetectedTrafficSign(betterproto2.Message):
     """
 
-    \brief A traffic sign in the environment as detected by the sensor.
+    brief A traffic sign in the environment as detected by the sensor.
 
-    \image html OSI_DetectedSign.svg
+    image html OSI_DetectedSign.svg
 
     The parent frame of a detected traffic sign is the virtual sensor coordinate
     system.
 
-    \note The virtual sensor coordinate system is relative to the vehicle coordinate
+    note The virtual sensor coordinate system is relative to the vehicle coordinate
     system which has its origin in the center of the rear axle of the ego
     vehicle. This means if virtual sensor mounting position and orientation are
     set to (0,0,0) the virtual sensor coordinate system coincides with the
@@ -15633,7 +15743,9 @@ class DetectedTrafficSign(betterproto2.Message):
     """
 
     supplementary_sign: "list[DetectedTrafficSignDetectedSupplementarySign]" = (
-        betterproto2.field(3, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            3, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     A list of additional supplementary sign(s) as detected by the sensor.
@@ -15649,19 +15761,21 @@ default_message_pool.register_message(
 class DetectedTrafficSignDetectedMainSign(betterproto2.Message):
     """
 
-    \brief Candidates for a detected main sign as estimated by the sensor.
+    brief Candidates for a detected main sign as estimated by the sensor.
 
-    \image html OSI_DetectedMainSign.svg
+    image html OSI_DetectedMainSign.svg
     """
 
     candidate: "list[DetectedTrafficSignDetectedMainSignCandidateMainSign]" = (
-        betterproto2.field(1, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     A list of candidates for this traffic sign as estimated by the
     sensor.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -15670,14 +15784,14 @@ class DetectedTrafficSignDetectedMainSign(betterproto2.Message):
     """
     The base parameters of the traffic sign.
 
-    The orientation of the bounding box \c #base
-    ( \c BaseStationary::orientation ) is defined as follows:
+    The orientation of the bounding box c #base
+    ( c BaseStationary::orientation ) is defined as follows:
 
-    The z-axis of the given \c BaseStationary::orientation is the vector
+    The z-axis of the given c BaseStationary::orientation is the vector
     from the bottom to the top of the traffic sign's 2D image plate.
     (Normally it is equal to the ground truth z-axis.)
 
-    The x-axis of the given \c BaseStationary::orientation is view
+    The x-axis of the given c BaseStationary::orientation is view
     normal of the traffic sign's image.
 
     This x-axis points from the traffic sign's image in the direction
@@ -15689,16 +15803,14 @@ class DetectedTrafficSignDetectedMainSign(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    traffic sign. \c TrafficSign::MainSign::base has to be identical for
-    all \c #candidate traffic signs.
+    traffic sign. c TrafficSign::MainSign::base has to be identical for
+    all c #candidate traffic signs.
     """
 
     geometry: "DetectedTrafficSignDetectedMainSignGeometry" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectedTrafficSignDetectedMainSignGeometry.try_value(
-            0
-        ),
+        default_factory=lambda: DetectedTrafficSignDetectedMainSignGeometry(0),
     )
     """
     The estimated geometry of the traffic sign.
@@ -15714,22 +15826,24 @@ default_message_pool.register_message(
 class DetectedTrafficSignDetectedMainSignCandidateMainSign(betterproto2.Message):
     """
 
-    \brief A candidate for a detected main sign as estimated by the
+    brief A candidate for a detected main sign as estimated by the
     sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This
-    probability is given under the condition of \c
+    note The sum of all c #probability must be one. This
+    probability is given under the condition of c
     DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     classification: "TrafficSignMainSignClassification | None" = betterproto2.field(
@@ -15738,8 +15852,8 @@ class DetectedTrafficSignDetectedMainSignCandidateMainSign(betterproto2.Message)
     """
     The classification of one main sign that defines this candidate.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -15754,10 +15868,10 @@ default_message_pool.register_message(
 class DetectedTrafficSignDetectedSupplementarySign(betterproto2.Message):
     """
 
-    \brief Candidates for all detected supplementary signs of one traffic
+    brief Candidates for all detected supplementary signs of one traffic
     sign as estimated by the sensor.
 
-    \image html OSI_DetectedSupplementarySign.svg
+    image html OSI_DetectedSupplementarySign.svg
     """
 
     candidate: "list[DetectedTrafficSignDetectedSupplementarySignCandidateSupplementarySign]" = betterproto2.field(
@@ -15767,7 +15881,7 @@ class DetectedTrafficSignDetectedSupplementarySign(betterproto2.Message):
     The definition of one of more supplementary signs that together
     define this candidate.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -15776,12 +15890,12 @@ class DetectedTrafficSignDetectedSupplementarySign(betterproto2.Message):
     """
     The base parameters of the supplementary traffic sign.
 
-    The orientation of the bounding box \c SupplementarySign::base
-    ( \c BaseStationary::orientation ) is defined as follows:
-    The z-axis of the given \c BaseStationary::orientation is the vector
+    The orientation of the bounding box c SupplementarySign::base
+    ( c BaseStationary::orientation ) is defined as follows:
+    The z-axis of the given c BaseStationary::orientation is the vector
     from the bottom to the top of the supplementary traffic sign's 2D
     image plate. (Normally it is equal to the ground truth z-axis.) The
-    x-axis of the given \c BaseStationary::orientation is view normal of
+    x-axis of the given c BaseStationary::orientation is view normal of
     the supplementary traffic sign's image. This x-axis points from the
     supplementary traffic sign's image in the direction from where a
     'viewer' could see the supplementary traffic sign image.
@@ -15792,9 +15906,9 @@ class DetectedTrafficSignDetectedSupplementarySign(betterproto2.Message):
     )
     """
     The root mean squared error of the base parameters of the detected
-    supplementary traffic sign. \c #candidate
-    \c TrafficSign::SupplementarySign::base has to be identical for all
-    \c #candidate supplementary traffic signs.
+    supplementary traffic sign. c #candidate
+    c TrafficSign::SupplementarySign::base has to be identical for all
+    c #candidate supplementary traffic signs.
     """
 
 
@@ -15811,33 +15925,37 @@ class DetectedTrafficSignDetectedSupplementarySignCandidateSupplementarySign(
 ):
     """
 
-    \brief A candidate for a detected supplementary sign as estimated by
+    brief A candidate for a detected supplementary sign as estimated by
     the sensor.
     """
 
-    probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The estimated probability that this candidate is the true value.
 
-    \note The sum of all \c #probability must be one. This
-    probability is given under the condition of \c
+    note The sum of all c #probability must be one. This
+    probability is given under the condition of c
     DetectedItemHeader::existence_probability.
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     classification: "TrafficSignSupplementarySignClassification | None" = (
-        betterproto2.field(2, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            2, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     The classification of one of more supplementary signs that
     together define this candidate.
 
-    \note IDs, which are referenced in this message, usually
-    reference to \c DetectedXXX::tracking_id IDs.
+    note IDs, which are referenced in this message, usually
+    reference to c DetectedXXX::tracking_id IDs.
     """
 
 
@@ -15852,10 +15970,10 @@ default_message_pool.register_message(
 class Dimension3D(betterproto2.Message):
     """
 
-    \brief The dimension of a 3D box, e.g. the size of a 3D bounding box or its
+    brief The dimension of a 3D box, e.g. the size of a 3D bounding box or its
     uncertainties.
 
-    \image html OSI_Dimension3D.svg
+    image html OSI_Dimension3D.svg
 
     The dimensions are positive. Uncertainties are negative or positive.
 
@@ -15863,37 +15981,43 @@ class Dimension3D(betterproto2.Message):
     x-axis (=length), y-axis (=width) and z-axis (=height).
     """
 
-    length: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    length: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The length of the box.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    width: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    width: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The width of the box.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    height: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    height: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The height of the box.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -15904,17 +16028,19 @@ default_message_pool.register_message("osi3", "Dimension3d", Dimension3D)
 class EnvironmentalConditions(betterproto2.Message):
     """
 
-    \brief The conditions of the environment.
+    brief The conditions of the environment.
 
     Definition of light, weather conditions and other environmental conditions.
 
-    \note These conditions apply locally around the host vehicle.
+    note These conditions apply locally around the host vehicle.
     """
 
-    ambient_illumination: "EnvironmentalConditionsAmbientIllumination" = betterproto2.field(
-        1,
-        betterproto2.TYPE_ENUM,
-        default_factory=lambda: EnvironmentalConditionsAmbientIllumination.try_value(0),
+    ambient_illumination: "EnvironmentalConditionsAmbientIllumination" = (
+        betterproto2.field(
+            1,
+            betterproto2.TYPE_ENUM,
+            default_factory=lambda: EnvironmentalConditionsAmbientIllumination(0),
+        )
     )
     """
     The ambient illumination of the environment.
@@ -15927,7 +16053,9 @@ class EnvironmentalConditions(betterproto2.Message):
     The time of day at the host vehicles location.
     """
 
-    unix_timestamp: "int" = betterproto2.field(8, betterproto2.TYPE_INT64)
+    unix_timestamp: "int" = betterproto2.field(
+        8, betterproto2.TYPE_INT64
+    )
     """
     The unix timestamp describes the time and date at the host vehicle's
     location, referring to UTC.
@@ -15942,40 +16070,46 @@ class EnvironmentalConditions(betterproto2.Message):
     a signed 32-bit integer, which might cause problems on January 19,
     2038 (known as the Year 2038 problem or Y2038).
 
-    \note You can convert the timestamp using the following [routines
+    note You can convert the timestamp using the following [routines
     sorted by languages](https://www.epochconverter.com/#code).
 
-    \par References:
-    [1] ITU Radiocommunication Assembly. (2002). <em>Recommendation  ITU-R  TF.460-6 Standard-frequency and time-signal emissions</em>. (Rec.  ITU-R  TF.460-6). Retrieved January 25, 2020, from http://www.itu.int/dms_pubrec/itu-r/rec/tf/R-REC-TF.460-6-200202-I!!PDF-E.pdf \n
+    par References:
+    [1] ITU Radiocommunication Assembly. (2002). <em>Recommendation  ITU-R  TF.460-6 Standard-frequency and time-signal emissions</em>. (Rec.  ITU-R  TF.460-6). Retrieved January 25, 2020, from http://www.itu.int/dms_pubrec/itu-r/rec/tf/R-REC-TF.460-6-200202-I!!PDF-E.pdf n
     [2] The Open Group. (2018). <em>POSIX.1-2017</em> The Open Group Base Specifications Issue 7, 2018 edition. IEEE Std 1003.1-2017 (Revision of IEEE Std 1003.1-2008). Retrieved January 25, 2020, from https://pubs.opengroup.org/onlinepubs/9699919799/xrat/contents.html
     """
 
-    atmospheric_pressure: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    atmospheric_pressure: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Atmospheric pressure in Pascal at z=0.0 in world frame (about 101325
     Pa).
 
     Unit: Pa
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 80000
     is_less_than_or_equal_to: 120000
-    \endrules
+    endrules
     """
 
-    temperature: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    temperature: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Temperature in Kelvin at z=0.0 in world frame.
 
     Unit: K
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 170
     is_less_than_or_equal_to: 340
-    \endrules
+    endrules
     """
 
-    relative_humidity: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    relative_humidity: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Relative humidity in at z=0.0 in world frame.
 
@@ -15985,16 +16119,16 @@ class EnvironmentalConditions(betterproto2.Message):
 
     Unit: %
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 100
-    \endrules
+    endrules
     """
 
     precipitation: "EnvironmentalConditionsPrecipitation" = betterproto2.field(
         6,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: EnvironmentalConditionsPrecipitation.try_value(0),
+        default_factory=lambda: EnvironmentalConditionsPrecipitation(0),
     )
     """
     Description of the precipitation.
@@ -16003,7 +16137,7 @@ class EnvironmentalConditions(betterproto2.Message):
     fog: "EnvironmentalConditionsFog" = betterproto2.field(
         7,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: EnvironmentalConditionsFog.try_value(0),
+        default_factory=lambda: EnvironmentalConditionsFog(0),
     )
     """
     Description of the fog.
@@ -16015,12 +16149,12 @@ class EnvironmentalConditions(betterproto2.Message):
     """
     Optional external reference to the environmental condition sources.
 
-    \note For OpenDRIVE and OpenSCENARIO there is no direct counterpart.
+    note For OpenDRIVE and OpenSCENARIO there is no direct counterpart.
 
-    \note For non-ASAM standards, it is implementation-specific how
+    note For non-ASAM standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -16056,13 +16190,13 @@ default_message_pool.register_message(
 class EnvironmentalConditionsCloudLayer(betterproto2.Message):
     """
 
-    \brief Description of a cloud layer.
+    brief Description of a cloud layer.
     """
 
     fractional_cloud_cover: "EnvironmentalConditionsCloudLayerFractionalCloudCover" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: EnvironmentalConditionsCloudLayerFractionalCloudCover.try_value(
+        default_factory=lambda: EnvironmentalConditionsCloudLayerFractionalCloudCover(
             0
         ),
     )
@@ -16080,49 +16214,55 @@ default_message_pool.register_message(
 class EnvironmentalConditionsSun(betterproto2.Message):
     """
 
-    \brief Properties of the sun.
+    brief Properties of the sun.
     """
 
-    azimuth: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    azimuth: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Azimuth of the sun, counted counterclockwise.
-    0 pointing north. If north is not explicitly defined via \c #osi3::GroundTruth::proj_string,
+    0 pointing north. If north is not explicitly defined via c #osi3::GroundTruth::proj_string,
     then north is pointing in y-axis direction. The default orientation (x, y, z) is easting, northing, up [1].
     The point of observation is defined to be the global coordinate system's origin.
 
-    \note 0: north; +pi/2: west; pi: south, 3/2 pi: east.
+    note 0: north; +pi/2: west; pi: south, 3/2 pi: east.
 
     Unit: rad
 
     The preferred angular range is [0, 2pi].
 
-    \par References:
+    par References:
     [1] PROJ contributors. (2019). <em>PROJ coordinate transformation software library</em>. Open Source Geospatial Foundation. Retrieved January 25, 2019, from https://proj.org/usage/projections.html
     """
 
-    elevation: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    elevation: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Solar elevation angle.
     The elevation angle is positive when the sun is above the xy-plane, negative when
     the sun is below the xy-plane.
     The point of observation is defined to be the global coordinate system's origin.
 
-    \note 0: xy-plane; +pi/2: zenith; -pi/2: nadir.
+    note 0: xy-plane; +pi/2: zenith; -pi/2: nadir.
 
     Unit: rad
 
     The preferred angular range is [-pi/2, +pi/2].
     """
 
-    intensity: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    intensity: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Illuminance of the sun, direct sunlight is around 100000 lx.
 
     Unit: lx
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -16135,28 +16275,30 @@ default_message_pool.register_message(
 class EnvironmentalConditionsTimeOfDay(betterproto2.Message):
     """
 
-    \brief The time of day at a specified location.
+    brief The time of day at a specified location.
 
-    \note In general the global position of the parent frame should be
+    note In general the global position of the parent frame should be
     obtainable in order to derive the local time.
-    This information can be calculated from the \c #unix_timestamp in
-    combination with \c #osi3::GroundTruth::proj_string and the position of
-    the corresponding \c #osi3::BaseStationary or \c #osi3::BaseMoving .
+    This information can be calculated from the c #unix_timestamp in
+    combination with c #osi3::GroundTruth::proj_string and the position of
+    the corresponding c #osi3::BaseStationary or c #osi3::BaseMoving .
     """
 
-    seconds_since_midnight: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
+    seconds_since_midnight: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT32
+    )
     """
     The number of seconds in s that have passed since midnight local time.
     Used e.g. for determining the current state of the circadian rhythm
     of a driver.
 
-    \note No changes of daylight saving time or time zones are
+    note No changes of daylight saving time or time zones are
     considered.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than: 86400
-    \endrules
+    endrules
     """
 
 
@@ -16169,35 +16311,39 @@ default_message_pool.register_message(
 class EnvironmentalConditionsWind(betterproto2.Message):
     """
 
-    \brief Defines wind properties.
+    brief Defines wind properties.
     """
 
-    origin_direction: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    origin_direction: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The origin direction of the wind (not the target direction) in the ground/xy-plane of the
     world coordinate system. Corresponds to the heading/yaw angle, counted counterclockwise.
-    0 pointing north. If north is not explicitly defined via \c #osi3::GroundTruth::proj_string,
+    0 pointing north. If north is not explicitly defined via c #osi3::GroundTruth::proj_string,
     then north is pointing in y-axis direction. The default orientation (x, y, z) is easting, northing, up [1].
 
-    \note 0: north; +pi/2: west; pi: south, 3/2 pi: east.
+    note 0: north; +pi/2: west; pi: south, 3/2 pi: east.
 
     Unit: rad
 
     The preferred angular range is [0, 2pi].
 
-    \par References:
+    par References:
     [1] PROJ contributors. (2019). <em>PROJ coordinate transformation software library</em>. Open Source Geospatial Foundation. Retrieved January 25, 2019, from https://proj.org/usage/projections.html
     """
 
-    speed: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    speed: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The wind speed.
 
     Unit: m/s
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -16209,26 +16355,30 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class ExternalReference(betterproto2.Message):
     """
-    \brief References to external objects.
+    brief References to external objects.
 
     The external reference is an optional recommendation to refer to objects defined outside of OSI.
     This could be other OpenX standards, 3rd-party standards or user-defined objects.
 
-    \note ExternalReference is optional and can be left empty.
+    note ExternalReference is optional and can be left empty.
     """
 
-    reference: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
+    reference: "str" = betterproto2.field(
+        1, betterproto2.TYPE_STRING
+    )
     """
     The source of the external references.
 
     Defines the original source of an object as uniquely identifiable reference.
-    In case of using \c GroundTruth::map_reference or 
-    \c GroundTruth::model_reference, the reference can be left empty.
+    In case of using c GroundTruth::map_reference or 
+    c GroundTruth::model_reference, the reference can be left empty.
     If not otherwise required, an URI is suggested. The syntax should follow 
-    \link https://tools.ietf.org/html/rfc3986 RFC 3986\endlink.
+    link https://tools.ietf.org/html/rfc3986 RFC 3986endlink.
     """
 
-    type: "str" = betterproto2.field(2, betterproto2.TYPE_STRING)
+    type: "str" = betterproto2.field(
+        2, betterproto2.TYPE_STRING
+    )
     """
     The type of the external references.
 
@@ -16242,9 +16392,9 @@ class ExternalReference(betterproto2.Message):
     reverse domain name notation with lower-case type field
     is recommended to guarantee unique and interoperable identification.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     identifier: "list[str]" = betterproto2.field(
@@ -16263,18 +16413,18 @@ class ExternalReference(betterproto2.Message):
     * S-Value of LaneSection: Double
     * LaneId: Int
 
-    \note The detailed description of the identifiers and how they are 
+    note The detailed description of the identifiers and how they are 
           used for referencing external objects is given in the individual
           messages where the external identifier is used.
 
-    \see EnvironmentalConditions::source_reference
-    \see Lane::source_reference
-    \see LaneBoundary::source_reference
-    \see StationaryObject::source_reference
-    \see MovingObject::source_reference
-    \see RoadMarking::source_reference
-    \see TrafficLight::source_reference
-    \see TrafficSign::source_reference
+    see EnvironmentalConditions::source_reference
+    see Lane::source_reference
+    see LaneBoundary::source_reference
+    see StationaryObject::source_reference
+    see MovingObject::source_reference
+    see RoadMarking::source_reference
+    see TrafficLight::source_reference
+    see TrafficSign::source_reference
     """
 
 
@@ -16285,13 +16435,13 @@ default_message_pool.register_message("osi3", "ExternalReference", ExternalRefer
 class FeatureData(betterproto2.Message):
     """
 
-    \brief Interface for sensor data containing information without a history
+    brief Interface for sensor data containing information without a history
     in contrast to interpreted data after object hypothesis and tracking.
 
     All information regarding the environment is given with respect to the sensor
-    coordinate system specified in \c SensorDetectionHeader::mounting_position.
+    coordinate system specified in c SensorDetectionHeader::mounting_position.
     When simulating multiple sensors, each sensor has an individual copy of
-    \c FeatureData in its own reference frame. This allows an independent
+    c FeatureData in its own reference frame. This allows an independent
     treatment of the sensors.
     """
 
@@ -16323,7 +16473,7 @@ class FeatureData(betterproto2.Message):
     """
     Ultrasonic detections for multiple ultrasonic sensors (sensor fusion).
 
-    \note Required for ultrasonic sensors: Detections will be send by the
+    note Required for ultrasonic sensors: Detections will be send by the
     emitting ultrasonic sensor, including all indirect detections received
     by neighboring sensors.
     """
@@ -16343,7 +16493,7 @@ default_message_pool.register_message("osi3", "FeatureData", FeatureData)
 class GenericSensorView(betterproto2.Message):
     """
 
-    \brief Definition of the generic sensor view.
+    brief Definition of the generic sensor view.
 
     Generic sensor view data.
     """
@@ -16363,7 +16513,7 @@ default_message_pool.register_message("osi3", "GenericSensorView", GenericSensor
 class GenericSensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the Generic Sensor View to be provided
+    brief The configuration settings for the Generic Sensor View to be provided
     by the environment simulation.
     """
 
@@ -16390,22 +16540,22 @@ class GenericSensorViewConfiguration(betterproto2.Message):
     governs the sensor-relative coordinates in features detected by this
     detector.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -16419,24 +16569,28 @@ class GenericSensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
@@ -16451,10 +16605,12 @@ default_message_pool.register_message(
 class GeodeticPosition(betterproto2.Message):
     """
 
-    \brief The geodetic position of an object, that is, the center of the 3D bounding box.
+    brief The geodetic position of an object, that is, the center of the 3D bounding box.
     """
 
-    longitude: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    longitude: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Longitude in decimal degrees regarding WGS84.
 
@@ -16462,7 +16618,9 @@ class GeodeticPosition(betterproto2.Message):
     Range: [-180; 180]
     """
 
-    latitude: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    latitude: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Latitude in decimal degrees regarding WGS84.
 
@@ -16470,7 +16628,9 @@ class GeodeticPosition(betterproto2.Message):
     Range: [-90; 90]
     """
 
-    altitude: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    altitude: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Height above sea level regarding EGM96.
 
@@ -16486,7 +16646,7 @@ default_message_pool.register_message("osi3", "GeodeticPosition", GeodeticPositi
 class GroundTruth(betterproto2.Message):
     """
 
-    \brief The ground truth information from the simulation environment.
+    brief The ground truth information from the simulation environment.
 
     This ground truth information is supposed to describe the whole simulated
     environment around any simulated vehicle. For each simulated host vehicle
@@ -16509,7 +16669,7 @@ class GroundTruth(betterproto2.Message):
     In enums (e.g. types) the unknown (first / default) value is not allowed to
     be used in the ground truth interface.
 
-    \image html OSI_GroundTruth.svg "Ground Truth"
+    image html OSI_GroundTruth.svg "Ground Truth"
     """
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -16519,9 +16679,9 @@ class GroundTruth(betterproto2.Message):
     The interface version used by the sender (i.e. the simulation
     environment).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -16532,30 +16692,30 @@ class GroundTruth(betterproto2.Message):
     arbitrary but must be identical for all messages.
     Recommendation: Zero time point for start point of the simulation.
 
-    \note Zero time point does not need to coincide with the UNIX epoch.
+    note Zero time point does not need to coincide with the UNIX epoch.
 
-    \note For ground truth data this timestamp coincides both with the
+    note For ground truth data this timestamp coincides both with the
     notional simulation time the data applies to and the time it was sent
     (there is no inherent latency for ground truth data, as opposed to
     sensor data).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     host_vehicle_id: "Identifier | None" = betterproto2.field(
         3, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The ID of the host vehicle object referencing to \c MovingObject .
+    The ID of the host vehicle object referencing to c MovingObject .
 
-    \note This ID has to be filled and is not optional!
+    note This ID has to be filled and is not optional!
 
-    \rules
+    rules
     refers_to: MovingObject
     is_set
-    \endrules
+    endrules
     """
 
     stationary_object: "list[StationaryObject]" = betterproto2.field(
@@ -16592,7 +16752,7 @@ class GroundTruth(betterproto2.Message):
     )
     """
     The list of road surface markings (lane markings are excluded and
-    defined as \c LaneBoundary).
+    defined as c LaneBoundary).
     """
 
     lane_boundary: "list[LaneBoundary]" = betterproto2.field(
@@ -16623,43 +16783,51 @@ class GroundTruth(betterproto2.Message):
     Conditions of the environment.
     """
 
-    country_code: "int" = betterproto2.field(13, betterproto2.TYPE_UINT32)
+    country_code: "int" = betterproto2.field(
+        13, betterproto2.TYPE_UINT32
+    )
     """
     The ISO country code in 3 digit numeric format according to:
     ISO Code 3166/1 [1].
     E.g. Germany = 276, USA = 840.
 
-    \par Reference:
+    par Reference:
     [1] ISO International Organization for Standardization. (2013). <em>ISO 3166-1 Codes for the representation of names of countries and their subdivisions - Part 1: Country codes</em>. (ISO 3166-1:2013). Geneva, Switzerland.
 
-    \rules
+    rules
     is_iso_country_code
-    \endrules
+    endrules
     """
 
-    proj_string: "str" = betterproto2.field(14, betterproto2.TYPE_STRING)
+    proj_string: "str" = betterproto2.field(
+        14, betterproto2.TYPE_STRING
+    )
     """
     Projection string that allows to transform all coordinates in GroundTruth
-    into a different cartographic projection after the \c proj_frame_offset
+    into a different cartographic projection after the c proj_frame_offset
     has been applied.
 
     The string follows the PROJ rules for projections [1].
 
-    \par Reference:
+    par Reference:
     [1] PROJ contributors. (2019). <em>PROJ coordinate transformation software library</em>. Open Source Geospatial Foundation. Retrieved January 25, 2019, from https://proj.org/usage/projections.html
     """
 
-    map_reference: "str" = betterproto2.field(15, betterproto2.TYPE_STRING)
+    map_reference: "str" = betterproto2.field(
+        15, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of a map.
 
-    \note Origin and orientation of the map have to coincide with the
+    note Origin and orientation of the map have to coincide with the
     inertial coordinate frame of the ground truth.
 
-    \note It is implementation-specific how map_reference is resolved.
+    note It is implementation-specific how map_reference is resolved.
     """
 
-    model_reference: "str" = betterproto2.field(16, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        16, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model.
 
@@ -16667,10 +16835,10 @@ class GroundTruth(betterproto2.Message):
     provided as individual models referenced from ground truth objects
     like moving or stationary objects.
 
-    \note Origin and orientation of the model have to coincide with the
+    note Origin and orientation of the model have to coincide with the
     inertial coordinate frame of the ground truth.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models. The parts the world model contains are also implementation-specific.
     For example, the world model can either contain street geometries or
     derives street geometries automatically from a map reference.
@@ -16712,13 +16880,13 @@ default_message_pool.register_message("osi3", "GroundTruth", GroundTruth)
 class GroundTruthProjFrameOffset(betterproto2.Message):
     """
 
-    \brief Coordinate frame offset to transform from OSI's global coordinate
+    brief Coordinate frame offset to transform from OSI's global coordinate
     system to a coordinate reference system to be used for given PROJ
     transformations.
 
-    If an offset is defined, always apply the \c proj_frame_offset on
+    If an offset is defined, always apply the c proj_frame_offset on
     global OSI coordinates before applying any transformations defined in
-    \c proj_string.
+    c proj_string.
 
     To apply the offset, global coordinates are first translated by the given
     positional offset (x,y,z). Then, the yaw angle is used to rotate around
@@ -16749,7 +16917,9 @@ class GroundTruthProjFrameOffset(betterproto2.Message):
     Positional offset for relocation of the coordinate frame.
     """
 
-    yaw: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    yaw: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Yaw/heading angle for re-orientation of the coordinate frame around
     the z-axis.
@@ -16764,14 +16934,14 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class HostVehicleData(betterproto2.Message):
     """
-    \brief Host vehicle data is about the perception of the vehicle about its own internal states.
+    brief Host vehicle data is about the perception of the vehicle about its own internal states.
     It captures the knowledge the vehicle has internally, which can differ from the actual or global truth for various reasons.
     This message can also be understood as an interface container for the signals of a rest bus simulation.
 
     It consists of different messages categorizing the vehicle in:
     Basics, powertrain, brake system, steering, wheels and localization.
 
-    \image html OSI_HostVehicle.svg
+    image html OSI_HostVehicle.svg
     """
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -16790,7 +16960,7 @@ class HostVehicleData(betterproto2.Message):
     the unix epoch. Recommended is the starting time point of the
     simulation or measurement.
 
-    \note This is the point in time that the host vehicle data message becomes
+    note This is the point in time that the host vehicle data message becomes
     available as snapshot from the board net information.
     """
 
@@ -16808,7 +16978,7 @@ class HostVehicleData(betterproto2.Message):
     Deprecated: Will be removed in next major release. Moved to vehicle_localization.
     Current estimated location based on GPS- and related navigation sensors.
 
-    \note Note that dimension and base_polygon need not be set.
+    note Note that dimension and base_polygon need not be set.
     """
 
     location_rmse: "BaseMoving | None" = betterproto2.field(
@@ -16819,7 +16989,7 @@ class HostVehicleData(betterproto2.Message):
     Current estimated location error based on GPS and related navigation
     sensors.
 
-    \note Note that dimension and base_polygon need not be set.
+    note Note that dimension and base_polygon need not be set.
     """
 
     vehicle_basics: "HostVehicleDataVehicleBasics | None" = betterproto2.field(
@@ -16837,7 +17007,9 @@ class HostVehicleData(betterproto2.Message):
     """
 
     vehicle_brake_system: "HostVehicleDataVehicleBrakeSystem | None" = (
-        betterproto2.field(5, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            5, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Interface regarding the brake system.
@@ -16858,7 +17030,9 @@ class HostVehicleData(betterproto2.Message):
     """
 
     vehicle_localization: "HostVehicleDataVehicleLocalization | None" = (
-        betterproto2.field(8, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            8, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Interface regarding the localization.
@@ -16876,7 +17050,7 @@ class HostVehicleData(betterproto2.Message):
      - corrective action taken by the vehicle, for example, auto emergency braking
      - full level 4 self driving systems
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     vehicle_motion: "HostVehicleDataVehicleMotion | None" = betterproto2.field(
@@ -16901,21 +17075,21 @@ default_message_pool.register_message("osi3", "HostVehicleData", HostVehicleData
 class HostVehicleDataVehicleAutomatedDrivingFunction(betterproto2.Message):
     """
 
-    \brief State of one automated driving function on the host vehicle.
+    brief State of one automated driving function on the host vehicle.
     """
 
     name: "HostVehicleDataVehicleAutomatedDrivingFunctionName" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: HostVehicleDataVehicleAutomatedDrivingFunctionName.try_value(
-            0
-        ),
+        default_factory=lambda: HostVehicleDataVehicleAutomatedDrivingFunctionName(0),
     )
     """
     The particular driving function being reported about.
     """
 
-    custom_name: "str" = betterproto2.field(2, betterproto2.TYPE_STRING)
+    custom_name: "str" = betterproto2.field(
+        2, betterproto2.TYPE_STRING
+    )
     """
     Custom driving function name.
 
@@ -16925,9 +17099,7 @@ class HostVehicleDataVehicleAutomatedDrivingFunction(betterproto2.Message):
     state: "HostVehicleDataVehicleAutomatedDrivingFunctionState" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: HostVehicleDataVehicleAutomatedDrivingFunctionState.try_value(
-            0
-        ),
+        default_factory=lambda: HostVehicleDataVehicleAutomatedDrivingFunctionState(0),
     )
     """
     The state of the function.
@@ -16937,7 +17109,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunction(betterproto2.Message):
     in effect.
     """
 
-    custom_state: "str" = betterproto2.field(4, betterproto2.TYPE_STRING)
+    custom_state: "str" = betterproto2.field(
+        4, betterproto2.TYPE_STRING
+    )
     """
     Custom state.
 
@@ -16978,17 +17152,19 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverride(
 ):
     """
 
-    \brief Driver override information
+    brief Driver override information
 
     Information about whether and how and driver may have overridden
     an automated driving function.
     """
 
-    active: "bool" = betterproto2.field(1, betterproto2.TYPE_BOOL)
+    active: "bool" = betterproto2.field(
+        1, betterproto2.TYPE_BOOL
+    )
     """
     The feature has been overridden by a driver action.
 
-    \note If false, the rest of this message should be ignored.
+    note If false, the rest of this message should be ignored.
     """
 
     override_reason: "list[HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverrideReason]" = betterproto2.field(
@@ -17010,23 +17186,25 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleBasics(betterproto2.Message):
     """
 
-    \brief Base parameters and overall states of the vehicle.
+    brief Base parameters and overall states of the vehicle.
     """
 
-    curb_weight: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    curb_weight: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The total mass of the vehicle (curb weight).
 
     Unit: kg
 
-    \par Reference:
+    par Reference:
     Paragraph 42 of the German Road Traffic Admission Regulations (StVZO).
     """
 
     operating_state: "HostVehicleDataVehicleBasicsOperatingState" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: HostVehicleDataVehicleBasicsOperatingState.try_value(0),
+        default_factory=lambda: HostVehicleDataVehicleBasicsOperatingState(0),
     )
     """
     The operating state of the vehicle.
@@ -17042,10 +17220,12 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleBrakeSystem(betterproto2.Message):
     """
 
-    \brief The focus here is on the description of the brake system.
+    brief The focus here is on the description of the brake system.
     """
 
-    pedal_position_brake: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    pedal_position_brake: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Position of the brake pedal.
     Range: 0-1 (Unpressed - fully pressed)
@@ -17061,7 +17241,7 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleLocalization(betterproto2.Message):
     """
 
-    \brief Current calculated and estimated location that can be based on GNSS and related navigation sensors.
+    brief Current calculated and estimated location that can be based on GNSS and related navigation sensors.
     This message does not contain the individual sensor values of the sensor technology.
 
     This message contains the most accurate information the vehicle knows about its position
@@ -17105,14 +17285,14 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleMotion(betterproto2.Message):
     """
 
-    \brief Current calculated and estimated motion related information.
+    brief Current calculated and estimated motion related information.
 
     This message contains the most accurate information the vehicle knows about its motion
     including vehicle dynamics and control related information available in the on-board network,
     which can differ from the "true" values calculated out of the ground truth.
 
     This data uses the reference point coincident with the middle (in x, y and z) of rear axle
-    under neutral load conditions as defined in \c MovingObject::VehicleAttributes::bbcenter_to_rear.
+    under neutral load conditions as defined in c MovingObject::VehicleAttributes::bbcenter_to_rear.
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -17155,7 +17335,9 @@ class HostVehicleDataVehicleMotion(betterproto2.Message):
     measured on the vehicle coordinate system in context of the global inertial system.
     """
 
-    current_curvature: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    current_curvature: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Most accurate curvature currently followed by vehicle and available in the on-board network
 
@@ -17172,7 +17354,7 @@ default_message_pool.register_message(
 class HostVehicleDataVehiclePowertrain(betterproto2.Message):
     """
 
-    \brief State description of the powertrain.
+    brief State description of the powertrain.
     """
 
     pedal_position_acceleration: "float" = betterproto2.field(
@@ -17183,13 +17365,17 @@ class HostVehicleDataVehiclePowertrain(betterproto2.Message):
     Range: 0-1 (Unpressed - fully pressed)
     """
 
-    pedal_position_clutch: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    pedal_position_clutch: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Position of the clutch pedal.
     Range: 0-1 (Unpressed - fully pressed)
     """
 
-    gear_transmission: "int" = betterproto2.field(3, betterproto2.TYPE_INT32)
+    gear_transmission: "int" = betterproto2.field(
+        3, betterproto2.TYPE_INT32
+    )
     """
     The actual gear of the transmission.
     For example, a gear lever can be on "D" and the transmission on "4", but not the
@@ -17219,26 +17405,30 @@ default_message_pool.register_message(
 class HostVehicleDataVehiclePowertrainMotor(betterproto2.Message):
     """
 
-    \brief A description of the motor states.
+    brief A description of the motor states.
     """
 
     type: "HostVehicleDataVehiclePowertrainMotorType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: HostVehicleDataVehiclePowertrainMotorType.try_value(0),
+        default_factory=lambda: HostVehicleDataVehiclePowertrainMotorType(0),
     )
     """
     The type of the motor.
     """
 
-    rpm: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    rpm: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Revolutions per minute of the motor.
 
     Unit: 1/min
     """
 
-    torque: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    torque: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Torque of the motor.
 
@@ -17257,7 +17447,7 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleSteering(betterproto2.Message):
     """
 
-    \brief The focus here is on the description of the steering train.
+    brief The focus here is on the description of the steering train.
     """
 
     vehicle_steering_wheel: "VehicleSteeringWheel | None" = betterproto2.field(
@@ -17277,7 +17467,7 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleWheels(betterproto2.Message):
     """
 
-    \brief The focus here is on the description of internal wheel states.
+    brief The focus here is on the description of internal wheel states.
     """
 
     wheel_data: "list[HostVehicleDataVehicleWheelsWheelData]" = betterproto2.field(
@@ -17286,7 +17476,7 @@ class HostVehicleDataVehicleWheels(betterproto2.Message):
     """
     Description of each wheel.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
 
@@ -17299,17 +17489,21 @@ default_message_pool.register_message(
 class HostVehicleDataVehicleWheelsWheelData(betterproto2.Message):
     """
 
-    \brief The focus here is on the description of internal wheel states.
+    brief The focus here is on the description of internal wheel states.
     """
 
-    axle: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
+    axle: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT32
+    )
     """
     The axle which contains this wheel. A value of 0 represents the
     foremost axle of the vehicle, with higher numbers ascending
     towards the rearmost axle.
     """
 
-    index: "int" = betterproto2.field(2, betterproto2.TYPE_UINT32)
+    index: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT32
+    )
     """
     The index of the wheel on the axle, counted in positive y- direction,
     that is, right-to-left.
@@ -17319,7 +17513,9 @@ class HostVehicleDataVehicleWheelsWheelData(betterproto2.Message):
     This concept also works for twin tires.
     """
 
-    rotation_rate: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    rotation_rate: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Rotation rate of the wheel based on the processed output of the hall sensor measurements at the wheel.
     The rotation rate around the y-axis with respect to the wheel's coordinate system.
@@ -17330,14 +17526,16 @@ class HostVehicleDataVehicleWheelsWheelData(betterproto2.Message):
     It is applied on the y-axis of the vehicle's reference system, that is, the center of bounding box.
     Counterclockwise is positive and clockwise is negative.
 
-    \image html OSI_RotationRate.svg
-    \note The vehicle's reference coordinate system is only used to determine the sign convention of the rotation rate.
+    image html OSI_RotationRate.svg
+    note The vehicle's reference coordinate system is only used to determine the sign convention of the rotation rate.
     """
 
-    slip: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    slip: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Contains the longitudinal, measured slip of the tire.
-    \par References:
+    par References:
     [1] kfz-tech.de, Schlupf, Retrieved June 30, 2021, from https://www.kfz-tech.de/Biblio/Formelsammlung/Schlupf.htm
 
     Unit: %
@@ -17359,11 +17557,11 @@ default_message_pool.register_message(
 class Identifier(betterproto2.Message):
     """
 
-    \brief A common identifier (ID), represented as an integer.
+    brief A common identifier (ID), represented as an integer.
 
     Has to be unique among all simulated items at any given time. For ground
     truth, the identifier of an item (object, lane, sign, etc.) must remain
-    stable over its lifetime. \c Identifier values may be only be reused if the
+    stable over its lifetime. c Identifier values may be only be reused if the
     available address space is exhausted and the specific values have not been in
     use for several time steps. Sensor specific tracking IDs have no restrictions
     and should behave according to the sensor specifications.
@@ -17376,13 +17574,15 @@ class Identifier(betterproto2.Message):
     reserved and indicates an invalid ID or error.
     """
 
-    value: "int" = betterproto2.field(1, betterproto2.TYPE_UINT64)
+    value: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT64
+    )
     """
     The value of the identifier.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -17393,17 +17593,17 @@ default_message_pool.register_message("osi3", "Identifier", Identifier)
 class InterfaceVersion(betterproto2.Message):
     """
 
-    \brief The interface version number.
+    brief The interface version number.
 
     The field denoting the version number. This needs to be set by the
     sender to the actual OSI version that is to be sent.  Code wanting to
     access the version number of the OSI code base can access a FileOptions,
     which has the proper values, like this:
 
-    \code
+    code
     auto currentInterfaceVersion =
       InterfaceVersion::descriptor()->file()->options().GetExtension(current_interface_version);
-    \endcode
+    endcode
 
     If a message with all components set to the default value 0 is
     received, this indicates that either that the message was sent by
@@ -17414,17 +17614,23 @@ class InterfaceVersion(betterproto2.Message):
     The meaning of different InterfaceVersions is defined in the versioning chapter of the official OSI documentation.
     """
 
-    version_major: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
+    version_major: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT32
+    )
     """
     Major version number.
     """
 
-    version_minor: "int" = betterproto2.field(2, betterproto2.TYPE_UINT32)
+    version_minor: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT32
+    )
     """
     Minor version number.
     """
 
-    version_patch: "int" = betterproto2.field(3, betterproto2.TYPE_UINT32)
+    version_patch: "int" = betterproto2.field(
+        3, betterproto2.TYPE_UINT32
+    )
     """
     Patch version number.
     """
@@ -17437,18 +17643,22 @@ default_message_pool.register_message("osi3", "InterfaceVersion", InterfaceVersi
 class KeyValuePair(betterproto2.Message):
     """
 
-    \brief Generic key-value pair structure
+    brief Generic key-value pair structure
 
     A generic key-value pair structure which can be used to capture information
     which is opaque to the general OSI interface.
     """
 
-    key: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
+    key: "str" = betterproto2.field(
+        1, betterproto2.TYPE_STRING
+    )
     """
     A generic string key.
     """
 
-    value: "str" = betterproto2.field(2, betterproto2.TYPE_STRING)
+    value: "str" = betterproto2.field(
+        2, betterproto2.TYPE_STRING
+    )
     """
     A generic string value.
     """
@@ -17461,7 +17671,7 @@ default_message_pool.register_message("osi3", "KeyValuePair", KeyValuePair)
 class Lane(betterproto2.Message):
     """
 
-    \brief A lane in the road network.
+    brief A lane in the road network.
 
     A lane is part of a road and mainly characterized by its center line. It also
     knows about any adjacent lanes, antecessor and successor lanes.
@@ -17471,17 +17681,17 @@ class Lane(betterproto2.Message):
     <table border=0>
     <tr>
     <td>
-    \image html OSI_Highway_Exit.svg "" width=550px
+    image html OSI_Highway_Exit.svg "" width=550px
     <td>
-    \image html OSI_LaneIntersection.svg "" width=550px
+    image html OSI_LaneIntersection.svg "" width=550px
     <tr>
     <td>
-    \image html OSI_Highway_Exit.jpg "HighwayExit" width=650px
+    image html OSI_Highway_Exit.jpg "HighwayExit" width=650px
     <td>
-    \image html OSI_LaneIntersection.jpg "Intersection" width=650px
+    image html OSI_LaneIntersection.jpg "Intersection" width=650px
     </table>
 
-    \note In the examples, the symbols l1, l2, ... and lb1, lb2, ...
+    note In the examples, the symbols l1, l2, ... and lb1, lb2, ...
     stand for the lane ids and lane boundary ids respectively, i.e. for
     integers (uint64). The symbols cl1, cl2, ... represent the
     osi3::Lane::Classification::centerline elements of the lanes with
@@ -17495,12 +17705,12 @@ class Lane(betterproto2.Message):
     The ID of the lane.
     Example: l4 (see reference picture HighwayExit).
 
-    \note Note ID is global unique.
+    note Note ID is global unique.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     classification: "LaneClassification | None" = betterproto2.field(
@@ -17522,17 +17732,17 @@ class Lane(betterproto2.Message):
     For example, to reference a lane defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = id of t_road
     * identifier[1] = s of t_road_lanes_laneSection
     * identifier[2] = id of t_road_lanes_laneSection_left_lane,
                             t_road_lanes_laneSection_right_lane
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated, because one lane segment may be
+    note The value has to be repeated, because one lane segment may be
           derived from more than one origin segment. Multiple sources
           may be added as reference as well, for example, a map and sensors.
     """
@@ -17545,75 +17755,75 @@ default_message_pool.register_message("osi3", "Lane", Lane)
 class LaneClassification(betterproto2.Message):
     """
 
-    \brief \c Classification of a lane.
+    brief c Classification of a lane.
 
     <table border = 0>
     <tr>
     <td>
-    \anchor HighwayExit
-    \image html OSI_LaneClassification.jpg "HighwayExit" width=800px
+    anchor HighwayExit
+    image html OSI_LaneClassification.jpg "HighwayExit" width=800px
     </td>
     <td>
     <table border=0>
     <tr>
     <td>
     <b>
-    \c Classification for lane l4 in image HighwayExit:
+    c Classification for lane l4 in image HighwayExit:
     </b>
     <tr>
     <td>
-    \c #type = \c #TYPE_DRIVING
+    c #type = c #TYPE_DRIVING
     <tr>
     <td>
-    \c #centerline = (cl4_1, cl4_2, cl4_3, cl4_4, cl4_5)
+    c #centerline = (cl4_1, cl4_2, cl4_3, cl4_4, cl4_5)
     <tr>
     <td>
-    \c #centerline_is_driving_direction = \c true
+    c #centerline_is_driving_direction = c true
     <tr>
     <td>
-    \c #is_host_vehicle_lane = \c true
+    c #is_host_vehicle_lane = c true
     <tr>
     <td>
-    \c #left_adjacent_lane_id = l3
+    c #left_adjacent_lane_id = l3
     <tr>
     <td>
-    \c #right_adjacent_lane_id  = (l5,l6)
+    c #right_adjacent_lane_id  = (l5,l6)
     <tr>
     <td>
-    \c #left_lane_boundary_id = lb5
+    c #left_lane_boundary_id = lb5
     <tr>
     <td>
-    \c #right_lane_boundary_id = (lb9, lb6)
+    c #right_lane_boundary_id = (lb9, lb6)
     </table>
     </td>
     </tr>
     <tr>
     <td>
-    \anchor Intersection
-    \image html OSI_LaneIntersection.jpg "Intersection" width=800px
+    anchor Intersection
+    image html OSI_LaneIntersection.jpg "Intersection" width=800px
     </td>
     <td>
     <table border=0>
     <tr>
     <td>
     <b>
-    \c Classification for lane l7 in image Intersection:
+    c Classification for lane l7 in image Intersection:
     </b>
     </td>
     </tr>
     <tr>
     <td>
-    \c #type = \c #TYPE_INTERSECTION
+    c #type = c #TYPE_INTERSECTION
     </td>
     </tr>
     <tr>
     <td>
-    \c #is_host_vehicle_lane = \c false
+    c #is_host_vehicle_lane = c false
     </td>
     </tr>
     <tr>
     <td>
-    \c #free_lane_boundary_id = lb11
+    c #free_lane_boundary_id = lb11
     </td>
     </tr>
     <tr>
@@ -17621,7 +17831,7 @@ class LaneClassification(betterproto2.Message):
     <border = 0>
     <tr>
     <td>
-    \c #lane_pairing = (
+    c #lane_pairing = (
     <td>
     (l2,l1), (l2,l3), (l2,l5),
     <tr>
@@ -17640,31 +17850,33 @@ class LaneClassification(betterproto2.Message):
     </tr>
     </table>
 
-    \note In the examples, the symbols l1, l2, ... and lb1, lb2, ...
+    note In the examples, the symbols l1, l2, ... and lb1, lb2, ...
     stand for the lane ids and lane boundary ids respectively, i.e. for
     integers (uint64). The symbols cl1, cl2, ... represent the
     osi3::Lane::Classification::centerline elements of the lanes with
     the respective ids. The symbols cl1_1, cl1_2, ... stand for
-    \c #osi3::Vector3d elements.
+    c #osi3::Vector3d elements.
     """
 
     type: "LaneClassificationType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LaneClassificationType.try_value(0),
+        default_factory=lambda: LaneClassificationType(0),
     )
     """
     The type of the lane.
 
-    Example: For l4 in image \ref HighwayExit the \c #type is \c
+    Example: For l4 in image ref HighwayExit the c #type is c
     #TYPE_DRIVING.
     """
 
-    is_host_vehicle_lane: "bool" = betterproto2.field(2, betterproto2.TYPE_BOOL)
+    is_host_vehicle_lane: "bool" = betterproto2.field(
+        2, betterproto2.TYPE_BOOL
+    )
     """
     Indicates that the host vehicle travels on this particular lane.
     The host vehicle may travel on more than one lane at once. This does
-    also apply for the \c CandidateLane in the \c DetectedLane .
+    also apply for the c CandidateLane in the c DetectedLane .
     """
 
     centerline: "list[Vector3D]" = betterproto2.field(
@@ -17675,45 +17887,45 @@ class LaneClassification(betterproto2.Message):
 
     The centerline describes the middle of the lane.
 
-    \image html OSI_LaneCenterline.svg "Centerline" width=500px
+    image html OSI_LaneCenterline.svg "Centerline" width=500px
 
-    Example: In image \ref HighwayExit,
+    Example: In image ref HighwayExit,
     the centerline of lane l4 (black line) is given by
     (cl4_1, cl4_2, cl4_3, cl4_4, cl4_5).
 
-    \image html OSI_LaneBoundaries_And_CenterLine.svg "Centerline" width=500px
+    image html OSI_LaneBoundaries_And_CenterLine.svg "Centerline" width=500px
 
-    \note 
+    note 
     cl: center line
     lb: lane boundary
 
-    \attention The points describing the center line must be set in the 
+    attention The points describing the center line must be set in the 
     same ordering (ascending or descending) as the points describing the 
     lane boundaries. Example: If the points are deducted from a map format, 
     the order of points is recommended to be in line with the road coordinate 
     (e.g. s-coordinate in OpenDRIVE). 
 
-    \attention The points describing the center line might be set at
+    attention The points describing the center line might be set at
     arbitrary distances. When the points are pairwise linearly connected,
     the lateral distance to the real ideal line (as used by the
     simulation environment internally) must not exceed 5cm. As shown in
     the following image:
 
-    \image html line_approximation_error.svg "Approximation error"
+    image html line_approximation_error.svg "Approximation error"
     Approximation error green line.
 
-    \note The center line is the line that a typical vehicle follows more
+    note The center line is the line that a typical vehicle follows more
     or less (depending on the situation, a little more to the left or
     right of the center line). The intended direction of travel on the
     lane is given by the direction defined by the sequence of points
-    forming the \c #centerline w.r.t. \c
+    forming the c #centerline w.r.t. c
     #centerline_is_driving_direction.
 
-    \note The \c #centerline is defined only for \c #type =
-    \c #TYPE_DRIVING and if exactly one or no \c #lane_pairing pair
+    note The c #centerline is defined only for c #type =
+    c #TYPE_DRIVING and if exactly one or no c #lane_pairing pair
     exists.
 
-    \note Intersections and non-driving lanes do not have a center line.
+    note Intersections and non-driving lanes do not have a center line.
     A vehicle must calculate this individually and depending on the
     situation.
     """
@@ -17725,16 +17937,16 @@ class LaneClassification(betterproto2.Message):
     Definition of the intended driving direction.
 
     Defined and used for driving lanes.
-    \c true means driving direction is according to ascending storage
-    order of center line points. \c false means driving direction is
+    c true means driving direction is according to ascending storage
+    order of center line points. c false means driving direction is
     according to descending storage order of center line points.
 
-    Example: \c #centerline_is_driving_direction = \c true for lane l4
-    and \c #centerline_is_driving_direction = \c false for lane l2 in
-    image \ref HighwayExit .
+    Example: c #centerline_is_driving_direction = c true for lane l4
+    and c #centerline_is_driving_direction = c false for lane l2 in
+    image ref HighwayExit .
 
-    \note The \c #centerline_is_driving_direction is defined for \c #type
-    = \c #TYPE_DRIVING .
+    note The c #centerline_is_driving_direction is defined for c #type
+    = c #TYPE_DRIVING .
     """
 
     left_adjacent_lane_id: "list[Identifier]" = betterproto2.field(
@@ -17748,16 +17960,16 @@ class LaneClassification(betterproto2.Message):
     if there is a split/merge point in the adjacent lane.
 
     Example: The lane l3 is the only left adjacent lane for lane l4
-    in image \ref HighwayExit.
+    in image ref HighwayExit.
 
-    \note The \c #left_adjacent_lane_id is undefined for \c #type =
-    \c #TYPE_INTERSECTION .
+    note The c #left_adjacent_lane_id is undefined for c #type =
+    c #TYPE_INTERSECTION .
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \rules
+    rules
     check_if this.type is_different_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     right_adjacent_lane_id: "list[Identifier]" = betterproto2.field(
@@ -17770,17 +17982,17 @@ class LaneClassification(betterproto2.Message):
     not synchronized and therefore there are multiple adjacent segments 
     if there is a split/merge point in the adjacent lane.
 
-    Example: \c #right_adjacent_lane_id = (l5, l6)
-    for lane l4 in image \ref HighwayExit.
+    Example: c #right_adjacent_lane_id = (l5, l6)
+    for lane l4 in image ref HighwayExit.
 
-    \note The \c #right_adjacent_lane_id is undefined for \c #type =
-    \c #TYPE_INTERSECTION .
+    note The c #right_adjacent_lane_id is undefined for c #type =
+    c #TYPE_INTERSECTION .
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \rules
+    rules
     check_if this.type is_different_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     lane_pairing: "list[LaneClassificationLanePairing]" = betterproto2.field(
@@ -17793,69 +18005,69 @@ class LaneClassification(betterproto2.Message):
     this lane starts from. The successor lanes start in the same point
     that this lane ends in.
 
-    Example: See image \ref Intersection.
+    Example: See image ref Intersection.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     right_lane_boundary_id: "list[Identifier]" = betterproto2.field(
         8, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    The right adjacent lane boundaries \c #right_lane_boundary_id may
-    only be shared with/as the left adjacent lane boundaries \c
-    #left_lane_boundary_id of the nearest right adjacent lane \c
+    The right adjacent lane boundaries c #right_lane_boundary_id may
+    only be shared with/as the left adjacent lane boundaries c
+    #left_lane_boundary_id of the nearest right adjacent lane c
     #right_adjacent_lane_id.
 
-    Example: \c #right_lane_boundary_id =
-    (lb9, lb6) for reference lane l4 in image \ref HighwayExit.
+    Example: c #right_lane_boundary_id =
+    (lb9, lb6) for reference lane l4 in image ref HighwayExit.
 
-    \note Empty for intersections.
+    note Empty for intersections.
 
-    \note The \c #right_lane_boundary_id is undefined for \c #type =
-    \c #TYPE_INTERSECTION .
+    note The c #right_lane_boundary_id is undefined for c #type =
+    c #TYPE_INTERSECTION .
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \note The boundary between adjacent lanes at different heights
+    note The boundary between adjacent lanes at different heights
           (e.g. a curb between a driving lane and a sidewalk)
           should not be shared, but modeled as two separate lane
           boundaries with individual ids. One for the upper, the
           other one for the lower lane.
 
-    \rules
+    rules
     check_if this.type is_different_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     left_lane_boundary_id: "list[Identifier]" = betterproto2.field(
         9, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    The left adjacent lane boundaries \c #left_lane_boundary_id may only
-    be shared with/as the right adjacent lane boundaries \c
-    #right_lane_boundary_id of the nearest left adjacent lane \c
+    The left adjacent lane boundaries c #left_lane_boundary_id may only
+    be shared with/as the right adjacent lane boundaries c
+    #right_lane_boundary_id of the nearest left adjacent lane c
     #left_adjacent_lane_id.
 
-    Example: \c #left_lane_boundary_id = lb5 for lane l4 in image \ref
+    Example: c #left_lane_boundary_id = lb5 for lane l4 in image ref
     HighwayExit.
 
-    \note Empty for intersections.
+    note Empty for intersections.
 
-    \note The \c #left_lane_boundary_id is undefined for \c #type =
-    \c #TYPE_INTERSECTION .
+    note The c #left_lane_boundary_id is undefined for c #type =
+    c #TYPE_INTERSECTION .
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \note The boundary between adjacent lanes at different heights
+    note The boundary between adjacent lanes at different heights
           (e.g. a curb between a driving lane and a sidewalk)
           should not be shared, but modeled as two separate lane
           boundaries with individual ids. One for the upper, the
           other one for the lower lane.
 
-    \rules
+    rules
     check_if this.type is_different_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     free_lane_boundary_id: "list[Identifier]" = betterproto2.field(
@@ -17864,17 +18076,17 @@ class LaneClassification(betterproto2.Message):
     """
     The free boundaries which have no/unknown assignment to left/right.
 
-    Example: \c #free_lane_boundary_id = lb11 for lane l7 in image \ref
+    Example: c #free_lane_boundary_id = lb11 for lane l7 in image ref
     Intersection.
 
-    \note \c Lane with \c #type = \c #TYPE_INTERSECTION use only free
+    note c Lane with c #type = c #TYPE_INTERSECTION use only free
     lane boundaries.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \rules
+    rules
     check_if this.type is_different_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     road_condition: "LaneClassificationRoadCondition | None" = betterproto2.field(
@@ -17887,7 +18099,7 @@ class LaneClassification(betterproto2.Message):
     subtype: "LaneClassificationSubtype" = betterproto2.field(
         12,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LaneClassificationSubtype.try_value(0),
+        default_factory=lambda: LaneClassificationSubtype(0),
     )
     """
     The subtype of the lane. 
@@ -17902,19 +18114,19 @@ default_message_pool.register_message("osi3", "Lane.Classification", LaneClassif
 @dataclass(eq=False, repr=False)
 class LaneClassificationLanePairing(betterproto2.Message):
     """
-    \brief The lane ID pairings of antecessor and successor lanes.
+    brief The lane ID pairings of antecessor and successor lanes.
 
     <table border = 0>
     <tr>
     <td>
-    \image html OSI_LaneIntersection.svg "" width=600px
+    image html OSI_LaneIntersection.svg "" width=600px
     </td>
     <td>
     <table border=0>
     <tr>
     <td>
     <b>
-    \c LanePairing for lane l7:
+    c LanePairing for lane l7:
     </b>
     </td>
     </tr>
@@ -17938,7 +18150,7 @@ class LaneClassificationLanePairing(betterproto2.Message):
     </tr>
     </table>
 
-    \note In the example, the symbols l1, l2, ... stand for the
+    note In the example, the symbols l1, l2, ... stand for the
     respective lane ids, i.e. for integers (uint64). The symbols cl1,
     cl2, ... represent the osi3::Lane::Classification::centerline
     elements of the lanes with the respective ids.
@@ -17950,9 +18162,9 @@ class LaneClassificationLanePairing(betterproto2.Message):
     """
     The antecessor lane ID.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
     successor_lane_id: "Identifier | None" = betterproto2.field(
@@ -17961,9 +18173,9 @@ class LaneClassificationLanePairing(betterproto2.Message):
     """
     The successor lane ID.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
 
@@ -17976,55 +18188,65 @@ default_message_pool.register_message(
 class LaneClassificationRoadCondition(betterproto2.Message):
     """
 
-    \brief The condition of the road surface.
+    brief The condition of the road surface.
     """
 
-    surface_temperature: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    surface_temperature: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The temperature of the roads surface in Kelvin.
 
     Unit: K
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    surface_water_film: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    surface_water_film: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The height of the water film on top of the surface in mm.
 
     Unit: mm
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    surface_freezing_point: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    surface_freezing_point: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The temperature where the water on top of the surface would start
     to freeze or dew in Kelvin.
 
     Unit: K
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    surface_ice: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    surface_ice: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     The percentage of ice covering the road.
 
     Unit: %
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    surface_roughness: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    surface_roughness: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     The coefficient representing the roughness or unevenness of the
     road. International Roughness Index (IRI) [1] values range from 0
@@ -18057,15 +18279,17 @@ class LaneClassificationRoadCondition(betterproto2.Message):
 
     Unit: mm/m
 
-    \par Reference:
+    par Reference:
     [1] Sayers, M. W. & Karamihas, S. M. (1998). <em>Little Book of Profiling</em>. University of Michigan Transportation Research Institute. Retrieved January 25, 2020, from http://www.umtri.umich.edu/content/LittleBook98R.pdf pp. 45 ff.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    surface_texture: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    surface_texture: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     The surface texture or fine roughness
 
@@ -18077,7 +18301,7 @@ class LaneClassificationRoadCondition(betterproto2.Message):
 
     Unit: m
 
-    \par Reference:
+    par Reference:
     [1] Schneider, R. (1998). <em>Modellierung der Wellenausbreitung fuer ein bildgebendes Kfz-Radar</em>. PhD thesis. Karlsruhe, Germany. Universitaet Karlsruhe, Fak. f. Elektrotechnik.
     """
 
@@ -18091,18 +18315,18 @@ default_message_pool.register_message(
 class LaneBoundary(betterproto2.Message):
     """
 
-    \brief A lane boundary defining the border of a lane.
+    brief A lane boundary defining the border of a lane.
 
     The left and right lane boundary define the width of the lane. Additionally,
     free markings can be defined, e.g. at construction sites. Free markings
     across multiple lanes may be defined multiple times for all affected lanes.
 
-    \image html OSI_LaneBoundary.svg "LaneBoundary" width=800px
+    image html OSI_LaneBoundary.svg "LaneBoundary" width=800px
 
-    \note In the example, the symbols l1, l2, ... and lb1, lb2, ...
+    note In the example, the symbols l1, l2, ... and lb1, lb2, ...
     stand for the lane ids and lane boundary ids respectively, i.e. for
     integers (uint64). The symbols bp2_{i+1}, bp2_{i}, bp2_{i-1} stand
-    for \c #osi3::LaneBoundary::BoundaryPoint elements.
+    for c #osi3::LaneBoundary::BoundaryPoint elements.
     """
 
     id: "Identifier | None" = betterproto2.field(
@@ -18111,9 +18335,9 @@ class LaneBoundary(betterproto2.Message):
     """
     The ID of the lane boundary.
 
-    \rules
+    rules
     is_globally_unique
-    \endrules
+    endrules
     """
 
     boundary_line: "list[LaneBoundaryBoundaryPoint]" = betterproto2.field(
@@ -18123,39 +18347,39 @@ class LaneBoundary(betterproto2.Message):
     The list of individual points defining the location of the lane boundary
     (as a list of segments).
 
-    Since a \c BoundaryPoint is part of a sequence, only the position
+    Since a c BoundaryPoint is part of a sequence, only the position
     attribute has to be set for each instance. All other values will be
-    reused from the previous \c BoundaryPoint in the sequence or set to
+    reused from the previous c BoundaryPoint in the sequence or set to
     default values if there is none or it was never set.
 
-    \image html OSI_LaneBoundary.svg "" width=800px
+    image html OSI_LaneBoundary.svg "" width=800px
 
-    Example: The boundary_line of the \c LaneBoundary with id lb2 is given by
+    Example: The boundary_line of the c LaneBoundary with id lb2 is given by
     (bp2_1, ..., bp2_{i-1}, bp2_{i}, bp2_{i+1}, ...).
 
-    \attention The ordering of the points must be the same for all lane boundaries
+    attention The ordering of the points must be the same for all lane boundaries
     on one road (also for roads with two-way traffic) and also the center line(s). 
     Example: If the points are deducted from a map format, the order of points 
     is recommended to be in line with the road coordinate (e.g. s-coordinate in 
     OpenDRIVE). 
 
-    \note For dashed lines, one \c BoundaryPoint has to be at the start and
+    note For dashed lines, one c BoundaryPoint has to be at the start and
     another at the end of each dashed line segment. The first
-    \c BoundaryPoint defines the beginning of the first dashed lane marking.
-    The last \c BoundaryPoint defines the end of the last dashed lane
+    c BoundaryPoint defines the beginning of the first dashed lane marking.
+    The last c BoundaryPoint defines the end of the last dashed lane
     marking.
-    \note For Botts' dots lines, one \c BoundaryPoint position has to define
+    note For Botts' dots lines, one c BoundaryPoint position has to define
     each Botts' dot.
 
-    \attention For \c BoundaryPoint the same rule for the approximation
-    error applies as for \c Lane::Classification::centerline.
+    attention For c BoundaryPoint the same rule for the approximation
+    error applies as for c Lane::Classification::centerline.
 
-    \rules
+    rules
     first_element width is_equal_to 0.13
     first_element height is_equal_to 0.14
     last_element width is_equal_to 0.13
     last_element height is_equal_to 0.13
-    \endrules
+    endrules
     """
 
     classification: "LaneBoundaryClassification | None" = betterproto2.field(
@@ -18171,13 +18395,13 @@ class LaneBoundary(betterproto2.Message):
     """
     Optional external reference to the lane boundary source.
 
-    \note For OpenDRIVE, there is no direct possibility to reference the
+    note For OpenDRIVE, there is no direct possibility to reference the
           RoadMark, as there is no unique identifier in this sub-object.
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -18188,9 +18412,9 @@ class LaneBoundary(betterproto2.Message):
     """
     The visual color of the material of the lane boundary.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance. For semantic classification of the lane boundary use the color
-    field in \c Classification.
+    field in c Classification.
     """
 
 
@@ -18201,67 +18425,71 @@ default_message_pool.register_message("osi3", "LaneBoundary", LaneBoundary)
 class LaneBoundaryBoundaryPoint(betterproto2.Message):
     """
 
-    \brief A single point of a lane boundary.
+    brief A single point of a lane boundary.
 
-    \image html OSI_LaneBoundaries_And_CenterLine.svg "" width=800px
+    image html OSI_LaneBoundaries_And_CenterLine.svg "" width=800px
 
-    \note
+    note
     cl: center line
     lb: lane boundary
 
-    \image html OSI_LaneBoundary.svg "" width=800px
+    image html OSI_LaneBoundary.svg "" width=800px
 
     The lane boundary point bp2_{i} is one of the points of lane boundary
     lb2.
 
-    \note In the example, the symbols l1, l2, ... and lb1, lb2, ...
+    note In the example, the symbols l1, l2, ... and lb1, lb2, ...
     stand for the lane ids and lane boundary ids respectively, i.e. for
     integers (uint64). The symbols bp2_{i+1}, bp2_{i}, bp2_{i-1} stand
-    for \c #osi3::LaneBoundary::BoundaryPoint elements.
+    for c #osi3::LaneBoundary::BoundaryPoint elements.
     """
 
     position: "Vector3D | None" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The position of the \c BoundaryPoint.
+    The position of the c BoundaryPoint.
     """
 
-    width: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    width: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The overall width of the lane boundary at the position of the
-    \c BoundaryPoint .
+    c BoundaryPoint .
     Used for lines forming lane markings.
 
-    \image html OSI_LaneBoundaryWidth.svg "" width=600px
+    image html OSI_LaneBoundaryWidth.svg "" width=600px
 
-    \note Field need not be set if it is defined previous.
-    See \c LaneBoundary.
+    note Field need not be set if it is defined previous.
+    See c LaneBoundary.
     """
 
-    height: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    height: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The overall height of the lane boundary at the position of the
-    \c BoundaryPoint .
+    c BoundaryPoint .
     Used for guard rails, curbstone, or similar.
 
-    \image html OSI_LaneBoundaryHeight.svg "" width=600px
+    image html OSI_LaneBoundaryHeight.svg "" width=600px
 
-    \note Field need not be set if it is previously defined.
+    note Field need not be set if it is previously defined.
 
-    \note The boundary point height should not be used to model the boundary 
+    note The boundary point height should not be used to model the boundary 
           between two adjacent lanes at different heights as a single, shared 
           boundary.
           Boundaries between adjacent lanes at different heights should be 
           modeled as two separate lane boundaries.
 
-    See \c LaneBoundary .
+    See c LaneBoundary .
     """
 
     dash: "LaneBoundaryBoundaryPointDash" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LaneBoundaryBoundaryPointDash.try_value(0),
+        default_factory=lambda: LaneBoundaryBoundaryPointDash(0),
     )
     """
     Alternation of dashes in case of a dashed lane boundary. In
@@ -18279,7 +18507,7 @@ default_message_pool.register_message(
 class LaneBoundaryClassification(betterproto2.Message):
     """
 
-    \brief \c Classification of a lane boundary.
+    brief c Classification of a lane boundary.
 
     <table border = 0>
     <tr>
@@ -18294,7 +18522,7 @@ class LaneBoundaryClassification(betterproto2.Message):
     <td>
     <tr>
     <td>
-    \c Classification for lane boundaries lb2 and lb9:
+    c Classification for lane boundaries lb2 and lb9:
     </td>
     </tr>
     <tr>
@@ -18302,17 +18530,17 @@ class LaneBoundaryClassification(betterproto2.Message):
     <table border = 0>
     <tr>
     <td>
-    \c #type = #TYPE_DASHED_LINE
+    c #type = #TYPE_DASHED_LINE
     <tr>
     <td>
-    \c #color = #COLOR_WHITE
+    c #color = #COLOR_WHITE
     <tr>
     </table>
     </td>
     </tr>
     <tr>
     <td>
-    \c Classification for lane boundaries lb1, lb3, lb4, lb7, lb8, lb10,
+    c Classification for lane boundaries lb1, lb3, lb4, lb7, lb8, lb10,
     lb11, lb12 and lb14:
     </td>
     </tr>
@@ -18321,17 +18549,17 @@ class LaneBoundaryClassification(betterproto2.Message):
     <table border = 0>
     <tr>
     <td>
-    \c #type = #TYPE_SOLID_LINE
+    c #type = #TYPE_SOLID_LINE
     <tr>
     <td>
-    \c #color = #COLOR_WHITE
+    c #color = #COLOR_WHITE
     <tr>
     </table>
     </td>
     </tr>
     <tr>
     <td>
-    \c Classification for lane boundaries lb5, lb6 and lb13:
+    c Classification for lane boundaries lb5, lb6 and lb13:
     </td>
     </tr>
     <tr>
@@ -18339,7 +18567,7 @@ class LaneBoundaryClassification(betterproto2.Message):
     <table border = 0>
     <tr>
     <td>
-    \c #type = #TYPE_CURB
+    c #type = #TYPE_CURB
     </table>
     </td>
     </tr>
@@ -18349,18 +18577,18 @@ class LaneBoundaryClassification(betterproto2.Message):
     <table border=0>
     <tr>
     <td>
-    \image html OSI_LaneIntersection.svg "" width=500px
+    image html OSI_LaneIntersection.svg "" width=500px
     </td>
     <tr>
     <td>
-    \image html OSI_LaneBoundaryClassification.jpg "" width=600px
+    image html OSI_LaneBoundaryClassification.jpg "" width=600px
     </td>
     </table>
     </td>
     </tr>
     </table>
 
-    \note In the example, the symbols l1, l2, ... and lb1, lb2, ...
+    note In the example, the symbols l1, l2, ... and lb1, lb2, ...
     stand for the lane ids and lane boundary ids respectively, i.e. for
     integers (uint64). The symbols cl1, cl2, ... represent the
     osi3::Lane::Classification::centerline elements of the lanes with
@@ -18370,7 +18598,7 @@ class LaneBoundaryClassification(betterproto2.Message):
     type: "LaneBoundaryClassificationType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LaneBoundaryClassificationType.try_value(0),
+        default_factory=lambda: LaneBoundaryClassificationType(0),
     )
     """
     The type of the lane boundary.
@@ -18379,12 +18607,12 @@ class LaneBoundaryClassification(betterproto2.Message):
     color: "LaneBoundaryClassificationColor" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LaneBoundaryClassificationColor.try_value(0),
+        default_factory=lambda: LaneBoundaryClassificationColor(0),
     )
     """
     The semantic color of the lane boundary in case of lane markings.
 
-    \note The color types represent the semantic classification of
+    note The color types represent the semantic classification of
     lane markings only. They do not represent an actual visual appearance.
     """
 
@@ -18392,13 +18620,13 @@ class LaneBoundaryClassification(betterproto2.Message):
         3, betterproto2.TYPE_MESSAGE, repeated=True
     )
     """
-    The ids of \c StationaryObject which limit the corresponding lane.
-    This field must be set if the \c #type is set to
-    \c #TYPE_STRUCTURE
+    The ids of c StationaryObject which limit the corresponding lane.
+    This field must be set if the c #type is set to
+    c #TYPE_STRUCTURE
 
-    \rules
+    rules
     refers_to: StationaryObject
-    \endrules
+    endrules
     """
 
 
@@ -18411,21 +18639,23 @@ default_message_pool.register_message(
 class LidarDetection(betterproto2.Message):
     """
 
-    \brief A point or vertical line in a lidar point cloud.
+    brief A point or vertical line in a lidar point cloud.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the detection not based on history. Value does
     not depend on any past experience with similar detections.
 
-    \note Used as confidence measure where a low value means less confidence
+    note Used as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -18434,11 +18664,11 @@ class LidarDetection(betterproto2.Message):
     """
     ID of the detected object this detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
     position: "Spherical3D | None" = betterproto2.field(
@@ -18456,86 +18686,100 @@ class LidarDetection(betterproto2.Message):
     Root mean squared error of the measured position of the detection.
     """
 
-    height: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    height: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     The height value which is required when multiple scan points are
     vertically clustered. Only vertical clustering is allowed (z-axis).
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    height_rmse: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    height_rmse: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Root mean squared error of the object height.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    intensity: "float" = betterproto2.field(7, betterproto2.TYPE_DOUBLE)
+    intensity: "float" = betterproto2.field(
+        7, betterproto2.TYPE_DOUBLE
+    )
     """
     Intensity or equivalent value of the detection's echo.
 
     Unit: %
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 100
-    \endrules
+    endrules
     """
 
-    free_space_probability: "float" = betterproto2.field(8, betterproto2.TYPE_DOUBLE)
+    free_space_probability: "float" = betterproto2.field(
+        8, betterproto2.TYPE_DOUBLE
+    )
     """
     The free space probability in the range [0.0, 1.0] from the origin of the
     sensor up to this detection, as given by the distance.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     classification: "DetectionClassification" = betterproto2.field(
         9,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectionClassification.try_value(0),
+        default_factory=lambda: DetectionClassification(0),
     )
     """
     Basic classification of the detection.
     """
 
-    reflectivity: "float" = betterproto2.field(10, betterproto2.TYPE_DOUBLE)
+    reflectivity: "float" = betterproto2.field(
+        10, betterproto2.TYPE_DOUBLE
+    )
     """
     Lambertian reflectivity.
     """
 
-    echo_pulse_width: "float" = betterproto2.field(11, betterproto2.TYPE_DOUBLE)
+    echo_pulse_width: "float" = betterproto2.field(
+        11, betterproto2.TYPE_DOUBLE
+    )
     """
     Echo pulse width of the detection's echo.
     Several sensors output an echo pulse width instead of an intensity for each individual detection.
     The echo pulse is measured in m and measures the extent of the object parts or atmospheric particles that produce the echo.
-    \note For more details see [1] Fig. 7 and 8.
-    \note Fig. 7 shows an example where the two echos are reflected from the edges A-B and C-D.
-    \note Fig. 8 shows how the echo pulse width is measured as the range between the rising edge and the falling edge that crosses the intensity threshold.
+    note For more details see [1] Fig. 7 and 8.
+    note Fig. 7 shows an example where the two echos are reflected from the edges A-B and C-D.
+    note Fig. 8 shows how the echo pulse width is measured as the range between the rising edge and the falling edge that crosses the intensity threshold.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
 
-    \par Reference:
+    par Reference:
     [1] Rosenberger, P., Holder, M.F., Cianciaruso, N. et al. (2020). <em>Sequential lidar sensor system simulation: a modular approach for simulation-based safety validation of automated driving</em> Automotive Engine Technology 5, Fig 7, Fig 8. Retrieved May 10, 2021, from https://doi.org/10.1007/s41104-020-00066-x
     """
 
-    radial_velocity: "float" = betterproto2.field(12, betterproto2.TYPE_DOUBLE)
+    radial_velocity: "float" = betterproto2.field(
+        12, betterproto2.TYPE_DOUBLE
+    )
     """
     Radial velocity of the detection positive in direction to the sensor.
 
@@ -18557,7 +18801,7 @@ default_message_pool.register_message("osi3", "LidarDetection", LidarDetection)
 class LidarDetectionData(betterproto2.Message):
     """
 
-    \brief Data from one lidar sensor including a list of detections.
+    brief Data from one lidar sensor including a list of detections.
     """
 
     header: "SensorDetectionHeader | None" = betterproto2.field(
@@ -18582,7 +18826,7 @@ default_message_pool.register_message("osi3", "LidarDetectionData", LidarDetecti
 class LidarSensorView(betterproto2.Message):
     """
 
-    \brief Definition of the lidar sensor view.
+    brief Definition of the lidar sensor view.
 
     Lidar specific sensor view data.
     """
@@ -18612,10 +18856,12 @@ default_message_pool.register_message("osi3", "LidarSensorView", LidarSensorView
 class LidarSensorViewReflection(betterproto2.Message):
     """
 
-    \brief Definition of the lidar reflection.
+    brief Definition of the lidar reflection.
     """
 
-    signal_strength: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    signal_strength: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Relative signal level of the reflection.
 
@@ -18626,7 +18872,9 @@ class LidarSensorViewReflection(betterproto2.Message):
     Unit: dB
     """
 
-    time_of_flight: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    time_of_flight: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Time of flight.
 
@@ -18636,7 +18884,9 @@ class LidarSensorViewReflection(betterproto2.Message):
     Unit: s
     """
 
-    doppler_shift: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    doppler_shift: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Doppler shift.
 
@@ -18652,7 +18902,7 @@ class LidarSensorViewReflection(betterproto2.Message):
     normal to surface angle.
 
     The normal of the transmitted beam to the object, road marking, etc.
-    encounter. \note data is in Lidar coordinate system
+    encounter. note data is in Lidar coordinate system
 
     Unit: unit vector
     """
@@ -18664,7 +18914,7 @@ class LidarSensorViewReflection(betterproto2.Message):
     ID of the detected object this reflection is associated to.
     can be used for ray tracing debug
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
     """
 
 
@@ -18677,7 +18927,7 @@ default_message_pool.register_message(
 class LidarSensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the Lidar Sensor View to be provided
+    brief The configuration settings for the Lidar Sensor View to be provided
     by the environment simulation.
     """
 
@@ -18704,22 +18954,22 @@ class LidarSensorViewConfiguration(betterproto2.Message):
     governs the sensor-relative coordinates in features detected by this
     detector.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -18733,65 +18983,77 @@ class LidarSensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
 
-    number_of_rays_horizontal: "int" = betterproto2.field(6, betterproto2.TYPE_UINT32)
+    number_of_rays_horizontal: "int" = betterproto2.field(
+        6, betterproto2.TYPE_UINT32
+    )
     """
     Number of rays to cast across horizontal field of view.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    number_of_rays_vertical: "int" = betterproto2.field(7, betterproto2.TYPE_UINT32)
+    number_of_rays_vertical: "int" = betterproto2.field(
+        7, betterproto2.TYPE_UINT32
+    )
     """
     Number of rays to cast across vertical field of view.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    max_number_of_interactions: "int" = betterproto2.field(8, betterproto2.TYPE_UINT32)
+    max_number_of_interactions: "int" = betterproto2.field(
+        8, betterproto2.TYPE_UINT32
+    )
     """
     Maximum number of interactions to take into account.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    emitter_frequency: "float" = betterproto2.field(9, betterproto2.TYPE_DOUBLE)
+    emitter_frequency: "float" = betterproto2.field(
+        9, betterproto2.TYPE_DOUBLE
+    )
     """
     Emitter Frequency.
 
@@ -18805,20 +19067,22 @@ class LidarSensorViewConfiguration(betterproto2.Message):
 
     Unit: Hz
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    num_of_pixels: "int" = betterproto2.field(10, betterproto2.TYPE_UINT32)
+    num_of_pixels: "int" = betterproto2.field(
+        10, betterproto2.TYPE_UINT32
+    )
     """
     Number of pixels in frame.
 
     This field includes the number of pixels in each frame
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     directions: "list[Vector3D]" = betterproto2.field(
@@ -18828,7 +19092,7 @@ class LidarSensorViewConfiguration(betterproto2.Message):
     Ray tracing data.
 
     The directions unit vectors describing the Lidar's raster transmission
-    directions. Length is num_of_pixels \note data is in Lidar's coordinate
+    directions. Length is num_of_pixels note data is in Lidar's coordinate
     system
     """
 
@@ -18852,7 +19116,7 @@ default_message_pool.register_message(
 class LidarSpecificObjectData(betterproto2.Message):
     """
 
-    \brief Message encapsulates all data for detected objects that is specific to
+    brief Message encapsulates all data for detected objects that is specific to
     lidar sensors.
 
     currently no fields.
@@ -18870,20 +19134,22 @@ default_message_pool.register_message(
 class LogicalDetection(betterproto2.Message):
     """
 
-    \brief A logical detection that could be based on multiple sensors and sensor types.
+    brief A logical detection that could be based on multiple sensors and sensor types.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the logical detection
 
-    \note Use as confidence measure where a low value means less confidence
+    note Use as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -18892,11 +19158,11 @@ class LogicalDetection(betterproto2.Message):
     """
     ID of the detected object this logical detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -18934,39 +19200,45 @@ class LogicalDetection(betterproto2.Message):
 
     Unit: m/s
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    intensity: "float" = betterproto2.field(7, betterproto2.TYPE_DOUBLE)
+    intensity: "float" = betterproto2.field(
+        7, betterproto2.TYPE_DOUBLE
+    )
     """
     Intensity or equivalent value of the logical detection's echo.
 
     Unit: %
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 100
-    \endrules
+    endrules
     """
 
-    snr: "float" = betterproto2.field(8, betterproto2.TYPE_DOUBLE)
+    snr: "float" = betterproto2.field(
+        8, betterproto2.TYPE_DOUBLE
+    )
     """
     The signal to noise ratio (SNR) of the logical detection.
 
     Unit: dB
     """
 
-    point_target_probability: "float" = betterproto2.field(9, betterproto2.TYPE_DOUBLE)
+    point_target_probability: "float" = betterproto2.field(
+        9, betterproto2.TYPE_DOUBLE
+    )
     """
     Describes the possibility whether more than one object may have led to
     this logical detection.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     sensor_id: "list[Identifier]" = betterproto2.field(
@@ -18976,34 +19248,36 @@ class LogicalDetection(betterproto2.Message):
     The ID(s) of the sensor(s) that produced the detection(s) for transformation
     and - in case of multiple sensors - fusion into the single logical detection.
 
-    \note One logical detection can originate from multiple sensors.
+    note One logical detection can originate from multiple sensors.
     """
 
     classification: "LogicalDetectionClassification" = betterproto2.field(
         11,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LogicalDetectionClassification.try_value(0),
+        default_factory=lambda: LogicalDetectionClassification(0),
     )
     """
     Basic classification of the logical detection.
     """
 
-    echo_pulse_width: "float" = betterproto2.field(12, betterproto2.TYPE_DOUBLE)
+    echo_pulse_width: "float" = betterproto2.field(
+        12, betterproto2.TYPE_DOUBLE
+    )
     """
     Echo pulse width of the logical detection's echo.
     Several sensors output an echo pulse width instead of an intensity for each individual detection.
     The echo pulse is measured in m and measures the extent of the object parts or atmospheric particles that produce the echo.
-    \note For more details see [1] Fig. 7 and 8.
-    \note Fig. 7 shows an example where the two echos are reflected from the edges A-B and C-D.
-    \note Fig. 8 shows how the echo pulse width is measured as the range between the rising edge and the falling edge that crosses the intensity threshold.
+    note For more details see [1] Fig. 7 and 8.
+    note Fig. 7 shows an example where the two echos are reflected from the edges A-B and C-D.
+    note Fig. 8 shows how the echo pulse width is measured as the range between the rising edge and the falling edge that crosses the intensity threshold.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
 
-    \par Reference:
+    par Reference:
     [1] Rosenberger, P., Holder, M.F., Cianciaruso, N. et al. (2020). <em>Sequential lidar sensor system simulation: a modular approach for simulation-based safety validation of automated driving</em> Automotive Engine Technology 5, Fig 7, Fig 8. Retrieved May 10, 2021, from https://doi.org/10.1007/s41104-020-00066-x
     """
 
@@ -19015,11 +19289,11 @@ default_message_pool.register_message("osi3", "LogicalDetection", LogicalDetecti
 class LogicalDetectionData(betterproto2.Message):
     """
 
-    \brief Processed data from one or multiple sensors as a list of logical detections.
+    brief Processed data from one or multiple sensors as a list of logical detections.
     Logical detections are derived from sensor detections in a logical model through processing steps like fusion filtering, tracking etc.
 
     All information is given with respect to the reference frame of the logical/virtual sensor
-    \c SensorView::mounting_position (e.g. center of rear axle of the ego car) in Cartesian coordinates.
+    c SensorView::mounting_position (e.g. center of rear axle of the ego car) in Cartesian coordinates.
     """
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -19029,9 +19303,9 @@ class LogicalDetectionData(betterproto2.Message):
     The interface version used by the sender (i.e. the simulation
     environment).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     header: "LogicalDetectionDataHeader | None" = betterproto2.field(
@@ -19049,7 +19323,7 @@ class LogicalDetectionData(betterproto2.Message):
     detections from one or multiple sensors and sensor types.
 
     The parent frame of a logical detection is the virtual sensor coordinate
-    system specified by \c SensorView::mounting_position .
+    system specified by c SensorView::mounting_position .
 
     /note The virtual sensor coordinate system is relative to the vehicle
     coordinate system which has its origin in the center of the rear axle of
@@ -19068,7 +19342,7 @@ default_message_pool.register_message(
 class LogicalDetectionDataHeader(betterproto2.Message):
     """
 
-    \brief The header attributes of each sensor's logical detections list.
+    brief The header attributes of each sensor's logical detections list.
     """
 
     logical_detection_time: "Timestamp | None" = betterproto2.field(
@@ -19077,15 +19351,15 @@ class LogicalDetectionDataHeader(betterproto2.Message):
     """
     Time stamp at which the transformation and optional fusion was finished in the global synchronized time.
 
-    \note See \c SensorData::timestamp and
-    \c SensorData::last_measurement_time for detailed discussions on the
+    note See c SensorData::timestamp and
+    c SensorData::last_measurement_time for detailed discussions on the
     semantics of time-related fields.
     """
 
     data_qualifier: "LogicalDetectionDataHeaderDataQualifier" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LogicalDetectionDataHeaderDataQualifier.try_value(0),
+        default_factory=lambda: LogicalDetectionDataHeaderDataQualifier(0),
     )
     """
     Data Qualifier expresses to what extent the content of this event can be
@@ -19098,11 +19372,11 @@ class LogicalDetectionDataHeader(betterproto2.Message):
     """
     The current number of valid detections in the logical detections list.
 
-    \note This value has to be set if the list contains invalid logical detections.
+    note This value has to be set if the list contains invalid logical detections.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     sensor_id: "list[Identifier]" = betterproto2.field(
@@ -19123,72 +19397,72 @@ default_message_pool.register_message(
 class LogicalLane(betterproto2.Message):
     """
 
-    \brief A logical lane in the road network.
+    brief A logical lane in the road network.
 
     A logical lane is part of a road. Compared to a physical lane (OSI type
-    \c Lane), its existence doesn't hinge on the existence of road markings. So
+    c Lane), its existence doesn't hinge on the existence of road markings. So
     e.g. a road with two driving directions but no road markings in-between
-    would be presented as two \link LogicalLane LogicalLanes\endlink, but only
-    one Lane. So one Lane can consist of multiple \link LogicalLane
-    LogicalLanes\endlink. E.g. on intersections, each driving path is one
-    LogicalLane, but the whole area is one \c Lane of type \link
-    osi3::Lane::Classification::TYPE_INTERSECTION \c TYPE_INTERSECTION \endlink.
+    would be presented as two link LogicalLane LogicalLanesendlink, but only
+    one Lane. So one Lane can consist of multiple link LogicalLane
+    LogicalLanesendlink. E.g. on intersections, each driving path is one
+    LogicalLane, but the whole area is one c Lane of type link
+    osi3::Lane::Classification::TYPE_INTERSECTION c TYPE_INTERSECTION endlink.
 
     Outside of intersections, logical lanes are constructed such that each point on
     the road belongs to at least one (typically: exactly one) logical lane. So
     there are no gaps between logical lanes, and no areas that don't belong to a
     logical lane.
 
-    If OSI is generated from OpenDRIVE, then \link LogicalLane
-    LogicalLanes\endlink map directly to OpenDRIVE lanes. However, it is allowed
+    If OSI is generated from OpenDRIVE, then link LogicalLane
+    LogicalLanesendlink map directly to OpenDRIVE lanes. However, it is allowed
     to merge multiple consecutive (in S direction) OpenDRIVE lanes with the same
     type into one OSI LogicalLane: if an OpenDRIVE lane has a single successor,
     which has the same lane type, and this successor has only one predecessor
     (so no lane merging or splitting) then the two lanes may be presented as one
     continuous LogicalLane. This may be done recursively.
 
-    The \link ReferenceLine reference line\endlink pointed to by
+    The link ReferenceLine reference lineendlink pointed to by
     #reference_line_id defines an ST coordinate system for the lane. This ST
     coordinate system is used to describe positions on the lane.
 
     ## Example
 
     The example below shows two logical lanes on an intersection, with a focus
-    on the left-turn lane (\c l1):
-    \image html OSI_LogicalLane1.png "Two logical lanes on an intersection"
+    on the left-turn lane (c l1):
+    image html OSI_LogicalLane1.png "Two logical lanes on an intersection"
 
     Assumptions not shown in the image:
-    - This is right-hand traffic (and thus vehicles on \c l1 drive from the bottom
-      to the left, vehicles on \c l2 drive from right to left).
+    - This is right-hand traffic (and thus vehicles on c l1 drive from the bottom
+      to the left, vehicles on c l2 drive from right to left).
     - The yellow line is a ReferenceLine, defined starting at the bottom, and
       going to the left.
 
-    Some features shown in the image relative to \c l1:
-    - The yellow line is the ReferenceLine of \c l1 . The ReferenceLine can be
+    Some features shown in the image relative to c l1:
+    - The yellow line is the ReferenceLine of c l1 . The ReferenceLine can be
       shared with other lanes.  Because the ReferenceLine has the same direction
-      as the driving direction of \c l1 in this example,
+      as the driving direction of c l1 in this example,
       <code>#move_direction == #MOVE_DIRECTION_INCREASING_S</code>.
-    - The red line marks the area where \c l2 is left of
-      \c l1 - this info is recorded in #left_adjacent_lane of \c l1.
-    - The red area is the area where \c l2 overlaps \c l1. This is recorded in
-      #overlapping_lane of \c l1.
+    - The red line marks the area where c l2 is left of
+      c l1 - this info is recorded in #left_adjacent_lane of c l1.
+    - The red area is the area where c l2 overlaps c l1. This is recorded in
+      #overlapping_lane of c l1.
 
-    The image below shows the same two lanes, but from the perspective of \c l2:
-    \image html OSI_LogicalLane2.png "Two logical lanes on an intersection"
+    The image below shows the same two lanes, but from the perspective of c l2:
+    image html OSI_LogicalLane2.png "Two logical lanes on an intersection"
 
     Assumptions not shown in the image:
     - The yellow line is a ReferenceLine, defined starting at the right, going
       to the left.
 
-    Some features shown in the image relative to \c l2:
-    - The yellow line is the ReferenceLine of \c l2 . The ReferenceLine can be
+    Some features shown in the image relative to c l2:
+    - The yellow line is the ReferenceLine of c l2 . The ReferenceLine can be
       shared with other lanes.  Because the ReferenceLine has the same direction
-      as the driving direction of \c l2 in this example,
+      as the driving direction of c l2 in this example,
       <code>#move_direction == #MOVE_DIRECTION_INCREASING_S</code>.
-    - The green line marks the area where \c l1 is right of
-      \c l2 - this info is recorded in #right_adjacent_lane of \c l2.
-    - The red area is the area where \c l1 overlaps \c l2. This is recorded in
-      #overlapping_lane of \c l1.
+    - The green line marks the area where c l1 is right of
+      c l2 - this info is recorded in #right_adjacent_lane of c l2.
+    - The red area is the area where c l1 overlaps c l2. This is recorded in
+      #overlapping_lane of c l1.
 
     As can be seen in the images, the two highlighted lanes are neighbors for
     part of their length, but it makes no sense for them to have the same
@@ -19203,15 +19477,17 @@ class LogicalLane(betterproto2.Message):
     """
     The ID of the logical lane.
 
-    \note Note ID is global unique.
+    note Note ID is global unique.
 
-    \rules
+    rules
     is_globally_unique
-    \endrules
+    endrules
     """
 
     type: "LogicalLaneType" = betterproto2.field(
-        2, betterproto2.TYPE_ENUM, default_factory=lambda: LogicalLaneType.try_value(0)
+        2,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: LogicalLaneType(0),
     )
     """
     The type of the logical lane.
@@ -19229,23 +19505,25 @@ class LogicalLane(betterproto2.Message):
     For example, to reference a lane defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = id of t_road
     * identifier[1] = s of t_road_lanes_laneSection
     * identifier[2] = id of t_road_lanes_laneSection_left_lane,
                             t_road_lanes_laneSection_right_lane
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated, because one lane segment may be
+    note The value has to be repeated, because one lane segment may be
           derived from more than one origin segment. Multiple sources
           may be added as reference as well, for example, a map and sensors.
     """
 
     physical_lane_reference: "list[LogicalLanePhysicalLaneReference]" = (
-        betterproto2.field(4, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            4, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Reference to the physical lanes this logical lane belongs to.
@@ -19289,16 +19567,16 @@ class LogicalLane(betterproto2.Message):
     For LogicalLanes without a correspondence to a Lane.Classification.Subtype 
     (i.e. TYPE_MEDIAN, TYPE_CURB, TYPE_TRAM, TYPE_RAIL) this field has no value.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
     reference_line_id: "Identifier | None" = betterproto2.field(
         5, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The \link ReferenceLine reference line\endlink for this logical lane
+    The link ReferenceLine reference lineendlink for this logical lane
 
     The reference line is used as a coordinate system on this lane.
 
@@ -19319,23 +19597,27 @@ class LogicalLane(betterproto2.Message):
     The reference trajectory must be sampled such that there are no two
     positions on the lane more than 5cm apart with the same ST coordinate.
 
-    \rules
+    rules
     refers_to: ReferenceLine
-    \endrules
+    endrules
     """
 
-    start_s: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    start_s: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Start S position of the lane.
 
-    Must be in range [\c sStart,\c sEnd] of the reference line.
+    Must be in range [c sStart,c sEnd] of the reference line.
     """
 
-    end_s: "float" = betterproto2.field(7, betterproto2.TYPE_DOUBLE)
+    end_s: "float" = betterproto2.field(
+        7, betterproto2.TYPE_DOUBLE
+    )
     """
     End S position of the lane.
 
-    Must be in range [\c sStart,\c sEnd] of the reference line.
+    Must be in range [c sStart,c sEnd] of the reference line.
 
     Requirement: #end_s > #start_s
     """
@@ -19343,7 +19625,7 @@ class LogicalLane(betterproto2.Message):
     move_direction: "LogicalLaneMoveDirection" = betterproto2.field(
         8,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LogicalLaneMoveDirection.try_value(0),
+        default_factory=lambda: LogicalLaneMoveDirection(0),
     )
     """
     Definition of the intended driving direction.
@@ -19415,23 +19697,23 @@ class LogicalLane(betterproto2.Message):
     All LogicalLaneBoundary elements referenced here must refer to the same
     ReferenceLine as this lane.
     The boundaries together must cover the whole length of the lane (the
-    range \[#start_s,#end_s\]) without gap or overlap. The boundaries must be
+    range [#start_s,#end_s]) without gap or overlap. The boundaries must be
     stored in ascending order, starting with the smallest S position.
     Consecutive boundaries must share a point: the last point of the
     previous boundary must be identical to the first point of the next
     boundary.
 
     Note: the referenced boundaries may have points outside of
-    \[#start_s,#end_s\] (e.g. a boundary may extend beyond the end of a lane).
+    [#start_s,#end_s] (e.g. a boundary may extend beyond the end of a lane).
 
     Note: A curb is a type of LogicalLane and of LaneBoundary. 
     If LogicalLane.Type == TYPE_CURB, by convention this
     field references the respective LaneBoundary of TYPE_CURB
     identically to the left_boundary_id of this LogicalLane.
 
-    \rules
+    rules
     refers_to: LogicalLaneBoundary
-    \endrules
+    endrules
     """
 
     left_boundary_id: "list[Identifier]" = betterproto2.field(
@@ -19444,23 +19726,23 @@ class LogicalLane(betterproto2.Message):
     All LogicalLaneBoundary elements referenced here must refer to the same
     ReferenceLine as this lane.
     The boundaries together must cover the whole length of the lane (the
-    range \[#start_s,#end_s\]) without gap or overlap. The boundaries must be
+    range [#start_s,#end_s]) without gap or overlap. The boundaries must be
     stored in ascending order, starting with the smallest S position.
     Consecutive boundaries must share a point: the last point of the
     previous boundary must be identical to the first point of the next
     boundary.
 
     Note: the referenced boundaries may have points outside of
-    \[#start_s,#end_s\] (e.g. a boundary may extend beyond the end of a lane).
+    [#start_s,#end_s] (e.g. a boundary may extend beyond the end of a lane).
 
     Note: A curb is a type of LogicalLane and of LaneBoundary. 
     If LogicalLane.Type == TYPE_CURB, by convention this
     field references the respective LaneBoundary of TYPE_CURB.
     identically to the right_boundary_id of this LogicalLane.    
 
-    \rules
+    rules
     refers_to: LogicalLaneBoundary
-    \endrules
+    endrules
     """
 
     predecessor_lane: "list[LogicalLaneLaneConnection]" = betterproto2.field(
@@ -19497,7 +19779,9 @@ class LogicalLane(betterproto2.Message):
     lane splits into two, or two merge into one.
     """
 
-    street_name: "str" = betterproto2.field(16, betterproto2.TYPE_STRING)
+    street_name: "str" = betterproto2.field(
+        16, betterproto2.TYPE_STRING
+    )
     """
     Name of the street this lane belongs to.
     """
@@ -19517,7 +19801,7 @@ default_message_pool.register_message("osi3", "LogicalLane", LogicalLane)
 class LogicalLaneLaneConnection(betterproto2.Message):
     """
 
-    \brief Connection to another lane (predecessor or successor)
+    brief Connection to another lane (predecessor or successor)
     """
 
     other_lane_id: "Identifier | None" = betterproto2.field(
@@ -19526,12 +19810,14 @@ class LogicalLaneLaneConnection(betterproto2.Message):
     """
     Id of the other logical lane that is connected.
 
-    \rules
+    rules
     refers_to: LogicalLane
-    \endrules
+    endrules
     """
 
-    at_begin_of_other_lane: "bool" = betterproto2.field(2, betterproto2.TYPE_BOOL)
+    at_begin_of_other_lane: "bool" = betterproto2.field(
+        2, betterproto2.TYPE_BOOL
+    )
     """
     If true: LaneConnection is at the beginning of the other lane
     If false: LaneConnection is a the end of the other lane
@@ -19547,7 +19833,7 @@ default_message_pool.register_message(
 class LogicalLaneLaneRelation(betterproto2.Message):
     """
 
-    \brief Relation of this lane to another logical lane
+    brief Relation of this lane to another logical lane
     """
 
     other_lane_id: "Identifier | None" = betterproto2.field(
@@ -19556,24 +19842,30 @@ class LogicalLaneLaneRelation(betterproto2.Message):
     """
     Id of the other logical lane.
 
-    \rules
+    rules
     refers_to: LogicalLane
-    \endrules
+    endrules
     """
 
-    start_s: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    start_s: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Start s position of the relation.
     """
 
-    end_s: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    end_s: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     End s position of the relation.
 
     Requirement: #end_s > #start_s
     """
 
-    start_s_other: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    start_s_other: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Start s position of the relation on the other lane.
 
@@ -19581,7 +19873,9 @@ class LogicalLaneLaneRelation(betterproto2.Message):
     line of the other lane.
     """
 
-    end_s_other: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    end_s_other: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     End s position of the relation on the other lane.
 
@@ -19601,7 +19895,7 @@ default_message_pool.register_message(
 class LogicalLanePhysicalLaneReference(betterproto2.Message):
     """
 
-    \brief Reference to a physical lane.
+    brief Reference to a physical lane.
     """
 
     physical_lane_id: "Identifier | None" = betterproto2.field(
@@ -19610,17 +19904,21 @@ class LogicalLanePhysicalLaneReference(betterproto2.Message):
     """
     Id of the physical lane referenced.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
-    start_s: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    start_s: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     S position on the logical lane where the physical lane starts.
     """
 
-    end_s: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    end_s: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     S position on the logical lane where the physical lane ends.
 
@@ -19654,13 +19952,13 @@ class LogicalLaneTrafficRule(betterproto2.Message):
     is also valid on adjacent/successor/predecessor lanes it needs to be
     specified for each lane individually.
 
-    \brief Logical Model of a traffic rule on a lane.
+    brief Logical Model of a traffic rule on a lane.
     """
 
     traffic_rule_type: "LogicalLaneTrafficRuleTrafficRuleType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LogicalLaneTrafficRuleTrafficRuleType.try_value(0),
+        default_factory=lambda: LogicalLaneTrafficRuleTrafficRuleType(0),
     )
     """
     The type of the traffic rule.
@@ -19671,7 +19969,9 @@ class LogicalLaneTrafficRule(betterproto2.Message):
     """
 
     traffic_rule_validity: "LogicalLaneTrafficRuleTrafficRuleValidity | None" = (
-        betterproto2.field(2, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            2, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     The validity information of the traffic rule.
@@ -19694,7 +19994,7 @@ default_message_pool.register_message(
 class LogicalLaneTrafficRuleSpeedLimit(betterproto2.Message):
     """
 
-    \brief Speed limit on a lane.
+    brief Speed limit on a lane.
     """
 
     speed_limit_value: "TrafficSignValue | None" = betterproto2.field(
@@ -19720,14 +20020,16 @@ default_message_pool.register_message(
 class LogicalLaneTrafficRuleTrafficRuleValidity(betterproto2.Message):
     """
 
-    \brief Validity information for a traffic rule.
+    brief Validity information for a traffic rule.
     """
 
-    start_s: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    start_s: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     
     The starting point of the traffic rule validity on the lane.
-    Must be in range [\c sStart,\c sEnd] of the reference line.
+    Must be in range [c sStart,c sEnd] of the reference line.
 
     Note: The traffic rule applies only to traffic with notional
     direction of travel from the start_s coordinate towards
@@ -19738,15 +20040,19 @@ class LogicalLaneTrafficRuleTrafficRuleValidity(betterproto2.Message):
     each direction of travel.
     """
 
-    end_s: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    end_s: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     
     The ending point of the traffic rule validity on the lane.
-    Must be in range [\c sStart,\c sEnd] of the reference line.
+    Must be in range [c sStart,c sEnd] of the reference line.
     """
 
     valid_for_type: "list[LogicalLaneTrafficRuleTrafficRuleValidityTypeValidity]" = (
-        betterproto2.field(3, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            3, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     
@@ -19767,11 +20073,13 @@ default_message_pool.register_message(
 class LogicalLaneTrafficRuleTrafficRuleValidityTypeValidity(betterproto2.Message):
     """
 
-    \brief Type of traffic participant for which a rule is valid.
+    brief Type of traffic participant for which a rule is valid.
     """
 
     type: "MovingObjectType" = betterproto2.field(
-        1, betterproto2.TYPE_ENUM, default_factory=lambda: MovingObjectType.try_value(0)
+        1,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: MovingObjectType(0),
     )
     """
     
@@ -19781,7 +20089,7 @@ class LogicalLaneTrafficRuleTrafficRuleValidityTypeValidity(betterproto2.Message
     vehicle_type: "MovingObjectVehicleClassificationType" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationType.try_value(0),
+        default_factory=lambda: MovingObjectVehicleClassificationType(0),
     )
     """
     
@@ -19794,7 +20102,7 @@ class LogicalLaneTrafficRuleTrafficRuleValidityTypeValidity(betterproto2.Message
     vehicle_role: "MovingObjectVehicleClassificationRole" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationRole.try_value(0),
+        default_factory=lambda: MovingObjectVehicleClassificationRole(0),
     )
     """
     
@@ -19816,16 +20124,16 @@ default_message_pool.register_message(
 class LogicalLaneAssignment(betterproto2.Message):
     """
 
-    \brief Assignment of an object to a logical lane
+    brief Assignment of an object to a logical lane
 
     An object is assigned to a logical lane if it overlaps the logical lane.
     Assignment happens even if the reference point is outside the lane, and only
     a part of the object overlaps (any object overlapping the lane more than 5cm
     has to be assigned to the lane).
 
-    As an exception to this, \c TrafficSign and \c TrafficLight are assigned to
-    a logical lane if they control traffic on that lane. For \c TrafficSign and
-    \c TrafficLight , #s_position refers to the position where the sign or light
+    As an exception to this, c TrafficSign and c TrafficLight are assigned to
+    a logical lane if they control traffic on that lane. For c TrafficSign and
+    c TrafficLight , #s_position refers to the position where the sign or light
     is valid (e.g. where vehicles should stop in case of a red traffic light),
     not the physical position (where the sign or light is in the world).
     Typically, t_position and angle_to_lane do not have any meaning in this
@@ -19838,12 +20146,14 @@ class LogicalLaneAssignment(betterproto2.Message):
     """
     ID of the LogicalLane the object is assigned to.
 
-    \rules
+    rules
     refers_to: LogicalLane
-    \endrules
+    endrules
     """
 
-    s_position: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    s_position: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     S position of the object reference point on the lane, in the ST
     coordinate system of the lane.
@@ -19854,13 +20164,17 @@ class LogicalLaneAssignment(betterproto2.Message):
     TrafficLight is assigned to a lane.
     """
 
-    t_position: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    t_position: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     T position of the object reference point on the lane, in the ST
     coordinate system of the lane.
     """
 
-    angle_to_lane: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    angle_to_lane: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Angle of the object relative to the lane.
     See the ReferenceLine description how the angle is calculated.
@@ -19878,7 +20192,7 @@ default_message_pool.register_message(
 class LogicalLaneBoundary(betterproto2.Message):
     """
 
-    \brief Boundary line of a LogicalLane
+    brief Boundary line of a LogicalLane
 
     Similar to a LaneBoundary, but with a reference line and ST positions.
 
@@ -19894,8 +20208,8 @@ class LogicalLaneBoundary(betterproto2.Message):
     marking), then the single LogicalLaneBoundary describing the boundary between
     two logical lanes should be between the physical boundaries.
 
-    A logical lane boundary consists of a list of \link LogicalBoundaryPoint
-    LogicalBoundaryPoints\endlink. Each point has a XYZ and an ST coordinate.
+    A logical lane boundary consists of a list of link LogicalBoundaryPoint
+    LogicalBoundaryPointsendlink. Each point has a XYZ and an ST coordinate.
     The XYZ coordinates describe the position and height of the boundary in the
     world.
 
@@ -19928,10 +20242,10 @@ class LogicalLaneBoundary(betterproto2.Message):
     """
     The ID of the lane boundary.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     boundary_line: "list[LogicalLaneBoundaryLogicalBoundaryPoint]" = betterproto2.field(
@@ -19945,9 +20259,9 @@ class LogicalLaneBoundary(betterproto2.Message):
     positions will not always increase strictly monotonically.
     Example:
     <pre>
-                   |---------\
-                   |          \
-     /---boundary--|           \\------------
+                   |---------
+                   |          
+     /---boundary--|           ------------
     /
     ---------- reference line --------------
     </pre>
@@ -19958,7 +20272,7 @@ class LogicalLaneBoundary(betterproto2.Message):
     OpenDRIVE), the points must be chosen in a way that the lateral distance
     to the ideal line does not exceed 5cm. As shown in the following image:
 
-    \image html line_approximation_error.svg "Approximation error"
+    image html line_approximation_error.svg "Approximation error"
     Approximation error green line.
 
     The Z error (difference in Z height between #boundary_line and the
@@ -19980,15 +20294,15 @@ class LogicalLaneBoundary(betterproto2.Message):
 
     The reference line is used as a coordinate system for this boundary.
     All points of this LogicalLaneBoundary must have S coordinates in the
-    range [\c sStart,\c sEnd].
+    range [c sStart,c sEnd].
 
     The reference line should roughly have the same shape as the boundary (so
     roughly parallel to the lane middle), so that S coordinates continually
     increase along the boundary.
 
-    \rules
+    rules
     refers_to: ReferenceLine
-    \endrules
+    endrules
     """
 
     physical_boundary_id: "list[Identifier]" = betterproto2.field(
@@ -20019,7 +20333,7 @@ class LogicalLaneBoundary(betterproto2.Message):
     <pre>
           Lane 1
      --------a------------------ - - - -c- - - -           ----&gt;
-     \- - - -b- - - -
+     - - - -b- - - -
           Lane -1
     </pre>
 
@@ -20030,15 +20344,15 @@ class LogicalLaneBoundary(betterproto2.Message):
     Lane2: the first would reference first b and then a, the second would
     reference only a, and the third would reference c.
 
-    \rules
+    rules
     refers_to: LaneBoundary
-    \endrules
+    endrules
     """
 
     passing_rule: "LogicalLaneBoundaryPassingRule" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: LogicalLaneBoundaryPassingRule.try_value(0),
+        default_factory=lambda: LogicalLaneBoundaryPassingRule(0),
     )
     """
     The passing rules, insomuch as they can be determined just from road
@@ -20051,13 +20365,13 @@ class LogicalLaneBoundary(betterproto2.Message):
     """
     Optional external reference to the lane boundary source.
 
-    \note For OpenDRIVE, there is no direct possibility to reference the
+    note For OpenDRIVE, there is no direct possibility to reference the
           RoadMark, as there is no unique identifier in this sub-object.
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -20072,23 +20386,27 @@ default_message_pool.register_message(
 class LogicalLaneBoundaryLogicalBoundaryPoint(betterproto2.Message):
     """
 
-    \brief A point on the boundary
+    brief A point on the boundary
     """
 
     position: "Vector3D | None" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The position of the \c LaneBoundaryPoint.
+    The position of the c LaneBoundaryPoint.
     """
 
-    s_position: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    s_position: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     S position of the LaneBoundaryPoint, measured along the parent's
     reference_line_id.
     """
 
-    t_position: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    t_position: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     T position of the LaneBoundaryPoint, measured along the parent's
     reference_line_id.
@@ -20106,7 +20424,7 @@ default_message_pool.register_message(
 class MotionRequest(betterproto2.Message):
     """
 
-    \brief This message is intended as an interface between a
+    brief This message is intended as an interface between a
     motion-planning function and the actuator management.
     The motion-planning function can thereby be a representation of a
     highly-automated driving function, a human driving behavior model, etc.
@@ -20114,7 +20432,7 @@ class MotionRequest(betterproto2.Message):
     The motion-planning function can either send a desired future trajectory or a desired
     future state. The message can be defined by an additional variable.
 
-    \note The coordinate system is defined as right-handed.
+    note The coordinate system is defined as right-handed.
     All coordinates and orientations are relative to the global coordinate system.
     The reference point of the vehicle is the middle of the rear axis.
     Units are m for positions, m/s for velocities, and m/s^2 for accelerations.
@@ -20126,9 +20444,9 @@ class MotionRequest(betterproto2.Message):
     """
     The interface version used by the sender (simulation environment).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -20136,17 +20454,17 @@ class MotionRequest(betterproto2.Message):
     )
     """
     The data timestamp of the simulation environment.
-    A reference to \c Timestamp message.
+    A reference to c Timestamp message.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     motion_request_type: "MotionRequestMotionRequestType" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MotionRequestMotionRequestType.try_value(0),
+        default_factory=lambda: MotionRequestMotionRequestType(0),
     )
     """
     Define the type that is used to specify the motion request.
@@ -20177,7 +20495,7 @@ default_message_pool.register_message("osi3", "MotionRequest", MotionRequest)
 @dataclass(eq=False, repr=False)
 class MotionRequestDesiredState(betterproto2.Message):
     """
-    \brief The desired state is calculated by the function as a result of
+    brief The desired state is calculated by the function as a result of
     the motion planning stack.
 
     The actuator management is supposed to reach the desired state at the
@@ -20188,7 +20506,7 @@ class MotionRequestDesiredState(betterproto2.Message):
         1, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    A reference to \c Timestamp message.
+    A reference to c Timestamp message.
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -20232,13 +20550,13 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class MotionRequestDesiredTrajectory(betterproto2.Message):
     """
-    \brief Defined trajectory desired by the function.
+    brief Defined trajectory desired by the function.
 
     This trajectory is the result of the trajectory planning step in the function.
     The task of the actuator management is to follow this trajectory as closely as possible.
     The timestamps inside the trajectory must be defined in global simulation time.
 
-    \note The trajectory is kept as a separate message for future extensions.
+    note The trajectory is kept as a separate message for future extensions.
     """
 
     trajectory_point: "list[StatePoint]" = betterproto2.field(
@@ -20247,9 +20565,9 @@ class MotionRequestDesiredTrajectory(betterproto2.Message):
     """
     The trajectory consists of intended position (x, y, and z) and
     orientation (yaw, pitch and roll) of intended state to be reached.
-    A reference to \c StatePoint message.
+    A reference to c StatePoint message.
 
-    \note The position within the trajectory point references to the 
+    note The position within the trajectory point references to the 
     middle point of the rear axis.
     """
 
@@ -20263,9 +20581,9 @@ default_message_pool.register_message(
 class MountingPosition(betterproto2.Message):
     """
 
-    \brief Specifies the mounting position of a sensor.
+    brief Specifies the mounting position of a sensor.
 
-    Details are specified in each instance where \c MountingPosition is used.
+    Details are specified in each instance where c MountingPosition is used.
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -20281,10 +20599,10 @@ class MountingPosition(betterproto2.Message):
     """
     Orientation offset relative to the specified reference coordinate system.
 
-    \f$ Origin_{sensor} :=
-    Rotation_{yaw,pitch,roll}( \f$ \c #orientation \f$
-    )*(Origin_{\text{reference coord system}}
-    - \f$ \c #position \f$ )\f$
+    f$ Origin_{sensor} :=
+    Rotation_{yaw,pitch,roll}( f$ c #orientation f$
+    )*(Origin_{text{reference coord system}}
+    - f$ c #position f$ )f$
     """
 
 
@@ -20295,16 +20613,16 @@ default_message_pool.register_message("osi3", "MountingPosition", MountingPositi
 class MovingObject(betterproto2.Message):
     """
 
-    \brief A simulated object that is either a vehicle or another
+    brief A simulated object that is either a vehicle or another
     moving object (animal, pedestrian, etc), but not a stationary
-    object (\c TrafficLight, \c TrafficSign, or \c StationaryObject).
+    object (c TrafficLight, c TrafficSign, or c StationaryObject).
 
-    \image html OSI_MovingObject.svg
+    image html OSI_MovingObject.svg
 
-    \image html OSI_HostVehicle.svg
+    image html OSI_HostVehicle.svg
 
-    \note The fields \c MovingObject::vehicle_attributes and \c
-    MovingObject::vehicle_classification have to be filled if the \c
+    note The fields c MovingObject::vehicle_attributes and c
+    MovingObject::vehicle_classification have to be filled if the c
     MovingObject::Type is set to #TYPE_VEHICLE.
     """
 
@@ -20314,10 +20632,10 @@ class MovingObject(betterproto2.Message):
     """
     The ID of the object.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     base: "BaseMoving | None" = betterproto2.field(
@@ -20326,13 +20644,15 @@ class MovingObject(betterproto2.Message):
     """
     The base parameters of the vehicle.
 
-    \note The bounding box does NOT include side mirrors for vehicles.
-    \note The height includes the ground_clearance. It always goes from the
+    note The bounding box does NOT include side mirrors for vehicles.
+    note The height includes the ground_clearance. It always goes from the
     top to the ground.
     """
 
     type: "MovingObjectType" = betterproto2.field(
-        3, betterproto2.TYPE_ENUM, default_factory=lambda: MovingObjectType.try_value(0)
+        3,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: MovingObjectType(0),
     )
     """
     The type of the object.
@@ -20344,10 +20664,10 @@ class MovingObject(betterproto2.Message):
     """
     The IDs of the lanes that this object is assigned to.
 
-    \note Might be multiple if the object is switching lanes or moving from
+    note Might be multiple if the object is switching lanes or moving from
     one lane into another following lane.
 
-    \note DEPRECATED: Use assigned_lane_id in MovingObjectClassification
+    note DEPRECATED: Use assigned_lane_id in MovingObjectClassification
     instead.
     """
 
@@ -20357,33 +20677,37 @@ class MovingObject(betterproto2.Message):
     """
     Specific information about the vehicle.
 
-    \note This field is mandatory if the \c #type is
+    note This field is mandatory if the c #type is
     #TYPE_VEHICLE .
 
-    \rules
+    rules
     check_if this.type is_equal_to 2 else do_check is_set
-    \endrules
+    endrules
     """
 
     vehicle_classification: "MovingObjectVehicleClassification | None" = (
-        betterproto2.field(6, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            6, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Specific information about the classification of the vehicle.
 
-    \note This field is mandatory if the \c #type is
+    note This field is mandatory if the c #type is
     #TYPE_VEHICLE .
 
-    \rules
+    rules
     check_if this.type is_equal_to 2 else do_check is_set
-    \endrules
+    endrules
     """
 
-    model_reference: "str" = betterproto2.field(7, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        7, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the moving object.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
@@ -20397,13 +20721,15 @@ class MovingObject(betterproto2.Message):
     realistic simulation of traffic participants that are not under test.
     This information should not be made available to the stack under test.
 
-    \note Moving objects are not required to stick to this trajectory. It is
+    note Moving objects are not required to stick to this trajectory. It is
     indicative and equivalent to the output of a perception and prediction
     system.
     """
 
     moving_object_classification: "MovingObjectMovingObjectClassification | None" = (
-        betterproto2.field(9, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            9, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Specific information about the classification of the vehicle.
@@ -20426,10 +20752,10 @@ class MovingObject(betterproto2.Message):
     * identifier[0] = Entity-Type ("Vehicle" or "Pedestrian")
     * identifier[1] = name of Vehicle/Pedestrian in Entity
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -20442,17 +20768,19 @@ class MovingObject(betterproto2.Message):
     """
 
     pedestrian_attributes: "MovingObjectPedestrianAttributes | None" = (
-        betterproto2.field(12, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            12, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Specific information about the pedestrian.
 
-    \note This field is mandatory if the \c #type is
+    note This field is mandatory if the c #type is
     #TYPE_PEDESTRIAN.
 
-    \rules
+    rules
     check_if this.type is_equal_to 3 else do_check is_set
-    \endrules
+    endrules
     """
 
 
@@ -20463,8 +20791,8 @@ default_message_pool.register_message("osi3", "MovingObject", MovingObject)
 class MovingObjectMovingObjectClassification(betterproto2.Message):
     """
 
-    \brief Information for the classification of moving objects regarding
-    \c MovingObject (host or other).
+    brief Information for the classification of moving objects regarding
+    c MovingObject (host or other).
     """
 
     assigned_lane_id: "list[Identifier]" = betterproto2.field(
@@ -20473,10 +20801,10 @@ class MovingObjectMovingObjectClassification(betterproto2.Message):
     """
     The IDs of the lanes that this object is assigned to.
 
-    \note Might be multiple if the object is switching lanes or moving from
+    note Might be multiple if the object is switching lanes or moving from
     one lane into another following lane.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     assigned_lane_percentage: "list[float]" = betterproto2.field(
@@ -20485,10 +20813,10 @@ class MovingObjectMovingObjectClassification(betterproto2.Message):
     """
     Percentage value of the object width in the corresponding lane.
 
-    \note Might be multiple if the object is switching lanes or moving from
+    note Might be multiple if the object is switching lanes or moving from
     one lane into another following lane.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     logical_lane_assignment: "list[LogicalLaneAssignment]" = betterproto2.field(
@@ -20497,7 +20825,7 @@ class MovingObjectMovingObjectClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
 
@@ -20512,9 +20840,9 @@ default_message_pool.register_message(
 class MovingObjectPedestrianAttributes(betterproto2.Message):
     """
 
-    \brief Additional pedestrian data in case the moving object is a human.
+    brief Additional pedestrian data in case the moving object is a human.
 
-    This is an extension to the \c MovingObject with additional information
+    This is an extension to the c MovingObject with additional information
     describing a pedestrian in more detail.
     """
 
@@ -20536,7 +20864,7 @@ class MovingObjectPedestrianAttributes(betterproto2.Message):
     the pedestrian model used. For example, some simulators will not include
     detailed data about the hands of a pedestrian.
 
-    \note A bone of each type can be provided, or left out, depending
+    note A bone of each type can be provided, or left out, depending
     on the desired level of detail, or available data. However, if a
     bone is defined, all bones in the chain from that bone back to
     the root point must be provided to create a complete chain.
@@ -20552,7 +20880,7 @@ default_message_pool.register_message(
 class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     """
 
-    \brief Bones in the skeleton of the pedestrian.
+    brief Bones in the skeleton of the pedestrian.
 
     Each point represents a joint, or otherwise important point in the skeleton
     of a pedestrian. For example pelvis, knee or shoulder. The naming convention
@@ -20562,7 +20890,7 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     type: "MovingObjectPedestrianAttributesBoneType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectPedestrianAttributesBoneType.try_value(0),
+        default_factory=lambda: MovingObjectPedestrianAttributesBoneType(0),
     )
     """
     Bones are identified by their type, combined with which body side
@@ -20571,7 +20899,7 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     To properly identify the bones the pre-defined naming convention
     must be used.
 
-    \image html OSI_SkeletonNamingConvention.svg
+    image html OSI_SkeletonNamingConvention.svg
 
     A bone's name, position, and orientation is defined by the end-point closer
     to the root. For example: the "LOWER_ARM_L" will define the point in the left
@@ -20591,7 +20919,7 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     Position of the bone.
 
     Reference System is the root, defined by bbcenter_to_root
-    (\c PedestrianAttributes::bbcenter_to_root).
+    (c PedestrianAttributes::bbcenter_to_root).
     """
 
     orientation: "Orientation3D | None" = betterproto2.field(
@@ -20601,10 +20929,12 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     Orientation of the bone.
 
     Reference System is the root, defined by bbcenter_to_root
-    (\c PedestrianAttributes::bbcenter_to_root).
+    (c PedestrianAttributes::bbcenter_to_root).
     """
 
-    length: "float" = betterproto2.field(4, betterproto2.TYPE_FLOAT)
+    length: "float" = betterproto2.field(
+        4, betterproto2.TYPE_FLOAT
+    )
     """
     Length of the bone.
 
@@ -20613,7 +20943,9 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     Unit: m
     """
 
-    missing: "bool" = betterproto2.field(5, betterproto2.TYPE_BOOL)
+    missing: "bool" = betterproto2.field(
+        5, betterproto2.TYPE_BOOL
+    )
     """
     Determines whether a bone is explicitly missing from the pedestrian model.
 
@@ -20628,7 +20960,7 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     The velocity of the bone.
 
     Reference System is the root, defined by bbcenter_to_root
-    (\c PedestrianAttributes::bbcenter_to_root).
+    (c PedestrianAttributes::bbcenter_to_root).
     """
 
     orientation_rate: "Orientation3D | None" = betterproto2.field(
@@ -20638,7 +20970,7 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     The orientation rate of the bone.
 
     Reference System is the root, defined by bbcenter_to_root
-    (\c PedestrianAttributes::bbcenter_to_root).
+    (c PedestrianAttributes::bbcenter_to_root).
     """
 
 
@@ -20653,18 +20985,18 @@ default_message_pool.register_message(
 class MovingObjectVehicleAttributes(betterproto2.Message):
     """
 
-    \brief The vehicle attributes for \c MovingObject (host or other).
+    brief The vehicle attributes for c MovingObject (host or other).
 
-    This is an extension to the \c MovingObject with additional attributes,
+    This is an extension to the c MovingObject with additional attributes,
     such as type and lights. The origin of the rear (front) axis coordinate
     system in global coordinates is calculated as:
-    \c MovingObject::base . \c BaseMoving::position + R * \c
+    c MovingObject::base . c BaseMoving::position + R * c
     MovingObject::VehicleAttributes::bbcenter_to_rear (front) for the host
     vehicle (R rotates from vehicle to world frame, i.e. inverse orientation
-    of \c MovingObject::base . \c BaseMoving::orientation).
+    of c MovingObject::base . c BaseMoving::orientation).
 
     For all vehicles, including host vehicles, the position given in
-     \c MovingObject::base . \c BaseMoving::position points to the center of
+     c MovingObject::base . c BaseMoving::position points to the center of
      the vehicle's bounding box.
 
     The vehicle object coordinates are defined as x-axis is the direction
@@ -20673,7 +21005,7 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
     right-handed. Therefore the positive y-axis points to the left of the
     vehicle.
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
     """
 
@@ -20683,11 +21015,13 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
     """
     The ID of the driver of the (host) vehicle.
 
-    \note Field need not be set if host_vehicle is set to false or use
+    note Field need not be set if host_vehicle is set to false or use
     value for non valid id.
     """
 
-    radius_wheel: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    radius_wheel: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Deprecated: Will be removed in next major release. Moved to WheelData.
     Median radius of the wheels measured from a center of the wheel
@@ -20695,26 +21029,28 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    number_wheels: "int" = betterproto2.field(3, betterproto2.TYPE_UINT32)
+    number_wheels: "int" = betterproto2.field(
+        3, betterproto2.TYPE_UINT32
+    )
     """
     Number of independent wheels.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     bbcenter_to_rear: "Vector3D | None" = betterproto2.field(
         4, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The vector pointing from the bounding box center point (\c
-    MovingObject::base . \c BaseMoving::position) to the middle (in x, y
+    The vector pointing from the bounding box center point (c
+    MovingObject::base . c BaseMoving::position) to the middle (in x, y
     and z) of the rear axle under neutral load conditions. In object
     coordinates.
     """
@@ -20723,20 +21059,22 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
         5, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The vector pointing from the bounding box center point (\c
-    MovingObject::base . \c BaseMoving::position) to the middle (in x, y
+    The vector pointing from the bounding box center point (c
+    MovingObject::base . c BaseMoving::position) to the middle (in x, y
     and z) of the front axle under neutral load conditions. In object
     coordinates.
     """
 
-    ground_clearance: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    ground_clearance: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Static minimal distance or space from the lowest point of the vehicle's
     body to the surface plane below it under neutral load conditions. This
     distance disregards, for example, driving-dynamic effects or
     road-surface effects. Can be useful to approximate the clearance area
     under a vehicle that a sensor can see through.
-    \note \c ground_clearance is included in the bounding box height.
+    note c ground_clearance is included in the bounding box height.
     """
 
     wheel_data: "list[MovingObjectVehicleAttributesWheelData]" = betterproto2.field(
@@ -20745,10 +21083,12 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
     """
     Description of each wheel.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
-    steering_wheel_angle: "float" = betterproto2.field(8, betterproto2.TYPE_DOUBLE)
+    steering_wheel_angle: "float" = betterproto2.field(
+        8, betterproto2.TYPE_DOUBLE
+    )
     """
     Angle of the steering wheel.
     Zero means the steering wheel is in its center position, a positive value
@@ -20767,20 +21107,24 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     """
-    \brief Detailed wheel data.
+    brief Detailed wheel data.
     The focus is on the description of a wheel regarding the perceivable
     information from the outside.
     It is not intended to be used for dynamic calculations, for example.
     """
 
-    axle: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
+    axle: "int" = betterproto2.field(
+        1, betterproto2.TYPE_UINT32
+    )
     """
     The axle which contains this wheel. A value of 0 represents the
     front-most axle of the vehicle with higher numbers incrementing
     towards the rear-most axle.
     """
 
-    index: "int" = betterproto2.field(2, betterproto2.TYPE_UINT32)
+    index: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT32
+    )
     """
     The index of the wheel on the axle, counting in the direction
     of positive-y, that is, right-to-left.
@@ -20798,7 +21142,9 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     box) to the geometric center of the wheel.
     """
 
-    wheel_radius: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    wheel_radius: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Median radius of the wheel measured from the center of the wheel to
     the outer part of the tire.
@@ -20806,14 +21152,18 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     Unit: m
     """
 
-    rim_radius: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    rim_radius: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Median radius of the rim measured from the center to the outer, visible part of the rim.
 
     Unit: m
     """
 
-    width: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    width: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Median width of the tire.
 
@@ -20829,7 +21179,9 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     The reference system is the vehicle frame (center of bounding box).
     """
 
-    rotation_rate: "float" = betterproto2.field(8, betterproto2.TYPE_DOUBLE)
+    rotation_rate: "float" = betterproto2.field(
+        8, betterproto2.TYPE_DOUBLE
+    )
     """
     Rotation rate of the wheel.
     The rotation rate around the y-axis with respect to the wheel's coordinate system.
@@ -20840,19 +21192,23 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     It is applied on the y-axis of the vehicle's reference system (center of bounding box).
     Counterclockwise is positive and clockwise is negative.
 
-    \image html OSI_RotationRate.svg
-    \note The vehicle's reference coordinate system is only used to determine the sign convention of the rotation rate.
+    image html OSI_RotationRate.svg
+    note The vehicle's reference coordinate system is only used to determine the sign convention of the rotation rate.
     """
 
-    model_reference: "str" = betterproto2.field(9, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        9, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the wheel.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
-    friction_coefficient: "float" = betterproto2.field(10, betterproto2.TYPE_DOUBLE)
+    friction_coefficient: "float" = betterproto2.field(
+        10, betterproto2.TYPE_DOUBLE
+    )
     """
     The value describes the kinetic friction of the tire's contact point.
     If different friction coefficients due to more than one contact points are available,
@@ -20860,7 +21216,7 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
 
     Unit: Dimensionless
 
-    \par References:
+    par References:
     [1] Britannica, T. Editors of Encyclopaedia. (2020, June 24). <em>coefficient of friction</em>. Retrieved May 18, 2022, from https://www.britannica.com/science/coefficient-of-friction
     """
 
@@ -20876,27 +21232,31 @@ default_message_pool.register_message(
 class MovingObjectVehicleClassification(betterproto2.Message):
     """
 
-    \brief Information for the classification of vehicles regarding
-    \c MovingObject (host or other).
+    brief Information for the classification of vehicles regarding
+    c MovingObject (host or other).
     """
 
     type: "MovingObjectVehicleClassificationType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationType.try_value(0),
+        default_factory=lambda: MovingObjectVehicleClassificationType(0),
     )
     """
     The type of the vehicle.
     """
 
     light_state: "MovingObjectVehicleClassificationLightState | None" = (
-        betterproto2.field(2, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            2, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     The light state of the vehicle.
     """
 
-    has_trailer: "bool" = betterproto2.field(3, betterproto2.TYPE_BOOL)
+    has_trailer: "bool" = betterproto2.field(
+        3, betterproto2.TYPE_BOOL
+    )
     """
     Flag defining whether the vehicle has an attached trailer.
     """
@@ -20907,18 +21267,18 @@ class MovingObjectVehicleClassification(betterproto2.Message):
     """
     Id of the attached trailer.
 
-    \note Field need not be set if has_Trailer is set to false or use
+    note Field need not be set if has_Trailer is set to false or use
     value for non valid id.
 
-    \rules
+    rules
     check_if this.has_trailer is_equal_to true else do_check is_set
-    \endrules
+    endrules
     """
 
     role: "MovingObjectVehicleClassificationRole" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationRole.try_value(0),
+        default_factory=lambda: MovingObjectVehicleClassificationRole(0),
     )
     """
     The role of the vehicle.
@@ -20934,13 +21294,13 @@ default_message_pool.register_message(
 class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     """
 
-    \brief The state of the lights of a vehicle.
+    brief The state of the lights of a vehicle.
     """
 
     indicator_state: "MovingObjectVehicleClassificationLightStateIndicatorState" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateIndicatorState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateIndicatorState(
             0
         ),
     )
@@ -20951,7 +21311,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     front_fog_light: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -20962,7 +21322,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     rear_fog_light: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -20973,7 +21333,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     head_light: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -20984,7 +21344,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     high_beam: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -20995,7 +21355,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     reversing_light: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         6,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -21006,7 +21366,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     brake_light_state: "MovingObjectVehicleClassificationLightStateBrakeLightState" = betterproto2.field(
         7,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateBrakeLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateBrakeLightState(
             0
         ),
     )
@@ -21017,7 +21377,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     license_plate_illumination_rear: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         8,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -21028,7 +21388,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     emergency_vehicle_illumination: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         9,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -21041,7 +21401,7 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     service_vehicle_illumination: "MovingObjectVehicleClassificationLightStateGenericLightState" = betterproto2.field(
         10,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState.try_value(
+        default_factory=lambda: MovingObjectVehicleClassificationLightStateGenericLightState(
             0
         ),
     )
@@ -21063,7 +21423,7 @@ default_message_pool.register_message(
 class Occupant(betterproto2.Message):
     """
 
-    \brief An occupant of a host vehicle, especially the driver of the vehicle.
+    brief An occupant of a host vehicle, especially the driver of the vehicle.
     """
 
     id: "Identifier | None" = betterproto2.field(
@@ -21072,9 +21432,9 @@ class Occupant(betterproto2.Message):
     """
     The ID of the driver.
 
-    \rules
+    rules
     is_globally_unique
-    \endrules
+    endrules
     """
 
     classification: "OccupantClassification | None" = betterproto2.field(
@@ -21090,12 +21450,12 @@ class Occupant(betterproto2.Message):
     """
     External reference to the occupant source.
 
-    \note For OpenDRIVE and OpenSCENARIO there is no direct counterpart.
+    note For OpenDRIVE and OpenSCENARIO there is no direct counterpart.
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -21108,10 +21468,12 @@ default_message_pool.register_message("osi3", "Occupant", Occupant)
 class OccupantClassification(betterproto2.Message):
     """
 
-    \brief Information regarding the classification of the occupant.
+    brief Information regarding the classification of the occupant.
     """
 
-    is_driver: "bool" = betterproto2.field(2, betterproto2.TYPE_BOOL)
+    is_driver: "bool" = betterproto2.field(
+        2, betterproto2.TYPE_BOOL
+    )
     """
     Flag determining whether the person is the driver of the vehicle or a
     passenger.
@@ -21120,7 +21482,7 @@ class OccupantClassification(betterproto2.Message):
     seat: "OccupantClassificationSeat" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: OccupantClassificationSeat.try_value(0),
+        default_factory=lambda: OccupantClassificationSeat(0),
     )
     """
     Seat position of the vehicle occupant.
@@ -21129,7 +21491,7 @@ class OccupantClassification(betterproto2.Message):
     steering_control: "OccupantClassificationSteeringControl" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: OccupantClassificationSteeringControl.try_value(0),
+        default_factory=lambda: OccupantClassificationSteeringControl(0),
     )
     """
     Describes the state of the passenger's hands related to the steering
@@ -21146,7 +21508,7 @@ default_message_pool.register_message(
 class Orientation3D(betterproto2.Message):
     """
 
-    \brief A 3D orientation, orientation rate or orientation acceleration (i.e.
+    brief A 3D orientation, orientation rate or orientation acceleration (i.e.
     derivatives) or its uncertainties denoted in euler angles.
 
     Units are rad for orientation, rad/s for rates, and rad/s^2 for
@@ -21155,8 +21517,8 @@ class Orientation3D(betterproto2.Message):
     The coordinate system is defined as right-handed.
     For the sense of each rotation, the right-hand rule applies.
 
-    The rotations are to be performed \b yaw \b first (around the z-axis),
-    \b pitch \b second (around the new y-axis) and \b roll \b third (around the
+    The rotations are to be performed b yaw b first (around the z-axis),
+    b pitch b second (around the new y-axis) and b roll b third (around the
     new x-axis) to follow the definition according to [1] (Tait-Bryan / Euler
     convention z-y'-x''). The preferred angular range is [-pi, pi] for roll
     and yaw and [-pi/2, pi/2] for pitch.
@@ -21165,33 +21527,39 @@ class Orientation3D(betterproto2.Message):
     xy-plane. Yaw is 0 if the object's local x-axis is parallel to its parent's
     x-axis.
 
-    \f$ Rotation_{yaw,pitch,roll} =
-    Rotation_{yaw}*Rotation_{pitch}*Rotation_{roll} \f$
+    f$ Rotation_{yaw,pitch,roll} =
+    Rotation_{yaw}*Rotation_{pitch}*Rotation_{roll} f$
 
-    \f$ vector_{global coord system} := Rotation_{yaw, pitch, roll} * vector_{local coord system} +local_{origin::position} \f$
+    f$ vector_{global coord system} := Rotation_{yaw, pitch, roll} * vector_{local coord system} +local_{origin::position} f$
 
-    \attention This definition changed in OSI version 3.0.0. Previous OSI
+    attention This definition changed in OSI version 3.0.0. Previous OSI
     versions  (V2.xx) had an other definition.
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
     """
 
-    roll: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    roll: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The roll angle/rate/acceleration.
 
     Unit: rad, rad/s, or rad/s^2
     """
 
-    pitch: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    pitch: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The pitch angle/rate/acceleration.
 
     Unit: rad, rad/s, or rad/s^2
     """
 
-    yaw: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    yaw: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The yaw angle/rate/acceleration.
 
@@ -21206,7 +21574,7 @@ default_message_pool.register_message("osi3", "Orientation3d", Orientation3D)
 class Pedalry(betterproto2.Message):
     """
 
-    \brief A description for the positions of the pedals.
+    brief A description for the positions of the pedals.
     """
 
     pedal_position_acceleration: "float" = betterproto2.field(
@@ -21217,13 +21585,17 @@ class Pedalry(betterproto2.Message):
     Range: 0-1 (Unpressed - fully pressed)
     """
 
-    pedal_position_brake: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    pedal_position_brake: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Position of the brake pedal.
     Range: 0-1 (Unpressed - fully pressed)
     """
 
-    pedal_position_clutch: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    pedal_position_clutch: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Position of the clutch pedal.
     Range: 0-1 (Unpressed - fully pressed)
@@ -21237,7 +21609,7 @@ default_message_pool.register_message("osi3", "Pedalry", Pedalry)
 class Polygon3D(betterproto2.Message):
     """
 
-    \brief Polygon in 3 dimensions
+    brief Polygon in 3 dimensions
 
     A polygon in 3 dimensions which contains a list of vertices.
     """
@@ -21257,21 +21629,23 @@ default_message_pool.register_message("osi3", "Polygon3d", Polygon3D)
 class RadarDetection(betterproto2.Message):
     """
 
-    \brief A radar detection.
+    brief A radar detection.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the detection not based on history. Value does
     not depend on any past experience with similar detections.
 
-    \note Use as confidence measure where a low value means less confidence
+    note Use as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -21280,11 +21654,11 @@ class RadarDetection(betterproto2.Message):
     """
     ID of the detected object this detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
     position: "Spherical3D | None" = betterproto2.field(
@@ -21302,47 +21676,57 @@ class RadarDetection(betterproto2.Message):
     Root mean squared error of the measured position of the detection.
     """
 
-    radial_velocity: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    radial_velocity: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Radial velocity of the detection positive in direction to the sensor.
 
     Unit: m/s
     """
 
-    radial_velocity_rmse: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    radial_velocity_rmse: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Root mean squared error of the object measured radial velocity.
 
     Unit: m/s
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    rcs: "float" = betterproto2.field(7, betterproto2.TYPE_DOUBLE)
+    rcs: "float" = betterproto2.field(
+        7, betterproto2.TYPE_DOUBLE
+    )
     """
     The radar cross section (RCS) of the radar detection.
 
     Unit: dB m^2
     """
 
-    snr: "float" = betterproto2.field(8, betterproto2.TYPE_DOUBLE)
+    snr: "float" = betterproto2.field(
+        8, betterproto2.TYPE_DOUBLE
+    )
     """
     The signal to noise ratio (SNR) of the radar detection.
 
     Unit: dB
     """
 
-    point_target_probability: "float" = betterproto2.field(9, betterproto2.TYPE_DOUBLE)
+    point_target_probability: "float" = betterproto2.field(
+        9, betterproto2.TYPE_DOUBLE
+    )
     """
     Describes the possibility whether more than one object may have led to
     this detection.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     ambiguity_id: "Identifier | None" = betterproto2.field(
@@ -21353,9 +21737,9 @@ class RadarDetection(betterproto2.Message):
     Each ambiguous measurement generates one Ambiguity ID. Ambiguity is
     indicated by an identical ambiguity ID.
 
-    \note Unambiguous measurements have the ambiguity ID 0.
+    note Unambiguous measurements have the ambiguity ID 0.
 
-    \note Multiple separate detections, from e.g. a large object, do not
+    note Multiple separate detections, from e.g. a large object, do not
     necessarily on their own create any ambiguity. Therefore they do not
     usually share an ambiguity ID. They can however be ambiguous
     with other detections.
@@ -21364,7 +21748,7 @@ class RadarDetection(betterproto2.Message):
     classification: "DetectionClassification" = betterproto2.field(
         11,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: DetectionClassification.try_value(0),
+        default_factory=lambda: DetectionClassification(0),
     )
     """
     Basic classification of the detection.
@@ -21378,7 +21762,7 @@ default_message_pool.register_message("osi3", "RadarDetection", RadarDetection)
 class RadarDetectionData(betterproto2.Message):
     """
 
-    \brief Data from one radar sensor including a list of detections.
+    brief Data from one radar sensor including a list of detections.
     """
 
     header: "SensorDetectionHeader | None" = betterproto2.field(
@@ -21403,7 +21787,7 @@ default_message_pool.register_message("osi3", "RadarDetectionData", RadarDetecti
 class RadarSensorView(betterproto2.Message):
     """
 
-    \brief Definition of the radar sensor view.
+    brief Definition of the radar sensor view.
 
     Radar specific sensor view data.
     """
@@ -21433,10 +21817,12 @@ default_message_pool.register_message("osi3", "RadarSensorView", RadarSensorView
 class RadarSensorViewReflection(betterproto2.Message):
     """
 
-    \brief Definition of the radar reflection.
+    brief Definition of the radar reflection.
     """
 
-    signal_strength: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    signal_strength: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Relative signal level of the reflection.
 
@@ -21448,7 +21834,9 @@ class RadarSensorViewReflection(betterproto2.Message):
     Unit: dB
     """
 
-    time_of_flight: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    time_of_flight: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Time of flight.
 
@@ -21458,7 +21846,9 @@ class RadarSensorViewReflection(betterproto2.Message):
     Unit: s
     """
 
-    doppler_shift: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    doppler_shift: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Doppler shift.
 
@@ -21467,7 +21857,9 @@ class RadarSensorViewReflection(betterproto2.Message):
     Unit: Hz
     """
 
-    source_horizontal_angle: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    source_horizontal_angle: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     TX horizontal angle (azimuth).
 
@@ -21477,7 +21869,9 @@ class RadarSensorViewReflection(betterproto2.Message):
     Unit: rad
     """
 
-    source_vertical_angle: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    source_vertical_angle: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     TX vertical angle (elevation).
 
@@ -21497,7 +21891,7 @@ default_message_pool.register_message(
 class RadarSensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the Radar Sensor View to be provided
+    brief The configuration settings for the Radar Sensor View to be provided
     by the environment simulation.
     """
 
@@ -21524,22 +21918,22 @@ class RadarSensorViewConfiguration(betterproto2.Message):
     governs the sensor-relative coordinates in features detected by this
     detector.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -21553,65 +21947,77 @@ class RadarSensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
 
-    number_of_rays_horizontal: "int" = betterproto2.field(6, betterproto2.TYPE_UINT32)
+    number_of_rays_horizontal: "int" = betterproto2.field(
+        6, betterproto2.TYPE_UINT32
+    )
     """
     Number of rays to cast across horizontal field of view (azimuth).
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    number_of_rays_vertical: "int" = betterproto2.field(7, betterproto2.TYPE_UINT32)
+    number_of_rays_vertical: "int" = betterproto2.field(
+        7, betterproto2.TYPE_UINT32
+    )
     """
     Number of rays to cast across vertical field of view (elevation).
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    max_number_of_interactions: "int" = betterproto2.field(8, betterproto2.TYPE_UINT32)
+    max_number_of_interactions: "int" = betterproto2.field(
+        8, betterproto2.TYPE_UINT32
+    )
     """
     Maximum number of interactions to take into account.
 
-    \note This is a characteristic of the ray tracing engine of the
+    note This is a characteristic of the ray tracing engine of the
     environment simulation, not a direct characteristic of the sensor.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
-    emitter_frequency: "float" = betterproto2.field(9, betterproto2.TYPE_DOUBLE)
+    emitter_frequency: "float" = betterproto2.field(
+        9, betterproto2.TYPE_DOUBLE
+    )
     """
     Emitter Frequency.
 
@@ -21625,20 +22031,24 @@ class RadarSensorViewConfiguration(betterproto2.Message):
 
     Unit: Hz
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     tx_antenna_diagram: "list[RadarSensorViewConfigurationAntennaDiagramEntry]" = (
-        betterproto2.field(10, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            10, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     This represents the TX antenna diagram
     """
 
     rx_antenna_diagram: "list[RadarSensorViewConfigurationAntennaDiagramEntry]" = (
-        betterproto2.field(11, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            11, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     This represents the RX antenna diagram
@@ -21654,12 +22064,14 @@ default_message_pool.register_message(
 class RadarSensorViewConfigurationAntennaDiagramEntry(betterproto2.Message):
     """
 
-    \brief The radar antenna diagram.
+    brief The radar antenna diagram.
 
-    \note Rotation is defined analog Spherical3d
+    note Rotation is defined analog Spherical3d
     """
 
-    horizontal_angle: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    horizontal_angle: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Horizontal deflection (azimuth) of entry in sensor/antenna
     coordinates.
@@ -21667,7 +22079,9 @@ class RadarSensorViewConfigurationAntennaDiagramEntry(betterproto2.Message):
     Unit: rad
     """
 
-    vertical_angle: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    vertical_angle: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Vertical deflection (elevation) of entry in sensor/antenna
     coordinates.
@@ -21675,7 +22089,9 @@ class RadarSensorViewConfigurationAntennaDiagramEntry(betterproto2.Message):
     Unit: rad
     """
 
-    response: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    response: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Response of antenna at this point (positive dB is gain,
     negative dB is attenuation).
@@ -21695,11 +22111,13 @@ default_message_pool.register_message(
 class RadarSpecificObjectData(betterproto2.Message):
     """
 
-    \brief Message encapsulates all data for detected objects that is specific to
+    brief Message encapsulates all data for detected objects that is specific to
     radar sensors.
     """
 
-    rcs: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    rcs: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The radar cross section (RCS) of the detected object.
 
@@ -21716,12 +22134,12 @@ default_message_pool.register_message(
 class ReferenceLine(betterproto2.Message):
     """
 
-    \brief A reference line for defining a non-Euclidean ST coordinate system
+    brief A reference line for defining a non-Euclidean ST coordinate system
 
     A reference line is a 3D polyline, used for generating a non-Euclidean
     ST coordinate system.
 
-    \note This ST coordinate system is specific to OSI and not to be confused with
+    note This ST coordinate system is specific to OSI and not to be confused with
           similar definitions in other standards like OpenDRIVE or OpenSCENARIO 1.x.
           Nevertheless the goal of this definition is to approximate the source
           coordinates (e.g. OpenDRIVE).
@@ -21740,18 +22158,18 @@ class ReferenceLine(betterproto2.Message):
     """
     The ID of the reference line.
 
-    \note Note ID is global unique.
+    note Note ID is global unique.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     type: "ReferenceLineType" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: ReferenceLineType.try_value(0),
+        default_factory=lambda: ReferenceLineType(0),
     )
     """
     The type of the reference line.
@@ -21790,7 +22208,7 @@ class ReferenceLine(betterproto2.Message):
     OpenDRIVE), the points must be chosen in a way that the lateral distance
     to the ideal line does not exceed 5cm. As shown in the following image:
 
-    \image html line_approximation_error.svg "Approximation error"
+    image html line_approximation_error.svg "Approximation error"
     Approximation error green line.
 
     Between two ReferenceLinePoints, both the world coordinate and the S
@@ -21800,20 +22218,20 @@ class ReferenceLine(betterproto2.Message):
     ## Extending the coordinate system infinitely
 
     For the purpose of this discussion, let's call the S position of the
-    first point \c sStart, and the S position of the last point \c sEnd.
+    first point c sStart, and the S position of the last point c sEnd.
 
     For some purposes, S positions outside the normally defined range (i.e.
-    outside [\c sStart,\c sEnd]) need to be defined. For this purpose, the
+    outside [c sStart,c sEnd]) need to be defined. For this purpose, the
     first line of the polyline is infinitely extended in negative S
     direction.  Similarly, the last line of the polyline is infinitely
-    extended beyond the last point. The S value of points outside [\c
-    sStart,\c sEnd] is defined by the Euclidean 2D distance from the start
+    extended beyond the last point. The S value of points outside [c
+    sStart,c sEnd] is defined by the Euclidean 2D distance from the start
     or end point, respectively.  So if <code>sStart = 15</code>, and a point
     is on the line extended from the start position, with a 2D Euclidean
     distance of 10 from the first point, then it has an S position of 5.
 
-    A point is "before" the reference line, if its s coordinate is < \c sStart.
-    A point is "after" the reference line, if its s coordinate is > \c sEnd.
+    A point is "before" the reference line, if its s coordinate is < c sStart.
+    A point is "after" the reference line, if its s coordinate is > c sEnd.
 
     ## Adding T coordinates
 
@@ -21844,22 +22262,22 @@ class ReferenceLine(betterproto2.Message):
       coordinate on the polyline is chosen.
 
     Example:
-    \image html OSI_ReferenceLine1.svg "S, T calculation using nearest point"
+    image html OSI_ReferenceLine1.svg "S, T calculation using nearest point"
 
     This shows a reference line (consisting of three points), and five points
     not on the reference line.
 
-    - For \c P1, the situation is clear, since there is exactly one nearest
+    - For c P1, the situation is clear, since there is exactly one nearest
       point on the polyline. The resulting ST coordinate uniquely maps back
-      to \c P1.
-    - \c P2 has multiple points "nearest points" on the polyline.
-      As can be seen here, two  ST coordinates map to \c P2 (red and gray
+      to c P1.
+    - c P2 has multiple points "nearest points" on the polyline.
+      As can be seen here, two  ST coordinates map to c P2 (red and gray
       dotted line).  Following the rules above, the one with the smallest S
       value is chosen (the red dotted line).
-    - \c P3 has a unique "nearest point" on the polyline. However, multiple
-      points map to the same ST coordinate as that of \c P3, e.g. \c P4
+    - c P3 has a unique "nearest point" on the polyline. However, multiple
+      points map to the same ST coordinate as that of c P3, e.g. c P4
       (drawn in gray).
-    - Finally, \c P5 shows how the reference line is extended infinitely for
+    - Finally, c P5 shows how the reference line is extended infinitely for
       points that are "outside" the reference line.
 
     ## T axis definition (TYPE_POLYLINE_WITH_T_AXIS)
@@ -21899,24 +22317,24 @@ class ReferenceLine(betterproto2.Message):
       respectively.
 
     Example:
-    \image html OSI_ReferenceLine2.svg "S, T calculation using T axis"
+    image html OSI_ReferenceLine2.svg "S, T calculation using T axis"
 
-    This shows a reference line (consisting of three points \c R0, \c R1 and
-    \c R2) and two points (\c P1 and \c P2) not part of the reference line.
+    This shows a reference line (consisting of three points c R0, c R1 and
+    c R2) and two points (c P1 and c P2) not part of the reference line.
 
-    Calculation of ST for \c P1:
-    - Calculate the intersection point \c I of the T axes of \c R0 and \c R1.
-    - As \c P1 lies in the sector defined by these T axes it is considered part
-      of the reference line section between \c R0 and \c R1.
-    - The point \c P1 is projected onto the line segment [\c R0, \c R1] via the
-      straight line through \c I (by calculating the intersection of the line
-      segment and the projection axis), resulting in point \c P1_proj.
+    Calculation of ST for c P1:
+    - Calculate the intersection point c I of the T axes of c R0 and c R1.
+    - As c P1 lies in the sector defined by these T axes it is considered part
+      of the reference line section between c R0 and c R1.
+    - The point c P1 is projected onto the line segment [c R0, c R1] via the
+      straight line through c I (by calculating the intersection of the line
+      segment and the projection axis), resulting in point c P1_proj.
       If the T axes are parallel, projection is applied in the direction of
       these axes.
-    - The S coordinate of \c P1 is the S coordinate of \c P1_proj
-    - The T coordinate of \c P1 is the signed Euclidean distance to \c P1_proj.
+    - The S coordinate of c P1 is the S coordinate of c P1_proj
+    - The T coordinate of c P1 is the signed Euclidean distance to c P1_proj.
 
-    Calculation of \c P2 follows the same pattern.
+    Calculation of c P2 follows the same pattern.
 
     ## Defining angles
 
@@ -21992,7 +22410,7 @@ default_message_pool.register_message("osi3", "ReferenceLine", ReferenceLine)
 class ReferenceLineReferenceLinePoint(betterproto2.Message):
     """
 
-    \brief A point on the reference line
+    brief A point on the reference line
     """
 
     world_position: "Vector3D | None" = betterproto2.field(
@@ -22002,12 +22420,16 @@ class ReferenceLineReferenceLinePoint(betterproto2.Message):
     A world position
     """
 
-    s_position: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    s_position: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     S position on the reference line
     """
 
-    t_axis_yaw: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    t_axis_yaw: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Yaw angle of the T axis in the world coordinate system
 
@@ -22016,7 +22438,7 @@ class ReferenceLineReferenceLinePoint(betterproto2.Message):
 
     Also see image "S, T coordinates" at #poly_line for reference.
 
-    \note This field is only set if the type of the reference line is
+    note This field is only set if the type of the reference line is
           TYPE_POLYLINE_WITH_T_AXIS.
     """
 
@@ -22030,21 +22452,21 @@ default_message_pool.register_message(
 class RoadMarking(betterproto2.Message):
     """
 
-    \brief A road surface marking.
+    brief A road surface marking.
 
-    \image html OSI_RoadMarking.svg
+    image html OSI_RoadMarking.svg
 
-    The figure shows two STOP road markings. STOP \c
-    RoadMarking::Classification::type == \c
-    RoadMarking::Classification::TYPE_TEXTUAL_TRAFFIC_SIGN is marked, STOP \c
-    RoadMarking::Classification::type == \c
+    The figure shows two STOP road markings. STOP c
+    RoadMarking::Classification::type == c
+    RoadMarking::Classification::TYPE_TEXTUAL_TRAFFIC_SIGN is marked, STOP c
+    RoadMarking::Classification::type == c
     RoadMarking::Classification::TYPE_SYMBOLIC_TRAFFIC_SIGN is not marked.
 
     All coordinates and orientations are relative to the global ground truth
     coordinate system.
 
-    Lane markings are excluded and defined as \c LaneBoundary messages
-    as part of \c Lane.
+    Lane markings are excluded and defined as c LaneBoundary messages
+    as part of c Lane.
     """
 
     id: "Identifier | None" = betterproto2.field(
@@ -22053,9 +22475,9 @@ class RoadMarking(betterproto2.Message):
     """
     The ID of the road marking.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -22064,19 +22486,19 @@ class RoadMarking(betterproto2.Message):
     """
     The base parameters of the road marking.
 
-    The orientation of the bounding box \c #base
-    \c BaseStationary::orientation is defined as follows:
-    The z-axis of the \c BaseStationary::orientation is the vector from the
+    The orientation of the bounding box c #base
+    c BaseStationary::orientation is defined as follows:
+    The z-axis of the c BaseStationary::orientation is the vector from the
     'bottom' to the 'top' of the road marking's (i.e. painted traffic sign)
     2D image area.
     (Normally it is in the ground truth xy-plain.)
-    The x-axis of the \c BaseStationary::orientation is the view normal of
+    The x-axis of the c BaseStationary::orientation is the view normal of
     the road marking's 2D image area.
     Normally this x-axis points to the sky.
 
-    \note If a valid unidirectional road marking is assigned to the host
+    note If a valid unidirectional road marking is assigned to the host
     vehicle's current lane and the driving direction of the latter roughly
-    matches the z-axis of the \c #base \c BaseStationary::orientation then
+    matches the z-axis of the c #base c BaseStationary::orientation then
     the road marking is of relevance to (i.e. in effect for) the host
     vehicle.
     """
@@ -22101,19 +22523,19 @@ class RoadMarking(betterproto2.Message):
     For example, to reference a signal defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = id of t_road_signals_signal
 
-    \note With OpenDRIVE, surface markings can also be defined as objects.
+    note With OpenDRIVE, surface markings can also be defined as objects.
           In this case, the associated object is usually referenced within
           OpenDRIVE using the reference t_road_signals_signal_reference.
           An additional reference to the object is therefore not necessary.
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated, because one lane segment may be
+    note The value has to be repeated, because one lane segment may be
           derived from more than one origin segment. Multiple sources
           may be added as reference as well, for example, a map and sensors.
     """
@@ -22124,9 +22546,9 @@ class RoadMarking(betterproto2.Message):
     """
     The visual color of the material of the road marking.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance. For semantic classification of the road marking use the color
-    field in \c Classification.
+    field in c Classification.
     """
 
 
@@ -22137,13 +22559,13 @@ default_message_pool.register_message("osi3", "RoadMarking", RoadMarking)
 class RoadMarkingClassification(betterproto2.Message):
     """
 
-    \brief \c Classification data for a road surface marking.
+    brief c Classification data for a road surface marking.
     """
 
     type: "RoadMarkingClassificationType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: RoadMarkingClassificationType.try_value(0),
+        default_factory=lambda: RoadMarkingClassificationType(0),
     )
     """
     The type of the road marking.
@@ -22153,50 +22575,50 @@ class RoadMarkingClassification(betterproto2.Message):
         betterproto2.field(
             2,
             betterproto2.TYPE_ENUM,
-            default_factory=lambda: TrafficSignMainSignClassificationType.try_value(0),
+            default_factory=lambda: TrafficSignMainSignClassificationType(0),
         )
     )
     """
     Traffic sign as road marking (color image, monochrome image or
     character string).
 
-    \note Field is set if ( \c #type == \c #TYPE_PAINTED_TRAFFIC_SIGN or
-    \c #TYPE_SYMBOLIC_TRAFFIC_SIGN or \c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
+    note Field is set if ( c #type == c #TYPE_PAINTED_TRAFFIC_SIGN or
+    c #TYPE_SYMBOLIC_TRAFFIC_SIGN or c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
 
-    \note Field need not be set (or set to \c #TYPE_OTHER)
-    if road marking type (\c #type) does not require it.
+    note Field need not be set (or set to c #TYPE_OTHER)
+    if road marking type (c #type) does not require it.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
     <a href="https://releases.asam.net/OpenDRIVE/1.6.0/ASAM_OpenDRIVE_BS_V1-6-0.html#_signals">OpenDRIVE</a>.
 
-    \rules
+    rules
     check_if this.type is_greater_than_or_equal_to 2 else do_check is_set
     check_if this.type is_less_than_or_equal_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     monochrome_color: "RoadMarkingClassificationColor" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: RoadMarkingClassificationColor.try_value(0),
+        default_factory=lambda: RoadMarkingClassificationColor(0),
     )
     """
     The semantic monochrome color of the road marking.
 
-    \note The color types represent the semantic color classification of
+    note The color types represent the semantic color classification of
     road markings only. They do not represent an actual visual appearance.
 
-    \note Field need not be set (or set to \c #COLOR_OTHER)
-    if road marking type does not require it (e.g. for \c #type ==
-    \c #TYPE_PAINTED_TRAFFIC_SIGN).
+    note Field need not be set (or set to c #COLOR_OTHER)
+    if road marking type does not require it (e.g. for c #type ==
+    c #TYPE_PAINTED_TRAFFIC_SIGN).
 
-    \rules
+    rules
     check_if this.type is_equal_to 2 else do_check is_set
     check_if this.monochrome_color is_equal_to 1 else do_check is_set
-    \endrules
+    endrules
     """
 
     value: "TrafficSignValue | None" = betterproto2.field(
@@ -22206,17 +22628,19 @@ class RoadMarkingClassification(betterproto2.Message):
     Additional value associated with the road marking, e.g. value of the
     speed limit.
 
-    \note Field need not be set if road marking type does not require it.
+    note Field need not be set if road marking type does not require it.
 
-    \note OSI 3 uses \c #value_text and not \c TrafficSignValue for
+    note OSI 3 uses c #value_text and not c TrafficSignValue for
     simple chars.
     """
 
-    value_text: "str" = betterproto2.field(5, betterproto2.TYPE_STRING)
+    value_text: "str" = betterproto2.field(
+        5, betterproto2.TYPE_STRING
+    )
     """
     Additional text value as road marking, e.g. BUS, TAXI etc.
 
-    \note Field need not be set if road marking type does not require it.
+    note Field need not be set if road marking type does not require it.
     """
 
     assigned_lane_id: "list[Identifier]" = betterproto2.field(
@@ -22226,23 +22650,27 @@ class RoadMarkingClassification(betterproto2.Message):
     The ID(s) of the lane(s) that the road marking is assigned to.
     May be multiple if the road marking goes across multiple lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
-    is_out_of_service: "bool" = betterproto2.field(7, betterproto2.TYPE_BOOL)
+    is_out_of_service: "bool" = betterproto2.field(
+        7, betterproto2.TYPE_BOOL
+    )
     """
     Boolean flag to indicate that the road marking is taken out of service.
     This can be achieved by visibly crossing the road marking with stripes,
     or completely covering a road marking making it not visible.
 
-    \image html OSI_RoadMaking_is_out_of_service.jpg width=800px
+    image html OSI_RoadMaking_is_out_of_service.jpg width=800px
     """
 
-    country: "str" = betterproto2.field(8, betterproto2.TYPE_STRING)
+    country: "str" = betterproto2.field(
+        8, betterproto2.TYPE_STRING
+    )
     """
     Country specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -22253,13 +22681,15 @@ class RoadMarkingClassification(betterproto2.Message):
     https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2, or the
     special OpenDRIVE country for generic signs.<br>
 
-    \rules
+    rules
     check_if this.type is_greater_than_or_equal_to 2 else do_check is_set
     check_if this.type is_less_than_or_equal_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
-    country_revision: "str" = betterproto2.field(9, betterproto2.TYPE_STRING)
+    country_revision: "str" = betterproto2.field(
+        9, betterproto2.TYPE_STRING
+    )
     """
     Revision specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -22269,19 +22699,21 @@ class RoadMarkingClassification(betterproto2.Message):
     The year the traffic rules came into force. <br>
     e.g. "2017"
 
-    \note Field is set if ( \c #type == \c #TYPE_PAINTED_TRAFFIC_SIGN or
-    \c #TYPE_SYMBOLIC_TRAFFIC_SIGN or \c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
+    note Field is set if ( c #type == c #TYPE_PAINTED_TRAFFIC_SIGN or
+    c #TYPE_SYMBOLIC_TRAFFIC_SIGN or c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
 
-    \note Field need not be set (or set to \c #TYPE_OTHER)
-    if road marking type (\c #type) does not require it.
+    note Field need not be set (or set to c #TYPE_OTHER)
+    if road marking type (c #type) does not require it.
 
-    \rules
+    rules
     check_if this.type is_greater_than_or_equal_to 2 else do_check is_set
     check_if this.type is_less_than_or_equal_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
-    code: "str" = betterproto2.field(10, betterproto2.TYPE_STRING)
+    code: "str" = betterproto2.field(
+        10, betterproto2.TYPE_STRING
+    )
     """
     Code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -22293,19 +22725,21 @@ class RoadMarkingClassification(betterproto2.Message):
     code is only unique in combination with #country and #country_revision.  <br>
     e.g. http://www.vzkat.de/2017/VzKat.htm
 
-    \note Field is set if ( \c #type == \c #TYPE_PAINTED_TRAFFIC_SIGN or
-    \c #TYPE_SYMBOLIC_TRAFFIC_SIGN or \c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
+    note Field is set if ( c #type == c #TYPE_PAINTED_TRAFFIC_SIGN or
+    c #TYPE_SYMBOLIC_TRAFFIC_SIGN or c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
 
-    \note Field need not be set (or set to \c #TYPE_OTHER)
-    if road marking type (\c #type) does not require it.
+    note Field need not be set (or set to c #TYPE_OTHER)
+    if road marking type (c #type) does not require it.
 
-    \rules
+    rules
     check_if this.type is_greater_than_or_equal_to 2 else do_check is_set
     check_if this.type is_less_than_or_equal_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
-    sub_code: "str" = betterproto2.field(11, betterproto2.TYPE_STRING)
+    sub_code: "str" = betterproto2.field(
+        11, betterproto2.TYPE_STRING
+    )
     """
     Sub-code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -22318,16 +22752,16 @@ class RoadMarkingClassification(betterproto2.Message):
     and #code.  <br>
     e.g. http://www.vzkat.de/2017/VzKat.htm
 
-    \note Field is set if ( \c #type == \c #TYPE_PAINTED_TRAFFIC_SIGN or
-    \c #TYPE_SYMBOLIC_TRAFFIC_SIGN or \c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
+    note Field is set if ( c #type == c #TYPE_PAINTED_TRAFFIC_SIGN or
+    c #TYPE_SYMBOLIC_TRAFFIC_SIGN or c #TYPE_TEXTUAL_TRAFFIC_SIGN ).
 
-    \note Field need not be set (or set to \c #TYPE_OTHER)
-    if road marking type (\c #type) does not require it.
+    note Field need not be set (or set to c #TYPE_OTHER)
+    if road marking type (c #type) does not require it.
 
-    \rules
+    rules
     check_if this.type is_greater_than_or_equal_to 2 else do_check is_set
     check_if this.type is_less_than_or_equal_to 4 else do_check is_set
-    \endrules
+    endrules
     """
 
     logical_lane_assignment: "list[LogicalLaneAssignment]" = betterproto2.field(
@@ -22336,7 +22770,7 @@ class RoadMarkingClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
 
@@ -22349,7 +22783,7 @@ default_message_pool.register_message(
 class Route(betterproto2.Message):
     """
 
-    \brief A route in the road network
+    brief A route in the road network
 
     A route is an e.g. planned or suggested path for an agent to travel from one
     location to another within the road network. It is composed of a list of route
@@ -22363,13 +22797,13 @@ class Route(betterproto2.Message):
 
     ## Example
 
-    The example below shows the \link Route route\endlink of a vehicle.
+    The example below shows the link Route routeendlink of a vehicle.
 
-    \image html OSI_Planned_Route.png "Route" width=850px
+    image html OSI_Planned_Route.png "Route" width=850px
 
-    The route is composed of three \link RouteSegment route segments\endlink RS1-3,
+    The route is composed of three link RouteSegment route segmentsendlink RS1-3,
     each indicated by a yellow outline. Two of the route segments
-    (RS2 and RS3) only contain a single \link LogicalLaneSegment logical lane segment\endlink
+    (RS2 and RS3) only contain a single link LogicalLaneSegment logical lane segmentendlink
     (highlighted in blue), while RS1 is composed of three
     logical lane segments (green, blue and red).
     """
@@ -22380,14 +22814,14 @@ class Route(betterproto2.Message):
     """
     The unique id of the route.
 
-    \note This field is mandatory.
+    note This field is mandatory.
 
-    \note This id must be unique within all route messages exchanged with
+    note This id must be unique within all route messages exchanged with
     one traffic participant.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     route_segment: "list[RouteRouteSegment]" = betterproto2.field(
@@ -22408,9 +22842,9 @@ default_message_pool.register_message("osi3", "Route", Route)
 class RouteLogicalLaneSegment(betterproto2.Message):
     """
 
-    \brief A segment of a logical lane.
+    brief A segment of a logical lane.
 
-    \note The LogicalLaneSegment allows that start_s > end_s.
+    note The LogicalLaneSegment allows that start_s > end_s.
     If start_s < end_s, then the traffic agent should traverse the
     segment in the logical lane's reference line definition direction.
     If end_s > start_s, then the traffic agent should traverse the
@@ -22424,17 +22858,21 @@ class RouteLogicalLaneSegment(betterproto2.Message):
     """
     The ID of the logical lane this segment belongs to.
 
-    \rules
+    rules
     refers_to: LogicalLane
-    \endrules
+    endrules
     """
 
-    start_s: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    start_s: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     S position on the logical lane where the segment starts.
     """
 
-    end_s: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    end_s: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     S position on the logical lane where the segment ends.
     """
@@ -22449,7 +22887,7 @@ default_message_pool.register_message(
 class RouteRouteSegment(betterproto2.Message):
     """
 
-    \brief A segment of a route.
+    brief A segment of a route.
 
     A route segment describes a segment of a traffic agent's route through the
     logical lanes of the road network.
@@ -22473,13 +22911,13 @@ class RouteRouteSegment(betterproto2.Message):
 
     ## Example
 
-    Consider the \link RouteSegment route segment\endlink between two intersections,
+    Consider the link RouteSegment route segmentendlink between two intersections,
     shown in the image below.
 
-    \image html OSI_Route_Segment.png "RouteSegment" width=850px
+    image html OSI_Route_Segment.png "RouteSegment" width=850px
 
     In the example, a single route segment RS with three
-    \link LogicalLaneSegment logical lane segments\endlink LL1, LL2 and LL3 is
+    link LogicalLaneSegment logical lane segmentsendlink LL1, LL2 and LL3 is
     shown. The segments are indicated by the green, blue and red highlighted areas,
     one for each underlying logical lane The starting
     s-position of each segment is indicated by the yellow dotted line and the s- prefix
@@ -22510,25 +22948,25 @@ default_message_pool.register_message("osi3", "Route.RouteSegment", RouteRouteSe
 class SensorData(betterproto2.Message):
     """
 
-    \brief The sensor information derived from \c GroundTruth and processed by
+    brief The sensor information derived from c GroundTruth and processed by
     sensor-models.
 
     The sensor information is supposed to imitate the output of real sensors.
     All information regarding the environment is given with respect to
     the virtual sensor coordinate system specified in
-    \c SensorData::mounting_position, except for feature data, which is given
+    c SensorData::mounting_position, except for feature data, which is given
     with respect to the physical sensor coordinate system specified in the
     corresponding physical sensor's coordinate system.
 
     When simulating multiple distinct sensors, each sensor can produce an
-    individual copy of the \c SensorData interface. This allows an independent
+    individual copy of the c SensorData interface. This allows an independent
     treatment of the sensors.
 
-    Sensor fusion models can consolidate multiple \c SensorData interfaces into
-    one consolidated \c SensorData interface.  This can happen either in
-    separate logical models, consuming and producing \c SensorData interfaces,
+    Sensor fusion models can consolidate multiple c SensorData interfaces into
+    one consolidated c SensorData interface.  This can happen either in
+    separate logical models, consuming and producing c SensorData interfaces,
     or it can happen as part of a combined sensor/logical model, that consumes
-    \c SensorView interfaces and directly produces one consolidated \c SensorData
+    c SensorView interfaces and directly produces one consolidated c SensorData
     output.
     """
 
@@ -22538,9 +22976,9 @@ class SensorData(betterproto2.Message):
     """
     The interface version used by the sender.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -22552,7 +22990,7 @@ class SensorData(betterproto2.Message):
     the unix epoch. Recommended is the starting time point of the
     simulation.
 
-    \note This is the point in time that the sensor data message becomes
+    note This is the point in time that the sensor data message becomes
     available to the rest of the system (i.e. the driving functions), so
     it corresponds with the sending time and thus takes the latency of
     internal processing of the sensor into account. Latencies of bus
@@ -22560,21 +22998,21 @@ class SensorData(betterproto2.Message):
     applied on top of this, if needed.
 
     The time that the actual measurement was performed (which will usually
-    correspond with the timestamp of the \c GroundTruth the sensor model
+    correspond with the timestamp of the c GroundTruth the sensor model
     processed to arrive at these results) can be found in the additional
-    field \c SensorData::last_measurement_time.
+    field c SensorData::last_measurement_time.
 
     For an ideal zero latency sensor the two timestamps would be the same
-    and would correspond with the timestamp from the current \c GroundTruth
+    and would correspond with the timestamp from the current c GroundTruth
     message.
 
     For a sensor model that does not know its own internal latencies (e.g.
     a dumb sensor with no internal time concept), the two timestamps might
-    also be identical, but delayed from the \c GroundTruth timestamp.
+    also be identical, but delayed from the c GroundTruth timestamp.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     host_vehicle_location: "BaseMoving | None" = betterproto2.field(
@@ -22583,10 +23021,10 @@ class SensorData(betterproto2.Message):
     """
     The sensors estimated location of the host vehicle
 
-    \note This value is only set by sensors that are able to
+    note This value is only set by sensors that are able to
     provide an own estimation of the host vehicle location.
-    \note Note that dimension and base_polygon need not be set.
-    \note The parent frame of \c host_vehicle_location is the sensor frame.
+    note Note that dimension and base_polygon need not be set.
+    note The parent frame of c host_vehicle_location is the sensor frame.
     """
 
     host_vehicle_location_rmse: "BaseMoving | None" = betterproto2.field(
@@ -22595,10 +23033,10 @@ class SensorData(betterproto2.Message):
     """
     The sensors estimated location error of the host vehicle
 
-    \note This value is only set by sensors that are able to
+    note This value is only set by sensors that are able to
     provide an own estimation of the host vehicle location.
-    \note Note that dimension and base_polygon need not be set.
-    \note The parent frame of \c host_vehicle_location_rmse is the sensor
+    note Note that dimension and base_polygon need not be set.
+    note The parent frame of c host_vehicle_location_rmse is the sensor
     frame.
     """
 
@@ -22612,9 +23050,9 @@ class SensorData(betterproto2.Message):
     object output; it is distinct from the IDs of its physical detectors,
     which are used in the detected features.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position: "MountingPosition | None" = betterproto2.field(
@@ -22631,27 +23069,27 @@ class SensorData(betterproto2.Message):
     of the detectors, as indicated in the technology-specific sub-views
     and sub-view configurations.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note This field is usually static during the simulation.
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note This field is usually static during the simulation.
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
+    vehicle's bounding box c MovingObject::base . c
     BaseMoving::orientation.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position_rmse: "MountingPosition | None" = betterproto2.field(
@@ -22667,7 +23105,7 @@ class SensorData(betterproto2.Message):
     """
     Sensor view w.r.t. the sensor coordinate system
 
-    This provides a copy of the \c SensorView data received by the sensor
+    This provides a copy of the c SensorView data received by the sensor
     for reference purposes.  For complex sensors or logic models this
     can be multiple copies.
     """
@@ -22679,16 +23117,16 @@ class SensorData(betterproto2.Message):
     The timestamp of the last real-world measurement (e.g. GT input) that
     this set of sensor data takes into account. This in effect is the last
     time instance of reality the measurements correspond to. See field
-    \c SensorData::timestamp for a detailed discussion. This value is also
-    the upper bound to the \c DetectedEntityHeader::measurement_time and the
-    feature data \c SensorDetectionHeader::measurement_time fields.
+    c SensorData::timestamp for a detailed discussion. This value is also
+    the upper bound to the c DetectedEntityHeader::measurement_time and the
+    feature data c SensorDetectionHeader::measurement_time fields.
     """
 
     stationary_object_header: "DetectedEntityHeader | None" = betterproto2.field(
         10, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedStationaryObject .
+    General information about the c DetectedStationaryObject .
     """
 
     stationary_object: "list[DetectedStationaryObject]" = betterproto2.field(
@@ -22702,7 +23140,7 @@ class SensorData(betterproto2.Message):
         12, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedMovingObject .
+    General information about the c DetectedMovingObject .
     """
 
     moving_object: "list[DetectedMovingObject]" = betterproto2.field(
@@ -22717,7 +23155,7 @@ class SensorData(betterproto2.Message):
         14, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedTrafficSign .
+    General information about the c DetectedTrafficSign .
     """
 
     traffic_sign: "list[DetectedTrafficSign]" = betterproto2.field(
@@ -22731,7 +23169,7 @@ class SensorData(betterproto2.Message):
         16, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedTrafficLight .
+    General information about the c DetectedTrafficLight .
     """
 
     traffic_light: "list[DetectedTrafficLight]" = betterproto2.field(
@@ -22745,7 +23183,7 @@ class SensorData(betterproto2.Message):
         18, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedRoadMarking .
+    General information about the c DetectedRoadMarking .
     """
 
     road_marking: "list[DetectedRoadMarking]" = betterproto2.field(
@@ -22760,7 +23198,7 @@ class SensorData(betterproto2.Message):
         20, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedLaneBoundary .
+    General information about the c DetectedLaneBoundary .
     """
 
     lane_boundary: "list[DetectedLaneBoundary]" = betterproto2.field(
@@ -22774,7 +23212,7 @@ class SensorData(betterproto2.Message):
         22, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedLane .
+    General information about the c DetectedLane .
     """
 
     lane: "list[DetectedLane]" = betterproto2.field(
@@ -22788,7 +23226,7 @@ class SensorData(betterproto2.Message):
         24, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    General information about the \c DetectedOccupant .
+    General information about the c DetectedOccupant .
     """
 
     occupant: "list[DetectedOccupant]" = betterproto2.field(
@@ -22823,12 +23261,14 @@ class SensorData(betterproto2.Message):
     of the so called logical/virtual sensor.
     Therefore, all information is given with respect to
     the reference frame of the logical/virtual sensor
-    \c SensorView::mounting_position (e.g. center of rear axle of the ego car)
+    c SensorView::mounting_position (e.g. center of rear axle of the ego car)
     in cartesian coordinates.
     """
 
     virtual_detection_area: "SensorDataVirtualDetectionArea | None" = (
-        betterproto2.field(28, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            28, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Virtual detection area of the sensor
@@ -22856,7 +23296,7 @@ default_message_pool.register_message("osi3", "SensorData", SensorData)
 class SensorDataVirtualDetectionArea(betterproto2.Message):
     """
 
-    \brief Virtual detection area of a sensor
+    brief Virtual detection area of a sensor
 
     The virtual detection area describes the nominal area the sensor is capable of covering
     in its current operating mode, without taking occlusion or other statistical effects into account.
@@ -22885,7 +23325,7 @@ default_message_pool.register_message(
 class SensorDataSeries(betterproto2.Message):
     """
 
-    \brief (Time) Series of \c SensorData messages that may be used for data
+    brief (Time) Series of c SensorData messages that may be used for data
     recording or internal buffering by some sensor models.
     """
 
@@ -22904,8 +23344,8 @@ default_message_pool.register_message("osi3", "SensorDataSeries", SensorDataSeri
 class SensorDataSeriesList(betterproto2.Message):
     """
 
-    \brief List of sensors where each element contains a time series of
-    \c SensorData messages.
+    brief List of sensors where each element contains a time series of
+    c SensorData messages.
     """
 
     sensor: "list[SensorDataSeries]" = betterproto2.field(
@@ -22925,7 +23365,7 @@ default_message_pool.register_message(
 class SensorDetectionHeader(betterproto2.Message):
     """
 
-    \brief The header attributes of each sensor's detection list.
+    brief The header attributes of each sensor's detection list.
     """
 
     measurement_time: "Timestamp | None" = betterproto2.field(
@@ -22936,20 +23376,22 @@ class SensorDetectionHeader(betterproto2.Message):
     was processed or at which it is transmitted) in the global synchronized
     time.
 
-    \note See \c SensorData::timestamp and
-    \c SensorData::last_measurement_time for detailed discussions on the
+    note See c SensorData::timestamp and
+    c SensorData::last_measurement_time for detailed discussions on the
     semantics of time-related fields.
     """
 
-    cycle_counter: "int" = betterproto2.field(2, betterproto2.TYPE_UINT64)
+    cycle_counter: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT64
+    )
     """
     Monotonous counter to identify the exact cycle.
     In general the detection function is called periodically and
-    \c #cycle_counter corresponds to the number of periods.
+    c #cycle_counter corresponds to the number of periods.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     mounting_position: "MountingPosition | None" = betterproto2.field(
@@ -22975,12 +23417,12 @@ class SensorDetectionHeader(betterproto2.Message):
     identical to sensor detection frame's origin. Detections are defined in
     the sensor detection frame which uses e.g. spherical coordinates.
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position_rmse: "MountingPosition | None" = betterproto2.field(
@@ -22999,46 +23441,48 @@ class SensorDetectionHeader(betterproto2.Message):
     data_qualifier: "SensorDetectionHeaderDataQualifier" = betterproto2.field(
         5,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: SensorDetectionHeaderDataQualifier.try_value(0),
+        default_factory=lambda: SensorDetectionHeaderDataQualifier(0),
     )
     """
     Data Qualifier expresses to what extent the content of this event can be
     relied on.
     """
 
-    number_of_valid_detections: "int" = betterproto2.field(6, betterproto2.TYPE_UINT32)
+    number_of_valid_detections: "int" = betterproto2.field(
+        6, betterproto2.TYPE_UINT32
+    )
     """
     The current number of valid detections in the detections list.
 
-    \note This value has to be set if the list contains invalid detections.
+    note This value has to be set if the list contains invalid detections.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     sensor_id: "Identifier | None" = betterproto2.field(
         7, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The ID of the sensor at host vehicle's \c #mounting_position.
+    The ID of the sensor at host vehicle's c #mounting_position.
 
-    This ID can equal \c SensorData::sensor_id, if \c SensorData holds only
+    This ID can equal c SensorData::sensor_id, if c SensorData holds only
     data from one sensor/sensor model.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     extended_qualifier: "SensorDetectionHeaderExtendedQualifier" = betterproto2.field(
         8,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: SensorDetectionHeaderExtendedQualifier.try_value(0),
+        default_factory=lambda: SensorDetectionHeaderExtendedQualifier(0),
     )
     """
     The extended qualifier describes the reason (not the effect) why the
-    event data qualifier, \c #data_qualifier, is reduced or not available.
+    event data qualifier, c #data_qualifier, is reduced or not available.
     """
 
 
@@ -23051,25 +23495,25 @@ default_message_pool.register_message(
 class SensorView(betterproto2.Message):
     """
 
-    \brief The sensor view is derived from \c GroundTruth and used as
+    brief The sensor view is derived from c GroundTruth and used as
     input to sensor models.
 
     The sensor view information is supposed to provide input to sensor
     models for simulation of actual real sensors.
     All information regarding the environment is given with respect to
     the virtual sensor coordinate system specified in
-    \c SensorView::mounting_position, except for the individual physical
+    c SensorView::mounting_position, except for the individual physical
     technology-specific data, which is given with respect to the physical
     sensor coordinate system specified in the corresponding physical sensor's
-    \c #mounting_position, and the \c #global_ground_truth, which is given in
+    c #mounting_position, and the c #global_ground_truth, which is given in
     global coordinates.
 
     When simulating multiple distinct sensors, each sensor can consume an
-    individual copy of the \c SensorView interface. This allows an independent
+    individual copy of the c SensorView interface. This allows an independent
     treatment of the sensors.
 
     Alternatively combined sensor models can also consume one combined
-    \c SensorView, with either combined or separate \c SensorData outputs,
+    c SensorView, with either combined or separate c SensorData outputs,
     depending on model architecture.
     """
 
@@ -23079,9 +23523,9 @@ class SensorView(betterproto2.Message):
     """
     The interface version used by the sender (simulation environment).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -23093,29 +23537,29 @@ class SensorView(betterproto2.Message):
     coincide with the UNIX epoch. Recommended is the starting time point of
     the simulation.
 
-    \note For sensor view data this timestamp coincides both with the
+    note For sensor view data this timestamp coincides both with the
     notional simulation time the data applies to and the time it was sent
     (there is no inherent latency for sensor view data, as opposed to
     sensor data).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     sensor_id: "Identifier | None" = betterproto2.field(
         3, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The ID of the sensor at host vehicle's \c #mounting_position.
+    The ID of the sensor at host vehicle's c #mounting_position.
 
     This is the ID of the virtual sensor, to be used in its detected
     object output; it is distinct from the IDs of its physical detectors,
     which are used in the detected features.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position: "MountingPosition | None" = betterproto2.field(
@@ -23134,27 +23578,27 @@ class SensorView(betterproto2.Message):
     indicated in the technology-specific sub-views and sub-view
     configurations.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note This field is usually static during the simulation.
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note This field is usually static during the simulation.
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
+    vehicle's bounding box c MovingObject::base . c
     BaseMoving::orientation.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position_rmse: "MountingPosition | None" = betterproto2.field(
@@ -23183,11 +23627,11 @@ class SensorView(betterproto2.Message):
 
     This is the ground truth that is provided to the sensor model by the
     simulation environment. It may be filtered as per the requirements of
-    the sensor model as expressed by the \c SensorViewConfiguration
+    the sensor model as expressed by the c SensorViewConfiguration
     message(s) that where exchanged during the simulation initialization
     phase.
 
-    \note The host vehicle is always contained in the ground truth provided,
+    note The host vehicle is always contained in the ground truth provided,
     regardless of any filtering. The ground truth MUST contain at least as
     much of the ground truth data, as is requested by the sensor model, but
     MAY always contain more data, since the filtering is intended only as
@@ -23199,12 +23643,12 @@ class SensorView(betterproto2.Message):
         8, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The ID of the host vehicle in the \c #global_ground_truth data.
+    The ID of the host vehicle in the c #global_ground_truth data.
 
-    \rules
+    rules
     refers_to: 'MovingObject'
     is_set
-    \endrules
+    endrules
     """
 
     generic_sensor_view: "list[GenericSensorView]" = betterproto2.field(
@@ -23250,7 +23694,7 @@ default_message_pool.register_message("osi3", "SensorView", SensorView)
 class SensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the \c SensorView to be provided
+    brief The configuration settings for the c SensorView to be provided
     by the environment simulation.
 
     This message can be provided by the sensor model to the environment
@@ -23270,7 +23714,7 @@ class SensorViewConfiguration(betterproto2.Message):
     Mechanisms to parametrize sensor models are currently packaging-specific,
     i.e. they depend on the packaging mechanism chosen:  For FMU-packaging
     the parametrization can be implemented using normal FMU parameters,
-    and the requested \c SensorViewConfiguration can depend on those parameter
+    and the requested c SensorViewConfiguration can depend on those parameter
     values by being defined as a calculatedParameter.
 
     The sensor-technology specific configurations are intended to allow
@@ -23295,7 +23739,7 @@ class SensorViewConfiguration(betterproto2.Message):
 
     In order to optimize the workload and bandwidth needed for sensor
     simulation, OSI packaging mechanisms can specify the ability to
-    exchange \c SensorViewConfiguration messages not only prior to
+    exchange c SensorViewConfiguration messages not only prior to
     simulation startup, but also dynamically during simulation runs,
     thereby allowing dynamic input configuration switching to only
     request data that is needed in the current sensor mode. However
@@ -23311,9 +23755,9 @@ class SensorViewConfiguration(betterproto2.Message):
     """
     The interface version used by the sender (simulation environment).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     sensor_id: "Identifier | None" = betterproto2.field(
@@ -23329,9 +23773,9 @@ class SensorViewConfiguration(betterproto2.Message):
     The ID is to be provided by the environment simulation, the sensor
     model is not in a position to provide a useful default value.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     mounting_position: "MountingPosition | None" = betterproto2.field(
@@ -23348,22 +23792,22 @@ class SensorViewConfiguration(betterproto2.Message):
     of the detectors, as indicated in the technology-specific sub-views
     and sub-view configurations.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -23377,33 +23821,39 @@ class SensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the sensor.
 
     This determines the limit of the cone of interest of ground truth
     that the simulation environment has to provide.
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(6, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        6, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the sensor.
 
     This determines the limit of the cone of interest of ground truth
     that the simulation environment has to provide.
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
 
-    range: "float" = betterproto2.field(7, betterproto2.TYPE_DOUBLE)
+    range: "float" = betterproto2.field(
+        7, betterproto2.TYPE_DOUBLE
+    )
     """
     Maximum range of the sensor
 
@@ -23412,9 +23862,9 @@ class SensorViewConfiguration(betterproto2.Message):
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     update_cycle_time: "Timestamp | None" = betterproto2.field(
@@ -23427,7 +23877,7 @@ class SensorViewConfiguration(betterproto2.Message):
     new input data.
 
     Unit: s
-    \note In the case of FMU packaging this will correspond to the
+    note In the case of FMU packaging this will correspond to the
     communication step size.
     """
 
@@ -23468,51 +23918,63 @@ class SensorViewConfiguration(betterproto2.Message):
     Unit: s
     """
 
-    omit_static_information: "bool" = betterproto2.field(11, betterproto2.TYPE_BOOL)
+    omit_static_information: "bool" = betterproto2.field(
+        11, betterproto2.TYPE_BOOL
+    )
     """
     Omit Static Information
 
-    This flag specifies whether \c GroundTruth information that
+    This flag specifies whether c GroundTruth information that
     was already provided using a GroundTruthInit parameter (e.g. <a href="https://opensimulationinterface.github.io/osi-antora-generator/asamosi/latest/sensor-model/spec/ground_truth_init_parameters.html">OSMP GroundTruthInit</a>)
-    at initialization time shall be omitted from the \c SensorView
+    at initialization time shall be omitted from the c SensorView
     ground truth information.
 
-    Setting the \c #omit_static_information field allows a clear split
+    Setting the c #omit_static_information field allows a clear split
     between the dynamic simulation data, which is contained in ground truth
-    messages with the \c #omit_static_information flag, and the static
+    messages with the c #omit_static_information flag, and the static
     simulation data, which is contained in the (OSMP) GroundTruthInit.
     """
 
     generic_sensor_view_configuration: "list[GenericSensorViewConfiguration]" = (
-        betterproto2.field(1000, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1000, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Generic Sensor View Configuration(s).
     """
 
     radar_sensor_view_configuration: "list[RadarSensorViewConfiguration]" = (
-        betterproto2.field(1001, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1001, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Radar-specific Sensor View Configuration(s).
     """
 
     lidar_sensor_view_configuration: "list[LidarSensorViewConfiguration]" = (
-        betterproto2.field(1002, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1002, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Lidar-specific Sensor View Configuration(s).
     """
 
     camera_sensor_view_configuration: "list[CameraSensorViewConfiguration]" = (
-        betterproto2.field(1003, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1003, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Camera-specific Sensor View Configuration(s).
     """
 
     ultrasonic_sensor_view_configuration: "list[UltrasonicSensorViewConfiguration]" = (
-        betterproto2.field(1004, betterproto2.TYPE_MESSAGE, repeated=True)
+        betterproto2.field(
+            1004, betterproto2.TYPE_MESSAGE, repeated=True
+        )
     )
     """
     Ultrasonic-specific Sensor View Configuration(s).
@@ -23528,13 +23990,15 @@ default_message_pool.register_message(
 class SpatialSignalStrength(betterproto2.Message):
     """
 
-    \brief Definition of a spatial signal strength distribution
+    brief Definition of a spatial signal strength distribution
     for an emitting / transmitting / receiving entity
     with a horizontal and a vertical angle
     and the corresponding signal strength in dBm (decibels per milliwatt).
     """
 
-    horizontal_angle: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    horizontal_angle: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Horizontal angle (azimuth) of emission / transmission / reception
     in the entity's coordinate system.
@@ -23542,7 +24006,9 @@ class SpatialSignalStrength(betterproto2.Message):
     Unit: rad
     """
 
-    vertical_angle: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    vertical_angle: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Vertical angle (elevation) of emission / transmission / reception
     in the entity's coordinate system.
@@ -23550,7 +24016,9 @@ class SpatialSignalStrength(betterproto2.Message):
     Unit: rad
     """
 
-    signal_strength: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    signal_strength: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Emitted / transmitted /received signal strength
     of the emitting / transmitting / receiving entity
@@ -23572,42 +24040,48 @@ default_message_pool.register_message(
 class Spherical3D(betterproto2.Message):
     """
 
-    \brief A spherical representation for a point or vector in 3D space.
+    brief A spherical representation for a point or vector in 3D space.
 
     Used e.g., for low level representations of radar detections.
 
     Azimuth and elevation are defined as the rotations that would have to be
     applied to the local frame (e.g sensor frame definition in
-    \c SensorDetectionHeader) to make its x-axis point towards the referenced
+    c SensorDetectionHeader) to make its x-axis point towards the referenced
     point or to align it with the referenced vector. The rotations are to be
-    performed \b azimuth \b first (around the z-axis) and \b elevation \b second
-    (around the new y-axis) to follow the definition of \c Orientation3d. For the
+    performed b azimuth b first (around the z-axis) and b elevation b second
+    (around the new y-axis) to follow the definition of c Orientation3d. For the
     sense of each rotation, the right-hand rule applies.
 
-    \f$ vector_{cartesian} :=
-    Rotation( \f$ \c #elevation \f$ )*Rotation( \f$ \c #azimuth \f$ )*
-    (Unit_{vector_x}* \f$ \c #distance \f$ ) \f$
+    f$ vector_{cartesian} :=
+    Rotation( f$ c #elevation f$ )*Rotation( f$ c #azimuth f$ )*
+    (Unit_{vector_x}* f$ c #distance f$ ) f$
     """
 
-    distance: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The radial distance.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    azimuth: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    azimuth: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The azimuth (horizontal) angle.
 
     Unit: rad
     """
 
-    elevation: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    elevation: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The elevation (vertical) angle.
 
@@ -23622,12 +24096,12 @@ default_message_pool.register_message("osi3", "Spherical3d", Spherical3D)
 class StatePoint(betterproto2.Message):
     """
 
-    \brief The StatePoint definition
+    brief The StatePoint definition
 
     A reference to a time and pose.  Typically used in a repeated field to define
     a trajectory.
 
-    \note The StatePoint definition does not define mandatory fields.
+    note The StatePoint definition does not define mandatory fields.
     The context defines how and what fields are used.  For example, in some cases
     only the pose variables are relevant and the timestamp is ignored.
     """
@@ -23638,7 +24112,7 @@ class StatePoint(betterproto2.Message):
     """
     The timestamp of a StatePoint.
 
-    \note Zero time does not need to coincide with the UNIX epoch.
+    note Zero time does not need to coincide with the UNIX epoch.
     """
 
     position: "Vector3D | None" = betterproto2.field(
@@ -23647,8 +24121,8 @@ class StatePoint(betterproto2.Message):
     """
     Position in the global coordinate system.
 
-    \note Remark: The definition of the reference point follows the
-    specification of the \c BaseMoving message, if not specified otherwise
+    note Remark: The definition of the reference point follows the
+    specification of the c BaseMoving message, if not specified otherwise
     in the message the StatePoint is used in.
     """
 
@@ -23667,13 +24141,13 @@ default_message_pool.register_message("osi3", "StatePoint", StatePoint)
 class StationaryObject(betterproto2.Message):
     """
 
-    \brief A simulated object that is neither a moving object (vehicle or
-    \c MovingObject e.g. pedestrian, animal, or vehicle) nor a traffic related
-    object (\c TrafficLight, \c TrafficSign).
+    brief A simulated object that is neither a moving object (vehicle or
+    c MovingObject e.g. pedestrian, animal, or vehicle) nor a traffic related
+    object (c TrafficLight, c TrafficSign).
 
-    \image html OSI_BaseStationary.svg
+    image html OSI_BaseStationary.svg
 
-    \c StationaryObject excludes traffic lights, traffic signs and road marking
+    c StationaryObject excludes traffic lights, traffic signs and road marking
     """
 
     id: "Identifier | None" = betterproto2.field(
@@ -23682,10 +24156,10 @@ class StationaryObject(betterproto2.Message):
     """
     The ID of the object.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -23702,11 +24176,13 @@ class StationaryObject(betterproto2.Message):
     The classification of the stationary object.
     """
 
-    model_reference: "str" = betterproto2.field(4, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        4, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the stationary object.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
@@ -23722,7 +24198,7 @@ class StationaryObject(betterproto2.Message):
     For example, to reference an object defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = "object" for t_road_objects_object and
                       "bridge" for t_road_objects_bridge
@@ -23736,14 +24212,14 @@ class StationaryObject(betterproto2.Message):
     * identifier[0] = Entity-Type ("MiscObject")
     * identifier[1] = name of MiscObject in Entity
 
-    \note The following rule, described in OpenDRIVE, also applies:
+    note The following rule, described in OpenDRIVE, also applies:
     * Objects derived from OpenSCENARIO shall not be mixed with objects
       described in OpenDRIVE.
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated because one object may be derived
+    note The value has to be repeated because one object may be derived
           from more than one origin source, for example, from a scenario file
           and from sensors.
     """
@@ -23763,13 +24239,13 @@ default_message_pool.register_message("osi3", "StationaryObject", StationaryObje
 class StationaryObjectClassification(betterproto2.Message):
     """
 
-    \brief Classification data for a stationary object.
+    brief Classification data for a stationary object.
     """
 
     type: "StationaryObjectClassificationType" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: StationaryObjectClassificationType.try_value(0),
+        default_factory=lambda: StationaryObjectClassificationType(0),
     )
     """
     The type of the object.
@@ -23778,7 +24254,7 @@ class StationaryObjectClassification(betterproto2.Message):
     material: "StationaryObjectClassificationMaterial" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: StationaryObjectClassificationMaterial.try_value(0),
+        default_factory=lambda: StationaryObjectClassificationMaterial(0),
     )
     """
     The dominating material of the structure.
@@ -23787,7 +24263,7 @@ class StationaryObjectClassification(betterproto2.Message):
     density: "StationaryObjectClassificationDensity" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: StationaryObjectClassificationDensity.try_value(0),
+        default_factory=lambda: StationaryObjectClassificationDensity(0),
     )
     """
     The dominating density of the material of the structure.
@@ -23796,14 +24272,14 @@ class StationaryObjectClassification(betterproto2.Message):
     color: "StationaryObjectClassificationColor" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: StationaryObjectClassificationColor.try_value(0),
+        default_factory=lambda: StationaryObjectClassificationColor(0),
     )
     """
     The dominating color of the material of the structure.
 
-    \attention DEPRECATED: This color enum will be removed in version
-    4.0.0. Use the field \c #color_description (\c ColorDescription) of
-    \c StationaryObject instead.
+    attention DEPRECATED: This color enum will be removed in version
+    4.0.0. Use the field c #color_description (c ColorDescription) of
+    c StationaryObject instead.
     """
 
     emitting_structure_attribute: "StationaryObjectClassificationEmittingStructureAttribute | None" = betterproto2.field(
@@ -23819,9 +24295,9 @@ class StationaryObjectClassification(betterproto2.Message):
     """
     The IDs of the lanes that the object is assigned to.
 
-    \note Might be multiple IDs if the object stretches over multiple lanes.
+    note Might be multiple IDs if the object stretches over multiple lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     assigned_lane_percentage: "list[float]" = betterproto2.field(
@@ -23830,9 +24306,9 @@ class StationaryObjectClassification(betterproto2.Message):
     """
     Percentage values of the object width in the corresponding lane.
 
-    \note Might be multiple percentages if the object stretches over multiple lanes.
+    note Might be multiple percentages if the object stretches over multiple lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
     logical_lane_assignment: "list[LogicalLaneAssignment]" = betterproto2.field(
@@ -23841,7 +24317,7 @@ class StationaryObjectClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
 
@@ -23854,7 +24330,7 @@ default_message_pool.register_message(
 class StationaryObjectClassificationEmittingStructureAttribute(betterproto2.Message):
     """
 
-    \brief Attributes of type emitting structure. The horizontal_angle and the vertical_angle in
+    brief Attributes of type emitting structure. The horizontal_angle and the vertical_angle in
     emitted_spatial_intensity are symmetrical across the normal, which is defined by the mounting position
     of the emitting structure.
     """
@@ -23874,7 +24350,7 @@ class StationaryObjectClassificationEmittingStructureAttribute(betterproto2.Mess
     Spatial signal strength distribution of the emitted electromagnetic wave.
     For every sample in wavelength_data an emitted_spatial_signal_strength has to be defined.
 
-    \note emitted_spatial_signal_strength.size() = WavelengthData.samples_number.size()
+    note emitted_spatial_signal_strength.size() = WavelengthData.samples_number.size()
     """
 
 
@@ -23889,15 +24365,15 @@ default_message_pool.register_message(
 class StreamingUpdate(betterproto2.Message):
     """
 
-    \brief The streaming update interface enables simulation entities to send
+    brief The streaming update interface enables simulation entities to send
     partial updates to other modules that favor performance (especially latency)
     over data completeness/consistency (e.g. visualization applications).
 
     Static and/or non-relevant objects can be omitted as required for the
-    specific use case. Adding an object's unique id to the repeated field \c
+    specific use case. Adding an object's unique id to the repeated field c
     obsolete_id indicates that it will no longer be updated from then on.
 
-    \note The receiver of partial streaming update messages can only rely on the
+    note The receiver of partial streaming update messages can only rely on the
     most up-to-date information at the corresponding timestamp. E.g. omitting
     objects does not indicate static behavior but it may be sufficient for the
     use case to update certain objects at a later point in time.
@@ -23909,9 +24385,9 @@ class StreamingUpdate(betterproto2.Message):
     """
     The interface version used by the sender.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -23924,9 +24400,9 @@ class StreamingUpdate(betterproto2.Message):
     Zero time does not need to coincide with the UNIX epoch. 
     Recommended is the starting time point of the simulation.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     stationary_object_update: "list[StationaryObject]" = betterproto2.field(
@@ -23959,7 +24435,9 @@ class StreamingUpdate(betterproto2.Message):
     """
 
     environmental_conditions_update: "EnvironmentalConditions | None" = (
-        betterproto2.field(7, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            7, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     Conditions of the environment.
@@ -23985,7 +24463,7 @@ class StreamingUpdate(betterproto2.Message):
     Entities that will no longer be updated, because they are considered
     obsolete by the sender.
 
-    \note IDs are globally unique.
+    note IDs are globally unique.
     """
 
 
@@ -23996,7 +24474,7 @@ default_message_pool.register_message("osi3", "StreamingUpdate", StreamingUpdate
 class Timestamp(betterproto2.Message):
     """
 
-    \brief A timestamp.
+    brief A timestamp.
 
     Names and types of fields are chosen in accordance to
     google/protobuf/timestamp.proto to allow a possible switch in the future.
@@ -24005,19 +24483,23 @@ class Timestamp(betterproto2.Message):
     mandatory.
     """
 
-    seconds: "int" = betterproto2.field(1, betterproto2.TYPE_INT64)
+    seconds: "int" = betterproto2.field(
+        1, betterproto2.TYPE_INT64
+    )
     """
     The number of seconds since the start of e.g. the simulation / system /
     vehicle.
 
     Unit: s
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    nanos: "int" = betterproto2.field(2, betterproto2.TYPE_UINT32)
+    nanos: "int" = betterproto2.field(
+        2, betterproto2.TYPE_UINT32
+    )
     """
     The number of nanoseconds since the start of the last second.
 
@@ -24025,10 +24507,10 @@ class Timestamp(betterproto2.Message):
 
     Unit: ns
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 999999999
-    \endrules
+    endrules
     """
 
 
@@ -24039,29 +24521,31 @@ default_message_pool.register_message("osi3", "Timestamp", Timestamp)
 class TrafficAction(betterproto2.Message):
     """
 
-    \brief Atomic traffic actions to be performed.
+    brief Atomic traffic actions to be performed.
 
     The transmitted commands are the atomic traffic actions described by
     this message.
 
-    \note This message is notionally a multiple choice selection, that is, only
+    note This message is notionally a multiple choice selection, that is, only
     certain combinations of atomic traffic actions shall be transmitted within
     certain time intervals, for example, for plausibility reasons. The restrictions
     regarding that are not part of this message, yet are seen as a task of the
     scenario description, for example, OpenSCENARIO.
 
-    \note All traffic actions are sent only once just before they are about
+    note All traffic actions are sent only once just before they are about
     to start. This is also true, if their execution is expected to
     take simulation time. To inform the traffic participant
     model that certain actions must or shall be terminated, there are
     explicit actions nested inside this message (AbortActionsAction,
     EndActionsAction), which hold a reference to the respective actions.
-    Furthermore, there exists a \c TrafficCommandUpdate message for the
+    Furthermore, there exists a c TrafficCommandUpdate message for the
     traffic participant to report back on potentially dismissed actions.
     """
 
     follow_trajectory_action: "TrafficActionFollowTrajectoryAction | None" = (
-        betterproto2.field(1, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            1, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     A FollowTrajectoryAction.
@@ -24117,7 +24601,9 @@ class TrafficAction(betterproto2.Message):
     """
 
     longitudinal_distance_action: "TrafficActionLongitudinalDistanceAction | None" = (
-        betterproto2.field(9, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            9, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     A LongitudinalDistanceAction.
@@ -24131,7 +24617,9 @@ class TrafficAction(betterproto2.Message):
     """
 
     lateral_distance_action: "TrafficActionLateralDistanceAction | None" = (
-        betterproto2.field(11, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            11, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     A LateralDistanceAction.
@@ -24151,7 +24639,7 @@ default_message_pool.register_message("osi3", "TrafficAction", TrafficAction)
 @dataclass(eq=False, repr=False)
 class TrafficActionAbortActionsAction(betterproto2.Message):
     """
-    \brief AbortActionsAction.
+    brief AbortActionsAction.
 
     This action tells a traffic participant that it should immediately
     abort the execution of other actions referenced within this action.
@@ -24186,7 +24674,7 @@ default_message_pool.register_message(
 class TrafficActionAcquireGlobalPositionAction(betterproto2.Message):
     """
 
-    \brief Acquire global position action.
+    brief Acquire global position action.
 
     This action assigns a route to a traffic participant. The route
     assigned will be the shortest route (along roads or satisfying any
@@ -24196,7 +24684,7 @@ class TrafficActionAcquireGlobalPositionAction(betterproto2.Message):
     As with all routing actions, the exact way this route is achieved is
     under the control of the traffic participant model.
 
-    \note This action is aligned with the AcquirePositionAction of
+    note This action is aligned with the AcquirePositionAction of
     OpenSCENARIO 1.0 using a WorldPosition position argument.
     """
 
@@ -24215,8 +24703,8 @@ class TrafficActionAcquireGlobalPositionAction(betterproto2.Message):
 
     The position refers to the center (x,y,z) of the bounding box.
 
-    \note Remark: The definition of the reference point follows the
-    specification of the \c BaseMoving message.
+    note Remark: The definition of the reference point follows the
+    specification of the c BaseMoving message.
     """
 
     orientation: "Orientation3D | None" = betterproto2.field(
@@ -24241,7 +24729,7 @@ default_message_pool.register_message(
 class TrafficActionActionHeader(betterproto2.Message):
     """
 
-    \brief The action header
+    brief The action header
     """
 
     action_id: "Identifier | None" = betterproto2.field(
@@ -24250,14 +24738,14 @@ class TrafficActionActionHeader(betterproto2.Message):
     """
     The unique id of the action.
 
-    \note This field is mandatory.
+    note This field is mandatory.
 
-    \note This id must be unique within all traffic command
+    note This id must be unique within all traffic command
     messages exchanged with one traffic participant.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
 
@@ -24270,14 +24758,14 @@ default_message_pool.register_message(
 class TrafficActionCustomAction(betterproto2.Message):
     """
 
-    \brief Custom Action.
+    brief Custom Action.
 
     This action assigns a custom command to a traffic participant.
     The syntax and semantics of this action is implementation defined.
     It is entirely up to each individual traffic participant which
     custom commands it supports, if any, and how they must be phrased.
 
-    \note This action is aligned with CustomCommandAction of OpenSCENARIO 1.0
+    note This action is aligned with CustomCommandAction of OpenSCENARIO 1.0
     providing a customizable user defined action.
     """
 
@@ -24288,22 +24776,26 @@ class TrafficActionCustomAction(betterproto2.Message):
     The Action Header.
     """
 
-    command: "str" = betterproto2.field(2, betterproto2.TYPE_STRING)
+    command: "str" = betterproto2.field(
+        2, betterproto2.TYPE_STRING
+    )
     """
     The custom command given to the traffic participant. Used to convey a specific instruction
     (for example, "exit_highway"), or event (for example, "left_indicator_activated").
 
-    \note This corresponds to the content of the OpenSCENARIO 1.0 CustomCommandAction field.
+    note This corresponds to the content of the OpenSCENARIO 1.0 CustomCommandAction field.
     """
 
-    command_type: "str" = betterproto2.field(3, betterproto2.TYPE_STRING)
+    command_type: "str" = betterproto2.field(
+        3, betterproto2.TYPE_STRING
+    )
     """
     The type of the custom command given to the traffic participant. Can be used to simplify
     how commands are grouped. For example, the command_type could be "sensor_failure" and the
     command value could be "front_right_camera".  This avoids long commands, like
     "sensor_failure: front_right_camera".
 
-    \note This corresponds to the "type" attribute of the OpenSCENARIO 1.0 CustomCommandAction.
+    note This corresponds to the "type" attribute of the OpenSCENARIO 1.0 CustomCommandAction.
     """
 
 
@@ -24315,28 +24807,34 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionDynamicConstraints(betterproto2.Message):
     """
-    \brief DynamicConstraints
+    brief DynamicConstraints
 
     This message is used in Longitudinal and Lateral Distance Actions as
     constraints on the TrafficParticipant not allowing them to exceed/drop below
     certain speeds/acceleration levels.
     """
 
-    max_acceleration: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    max_acceleration: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Maximum acceleration the distance controller is allowed to use for keeping distance. 
 
     Unit: m/s^2
     """
 
-    max_deceleration: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    max_deceleration: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Maximum deceleration the distance controller is allowed to use for keeping distance. 
 
     Unit: m/s^2
     """
 
-    max_speed: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    max_speed: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Maximum speed the distance controller is allowed to use for keeping distance. 
 
@@ -24352,7 +24850,7 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionEndActionsAction(betterproto2.Message):
     """
-    \brief End actions action.
+    brief End actions action.
 
     This action tells a traffic participant that the execution of the
     referenced actions is regarded as successfully performed. The
@@ -24387,16 +24885,16 @@ default_message_pool.register_message(
 class TrafficActionFollowPathAction(betterproto2.Message):
     """
 
-    \brief Follow path action.
+    brief Follow path action.
 
     Controls a traffic participant to follow a path using vertices. It
     specifies the motion in space independent of time.
 
-    \note The StatePoint messages in path_point only requires a specified
+    note The StatePoint messages in path_point only requires a specified
     position field. The orientation can be set optionally. Any
     timestamp StatePoint values are ignored.
 
-    \note This action is aligned with the FollowTrajectoryAction of
+    note This action is aligned with the FollowTrajectoryAction of
     OpenSCENARIO 1.0 using a 3/6D trajectory with shape Polyline.
     """
 
@@ -24418,10 +24916,12 @@ class TrafficActionFollowPathAction(betterproto2.Message):
     The orientation fields can be set depending on the constrain_orientation
     field being true.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
-    constrain_orientation: "bool" = betterproto2.field(3, betterproto2.TYPE_BOOL)
+    constrain_orientation: "bool" = betterproto2.field(
+        3, betterproto2.TYPE_BOOL
+    )
     """
     Constrain the orientation of the traffic participant as specified
     by the path points.
@@ -24434,7 +24934,7 @@ class TrafficActionFollowPathAction(betterproto2.Message):
     following_mode: "TrafficActionFollowingMode" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficActionFollowingMode.try_value(0),
+        default_factory=lambda: TrafficActionFollowingMode(0),
     )
     """
     Specify the following mode that should be employed in executing
@@ -24451,15 +24951,15 @@ default_message_pool.register_message(
 class TrafficActionFollowTrajectoryAction(betterproto2.Message):
     """
 
-    \brief Follow trajectory action.
+    brief Follow trajectory action.
 
     Controls a traffic participant to follow a trajectory using vertices
     with timings. It specifies the motion in space as a function of time.
 
-    \note The StatePoint messages in trajectory_point requires a
+    note The StatePoint messages in trajectory_point requires a
     specified timestamp.
 
-    \note This action is aligned with the FollowTrajectoryAction of
+    note This action is aligned with the FollowTrajectoryAction of
     OpenSCENARIO 1.0 using a 4/7D trajectory with shape Polyline.
     """
 
@@ -24480,10 +24980,12 @@ class TrafficActionFollowTrajectoryAction(betterproto2.Message):
     trajectory points. The orientation fields can be set
     depending on the constrain_orientation field being true.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
-    constrain_orientation: "bool" = betterproto2.field(3, betterproto2.TYPE_BOOL)
+    constrain_orientation: "bool" = betterproto2.field(
+        3, betterproto2.TYPE_BOOL
+    )
     """
     Constrain the orientation of the traffic participant as specified
     by the trajectory points.
@@ -24496,7 +24998,7 @@ class TrafficActionFollowTrajectoryAction(betterproto2.Message):
     following_mode: "TrafficActionFollowingMode" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficActionFollowingMode.try_value(0),
+        default_factory=lambda: TrafficActionFollowingMode(0),
     )
     """
     Specify the following mode that should be employed in executing
@@ -24513,7 +25015,7 @@ default_message_pool.register_message(
 class TrafficActionLaneChangeAction(betterproto2.Message):
     """
 
-    \brief Lane change action.
+    brief Lane change action.
 
     This action assigns a lane change to a traffic participant. The fields
     of this message enable different levels of constraint for the traffic
@@ -24521,7 +25023,7 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     supposed to be small, the dynamics shape or even the duration and
     the distance for the lane change can be omitted.
 
-    \note This action is aligned with LaneChangeAction of OpenSCENARIO 1.0
+    note This action is aligned with LaneChangeAction of OpenSCENARIO 1.0
     defining the targeted lane and optionally the parametrization of the
     lane change.
     """
@@ -24533,7 +25035,9 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     The action header.
     """
 
-    relative_target_lane: "int" = betterproto2.field(2, betterproto2.TYPE_INT32)
+    relative_target_lane: "int" = betterproto2.field(
+        2, betterproto2.TYPE_INT32
+    )
     """
     Targeted lane relative to the current lane.
 
@@ -24543,7 +25047,7 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     dynamics_shape: "TrafficActionDynamicsShape" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficActionDynamicsShape.try_value(0),
+        default_factory=lambda: TrafficActionDynamicsShape(0),
     )
     """
     Specified shape of the lane change action. 
@@ -24551,7 +25055,9 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     lane change is open to the traffic participant model. 
     """
 
-    duration: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    duration: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Duration of the lane change.
 
@@ -24562,7 +25068,9 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     Unit: s
     """
 
-    distance: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Distance of the lane change.
 
@@ -24582,13 +25090,13 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionLaneOffsetAction(betterproto2.Message):
     """
-    \brief Lane Offset Action
+    brief Lane Offset Action
 
     This action assigns a targeted lane offset to a traffic participant.
     The action can be constrained by specifying the dynamics shape of the
     lateral transition profile.
 
-    \note This action is aligned with LaneOffsetAction of OpenSCENARIO 1.0.
+    note This action is aligned with LaneOffsetAction of OpenSCENARIO 1.0.
     """
 
     action_header: "TrafficActionActionHeader | None" = betterproto2.field(
@@ -24598,7 +25106,9 @@ class TrafficActionLaneOffsetAction(betterproto2.Message):
     The Action Header
     """
 
-    target_lane_offset: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    target_lane_offset: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Targeted lane offset in meters relative to the centerline of the
     current traffic participant's lane. Positive values mean left of the centerline, 
@@ -24610,7 +25120,7 @@ class TrafficActionLaneOffsetAction(betterproto2.Message):
     dynamics_shape: "TrafficActionDynamicsShape" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficActionDynamicsShape.try_value(0),
+        default_factory=lambda: TrafficActionDynamicsShape(0),
     )
     """
     Specified transition shape of reaching the lane offset. 
@@ -24627,7 +25137,7 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionLateralDistanceAction(betterproto2.Message):
     """
-    \brief Lateral Distance Action
+    brief Lateral Distance Action
 
     The action tells the (host) traffic participant to reach a certain lateral distance relative to
     a target traffic participant. The lateral distance is defined along an imaginative perpendicular line
@@ -24635,10 +25145,10 @@ class TrafficActionLateralDistanceAction(betterproto2.Message):
     The interpolation strategy between centerline points for calculating that distance along the imaginative
     perpendicular line is open to the traffic participant modeler.
 
-    \note This action is aligned with LateralDistanceAction of OpenSCENARIO 1.0
+    note This action is aligned with LateralDistanceAction of OpenSCENARIO 1.0
     defining the reference traffic participant and the distance.
 
-    \note Limitation: This concept currently only works for lanes with a centerline, i.e. for lanes
+    note Limitation: This concept currently only works for lanes with a centerline, i.e. for lanes
     of TYPE_DRIVING, not for lanes of TYPE_NONDRIVING or TYPE_INTERSECTION.
     """
 
@@ -24656,14 +25166,18 @@ class TrafficActionLateralDistanceAction(betterproto2.Message):
     Id of the reference entity the lateral distance shall be kept to.
     """
 
-    distance: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Lateral distance value. 
 
     Unit: m
     """
 
-    freespace: "bool" = betterproto2.field(4, betterproto2.TYPE_BOOL)
+    freespace: "bool" = betterproto2.field(
+        4, betterproto2.TYPE_BOOL
+    )
     """
     Determine the measurement of lateral distance between the traffic
     participant receiving this action and the reference traffic
@@ -24672,7 +25186,9 @@ class TrafficActionLateralDistanceAction(betterproto2.Message):
     False: Lateral distance is measured using the distance between the center of each object's bounding box.
     """
 
-    follow: "bool" = betterproto2.field(5, betterproto2.TYPE_BOOL)
+    follow: "bool" = betterproto2.field(
+        5, betterproto2.TYPE_BOOL
+    )
     """
     Define whether the traffic participant should only reach the distance once 
     or if it should also keep the distance after having reached it.
@@ -24699,7 +25215,7 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionLongitudinalDistanceAction(betterproto2.Message):
     """
-    \brief Longitudinal Distance Action
+    brief Longitudinal Distance Action
 
     The action tells the (host) traffic participant to reach a certain longitudinal distance
     relative to a target traffic participant. The longitudinal distance is defined as the distance
@@ -24707,10 +25223,10 @@ class TrafficActionLongitudinalDistanceAction(betterproto2.Message):
     The interpolation strategy between centerline points for calculating
     that distance along the centerline is open to the traffic participant modeler.
 
-    \note This action is aligned with LongitudinalDistanceAction of OpenSCENARIO 1.0
+    note This action is aligned with LongitudinalDistanceAction of OpenSCENARIO 1.0
     defining the reference traffic participant and the distance.
 
-    \note Limitation: This concept currently only works for lanes with a centerline, i.e. for lanes
+    note Limitation: This concept currently only works for lanes with a centerline, i.e. for lanes
     of TYPE_DRIVING, not for lanes of TYPE_NONDRIVING or TYPE_INTERSECTION.
     """
 
@@ -24728,14 +25244,18 @@ class TrafficActionLongitudinalDistanceAction(betterproto2.Message):
     Unique Id of the reference traffic participant to which the distance is defined.
     """
 
-    distance: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The distance to reach along the lane
 
     Unit: m
     """
 
-    freespace: "bool" = betterproto2.field(4, betterproto2.TYPE_BOOL)
+    freespace: "bool" = betterproto2.field(
+        4, betterproto2.TYPE_BOOL
+    )
     """
     Determine the measurement of longitudinal distance between the traffic
     participant receiving this action and the reference traffic
@@ -24744,7 +25264,9 @@ class TrafficActionLongitudinalDistanceAction(betterproto2.Message):
     False: Longitudinal distance is measured using the distance between the center of each object's bounding box.
     """
 
-    follow: "bool" = betterproto2.field(5, betterproto2.TYPE_BOOL)
+    follow: "bool" = betterproto2.field(
+        5, betterproto2.TYPE_BOOL
+    )
     """
     Define whether the traffic participant should only reach the distance once 
     or if it should also keep the distance after having reached it.
@@ -24774,14 +25296,14 @@ default_message_pool.register_message(
 class TrafficActionSpeedAction(betterproto2.Message):
     """
 
-    \brief Speed action.
+    brief Speed action.
 
     This action assigns a targeted speed to a traffic participant.
     The action can be constrained by specifying the dynamics
     shape or even the duration and the distance of the acceleration /
     deceleration process.
 
-    \note This action is aligned with SpeedAction of OpenSCENARIO 1.0
+    note This action is aligned with SpeedAction of OpenSCENARIO 1.0
     defining the targeted speed and optionally the parametrization of the
     speed transition.
     """
@@ -24793,7 +25315,9 @@ class TrafficActionSpeedAction(betterproto2.Message):
     The action header
     """
 
-    absolute_target_speed: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    absolute_target_speed: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Targeted absolute speed.
     """
@@ -24801,7 +25325,7 @@ class TrafficActionSpeedAction(betterproto2.Message):
     dynamics_shape: "TrafficActionDynamicsShape" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficActionDynamicsShape.try_value(0),
+        default_factory=lambda: TrafficActionDynamicsShape(0),
     )
     """
     Specified transition shape of the speed change action. 
@@ -24809,7 +25333,9 @@ class TrafficActionSpeedAction(betterproto2.Message):
     speed change is open to the traffic participant model. 
     """
 
-    duration: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    duration: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Duration of the speed change.
 
@@ -24820,7 +25346,9 @@ class TrafficActionSpeedAction(betterproto2.Message):
     Unit: s
     """
 
-    distance: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Distance of the speed change.
 
@@ -24840,12 +25368,12 @@ default_message_pool.register_message(
 @dataclass(eq=False, repr=False)
 class TrafficActionTeleportAction(betterproto2.Message):
     """
-    \brief Teleport Action
+    brief Teleport Action
 
     This Action allows to immediately place a traffic participant to
     another position.
 
-    \note This action is aligned with the TeleportAction of
+    note This action is aligned with the TeleportAction of
     OpenSCENARIO 1.0 using a WorldPosition position argument.
     """
 
@@ -24864,8 +25392,8 @@ class TrafficActionTeleportAction(betterproto2.Message):
 
     The position refers to the center (x,y,z) of the bounding box.
 
-    \note Remark: The definition of the reference point follows the
-    specification of the \c BaseMoving message.
+    note Remark: The definition of the reference point follows the
+    specification of the c BaseMoving message.
     """
 
     orientation: "Orientation3D | None" = betterproto2.field(
@@ -24888,11 +25416,11 @@ default_message_pool.register_message(
 class TrafficCommand(betterproto2.Message):
     """
 
-    \brief The scenario engine provides control commands in the traffic command
+    brief The scenario engine provides control commands in the traffic command
     message to traffic participant models. The control commands are based on
     the scenario.
 
-    \note This interface is currently just a placeholder and will be
+    note This interface is currently just a placeholder and will be
     changed in experimental ways to support basic scenario execution.
     In the future this interface shall be aligned with the level of
     atomic actions as described in OpenSCENARIO 1.0 or later.
@@ -24904,9 +25432,9 @@ class TrafficCommand(betterproto2.Message):
     """
     The interface version used by the sender (scenario engine).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -24918,14 +25446,14 @@ class TrafficCommand(betterproto2.Message):
     coincide with the UNIX epoch. It is recommended to use zero timestamp as 
     the starting time point of the simulation.
 
-    \note For traffic command data the timestamp coincides both with
+    note For traffic command data the timestamp coincides both with
     the notional simulation time the data applies to and the time it was sent
     There is no inherent latency for traffic command data, as opposed
     to sensor data.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     traffic_participant_id: "Identifier | None" = betterproto2.field(
@@ -24934,9 +25462,9 @@ class TrafficCommand(betterproto2.Message):
     """
     The ID of this traffic participant.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     action: "list[TrafficAction]" = betterproto2.field(
@@ -24945,7 +25473,7 @@ class TrafficCommand(betterproto2.Message):
     """
     Commanded traffic action(s) if any.
 
-    \note If more than one action is supplied in one command message
+    note If more than one action is supplied in one command message
     all actions are executed in parallel.
     """
 
@@ -24957,20 +25485,20 @@ default_message_pool.register_message("osi3", "TrafficCommand", TrafficCommand)
 class TrafficCommandUpdate(betterproto2.Message):
     """
 
-    \brief This message enables the traffic participant model to send updates
-    to the scenario engine about the execution of its received \c TrafficCommand input.
+    brief This message enables the traffic participant model to send updates
+    to the scenario engine about the execution of its received c TrafficCommand input.
     While traffic actions are usually executed successfully by the traffic participant,
     there may be actions which the traffic participant is not able to execute
     either for capability or situation-specific reasons.
 
     This message allows a traffic participant to send feedback if an action
-    cannot happen as requested by the \c TrafficCommand. Currently, it is out of
+    cannot happen as requested by the c TrafficCommand. Currently, it is out of
     scope to standardize the exact reason for non-executability or failed execution
     because the reason can have multiple explanations. The responsibility for deciding
     about successful or unsuccessful scenario execution lies fully on the side of the
     scenario engine.
 
-    \note This interface is currently just a placeholder and could be
+    note This interface is currently just a placeholder and could be
     changed in experimental ways to support semantics of upcoming OpenSCENARIO
     versions.
     """
@@ -24981,9 +25509,9 @@ class TrafficCommandUpdate(betterproto2.Message):
     """
     The interface version used by the sender (traffic participant model).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -24995,9 +25523,9 @@ class TrafficCommandUpdate(betterproto2.Message):
     coincide with the UNIX epoch. It is recommended to use zero timestamp as 
     the starting time point of the simulation.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     traffic_participant_id: "Identifier | None" = betterproto2.field(
@@ -25005,11 +25533,11 @@ class TrafficCommandUpdate(betterproto2.Message):
     )
     """
     The ID of this traffic participant which must coincide with a prior sent ID, cf.
-    \c TrafficCommand::traffic_participant_id.
+    c TrafficCommand::traffic_participant_id.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     dismissed_action: "list[TrafficCommandUpdateDismissedAction]" = betterproto2.field(
@@ -25017,18 +25545,18 @@ class TrafficCommandUpdate(betterproto2.Message):
     )
     """
     Actions which a traffic participant dismisses and which are not yet ended or 
-    aborted by the scenario engine (via a \c TrafficCommand::action.end_actions_action or a 
-    \c TrafficCommand::action.abort_actions_action). 
-    Thus, the valid time interval for this action is after the \c TrafficCommand::timestamp
+    aborted by the scenario engine (via a c TrafficCommand::action.end_actions_action or a 
+    c TrafficCommand::action.abort_actions_action). 
+    Thus, the valid time interval for this action is after the c TrafficCommand::timestamp
     for the respective action, which tells a traffic participant to perform an action, has 
-    been sent, but must not be after a \c TrafficCommand::timestamp of the respective End-Actions-Action 
+    been sent, but must not be after a c TrafficCommand::timestamp of the respective End-Actions-Action 
     or Abort-Actions-Action, which tells a traffic participant to end or abort that action. 
 
-    Furthermore, a \c TrafficCommand::action.end_actions_action or a 
-    \c TrafficCommand::action.abort_actions_action must not be sent after this action 
-    (the \c TrafficCommandUpdate::dismissed_action) for a respective action has been sent.
+    Furthermore, a c TrafficCommand::action.end_actions_action or a 
+    c TrafficCommand::action.abort_actions_action must not be sent after this action 
+    (the c TrafficCommandUpdate::dismissed_action) for a respective action has been sent.
 
-    \note If more than one dismissed action is supplied it means that
+    note If more than one dismissed action is supplied it means that
     multiple actions are regarded as dismissed.
     """
 
@@ -25042,7 +25570,7 @@ default_message_pool.register_message(
 class TrafficCommandUpdateDismissedAction(betterproto2.Message):
     """
 
-    \brief Action which a traffic participant dismisses.
+    brief Action which a traffic participant dismisses.
     """
 
     dismissed_action_id: "Identifier | None" = betterproto2.field(
@@ -25051,17 +25579,19 @@ class TrafficCommandUpdateDismissedAction(betterproto2.Message):
     """
     Dismissed traffic action id from the perspective of this traffic participant, if any.
 
-    \note A dismissed traffic action id identifies a \c TrafficCommand::action which cannot be executed or 
+    note A dismissed traffic action id identifies a c TrafficCommand::action which cannot be executed or 
     completed by the traffic participant. This field must have the same value as the 
-    \c ActionHeader::action_id of a prior sent \c TrafficCommand and must correspond
+    c ActionHeader::action_id of a prior sent c TrafficCommand and must correspond
     to the same traffic participant.
     """
 
-    failure_reason: "str" = betterproto2.field(2, betterproto2.TYPE_STRING)
+    failure_reason: "str" = betterproto2.field(
+        2, betterproto2.TYPE_STRING
+    )
     """
     Information about the reason of failure.
 
-    \note This is a custom, informal string without a standardized meaning. 
+    note This is a custom, informal string without a standardized meaning. 
     """
 
 
@@ -25074,9 +25604,9 @@ default_message_pool.register_message(
 class TrafficLight(betterproto2.Message):
     """
 
-    \brief A traffic light.
+    brief A traffic light.
 
-    \image html OSI_TrafficLight.svg
+    image html OSI_TrafficLight.svg
 
     One traffic light message defines a single 'bulb' and not a box of several
     bulbs, e.g. red, yellow, green are three separate traffic lights.
@@ -25088,10 +25618,10 @@ class TrafficLight(betterproto2.Message):
     """
     The ID of the traffic light.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -25100,7 +25630,7 @@ class TrafficLight(betterproto2.Message):
     """
     The base parameters of the traffic light.
 
-    \c BaseStationary::orientation x-axis is view normal of the traffic
+    c BaseStationary::orientation x-axis is view normal of the traffic
     light's icon.
     """
 
@@ -25111,11 +25641,13 @@ class TrafficLight(betterproto2.Message):
     The classification data for the traffic light.
     """
 
-    model_reference: "str" = betterproto2.field(4, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        4, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the traffic light.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
@@ -25131,14 +25663,14 @@ class TrafficLight(betterproto2.Message):
     For example, to reference a signal defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = id of t_road_signals_signal
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note The value has to be repeated, because one lane segment may be
+    note The value has to be repeated, because one lane segment may be
           derived from more than one origin segment. Multiple sources
           may be added as reference as well, for example, a map and sensors.
     """
@@ -25149,9 +25681,9 @@ class TrafficLight(betterproto2.Message):
     """
     The visual color of the traffic light.
 
-    \note This does not represent the semantic classification but the visual
+    note This does not represent the semantic classification but the visual
     appearance.  For semantic classification of the traffic light use the color
-    field in \c Classification.
+    field in c Classification.
     """
 
 
@@ -25162,32 +25694,32 @@ default_message_pool.register_message("osi3", "TrafficLight", TrafficLight)
 class TrafficLightClassification(betterproto2.Message):
     """
 
-    \brief \c Classification data for a traffic light.
+    brief c Classification data for a traffic light.
     """
 
     color: "TrafficLightClassificationColor" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficLightClassificationColor.try_value(0),
+        default_factory=lambda: TrafficLightClassificationColor(0),
     )
     """
     The semantic color of the traffic light.
 
-    \note The color types represent the semantic color classification of a 
+    note The color types represent the semantic color classification of a 
     traffic light only. They do not represent an actual visual appearance.
 
-    \note If the color of the traffic light is known (from history or
-    geometrical arrangement) and the state \c #mode is
-    \c #MODE_OFF then \c #color could remain unchanged.
+    note If the color of the traffic light is known (from history or
+    geometrical arrangement) and the state c #mode is
+    c #MODE_OFF then c #color could remain unchanged.
     If traffic light displays images in different colors and traffic
-    light is off ( \c #mode =  \c #MODE_OFF), then \c #color = \c
+    light is off ( c #mode =  c #MODE_OFF), then c #color = c
     #COLOR_OTHER .
     """
 
     icon: "TrafficLightClassificationIcon" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficLightClassificationIcon.try_value(0),
+        default_factory=lambda: TrafficLightClassificationIcon(0),
     )
     """
     The icon of the traffic light.
@@ -25196,22 +25728,24 @@ class TrafficLightClassification(betterproto2.Message):
     mode: "TrafficLightClassificationMode" = betterproto2.field(
         3,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficLightClassificationMode.try_value(0),
+        default_factory=lambda: TrafficLightClassificationMode(0),
     )
     """
     The operating mode of the traffic light.
     """
 
-    counter: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    counter: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     The value of the countdown counter.
     Unit: % or s
 
-    \note Set value only if traffic light bulb is a countdown counter.
+    note Set value only if traffic light bulb is a countdown counter.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
     assigned_lane_id: "list[Identifier]" = betterproto2.field(
@@ -25222,14 +25756,16 @@ class TrafficLightClassification(betterproto2.Message):
     Might be multiple if the traffic light is valid for multiple driving
     lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
-    is_out_of_service: "bool" = betterproto2.field(6, betterproto2.TYPE_BOOL)
+    is_out_of_service: "bool" = betterproto2.field(
+        6, betterproto2.TYPE_BOOL
+    )
     """
     Boolean flag to indicate that the traffic light is taken out of service.
     This can be achieved by visibly crossing the light, covering it completely
@@ -25242,7 +25778,7 @@ class TrafficLightClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field names.
+    note OSI uses singular instead of plural for repeated field names.
     """
 
 
@@ -25255,7 +25791,7 @@ default_message_pool.register_message(
 class TrafficSign(betterproto2.Message):
     """
 
-    \brief A traffic sign.
+    brief A traffic sign.
 
     All coordinates and orientations are relative to the global ground truth
     coordinate system.
@@ -25267,10 +25803,10 @@ class TrafficSign(betterproto2.Message):
     """
     The ID of the traffic sign.
 
-    \rules
+    rules
     is_globally_unique
     is_set
-    \endrules
+    endrules
     """
 
     main_sign: "TrafficSignMainSign | None" = betterproto2.field(
@@ -25300,18 +25836,18 @@ class TrafficSign(betterproto2.Message):
     For example, to reference a signal defined in an OpenDRIVE map
     the items should be set as follows:
     * reference = URI to map, can remain empty if identical with definition
-                  in \c GroundTruth::map_reference
+                  in c GroundTruth::map_reference
     * type = "net.asam.opendrive"
     * identifier[0] = id of t_road_signals_signal
 
-    \note For non-ASAM Standards, it is implementation-specific how
+    note For non-ASAM Standards, it is implementation-specific how
           source_reference is resolved.
 
-    \note If an individual identification of MainSign and SupplementarySign
+    note If an individual identification of MainSign and SupplementarySign
           is necessary, this should be done via multiple individual
           entries of this source_reference.
 
-    \note The value has to be repeated, because one lane segment may be
+    note The value has to be repeated, because one lane segment may be
           derived from more than one origin segment. Multiple sources
           may be added as reference as well, for example, a map and sensors.
     """
@@ -25324,9 +25860,9 @@ default_message_pool.register_message("osi3", "TrafficSign", TrafficSign)
 class TrafficSignMainSign(betterproto2.Message):
     """
 
-    \brief Main sign of the traffic sign.
+    brief Main sign of the traffic sign.
 
-    \image html OSI_MainSign.svg
+    image html OSI_MainSign.svg
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -25335,12 +25871,12 @@ class TrafficSignMainSign(betterproto2.Message):
     """
     The base parameters of the traffic sign.
 
-    The orientation of the bounding box \c #base
-    ( \c BaseStationary::orientation ) is defined as follows:
-    The z-axis of the given \c BaseStationary::orientation is the vector
+    The orientation of the bounding box c #base
+    ( c BaseStationary::orientation ) is defined as follows:
+    The z-axis of the given c BaseStationary::orientation is the vector
     from the bottom to the top of the traffic sign's 2D image plate.
     (Normally it is equal to the ground truth z-axis.)
-    The x-axis of the given \c BaseStationary::orientation is view
+    The x-axis of the given c BaseStationary::orientation is view
     normal of the traffic sign's image.
     This x-axis points from the traffic sign's image in the direction
     from where a 'viewer' could see the traffic sign image.
@@ -25353,11 +25889,13 @@ class TrafficSignMainSign(betterproto2.Message):
     The classification of the traffic sign.
     """
 
-    model_reference: "str" = betterproto2.field(3, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        3, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the traffic sign.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
@@ -25371,30 +25909,30 @@ default_message_pool.register_message(
 class TrafficSignMainSignClassification(betterproto2.Message):
     """
 
-    \brief \c Classification data for a traffic sign.
+    brief c Classification data for a traffic sign.
 
-    \image html OSI_DirectionScope.svg
+    image html OSI_DirectionScope.svg
 
-    When constructing a \c MainSign, consider the use of the following
+    When constructing a c MainSign, consider the use of the following
     members:
     - In order to include numerical values indicated in the sign,
-    use \c TrafficSignValue::value. Accompany this value with an
-    indication of its unit of measure given by \c
+    use c TrafficSignValue::value. Accompany this value with an
+    indication of its unit of measure given by c
     TrafficSignValue::value_unit.
     - In order to include strings of text indicated in the sign,
-    use \c TrafficSignValue::text. The interpretation of this text is
+    use c TrafficSignValue::text. The interpretation of this text is
     left to a user-defined procedure.
     - Some traffic signs exist in two variants that have a similar
     semantic meaning and the property that the one results from flipping
-    the other one around the vertical axis. The optional member \c
+    the other one around the vertical axis. The optional member c
     #vertically_mirrored has been provided to enable an explicit choice
     between both variants.
     - For signs in which an arrow symbol is included to constraint their
-    scope, the \c #direction_scope member has been provided to indicate
+    scope, the c #direction_scope member has been provided to indicate
     the direction of the arrow from the perspective of a viewer standing
     right in front of the sign and looking straight towards it.
 
-    \note The definition of the sign types is thought to be independent
+    note The definition of the sign types is thought to be independent
     of the country, even if the images used in this documentation are
     based on the German Road Traffic Regulations (StVO).
     """
@@ -25402,7 +25940,7 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     variability: "TrafficSignVariability" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignVariability.try_value(0),
+        default_factory=lambda: TrafficSignVariability(0),
     )
     """
     This value indicates if a sign is static or dynamic regarding its
@@ -25413,12 +25951,12 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     type: "TrafficSignMainSignClassificationType" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignMainSignClassificationType.try_value(0),
+        default_factory=lambda: TrafficSignMainSignClassificationType(0),
     )
     """
     The type of the traffic sign.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -25432,16 +25970,16 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     Additional value associated with the traffic sign, e.g. value of
     the speed limit.
 
-    \note Field need not be set if traffic sign type does not require
+    note Field need not be set if traffic sign type does not require
     it.
     """
 
-    direction_scope: "TrafficSignMainSignClassificationDirectionScope" = betterproto2.field(
-        4,
-        betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignMainSignClassificationDirectionScope.try_value(
-            0
-        ),
+    direction_scope: "TrafficSignMainSignClassificationDirectionScope" = (
+        betterproto2.field(
+            4,
+            betterproto2.TYPE_ENUM,
+            default_factory=lambda: TrafficSignMainSignClassificationDirectionScope(0),
+        )
     )
     """
     Some traffic signs have an additional arrow symbol as an
@@ -25454,18 +25992,18 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     temporarily constructed right-handed local coordinate system:
     Set z-axis to match the z-axis of the ground truth coordinate
     system. Set x-axis to the view normal of the traffic sign's image
-    (\c #base \c BaseStationary::orientation x-axis).
+    (c #base c BaseStationary::orientation x-axis).
     Right: direction of the local coordinate system's positive
     y-axis. Left: opposite direction of the local coordinate system's
     y-axis i.e. negative y-axis',
 
-    \note If a traffic sign image is on the ground (there is no
+    note If a traffic sign image is on the ground (there is no
     definition for right or left). Normally, this is a road marking
     and not a traffic sign. Actual traffic signs lying on the ground
     might have been intentionally unmounted and, hence, not be in
     effect.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -25479,15 +26017,17 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     The IDs of the lanes that the sign is assigned to.
     May be multiple if the sign is valid for multiple lanes.
 
-    \note OSI uses singular instead of plural for repeated field
+    note OSI uses singular instead of plural for repeated field
     names.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
-    vertically_mirrored: "bool" = betterproto2.field(6, betterproto2.TYPE_BOOL)
+    vertically_mirrored: "bool" = betterproto2.field(
+        6, betterproto2.TYPE_BOOL
+    )
     """
     Some traffic signs exist in two variants that have
     a similar semantic meaning but differ in that the symbol
@@ -25495,24 +26035,28 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     other with respect to the vertical axis.
     For some scenarios it might be relevant to choose the
     reflected version of a reference sign. This can be done
-    by setting the \c #vertically_mirrored boolean to \c true.
+    by setting the c #vertically_mirrored boolean to c true.
     As for every boolean in the protocol buffers language, the
-    default value of \c #vertically_mirrored is \c false.
+    default value of c #vertically_mirrored is c false.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
     <a href="https://releases.asam.net/OpenDRIVE/1.6.0/ASAM_OpenDRIVE_BS_V1-6-0.html#_signals">OpenDRIVE</a>.
     """
 
-    is_out_of_service: "bool" = betterproto2.field(7, betterproto2.TYPE_BOOL)
+    is_out_of_service: "bool" = betterproto2.field(
+        7, betterproto2.TYPE_BOOL
+    )
     """
     Boolean flag to indicate that a traffic sign is taken out of service.
     This can be achieved by visibly crossing the sign or covering it completely.
     """
 
-    country: "str" = betterproto2.field(8, betterproto2.TYPE_STRING)
+    country: "str" = betterproto2.field(
+        8, betterproto2.TYPE_STRING
+    )
     """
     Country specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25524,7 +26068,9 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     special OpenDRIVE country for generic signs.<br>
     """
 
-    country_revision: "str" = betterproto2.field(9, betterproto2.TYPE_STRING)
+    country_revision: "str" = betterproto2.field(
+        9, betterproto2.TYPE_STRING
+    )
     """
     Revision specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25535,7 +26081,9 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     e.g. "2017"
     """
 
-    code: "str" = betterproto2.field(10, betterproto2.TYPE_STRING)
+    code: "str" = betterproto2.field(
+        10, betterproto2.TYPE_STRING
+    )
     """
     Code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25548,7 +26096,9 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     e.g. http://www.vzkat.de/2017/VzKat.htm
     """
 
-    sub_code: "str" = betterproto2.field(11, betterproto2.TYPE_STRING)
+    sub_code: "str" = betterproto2.field(
+        11, betterproto2.TYPE_STRING
+    )
     """
     Sub-code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25568,7 +26118,7 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field
+    note OSI uses singular instead of plural for repeated field
     names.
     """
 
@@ -25582,9 +26132,9 @@ default_message_pool.register_message(
 class TrafficSignSupplementarySign(betterproto2.Message):
     """
 
-    \brief Additional supplementary sign modifying the main sign.
+    brief Additional supplementary sign modifying the main sign.
 
-    \image html OSI_SupplementarySign.svg
+    image html OSI_SupplementarySign.svg
     """
 
     base: "BaseStationary | None" = betterproto2.field(
@@ -25593,29 +26143,33 @@ class TrafficSignSupplementarySign(betterproto2.Message):
     """
     The base parameters of the supplementary traffic sign.
 
-    The orientation of the bounding box \c SupplementarySign::base
-    ( \c BaseStationary::orientation ) is defined as follows:
-    The z-axis of the given \c BaseStationary::orientation is the vector
+    The orientation of the bounding box c SupplementarySign::base
+    ( c BaseStationary::orientation ) is defined as follows:
+    The z-axis of the given c BaseStationary::orientation is the vector
     from the bottom to the top of the supplementary traffic sign's 2D
     image plate. (Normally it is equal to the ground truth z-axis.) The
-    x-axis of the given \c BaseStationary::orientation is view normal of
+    x-axis of the given c BaseStationary::orientation is view normal of
     the supplementary traffic sign's image. This x-axis points from the
     supplementary traffic sign's image in the direction from where a
     'viewer' could see the supplementary traffic sign image.
     """
 
     classification: "TrafficSignSupplementarySignClassification | None" = (
-        betterproto2.field(2, betterproto2.TYPE_MESSAGE, optional=True)
+        betterproto2.field(
+            2, betterproto2.TYPE_MESSAGE, optional=True
+        )
     )
     """
     The classification of the supplementary traffic sign.
     """
 
-    model_reference: "str" = betterproto2.field(3, betterproto2.TYPE_STRING)
+    model_reference: "str" = betterproto2.field(
+        3, betterproto2.TYPE_STRING
+    )
     """
     Opaque reference of an associated 3D model of the supplementary traffic sign.
 
-    \note It is implementation-specific how model_references are resolved to
+    note It is implementation-specific how model_references are resolved to
     3d models.
     """
 
@@ -25629,19 +26183,19 @@ default_message_pool.register_message(
 class TrafficSignSupplementarySignClassification(betterproto2.Message):
     """
 
-    \brief \c Classification data for a supplementary traffic sign.
+    brief c Classification data for a supplementary traffic sign.
 
-    When constructing a \c SupplementarySign, consider the use of the
+    When constructing a c SupplementarySign, consider the use of the
     following members:
     - In order to include numerical values indicated in the sign,
-    use \c TrafficSignValue::value. Accompany this value with an
-    indication of its unit of measure given by \c
+    use c TrafficSignValue::value. Accompany this value with an
+    indication of its unit of measure given by c
     TrafficSignValue::value_unit.
     - In order to include strings of text indicated in the sign,
-    use \c TrafficSignValue::text. The interpretation of this text is
+    use c TrafficSignValue::text. The interpretation of this text is
     left to a user-defined procedure.
 
-    \note The definition of the sign types is thought to be independent
+    note The definition of the sign types is thought to be independent
     of the country, even if the images used in this documentation are
     based on the German Road Traffic Regulations (StVO).
     """
@@ -25649,7 +26203,7 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     variability: "TrafficSignVariability" = betterproto2.field(
         1,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignVariability.try_value(0),
+        default_factory=lambda: TrafficSignVariability(0),
     )
     """
     Variability.
@@ -25658,14 +26212,12 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     type: "TrafficSignSupplementarySignClassificationType" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignSupplementarySignClassificationType.try_value(
-            0
-        ),
+        default_factory=lambda: TrafficSignSupplementarySignClassificationType(0),
     )
     """
     Type of the supplementary sign.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -25679,10 +26231,10 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     Additional value(s) associated with the traffic sign, e.g.
     length, mass or starting time in time range.
 
-    \note Field need not be set if traffic sign type does not require
+    note Field need not be set if traffic sign type does not require
     it.
 
-    \note OSI uses singular instead of plural for repeated field
+    note OSI uses singular instead of plural for repeated field
     names.
     """
 
@@ -25693,12 +26245,12 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     The IDs of the lanes that the sign is assigned to.
     May be multiple if the sign is valid for multiple lanes.
 
-    \note OSI uses singular instead of plural for repeated field
+    note OSI uses singular instead of plural for repeated field
     names.
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
     actor: "list[TrafficSignSupplementarySignClassificationActor]" = betterproto2.field(
@@ -25709,7 +26261,7 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     bikes, cars, trucks and so on), that the supplementary sign
     makes reference to.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
@@ -25722,20 +26274,24 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     """
     A direction arrow shown on the supplementary sign.
 
-    \attention Deprecated: A revision is planned for version 4.0.0 to
+    attention Deprecated: A revision is planned for version 4.0.0 to
     replace the type enum with a more semantically defined enumeration,
     with the exact sign specification being relegated to the newly
     introduced 4-tupel traffic sign catalog specification as used in
     <a href="https://releases.asam.net/OpenDRIVE/1.6.0/ASAM_OpenDRIVE_BS_V1-6-0.html#_signals">OpenDRIVE</a>.
     """
 
-    is_out_of_service: "bool" = betterproto2.field(7, betterproto2.TYPE_BOOL)
+    is_out_of_service: "bool" = betterproto2.field(
+        7, betterproto2.TYPE_BOOL
+    )
     """
     Boolean flag to indicate that the supplementary traffic sign is taken out of service.
     This can be achieved by visibly crossing the sign or covering it completely.
     """
 
-    country: "str" = betterproto2.field(8, betterproto2.TYPE_STRING)
+    country: "str" = betterproto2.field(
+        8, betterproto2.TYPE_STRING
+    )
     """
     Country specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25747,7 +26303,9 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     special OpenDRIVE country for generic signs.<br>
     """
 
-    country_revision: "str" = betterproto2.field(9, betterproto2.TYPE_STRING)
+    country_revision: "str" = betterproto2.field(
+        9, betterproto2.TYPE_STRING
+    )
     """
     Revision specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25758,7 +26316,9 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     e.g. "2017"
     """
 
-    code: "str" = betterproto2.field(10, betterproto2.TYPE_STRING)
+    code: "str" = betterproto2.field(
+        10, betterproto2.TYPE_STRING
+    )
     """
     Code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25771,7 +26331,9 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     e.g. http://www.vzkat.de/2017/VzKat.htm
     """
 
-    sub_code: "str" = betterproto2.field(11, betterproto2.TYPE_STRING)
+    sub_code: "str" = betterproto2.field(
+        11, betterproto2.TYPE_STRING
+    )
     """
     Sub-code specification of the traffic sign catalog specification
     that identifies the actual traffic sign. This is part of the
@@ -25791,7 +26353,7 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     """
     Assignment of this object to logical lanes.
 
-    \note OSI uses singular instead of plural for repeated field
+    note OSI uses singular instead of plural for repeated field
     names.
     """
 
@@ -25807,7 +26369,7 @@ default_message_pool.register_message(
 class TrafficSignSupplementarySignClassificationArrow(betterproto2.Message):
     """
 
-    \brief An arrow denoting a direction shown on the traffic sign.
+    brief An arrow denoting a direction shown on the traffic sign.
     """
 
     lane_id: "list[Identifier]" = betterproto2.field(
@@ -25816,13 +26378,15 @@ class TrafficSignSupplementarySignClassificationArrow(betterproto2.Message):
     """
     The IDs of the lanes the arrow applies to
 
-    \rules
+    rules
     refers_to: Lane
-    \endrules
+    endrules
     """
 
     direction: "list[TrafficSignSupplementarySignClassificationArrowDirection]" = (
-        betterproto2.field(2, betterproto2.TYPE_ENUM, repeated=True)
+        betterproto2.field(
+            2, betterproto2.TYPE_ENUM, repeated=True
+        )
     )
     """
     The direction to which the arrow points to
@@ -25840,12 +26404,14 @@ default_message_pool.register_message(
 class TrafficSignValue(betterproto2.Message):
     """
 
-    \brief Additional value associated with a traffic sign or road marking,
+    brief Additional value associated with a traffic sign or road marking,
     its unit and its text. The interpretation of this text is left to a
     user-defined procedure
     """
 
-    value: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    value: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Additional value associated with a traffic sign or road marking,
     e.g. value of a speed limit.
@@ -25854,13 +26420,15 @@ class TrafficSignValue(betterproto2.Message):
     value_unit: "TrafficSignValueUnit" = betterproto2.field(
         2,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: TrafficSignValueUnit.try_value(0),
+        default_factory=lambda: TrafficSignValueUnit(0),
     )
     """
     Unit for additional value.
     """
 
-    text: "str" = betterproto2.field(3, betterproto2.TYPE_STRING)
+    text: "str" = betterproto2.field(
+        3, betterproto2.TYPE_STRING
+    )
     """
     Text associated with a sign, e.g. the name of a location whose distance
     to the sign is indicated therein. The interpretation of this text is
@@ -25875,13 +26443,13 @@ default_message_pool.register_message("osi3", "TrafficSignValue", TrafficSignVal
 class TrafficUpdate(betterproto2.Message):
     """
 
-    \brief The traffic update message is provided by traffic participant
+    brief The traffic update message is provided by traffic participant
     models to provide updates to their position, state and future
     trajectory back to the simulation environment. The message is
     designed to update data of exactly one traffic participant,
     optionally with an attached trailer.
 
-    \note For reasons of convenience and consistency, the updated
+    note For reasons of convenience and consistency, the updated
     information is provided as a MovingObject.  Certain fields of this
     sub-message are not required to be set and will be ignored by the
     simulation environment, because they are static information.
@@ -25895,9 +26463,9 @@ class TrafficUpdate(betterproto2.Message):
     """
     The interface version used by the sender (traffic participant model).
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -25909,14 +26477,14 @@ class TrafficUpdate(betterproto2.Message):
     coincide with the UNIX epoch. Recommended is the starting time point of
     the simulation.
 
-    \note For moving object update data the timestamp coincides both with
+    note For moving object update data the timestamp coincides both with
     the notional simulation time the data applies to and the time it was sent.
     There is no inherent latency for moving object update data, as opposed
     to sensor data.
 
-    \rules
+    rules
     is_set
-    \endrules
+    endrules
     """
 
     update: "list[MovingObject]" = betterproto2.field(
@@ -25925,12 +26493,12 @@ class TrafficUpdate(betterproto2.Message):
     """
     Updated traffic participant data
 
-    \note It is not expected that static fields are populated. If they
+    note It is not expected that static fields are populated. If they
     are, they may be ignored by the receiver of this message, for example, dimensions,
     or vehicle category.  All dynamic fields should be populated where known,
     for example, velocity, light states, or future trajectory.
 
-    \note The field is repeated because it is possible to have a trailer attached to
+    note The field is repeated because it is possible to have a trailer attached to
     a vehicle, see MovingObject::VehicleClassification::has_trailer and
     MovingObject::VehicleClassification::trailer_id. 
     """
@@ -25946,10 +26514,10 @@ class TrafficUpdate(betterproto2.Message):
     It is also allowed to only specify internal_state for a subset of the
     objects referenced in the update.
 
-    \note This covers any information which cannot be externally perceived
+    note This covers any information which cannot be externally perceived
     and therefore cannot be included in messages available in ground truth.
 
-    \note The id field from this should match the id in the update field
+    note The id field from this should match the id in the update field
     above where the same vehicle is being referenced.
     """
 
@@ -25961,7 +26529,7 @@ default_message_pool.register_message("osi3", "TrafficUpdate", TrafficUpdate)
 class UltrasonicDetection(betterproto2.Message):
     """
 
-    \brief Ultrasonic detection from the sensor (same sensor as sender and
+    brief Ultrasonic detection from the sensor (same sensor as sender and
     receiver).
 
     Direct detections:
@@ -25970,23 +26538,25 @@ class UltrasonicDetection(betterproto2.Message):
 
     Receiving: Ultrasonic Sensor ID 1
 
-    \image html OSI_USSensor_direct.svg
+    image html OSI_USSensor_direct.svg
 
-    \note Direct detections lie on circles with the sensor as center.
+    note Direct detections lie on circles with the sensor as center.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the detection not based on history. Value does
     not depend on any past experience with similar detections.
 
-    \note Used as confidence measure where a low value means less confidence
+    note Used as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -25995,22 +26565,24 @@ class UltrasonicDetection(betterproto2.Message):
     """
     ID of the detected object this detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
-    distance: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    distance: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Measured distance (radius) of the detection.
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
 
@@ -26023,7 +26595,7 @@ default_message_pool.register_message(
 class UltrasonicDetectionData(betterproto2.Message):
     """
 
-    \brief Data from one ultrasonic sensor including a list of detections.
+    brief Data from one ultrasonic sensor including a list of detections.
     This list is generated by the sending ultrasonic sensor. Indirectly received
     signals from other ultrasonic sensors are included in this message.
 
@@ -26035,9 +26607,9 @@ class UltrasonicDetectionData(betterproto2.Message):
     - Direct: Ultrasonic Sensor ID 1
     - Indirect: Ultrasonic Sensor ID 2 and 3
 
-    \image html OSI_USSensor.svg
+    image html OSI_USSensor.svg
 
-    \note Direct detections lie on circles with the sending sensor as center.
+    note Direct detections lie on circles with the sending sensor as center.
     """
 
     header: "SensorDetectionHeader | None" = betterproto2.field(
@@ -26080,10 +26652,12 @@ default_message_pool.register_message(
 class UltrasonicDetectionSpecificHeader(betterproto2.Message):
     """
 
-    \brief Specific header extension for ultrasonic sensors.
+    brief Specific header extension for ultrasonic sensors.
     """
 
-    max_range: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    max_range: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Maximal range of the ultrasonic sensor.
 
@@ -26098,7 +26672,7 @@ class UltrasonicDetectionSpecificHeader(betterproto2.Message):
     The detections are measured by a virtual sensor (i.e. sender and
     receiver are different sensors).
 
-    \note This value has to be set if the list contains invalid detections.
+    note This value has to be set if the list contains invalid detections.
     """
 
 
@@ -26111,7 +26685,7 @@ default_message_pool.register_message(
 class UltrasonicIndirectDetection(betterproto2.Message):
     """
 
-    \brief Ultrasonic detection received by another ultrasonic sensor (different
+    brief Ultrasonic detection received by another ultrasonic sensor (different
     sensors as sender and receiver).
 
     Indirect detections:
@@ -26120,24 +26694,26 @@ class UltrasonicIndirectDetection(betterproto2.Message):
 
     Receiving: Ultrasonic Sensor ID 2 and 3
 
-    \image html OSI_USSensor_indirect.svg
+    image html OSI_USSensor_indirect.svg
 
-    \note Indirect detections lie on ellipses with the sending resp. receiving
+    note Indirect detections lie on ellipses with the sending resp. receiving
     sensor in the focal points.
     """
 
-    existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    existence_probability: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Existence probability of the detection not based on history. Value does
     not depend on any past experience with similar detections.
 
-    \note Used as confidence measure where a low value means less confidence
+    note Used as confidence measure where a low value means less confidence
     and a high value indicates strong confidence.
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
     is_less_than_or_equal_to: 1
-    \endrules
+    endrules
     """
 
     object_id: "Identifier | None" = betterproto2.field(
@@ -26146,21 +26722,25 @@ class UltrasonicIndirectDetection(betterproto2.Message):
     """
     ID of the detected object this detection is associated to.
 
-    \note ID = MAX(uint64) indicates no reference to an object.
+    note ID = MAX(uint64) indicates no reference to an object.
 
-    \rules
+    rules
     refers_to: DetectedObject
-    \endrules
+    endrules
     """
 
-    ellipsoid_radial: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    ellipsoid_radial: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     First parameter b of an ellipsoid equation.
 
     Unit: m
     """
 
-    ellipsoid_axial: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    ellipsoid_axial: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Second parameter b of an ellipsoid equation.
 
@@ -26171,7 +26751,7 @@ class UltrasonicIndirectDetection(betterproto2.Message):
         5, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
-    The ID of the sensor's receiver. Sender ID is stored in the header \c
+    The ID of the sensor's receiver. Sender ID is stored in the header c
     SensorDetectionHeader.
     """
 
@@ -26180,7 +26760,7 @@ class UltrasonicIndirectDetection(betterproto2.Message):
     )
     """
     The vector to the receiver's origin in sending ultrasonic sensor frame.
-    The vector is also the direction of \c #ellipsoid_axial.
+    The vector is also the direction of c #ellipsoid_axial.
     """
 
 
@@ -26193,7 +26773,7 @@ default_message_pool.register_message(
 class UltrasonicSensorView(betterproto2.Message):
     """
 
-    \brief Definition of the ultrasonic sensor view.
+    brief Definition of the ultrasonic sensor view.
 
     Ultrasonic specific sensor view data.
     """
@@ -26215,7 +26795,7 @@ default_message_pool.register_message(
 class UltrasonicSensorViewConfiguration(betterproto2.Message):
     """
 
-    \brief The configuration settings for the Ultrasonic Sensor View to be
+    brief The configuration settings for the Ultrasonic Sensor View to be
     provided by the environment simulation.
     """
 
@@ -26242,22 +26822,22 @@ class UltrasonicSensorViewConfiguration(betterproto2.Message):
     governs the sensor-relative coordinates in features detected by this
     detector.
 
-    \arg \b x-direction of sensor coordinate system: sensor viewing direction
-    \arg \b z-direction of sensor coordinate system: sensor (up)
-    \arg \b y-direction of sensor coordinate system: perpendicular to x and z
+    arg b x-direction of sensor coordinate system: sensor viewing direction
+    arg b z-direction of sensor coordinate system: sensor (up)
+    arg b y-direction of sensor coordinate system: perpendicular to x and z
     right hand system
 
-    \par Reference:
+    par Reference:
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
 
-    \note The origin of vehicle's coordinate system in world frame is
-    ( \c MovingObject::base . \c BaseMoving::position +
-    Inverse_Rotation_yaw_pitch_roll( \c MovingObject::base . \c
-    BaseMoving::orientation) * \c
+    note The origin of vehicle's coordinate system in world frame is
+    ( c MovingObject::base . c BaseMoving::position +
+    Inverse_Rotation_yaw_pitch_roll( c MovingObject::base . c
+    BaseMoving::orientation) * c
     MovingObject::VehicleAttributes::bbcenter_to_rear) . The orientation of
     the vehicle's coordinate system is equal to the orientation of the
-    vehicle's bounding box \c MovingObject::base . \c
-    BaseMoving::orientation. \note A default position can be provided by the
+    vehicle's bounding box c MovingObject::base . c
+    BaseMoving::orientation. note A default position can be provided by the
     sensor model (e.g. to indicate the position the model was validated for),
     but this is optional; the environment simulation must provide a valid
     mounting position (based on the vehicle configuration) when setting the
@@ -26271,24 +26851,28 @@ class UltrasonicSensorViewConfiguration(betterproto2.Message):
     The root mean squared error of the mounting position.
     """
 
-    field_of_view_horizontal: "float" = betterproto2.field(4, betterproto2.TYPE_DOUBLE)
+    field_of_view_horizontal: "float" = betterproto2.field(
+        4, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in horizontal orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_horizontal/2,  \c
-    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in \c
+    Viewing range: [- c #field_of_view_horizontal/2,  c
+    #field_of_view_horizontal/2] azimuth in the sensor frame as defined in c
     Spherical3d.
 
     Unit: rad
     """
 
-    field_of_view_vertical: "float" = betterproto2.field(5, betterproto2.TYPE_DOUBLE)
+    field_of_view_vertical: "float" = betterproto2.field(
+        5, betterproto2.TYPE_DOUBLE
+    )
     """
     Field of View in vertical orientation of the physical sensor.
 
-    Viewing range: [- \c #field_of_view_vertical/2,  \c
+    Viewing range: [- c #field_of_view_vertical/2,  c
     #field_of_view_vertical/2] elevation in the sensor frame at zero azimuth
-    as defined in \c Spherical3d.
+    as defined in c Spherical3d.
 
     Unit: rad
     """
@@ -26303,7 +26887,7 @@ default_message_pool.register_message(
 class UltrasonicSpecificObjectData(betterproto2.Message):
     """
 
-    \brief Message encapsulates all data for detected objects that is specific to
+    brief Message encapsulates all data for detected objects that is specific to
     ultrasonic sensors.
     """
 
@@ -26316,30 +26900,32 @@ class UltrasonicSpecificObjectData(betterproto2.Message):
 
     Unit: m
 
-    \rules
+    rules
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    probability: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    probability: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     This value indicates the probability height for the classification in the
     calculated object.
 
     Unit: %
 
-    \rules
+    rules
     is_less_than_or_equal_to: 1
     is_greater_than_or_equal_to: 0
-    \endrules
+    endrules
     """
 
-    trilateration_status: "UltrasonicSpecificObjectDataTrilaterationStatus" = betterproto2.field(
-        3,
-        betterproto2.TYPE_ENUM,
-        default_factory=lambda: UltrasonicSpecificObjectDataTrilaterationStatus.try_value(
-            0
-        ),
+    trilateration_status: "UltrasonicSpecificObjectDataTrilaterationStatus" = (
+        betterproto2.field(
+            3,
+            betterproto2.TYPE_ENUM,
+            default_factory=lambda: UltrasonicSpecificObjectDataTrilaterationStatus(0),
+        )
     )
     """
     This indicates if the detection was calculated based on one or multiple
@@ -26349,7 +26935,7 @@ class UltrasonicSpecificObjectData(betterproto2.Message):
     trend: "UltrasonicSpecificObjectDataTrend" = betterproto2.field(
         4,
         betterproto2.TYPE_ENUM,
-        default_factory=lambda: UltrasonicSpecificObjectDataTrend.try_value(0),
+        default_factory=lambda: UltrasonicSpecificObjectDataTrend(0),
     )
     """
     Describes the general moving direction of the detection.
@@ -26361,8 +26947,8 @@ class UltrasonicSpecificObjectData(betterproto2.Message):
     """
     Ultrasonic signalway. Sender to receiver.
 
-    \note This information can also be derived from the corresponding \c
-    UltrasonicDetection. \c UltrasonicDetection refer to DetectedXXX by \c
+    note This information can also be derived from the corresponding c
+    UltrasonicDetection. c UltrasonicDetection refer to DetectedXXX by c
     UltrasonicDetection::object_id.
     """
 
@@ -26376,7 +26962,7 @@ default_message_pool.register_message(
 class UltrasonicSpecificObjectDataSignalway(betterproto2.Message):
     """
 
-    \brief Message encapsulates all data for detected objects that is
+    brief Message encapsulates all data for detected objects that is
     specific to ultrasonic sensors.
     """
 
@@ -26406,21 +26992,25 @@ default_message_pool.register_message(
 class Vector2D(betterproto2.Message):
     """
 
-    \brief A cartesian 2D vector for positions, velocities or accelerations or
+    brief A cartesian 2D vector for positions, velocities or accelerations or
     its uncertainties.
 
     Units are m for positions, m/s for velocities, and m/s^2 for
     accelerations.
     """
 
-    x: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    x: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The x-coordinate.
 
     Unit: m, m/s, or m/s^2
     """
 
-    y: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    y: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The y-coordinate.
 
@@ -26435,7 +27025,7 @@ default_message_pool.register_message("osi3", "Vector2d", Vector2D)
 class Vector3D(betterproto2.Message):
     """
 
-    \brief A cartesian 3D vector for positions, velocities or accelerations or
+    brief A cartesian 3D vector for positions, velocities or accelerations or
     its uncertainties.
 
     The coordinate system is defined as right-handed.
@@ -26444,21 +27034,27 @@ class Vector3D(betterproto2.Message):
     accelerations.
     """
 
-    x: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    x: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The x-coordinate.
 
     Unit: m, m/s, or m/s^2
     """
 
-    y: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    y: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The y-coordinate.
 
     Unit: m, m/s, or m/s^2
     """
 
-    z: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    z: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     The z-coordinate.
 
@@ -26473,10 +27069,12 @@ default_message_pool.register_message("osi3", "Vector3d", Vector3D)
 class VehicleSteeringWheel(betterproto2.Message):
     """
 
-    \brief A description of the steering wheel.
+    brief A description of the steering wheel.
     """
 
-    angle: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    angle: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     Angle of the steering wheel. 
     Zero means the steering wheel is in its center position. A positive value
@@ -26486,7 +27084,9 @@ class VehicleSteeringWheel(betterproto2.Message):
     Unit: rad
     """
 
-    angular_speed: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    angular_speed: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     Angular speed of the steering wheel. 
     Zero means the steering wheel stays in its position. A positive value
@@ -26496,7 +27096,9 @@ class VehicleSteeringWheel(betterproto2.Message):
     Unit: rad/s
     """
 
-    torque: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    torque: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Torque of the steering wheel to the hand.
     Zero means there is no force from the steering wheel to the hand of the driver.
@@ -26516,31 +27118,37 @@ default_message_pool.register_message(
 class WavelengthData(betterproto2.Message):
     """
 
-    \brief Detailed WavelengthRange message.
+    brief Detailed WavelengthRange message.
 
     Defines the start (minimum) and the end (maximum) values of the wavelength.
     Additionally, the number of samples within this range is defined in this message.
     """
 
-    start: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
+    start: "float" = betterproto2.field(
+        1, betterproto2.TYPE_DOUBLE
+    )
     """
     The start, or the minimum wavelength value.
 
     Unit: m
     """
 
-    end: "float" = betterproto2.field(2, betterproto2.TYPE_DOUBLE)
+    end: "float" = betterproto2.field(
+        2, betterproto2.TYPE_DOUBLE
+    )
     """
     The end, or the maximum wavelength value.
 
     Unit: m
     """
 
-    samples_number: "float" = betterproto2.field(3, betterproto2.TYPE_DOUBLE)
+    samples_number: "float" = betterproto2.field(
+        3, betterproto2.TYPE_DOUBLE
+    )
     """
     Number of samples to be considered within the defined wavelength range.
     The number of samples includes the start and the end values that are defined in this message, starting from the "start" value.
-    \note This defines the number of wavelengths to be computed during simulation, not to be confused with samples_per_pixel.
+    note This defines the number of wavelengths to be computed during simulation, not to be confused with samples_per_pixel.
     """
 
 

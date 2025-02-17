@@ -85,7 +85,7 @@ cd open-simulation-interface
 ```
 
 ```bash
-pip install betterproto2_compiler "betterproto2[all] grpcio-tools"
+pip install betterproto2_compiler betterproto2[all] grpcio-tools
 ```
 
 create a copy of `osi_version.proto.in` named `osi_version.proto` and replace `@VERSION_MAJOR@`, `@VERSION_MINOR@`, `@VERSION_PATCH@` with the respective versions.

@@ -3,10 +3,22 @@ import json
 from dataclasses import dataclass
 from typing import Any
 import typer
-import betterosi
 from pathlib import Path
 
 app = typer.Typer()
+
+MESSAGES_TYPE = [
+    "SensorView",
+    "SensorViewConfiguration",
+    "GroundTruth",
+    "HostVehicleData",
+    "SensorData",
+    "TrafficCommand",
+    "TrafficCommandUpdate",
+    "TrafficUpdate",
+    "MotionRequest",
+    "StreamingUpdate",
+]
 
 class Dependency():
     def __init__(self, name):
@@ -29,7 +41,7 @@ class Descriptor():
     
     @classmethod
     def get_osi_classe_names(cls):
-        return list(betterosi.osi3trace.MESSAGES_TYPE.keys())
+        return MESSAGES_TYPE
     
     @classmethod
     def create_descriptors_from_json(cls, filepath: str ='descriptors.json'):
@@ -49,6 +61,7 @@ class Descriptor():
     
     @classmethod
     def set_descriptors(cls):
+        import betterosi
         descriptors = Descriptor.create_descriptors_from_json(Path(__file__).parent/'descriptors.json')
         for c_name in cls.get_osi_classe_names():
             setattr(getattr(betterosi, c_name), 'DESCRIPTOR', descriptors[f'osi3.{c_name}'])

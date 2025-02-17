@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 dependencies = [
-    'betterproto2[all]<=0.2.3',
+    'betterproto2[all]==0.3.0',
     'mcap',
     'mcap-protobuf-support',
     'matplotlib',
@@ -31,7 +31,7 @@ dependencies = [
     'typer',
     'tqdm'
 ]
-version = "0.2"
+version = "0.3"
 
 #project.optional-dependencies]
 #compile = ['betterproto2_compiler'] #, 'osi3']
