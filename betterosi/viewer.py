@@ -763,13 +763,19 @@ class View:
         self.ax.grid(not self.ax.xaxis._major_tick_kw['gridOn'])  # Toggle grid visibility
         self.redraw()
 
-class OSIMCAPFile:
-    def __init__(self, osi_filename):
-        self.filename = osi_filename
+class OSIMCAPViewer:
+    def __init__(self, osi_filename=None, gts = None):
+        
         self.view = None
         self.first_timestamp = 0.0
-
-        ground_truths = betterosi.read(osi_filename, return_ground_truth=True)
+        if osi_filename is not None:
+            self.filename = osi_filename
+            ground_truths = betterosi.read(osi_filename, return_ground_truth=True)
+        elif gts is not None:
+            ground_truths = gts
+            self.filename = ''
+        else:
+            raise NotImplementedError('either osi_filename or gts must be set')
         for msg in ground_truths:
             self.gt = msg
             timestamp = self.gt.timestamp.seconds + self.gt.timestamp.nanos * 1e-9
@@ -801,8 +807,11 @@ def main():
         print('Usage: {} <osi or mcap file>'.format(os.path.basename(sys.argv[0])))
         exit(-1)
 
-    OSIMCAPFile(filename)
+    OSIMCAPViewer(filename)
     plt.show()
     exit (0)
 if __name__ == '__main__':
     main()
+    
+    
+    

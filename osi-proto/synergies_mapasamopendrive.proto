@@ -1,0 +1,8 @@
+syntax = "proto2";
+option optimize_for = SPEED;
+package osi3;
+message MapASAMOpenDRIVE
+{
+    required string map_reference = 1;
+    required string open_drive_xml_content = 2;  
+}

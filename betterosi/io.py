@@ -65,7 +65,7 @@ def read(filepath: str, return_sensor_view=False, return_ground_truth=False, mca
 
 
 class Writer():
-    def __init__(self, output, topic='ConvertedTrace', mode='wb', **kwargs):
+    def __init__(self, output, topic='ground_truth', mode='wb', **kwargs):
         p = Path(output)
         if p.suffix=='.mcap':
             self.write_mcap = True
@@ -83,10 +83,11 @@ class Writer():
     def __enter__(self):
         return self
 
-    def add(self, view: GroundTruth|SensorView):
+    def add(self, view: GroundTruth|SensorView, topic:str=None):
         if self.write_mcap:
             log_time = int(view.timestamp.nanos+view.timestamp.seconds*1e9)
-            self.mcap_writer.write_message(self.topic, view, 
+            topic = self.topic if topic is None else topic
+            self.mcap_writer.write_message(topic, view, 
                 log_time=log_time, publish_time=log_time),
         if self.write_osi:
             buffer = bytes(view)
