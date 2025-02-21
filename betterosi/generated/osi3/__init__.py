@@ -20432,7 +20432,7 @@ class MapAsamOpenDrive(betterproto2.Message):
     )
 
 
-default_message_pool.register_message("osi3", "MapASAMOpenDRIVE", MapAsamOpenDrive)
+default_message_pool.register_message("osi3", "MapAsamOpenDRIVE", MapAsamOpenDrive)
 
 
 @dataclass(eq=False, repr=False)

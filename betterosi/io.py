@@ -6,14 +6,14 @@ from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
 from mcap_protobuf.writer import Writer as McapWriter
 
-from .generated.osi3 import GroundTruth, SensorView
+from .descriptor import MESSAGES_TYPE
 from . import osi3trace
-
+from .generated import osi3
 
 def gen2betterosi(schema, message, return_sensor_view=False, return_ground_truth=False, passthrough=False):
     if not passthrough:
-        if any(schema.name == f'osi3.{k}' for k in osi3trace.MESSAGES_TYPE.keys()):
-            message_cls = osi3trace.MESSAGES_TYPE[schema.name.split('.')[-1]]
+        if any(schema.name == f'osi3.{k}' for k in MESSAGES_TYPE):
+            message_cls = getattr(osi3, schema.name.split('.')[-1])
             message = message_cls().parse(message.SerializeToString())
         else:
             return None
@@ -83,9 +83,10 @@ class Writer():
     def __enter__(self):
         return self
 
-    def add(self, view: GroundTruth|SensorView, topic:str=None):
+    def add(self, view, topic:str=None, log_time=None):
         if self.write_mcap:
-            log_time = int(view.timestamp.nanos+view.timestamp.seconds*1e9)
+            if log_time is None:
+                log_time = int(view.timestamp.nanos+view.timestamp.seconds*1e9)
             topic = self.topic if topic is None else topic
             self.mcap_writer.write_message(topic, view, 
                 log_time=log_time, publish_time=log_time),
