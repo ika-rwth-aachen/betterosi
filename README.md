@@ -90,8 +90,10 @@ pip install betterproto2_compiler betterproto2[all] grpcio-tools
 
 create a copy of `osi_version.proto.in` named `osi_version.proto` and replace `@VERSION_MAJOR@`, `@VERSION_MINOR@`, `@VERSION_PATCH@` with the respective versions.
 
+`mkdir ../betterosi/generated`
+
 ```bash
-python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto synergies_mapasamopendrive.proto
+python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto osi_mapasamopendrive.proto
 ```
 
 The library is now updated. Unfortunately, betterproto2 does not support FileDescriptors, so MCAP cannot store the schema when writing files. To fix this betterosi mocks the behavior (see `betterosi/descriptor.py`). For this to work, we have to update the serialization of the `descriptors.json`
@@ -102,3 +104,7 @@ The library is now updated. Unfortunately, betterproto2 does not support FileDes
 - cd into betterosi directory: `cd ..`
 - install betterosi by `pip install .`
 - run `betterosi-generate-descriptor-json`
+
+# LICENSE and Copyright
+This code is published under MPL-2 license. 
+It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.
