@@ -1,4 +1,4 @@
-# betterosi: library for osi
+# betterosi - a python library for reading and writing open-simulation-interface files using betterproto2
 
 A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
 
@@ -13,7 +13,7 @@ The library uses code generation of [python-betterproto2-compiler](https://githu
 Since osi and esmini are under MPL, also this repository is published under MPL 2.0 license.
 ## Install
 
-`pip install git+https://gitlab+deploy-token-147:gldt-nUtxxKzFkxtgbKngy5U-@gitlab.ika.rwth-aachen.de/fb-fi/projects/synergies/betterosi`
+`pip install betterosi`
 
 ## Read OSI and MCAP
 The following code creates a list of ground truths form mcap or osi sensor views or ground truth messages.
