@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm", "ruff"]
+requires = ["setuptools", "ruff"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
@@ -12,8 +12,9 @@ name = "betterosi"
 authors = [
     {name = "ika - RWTH Aachen", email = "michael.schuldes@ika.rwth-aachen.de"},
 ]
-description = "betterosi"
+description = "betterosi - a python library for reading and writing open-simulation-interface files using betterproto2"
 readme = "README.md"
+license-files = ["LICENSE*"]
 requires-python = ">=3.9"
 keywords = ["osi", "open-simulation-interface", "simulation", "automated-driving"]
 classifiers = [
@@ -21,7 +22,6 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-
 dependencies = [
     'betterproto2[all]==0.3.0',
     'mcap',
@@ -31,7 +31,7 @@ dependencies = [
     'typer',
     'tqdm'
 ]
-version = "0.3"
+version = "0.3.0"
 
 #project.optional-dependencies]
 #compile = ['betterproto2_compiler'] #, 'osi3']
@@ -40,7 +40,6 @@ version = "0.3"
 "betterosi" = [
     "descriptors.json"
 ]
-
 
 [project.scripts]
 betterosi-viewer = "betterosi.viewer:main"
