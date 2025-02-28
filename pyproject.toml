@@ -14,8 +14,7 @@ authors = [
 ]
 description = "betterosi - a python library for reading and writing open-simulation-interface files using betterproto2"
 readme = "README.md"
-license-files = ["LICENSE*"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 keywords = ["osi", "open-simulation-interface", "simulation", "automated-driving"]
 classifiers = [
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
