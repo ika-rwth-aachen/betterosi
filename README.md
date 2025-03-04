@@ -2,21 +2,22 @@
 
 A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
 
-- supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read`
+- Supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read`.
 - View OSI or MCAP file containing OSI GroundTruth `betterosi-viewer <filepath.mcap / filepath.osi>`(adapted from [esmini](https://github.com/esmini/esmini))
-- Convert osi to mcap with `betterosi-to-mcap <filepath to osi>`
+- Convert osi to mcap with `betterosi-to-mcap <filepath to osi>`.
 
-The library uses code from [esmini](https://github.com/esmini/esmini) (`betterosi/viewer.py`) under MPL 2.0 license and the code from to [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) to read osi traces (`betterosi/osi3trace.py`)
+The library uses code from [esmini](https://github.com/esmini/esmini) (`betterosi/viewer.py`) under MPL 2.0 license and the code from [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) to read osi traces (`betterosi/osi3trace.py`).
 
 The library uses code generation of [python-betterproto2-compiler](https://github.com/betterproto/python-betterproto2-compiler) to generate python code from the protobuf definitions of [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface).
 
-Since osi and esmini are under MPL, also this repository is published under MPL 2.0 license.
+Since OSI and esmini are under MPL, also this repository is published under MPL-2.0 license.
+
 ## Install
 
 `pip install betterosi`
 
 ## Read OSI and MCAP
-The following code creates a list of ground truths form mcap or osi sensor views or ground truth messages.
+The following code creates a list of GroundTruth messages from an MCAP file for OSI trace containing SensorViews or GroundTruth messages.
 ```python
 import betterosi
 
@@ -26,19 +27,21 @@ any_osi_message = betterosi.read('filepath.mcap')
 
 ```
 ## Writing MCAP file
-With the following code you can create an MCAP file. If you change the filepath `test.mcap` and `.osi` file will be created automatically.
+With the following code you can create an MCAP file. If you change the filepath `test.mcap` to `test.osi`, an OSI tracefile will be created.
 
 ### Create MCAP
 
 ```python
 with betterosi.Writer(f'test.mcap') as writer:
-    writer.add(some_ground_truth_or_sensor_view)
+    gt = betterosi.GroundTruth(...)
+    writer.add(gt)
 ```
 
 ### Create OSI
 ```python
 with betterosi.Writer(f'test.osi') as writer:
-    writer.add(some_ground_truth_or_sensor_view)
+    sv = betterosi.SensorView(...)
+    writer.add(sv)
 ```
 
 ### Full example
@@ -78,7 +81,7 @@ with betterosi.Writer(f'test.mcap') as writer:
 
 # Generate library code
 
-From this directory, clone [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) and cd into it
+From this directory, clone [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) and cd into it.
 ```bash
 git clone https://github.com/OpenSimulationInterface/open-simulation-interface
 cd open-simulation-interface
@@ -88,15 +91,18 @@ cd open-simulation-interface
 pip install betterproto2_compiler betterproto2[all] grpcio-tools
 ```
 
-create a copy of `osi_version.proto.in` named `osi_version.proto` and replace `@VERSION_MAJOR@`, `@VERSION_MINOR@`, `@VERSION_PATCH@` with the respective versions.
+Create a copy of `osi_version.proto.in` named `osi_version.proto` and replace `@VERSION_MAJOR@`, `@VERSION_MINOR@`, `@VERSION_PATCH@` with the respective versions. Then create the directory for the generated code, if not already present:
 
 `mkdir ../betterosi/generated`
+
+
+Now you can generate the code with the following command:
 
 ```bash
 python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto osi_mapasamopendrive.proto
 ```
 
-The library is now updated. Unfortunately, betterproto2 does not support FileDescriptors, so MCAP cannot store the schema when writing files. To fix this betterosi mocks the behavior (see `betterosi/descriptor.py`). For this to work, we have to update the serialization of the `descriptors.json`
+The library is now updated. Unfortunately, betterproto2 does not support FileDescriptors, so MCAP cannot store the schema when writing files. To fix this, betterosi mocks the behavior (see `betterosi/descriptor.py`). For this to work, we have to update the serialization of the `descriptors.json`
 - install `open-simulation-interface` python package according to the README.md in open-simulation-interface.
     - `git clone https://github.com/OpenSimulationInterface/open-simulation-interface`
     - `cd open-simulation-interface`
@@ -106,5 +112,5 @@ The library is now updated. Unfortunately, betterproto2 does not support FileDes
 - run `betterosi-generate-descriptor-json`
 
 # LICENSE and Copyright
-This code is published under MPL-2 license. 
-It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.
+This code is published under MPL-2.0 license. 
+It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2.0 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.o
