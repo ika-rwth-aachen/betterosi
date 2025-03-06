@@ -27,8 +27,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    'betterproto2==0.3.1',
-    'betterproto2-rust-codec',
+    'betterproto2[all]==0.3.1',
     'mcap',
     'mcap-protobuf-support',
     'protobuf',
@@ -37,7 +36,7 @@ dependencies = [
     'typer',
     'tqdm'
 ]
-version = "0.3.2"
+version = "0.3.3"
 
 [project.urls]
 Homepage = "https://github.com/ika-rwth-aachen/betterosi"
