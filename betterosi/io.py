@@ -6,9 +6,22 @@ from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
 from mcap_protobuf.writer import Writer as McapWriter
 
-from .descriptor import MESSAGES_TYPE
 from . import osi3trace
 from .generated import osi3
+
+MESSAGES_TYPE = [
+    "SensorView",
+    "SensorViewConfiguration",
+    "GroundTruth",
+    "HostVehicleData",
+    "SensorData",
+    "TrafficCommand",
+    "TrafficCommandUpdate",
+    "TrafficUpdate",
+    "MotionRequest",
+    "StreamingUpdate",
+    "MapAsamOpenDrive"
+]
 
 def gen2betterosi(schema, message, return_sensor_view=False, return_ground_truth=False, passthrough=False):
     if not passthrough:

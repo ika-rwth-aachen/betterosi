@@ -81,35 +81,19 @@ with betterosi.Writer(f'test.mcap') as writer:
 
 # Generate library code
 
-From this directory, clone [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) and cd into it.
-```bash
-git clone https://github.com/OpenSimulationInterface/open-simulation-interface
-cd open-simulation-interface
+```
+pip install grpcio-tools git+https://github.com/MichaelSchuldes/python-betterproto2-compiler@serialized_descriptors
 ```
 
-```bash
-pip install betterproto2_compiler betterproto2[all] grpcio-tools
+cd into osi-proto and run the following command to generate the code 
+
 ```
+cd osi-proto
 
-Create a copy of `osi_version.proto.in` named `osi_version.proto` and replace `@VERSION_MAJOR@`, `@VERSION_MINOR@`, `@VERSION_PATCH@` with the respective versions. Then create the directory for the generated code, if not already present:
+mkdir ../betterosi/generated
 
-`mkdir ../betterosi/generated`
-
-
-Now you can generate the code with the following command:
-
-```bash
 python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto osi_mapasamopendrive.proto
 ```
-
-The library is now updated. Unfortunately, betterproto2 does not support FileDescriptors, so MCAP cannot store the schema when writing files. To fix this, betterosi mocks the behavior (see `betterosi/descriptor.py`). For this to work, we have to update the serialization of the `descriptors.json`
-- install `open-simulation-interface` python package according to the README.md in open-simulation-interface.
-    - `git clone https://github.com/OpenSimulationInterface/open-simulation-interface`
-    - `cd open-simulation-interface`
-    - `pip install .`
-- cd into betterosi directory: `cd ..`
-- install betterosi by `pip install .`
-- run `betterosi-generate-descriptor-json`
 
 # LICENSE and Copyright
 This code is published under MPL-2.0 license. 
