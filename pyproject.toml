@@ -20,6 +20,10 @@ keywords = ["osi", "open-simulation-interface", "simulation", "automated-driving
 classifiers = [
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -34,6 +38,10 @@ dependencies = [
     'tqdm'
 ]
 version = "0.3.2"
+
+[project.urls]
+Homepage = "https://github.com/ika-rwth-aachen/betterosi"
+Repository = "https://github.com/ika-rwth-aachen/betterosi"
 
 [tool.setuptools.package-data]
 "betterosi" = [
