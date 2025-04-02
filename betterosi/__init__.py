@@ -2,7 +2,7 @@ from betterosi.io import Writer, read, MESSAGES_TYPE  # noqa: F401
 from google.protobuf.descriptor_pb2 import EnumDescriptorProto, DescriptorProto, FileDescriptorProto
 from . import generated
 from .generated.osi3 import *  # noqa: F403
-from enum import EnumType
+from enum import EnumMeta
 from google.protobuf.descriptor_pool import DescriptorPool
 
 
@@ -29,7 +29,7 @@ def insert_into_hierarchy_dict(d, name, cls):
 
 
 def cls_to_proto(message, children):
-    if isinstance(message, EnumType):
+    if isinstance(message, EnumMeta):
         proto = EnumDescriptorProto()
         proto.ParseFromString(message._serialized_pb())
         proto.name = proto.name.split('.')[-1]
