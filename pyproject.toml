@@ -36,7 +36,11 @@ dependencies = [
     'typer',
     'tqdm'
 ]
-version = "0.3.3"
+
+version = "0.3.4"
+
+[project.optional-dependencies]
+test = ['ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks']
 
 [project.urls]
 Homepage = "https://github.com/ika-rwth-aachen/betterosi"

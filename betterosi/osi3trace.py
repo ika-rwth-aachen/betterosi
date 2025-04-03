@@ -32,6 +32,7 @@ MESSAGES_TYPE = {
     "StreamingUpdate": StreamingUpdate,
 }
 
+
 class OSITrace:
     """This class can import and decode OSI trace files."""
 
@@ -127,7 +128,7 @@ class OSITrace:
             return None
         self.current_index += 1
         message = self.type()
-        #message.ParseFromString(message_data)
+        # message.ParseFromString(message_data)
         message.parse(message_data)
         if start == self.message_offsets[-1]:
             if self.message_cache is not None:

@@ -1,5 +1,5 @@
 # ADAPTED FROM https://github.com/esmini/esmini/blob/master/scripts/osiviewer.py
-# 
+#
 # esmini - Environment Simulator Minimalistic
 # https://github.com/esmini/esmini
 #
@@ -53,11 +53,21 @@ class BBObject:
 
     def draw(self):
         # reference point at center of the bounding box
-        self.patch = plt.Rectangle((-self.width/2.0, -self.height/2.0), self.width, self.height, label='object_{}'.format(self.id), fill=False, edgecolor='red', lw=1, picker=5, zorder=5)
+        self.patch = plt.Rectangle(
+            (-self.width / 2.0, -self.height / 2.0),
+            self.width,
+            self.height,
+            label="object_{}".format(self.id),
+            fill=False,
+            edgecolor="red",
+            lw=1,
+            picker=5,
+            zorder=5,
+        )
         self.ax.add_patch(self.patch)
         self.transform = transforms.Affine2D()
         self.patch.set_transform(self.transform + self.ax.transData)
-        self.ref_point = plt.Circle((0.0, 0.0), 0.3, fill=True, edgecolor='red', lw=1)
+        self.ref_point = plt.Circle((0.0, 0.0), 0.3, fill=True, edgecolor="red", lw=1)
         self.ax.add_patch(self.ref_point)
         self.ref_point.set_transform(self.transform + self.ax.transData)
 
@@ -69,22 +79,22 @@ class BBObject:
         self.transform.clear().rotate_deg(np.rad2deg(self.h)).translate(self.x, self.y)
 
     def set_time(self, time, interpolate=True):
-        i=0
+        i = 0
         if self.kf is None or len(self.kf) == 0:
             return
         if time >= self.kf[self.current_idx][0]:
             # look forward from current frame
-            for i in range(self.current_idx, len(self.kf)-1):
-                if time < self.kf[i+1][0]:
+            for i in range(self.current_idx, len(self.kf) - 1):
+                if time < self.kf[i + 1][0]:
                     break
         else:
             # look backwards
-            for i in range(self.current_idx,-1,-1):
+            for i in range(self.current_idx, -1, -1):
                 if time >= self.kf[i][0]:
                     break
 
         if interpolate:
-            i2 = min(i+1, len(self.kf)-1)
+            i2 = min(i + 1, len(self.kf) - 1)
             dt = self.kf[i2][0] - self.kf[i][0]
             if dt > 1e-6:
                 w = (time - self.kf[i][0]) / dt
@@ -93,14 +103,15 @@ class BBObject:
             v = [v for v in self.kf[i]]
             # simple interpolation for x, y, v
             for j in [1, 2, 4]:
-                v[j] += w*(self.kf[i2][j] - self.kf[i][j])
+                v[j] += w * (self.kf[i2][j] - self.kf[i][j])
             # angle need special handling
             angels = np.unwrap([self.kf[i][3], self.kf[i2][3]])
-            v[3] = np.mod(angels[0] + w*(angels[1] - angels[0]), 2 * np.pi)
+            v[3] = np.mod(angels[0] + w * (angels[1] - angels[0]), 2 * np.pi)
         else:
             v = self.kf[i]
         self.update(*v[1:])
         self.current_idx = i
+
 
 class BBObjects:
     def __init__(self):
@@ -119,11 +130,11 @@ class BBObjects:
         for bb in self.bb_objects:
             bb.set_time(current_time, interpolate)
 
+
 class View:
     def __init__(self, gt, filename):
-
         # settings
-        self.empty_select_string = ''
+        self.empty_select_string = ""
         self.grid_enabled = True
         self.font_size = 9
         self.filename = filename
@@ -133,29 +144,31 @@ class View:
         self.highlight = None
         self.selected_object = None
         self.playing = True
-        self.pan_data_start = [0,0]
-        self.pan_display_start = [0,0]
-        self.zoom_data_start = [0,0]
+        self.pan_data_start = [0, 0]
+        self.pan_display_start = [0, 0]
+        self.zoom_data_start = [0, 0]
         self.pan = [0.0, 0.0]
         self.pan_delta = [0.0, 0.0]
         self.y_start = None
         self.follow_object_index = -1
-        self.mod = {'shift': False}
+        self.mod = {"shift": False}
         self.picked = False
         self.bb_objects = BBObjects()
         self.nr_objects = len(self.gt.moving_object)
 
         # create the figure canvas and axis
-        px = 1/plt.rcParams['figure.dpi']  # pixel size in inches
-        plt.rcParams['toolbar'] = 'none'
-        self.fig, self.ax = plt.subplots(figsize=(1200*px, 600*px))
+        px = 1 / plt.rcParams["figure.dpi"]  # pixel size in inches
+        plt.rcParams["toolbar"] = "none"
+        self.fig, self.ax = plt.subplots(figsize=(1200 * px, 600 * px))
         self.ax.grid(self.grid_enabled)
-        self.ax.set_aspect('equal', 'datalim')
-        self.ax.tick_params(axis='x', labelsize=self.font_size)
-        self.ax.tick_params(axis='y', labelsize=self.font_size)
+        self.ax.set_aspect("equal", "datalim")
+        self.ax.tick_params(axis="x", labelsize=self.font_size)
+        self.ax.tick_params(axis="y", labelsize=self.font_size)
 
         # add static content from ground-truth, currently limited to the road network
-        self.add_static_content(self.gt)  # static content assumed to be in first gt message only
+        self.add_static_content(
+            self.gt
+        )  # static content assumed to be in first gt message only
 
         # plot the static content
         self.ax.plot()
@@ -165,7 +178,9 @@ class View:
         self.create_gui()
 
         # add idle function for updating dynamic content
-        self.ani = anim.FuncAnimation(self.fig, self.update, frames=range(100), blit=False, interval=50)
+        self.ani = anim.FuncAnimation(
+            self.fig, self.update, frames=range(100), blit=False, interval=50
+        )
 
     def redraw(self):
         plt.draw()
@@ -173,13 +188,20 @@ class View:
     def create_gui(self):
         # CheckButtons widget for visibility
         labels = list(self.static_plots_by_type.keys())
-        self.cbax = plt.axes([1.0, 0.5, 2.0, 0.04*len(labels)], frameon=False)  # Position of the checkbox area
+        self.cbax = plt.axes(
+            [1.0, 0.5, 2.0, 0.04 * len(labels)], frameon=False
+        )  # Position of the checkbox area
 
         colors = []
-        fontsizes = [self.font_size]*len(labels)
+        fontsizes = [self.font_size] * len(labels)
         for l in labels:
             colors.append(self.plot_colors[l])
-        self.check = mw.CheckButtons(self.cbax, labels, [True]*len(labels), label_props={'color': colors, 'fontsize': fontsizes})
+        self.check = mw.CheckButtons(
+            self.cbax,
+            labels,
+            [True] * len(labels),
+            label_props={"color": colors, "fontsize": fontsizes},
+        )
         self.check.on_clicked(self.toggle_visibility)
 
         # grid toggle button
@@ -196,7 +218,12 @@ class View:
 
         # repeat checkbox
         self.checks_ax = plt.axes([0.0, 0.0, 0.9, 0.03], frameon=False)
-        self.checks = mw.CheckButtons(self.checks_ax, ["repeat", "interpolate"], [True]*2, label_props={'color':['#000000']*2, 'fontsize': [self.font_size]*2})
+        self.checks = mw.CheckButtons(
+            self.checks_ax,
+            ["repeat", "interpolate"],
+            [True] * 2,
+            label_props={"color": ["#000000"] * 2, "fontsize": [self.font_size] * 2},
+        )
 
         # zoom extents button
         self.zeax = plt.axes([1.0, 0.5, 2.0, 0.04])
@@ -207,13 +234,21 @@ class View:
         # text area
         self.tax = plt.axes([1.0, 0.5, 2.0, 20])
         self.tax.set_axis_off()
-        self.text = self.tax.text(0.0, 0.0, self.empty_select_string, fontsize=self.font_size)
-        self.text.set_fontname('monospace')
+        self.text = self.tax.text(
+            0.0, 0.0, self.empty_select_string, fontsize=self.font_size
+        )
+        self.text.set_fontname("monospace")
 
         # help text area
         self.hax = plt.axes([1.0, 0.5, 2.0, 20])
         self.hax.set_axis_off()
-        self.htext = self.hax.text(0.0, 0.0, self.empty_select_string, fontsize=self.font_size-0.5, va='bottom')
+        self.htext = self.hax.text(
+            0.0,
+            0.0,
+            self.empty_select_string,
+            fontsize=self.font_size - 0.5,
+            va="bottom",
+        )
         htext = "Help:\n"
         htext += "play/pause: space\ncycle object: tab/shift-tab\nrelease object: ctrl+tab\nselect: left mouse button (mb)\n"
         htext += "zoom: scroll or right mb or ,/.\nzoom extents: z\npan: middle mouse button\n"
@@ -225,17 +260,17 @@ class View:
         self.tsax = plt.axes([0.0, 0.0, 0.9, 0.03])
         self.time_slider = mw.Slider(
             ax=self.tsax,
-            label='Time [s]',
+            label="Time [s]",
             valmin=0.0,
             valmax=None,
             valinit=0.0,
-            valfmt='%.2f'
+            valfmt="%.2f",
         )
-        self.time_slider.label.set_horizontalalignment('left')
+        self.time_slider.label.set_horizontalalignment("left")
         self.time_slider.label.set_fontsize(self.font_size)
-        self.time_slider.valtext.set_font('monospace')
-        self.time_slider.valtext.set_fontsize(1.6*self.font_size)
-        self.time_slider.valtext.set_horizontalalignment('right')
+        self.time_slider.valtext.set_font("monospace")
+        self.time_slider.valtext.set_fontsize(1.6 * self.font_size)
+        self.time_slider.valtext.set_horizontalalignment("right")
         self.time_slider.on_changed(self.set_time)
 
         self.last_system_time = time.time()
@@ -243,16 +278,18 @@ class View:
         self.last_timestamp = 0.0
 
         # Connect the pick event
-        self.fig.canvas.mpl_connect('pick_event', self.on_pick)
-        self.fig.canvas.mpl_connect('button_press_event', self.on_click)
-        self.fig.canvas.mpl_connect('button_release_event', self.on_release)
-        self.fig.canvas.mpl_connect('key_press_event', self.on_key_press)
-        self.fig.canvas.mpl_connect('key_release_event', self.on_key_release)
-        self.fig.canvas.mpl_connect('resize_event', self.on_resize)
-        self.fig.canvas.mpl_connect('scroll_event', self.on_scroll)
-        self.fig.canvas.mpl_connect('motion_notify_event', self.on_motion)
+        self.fig.canvas.mpl_connect("pick_event", self.on_pick)
+        self.fig.canvas.mpl_connect("button_press_event", self.on_click)
+        self.fig.canvas.mpl_connect("button_release_event", self.on_release)
+        self.fig.canvas.mpl_connect("key_press_event", self.on_key_press)
+        self.fig.canvas.mpl_connect("key_release_event", self.on_key_release)
+        self.fig.canvas.mpl_connect("resize_event", self.on_resize)
+        self.fig.canvas.mpl_connect("scroll_event", self.on_scroll)
+        self.fig.canvas.mpl_connect("motion_notify_event", self.on_motion)
 
-        self.fig.canvas.manager.set_window_title('OSI viewer: {}'.format(os.path.basename(self.filename)))
+        self.fig.canvas.manager.set_window_title(
+            "OSI viewer: {}".format(os.path.basename(self.filename))
+        )
 
     def add_bb_object(self, bb_object):
         self.bb_objects.add_bb_object(bb_object)
@@ -268,8 +305,8 @@ class View:
     def zoom_factor(self, factor, center):
         xlim = self.ax.get_xlim()
         ylim = self.ax.get_ylim()
-        dx = (xlim[1] - xlim[0])/2
-        dy = (ylim[1] - ylim[0])/2
+        dx = (xlim[1] - xlim[0]) / 2
+        dy = (ylim[1] - ylim[0]) / 2
         x = center[0] + (xlim[0] + dx - center[0]) * factor
         y = center[1] + (ylim[0] + dy - center[1]) * factor
         dx *= factor
@@ -286,56 +323,73 @@ class View:
         self.redraw()
 
     def on_motion(self, event):
-        if event.xdata is None or event.ydata is None or not self.ax.bbox.contains(event.x, event.y):
+        if (
+            event.xdata is None
+            or event.ydata is None
+            or not self.ax.bbox.contains(event.x, event.y)
+        ):
             # mouse pointer is outside plot area
             return
 
         if event.button == 2:
             # find delta from previous mouse location, in terms of data coordinates
-            self.pan_data_start = self.ax.transData.inverted().transform(self.pan_display_start)
-            self.pan_delta =    [event.xdata - self.pan_data_start[0], event.ydata - self.pan_data_start[1]]
+            self.pan_data_start = self.ax.transData.inverted().transform(
+                self.pan_display_start
+            )
+            self.pan_delta = [
+                event.xdata - self.pan_data_start[0],
+                event.ydata - self.pan_data_start[1],
+            ]
             self.update_view()
             # update pivot mouse location, in display coordinates
             self.pan_display_start = (event.x, event.y)
         elif event.button == 3:
             if self.selected_object is not None:
-                center = (self.bb_objects.bb_objects[self.follow_object_index].x, self.bb_objects.bb_objects[self.follow_object_index].y)
+                center = (
+                    self.bb_objects.bb_objects[self.follow_object_index].x,
+                    self.bb_objects.bb_objects[self.follow_object_index].y,
+                )
             else:
                 center = self.zoom_data_start
-            self.zoom_factor(1.0 - 0.0025*(self.y_start - event.y), center=center)
+            self.zoom_factor(1.0 - 0.0025 * (self.y_start - event.y), center=center)
             self.y_start = event.y
 
     def on_scroll(self, event):
         if self.selected_object is not None:
-            center = (self.bb_objects.bb_objects[self.follow_object_index].x, self.bb_objects.bb_objects[self.follow_object_index].y)
+            center = (
+                self.bb_objects.bb_objects[self.follow_object_index].x,
+                self.bb_objects.bb_objects[self.follow_object_index].y,
+            )
         else:
             center = (event.xdata, event.ydata)
-        self.zoom_factor(factor=1.0 - (event.step/10.0), center=center)
+        self.zoom_factor(factor=1.0 - (event.step / 10.0), center=center)
 
     def on_key_press(self, event):
-        if event.key == 'shift':
-            self.mod['shift'] = True
-        elif event.key == ' ':
+        if event.key == "shift":
+            self.mod["shift"] = True
+        elif event.key == " ":
             self.toggle_play(event)
-        elif event.key == 'left':
+        elif event.key == "left":
             self.step(-1)
-        elif event.key == 'ctrl+left':
+        elif event.key == "ctrl+left":
             self.set_slider_time(0.0, pause=True)
-        elif event.key == 'shift+left':
+        elif event.key == "shift+left":
             self.set_slider_time(max(self.current_time - 1.0, 0), pause=True)
-        elif event.key == 'right':
+        elif event.key == "right":
             self.step(1)
-        elif event.key == 'ctrl+right':
+        elif event.key == "ctrl+right":
             self.set_slider_time(self.last_timestamp, pause=True)
-        elif event.key == 'shift+right':
-            self.set_slider_time(min(self.current_time + 1.0, self.last_timestamp), pause=True)
-        elif event.key == 'tab' or event.key == 'ctrl+tab':
+        elif event.key == "shift+right":
+            self.set_slider_time(
+                min(self.current_time + 1.0, self.last_timestamp), pause=True
+            )
+        elif event.key == "tab" or event.key == "ctrl+tab":
             self.nr_objects = len(self.gt.moving_object)
             if self.nr_objects > 0:
-                if event.key == 'ctrl+tab':  # release selection and camera
+                if event.key == "ctrl+tab":  # release selection and camera
                     self.follow_object_index = -1
                 else:
-                    if self.mod['shift']:  # select previous
+                    if self.mod["shift"]:  # select previous
                         self.follow_object_index -= 1
                     else:  # select next
                         self.follow_object_index += 1
@@ -347,18 +401,21 @@ class View:
 
                 self.select_object(index=self.follow_object_index)
                 self.update_view()
-        elif event.key == ',' or event.key == '.':
+        elif event.key == "," or event.key == ".":
             if self.selected_object is not None:
-                center = (self.bb_objects.bb_objects[self.follow_object_index].x, self.bb_objects.bb_objects[self.follow_object_index].y)
+                center = (
+                    self.bb_objects.bb_objects[self.follow_object_index].x,
+                    self.bb_objects.bb_objects[self.follow_object_index].y,
+                )
             else:
                 center = (event.xdata, event.ydata)
-            self.zoom_factor(0.5 if event.key == ',' else 1.5, center=center)
-        elif event.key == 'z':
+            self.zoom_factor(0.5 if event.key == "," else 1.5, center=center)
+        elif event.key == "z":
             self.zoom_extents()
 
     def on_key_release(self, event):
-        if event.key == 'shift':
-            self.mod['shift'] = False
+        if event.key == "shift":
+            self.mod["shift"] = False
 
     def on_click(self, event):
         if event.xdata is None or event.ydata is None:
@@ -387,26 +444,50 @@ class View:
         self.unselect()
         self.unselect_object()
         self.picked = True
-        if isinstance(event.artist, patches.Rectangle) or isinstance(event.artist, patches.Polygon):
+        if isinstance(event.artist, patches.Rectangle) or isinstance(
+            event.artist, patches.Polygon
+        ):
             self.select_object(artist=event.artist)
-        elif isinstance(event.artist, mc.LineCollection) or isinstance(event.artist, mc.PathCollection):
+        elif isinstance(event.artist, mc.LineCollection) or isinstance(
+            event.artist, mc.PathCollection
+        ):
             index = self.osi_idx_by_collection[event.artist][event.ind[0]]
             id = self.osi_ids_by_collection[event.artist][event.ind[0]]
             if isinstance(event.artist, mc.LineCollection):
                 linewidth = event.artist.get_linewidths()[0] + 2
-                lc = mc.LineCollection([event.artist.get_segments()[event.ind[0]]], colors=event.artist.get_colors(), linewidth = linewidth)
+                lc = mc.LineCollection(
+                    [event.artist.get_segments()[event.ind[0]]],
+                    colors=event.artist.get_colors(),
+                    linewidth=linewidth,
+                )
                 self.highlight = self.ax.add_collection(lc)
                 for isect in self.intersection_ids:
                     if id in isect[1]:
-                        self.update_pick_text("{} (isect {})".format(event.artist.get_label(), isect[0]), index, id, event.ind[0])
+                        self.update_pick_text(
+                            "{} (isect {})".format(event.artist.get_label(), isect[0]),
+                            index,
+                            id,
+                            event.ind[0],
+                        )
                         return
                 self.update_pick_text(event.artist.get_label(), index, id, event.ind[0])
             elif isinstance(event.artist, mc.PathCollection):
-                self.update_pick_text(event.artist.get_label(), self.osi_idx_by_collection[event.artist][0], self.osi_ids_by_collection[event.artist][0], event.ind[0])
+                self.update_pick_text(
+                    event.artist.get_label(),
+                    self.osi_idx_by_collection[event.artist][0],
+                    self.osi_ids_by_collection[event.artist][0],
+                    event.ind[0],
+                )
                 offsets = event.artist.get_offsets()
-                self.highlight = self.ax.scatter(offsets[event.ind[0]][0], offsets[event.ind[0]][1], label=self.rmtype2string(type), s=18.0, color=event.artist.get_facecolors()[0])
+                self.highlight = self.ax.scatter(
+                    offsets[event.ind[0]][0],
+                    offsets[event.ind[0]][1],
+                    label=self.rmtype2string(type),
+                    s=18.0,
+                    color=event.artist.get_facecolors()[0],
+                )
         else:
-            self.text.set_val('Unknown')
+            self.text.set_val("Unknown")
         self.redraw()
 
     def set_last_timestamp(self, timestamp):
@@ -432,7 +513,7 @@ class View:
         obj_index = max(self.follow_object_index, 0)
         obj = self.bb_objects.bb_objects[obj_index]
         # find the requested keyframe
-        frame = obj.kf[max(min(obj.current_idx+val, len(obj.kf)-1), 0)]
+        frame = obj.kf[max(min(obj.current_idx + val, len(obj.kf) - 1), 0)]
         self.set_slider_time(frame[0], pause=True)
 
     def update_view(self):
@@ -442,9 +523,15 @@ class View:
             obj = self.bb_objects.bb_objects[self.follow_object_index]
             self.pan[0] += self.pan_delta[0]
             self.pan[1] += self.pan_delta[1]
-            self.ax.set_xlim(obj.x - self.pan[0] - (xlim[1] - xlim[0])/2, obj.x - self.pan[0] + (xlim[1] - xlim[0])/2)
-            self.ax.set_ylim(obj.y - self.pan[1] - (ylim[1] - ylim[0])/2, obj.y - self.pan[1] + (ylim[1] - ylim[0])/2)
-        elif (abs(self.pan_delta[0]) > 0.0 or abs(self.pan_delta[1]) > 0.0):
+            self.ax.set_xlim(
+                obj.x - self.pan[0] - (xlim[1] - xlim[0]) / 2,
+                obj.x - self.pan[0] + (xlim[1] - xlim[0]) / 2,
+            )
+            self.ax.set_ylim(
+                obj.y - self.pan[1] - (ylim[1] - ylim[0]) / 2,
+                obj.y - self.pan[1] + (ylim[1] - ylim[0]) / 2,
+            )
+        elif abs(self.pan_delta[0]) > 0.0 or abs(self.pan_delta[1]) > 0.0:
             xlim = self.ax.get_xlim()
             ylim = self.ax.get_ylim()
             self.ax.set_xlim((xlim[0] - self.pan_delta[0], xlim[1] - self.pan_delta[0]))
@@ -481,71 +568,125 @@ class View:
         self.screen_width, self.screen_height = self.fig.canvas.get_width_height()
 
         y = 10
-        self.fig.subplots_adjust(left=70.0/self.screen_width,
-                                 right=1.0-(2*margin + menu_width)/self.screen_width,
-                                 top=1.0-y/self.screen_height,
-                                 bottom=75/self.screen_height,)
+        self.fig.subplots_adjust(
+            left=70.0 / self.screen_width,
+            right=1.0 - (2 * margin + menu_width) / self.screen_width,
+            top=1.0 - y / self.screen_height,
+            bottom=75 / self.screen_height,
+        )
         y = 2
-        cb_height = 20*len(self.static_plots_by_type.keys())
+        cb_height = 20 * len(self.static_plots_by_type.keys())
         y += cb_height
-        self.cbax.set_position([1.0-(25 + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               cb_height/self.screen_height])
+        self.cbax.set_position(
+            [
+                1.0 - (25 + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                cb_height / self.screen_height,
+            ]
+        )
         y += 0 + 25
-        self.pcax.set_position([1.0-(margin + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               25/self.screen_height])
+        self.pcax.set_position(
+            [
+                1.0 - (margin + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                25 / self.screen_height,
+            ]
+        )
         y += 0 + 45
-        self.checks_ax.set_position([1.0-(25 + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               45/self.screen_height])
+        self.checks_ax.set_position(
+            [
+                1.0 - (25 + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                45 / self.screen_height,
+            ]
+        )
         y += 0 + 25
-        self.gbax.set_position([1.0-(margin + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               25/self.screen_height])
+        self.gbax.set_position(
+            [
+                1.0 - (margin + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                25 / self.screen_height,
+            ]
+        )
         y += margin + 25
-        self.zeax.set_position([1.0-(margin + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               25/self.screen_height])
+        self.zeax.set_position(
+            [
+                1.0 - (margin + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                25 / self.screen_height,
+            ]
+        )
         y += margin + 60
-        self.tax.set_position([1.0-(margin + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               60/self.screen_height])
+        self.tax.set_position(
+            [
+                1.0 - (margin + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                60 / self.screen_height,
+            ]
+        )
         y += margin + 228
-        self.hax.set_position([1.0-(margin + menu_width)/self.screen_width,
-                               1-y/self.screen_height,
-                               menu_width/self.screen_width,
-                               228/self.screen_height])
+        self.hax.set_position(
+            [
+                1.0 - (margin + menu_width) / self.screen_width,
+                1 - y / self.screen_height,
+                menu_width / self.screen_width,
+                228 / self.screen_height,
+            ]
+        )
 
         y = self.screen_height - 25
-        self.tsax.set_position([10/self.screen_width, 10/self.screen_height, 1.0-(20/self.screen_width), 25/self.screen_height])
-        self.time_slider.label.set_position((0/self.screen_width, 1.2))
-        self.time_slider.valtext.set_position((1.0 - 5/self.screen_width, 1.3))
+        self.tsax.set_position(
+            [
+                10 / self.screen_width,
+                10 / self.screen_height,
+                1.0 - (20 / self.screen_width),
+                25 / self.screen_height,
+            ]
+        )
+        self.time_slider.label.set_position((0 / self.screen_width, 1.2))
+        self.time_slider.valtext.set_position((1.0 - 5 / self.screen_width, 1.3))
 
     def rmtype2string(self, type):
-        if type == 0: return 'UNKNOWN'
-        elif type == 1: return 'OTHER'
-        elif type == 2: return 'NO_LINE'
-        elif type == 3: return 'SOLID_LINE'
-        elif type == 4: return 'DASHED_LINE'
-        elif type == 5: return 'BOTTS_DOTS'
-        elif type == 6: return 'ROAD_EDGE'
-        elif type == 7: return 'SNOW_EDGE'
-        elif type == 8: return 'GRASS_EDGE'
-        elif type == 9: return 'GRAVEL_EDGE'
-        elif type == 10: return 'SOIL_EDGE'
-        elif type == 11: return 'GUARD_RAIL'
-        elif type == 12: return 'CURB'
-        elif type == 13: return 'STRUCTURE'
-        elif type == 14: return 'BARRIER'
-        elif type == 15: return 'SOUND_BARRIER'
-        else: return 'UNSUPPORTED: {}'.format(type)
+        if type == 0:
+            return "UNKNOWN"
+        elif type == 1:
+            return "OTHER"
+        elif type == 2:
+            return "NO_LINE"
+        elif type == 3:
+            return "SOLID_LINE"
+        elif type == 4:
+            return "DASHED_LINE"
+        elif type == 5:
+            return "BOTTS_DOTS"
+        elif type == 6:
+            return "ROAD_EDGE"
+        elif type == 7:
+            return "SNOW_EDGE"
+        elif type == 8:
+            return "GRASS_EDGE"
+        elif type == 9:
+            return "GRAVEL_EDGE"
+        elif type == 10:
+            return "SOIL_EDGE"
+        elif type == 11:
+            return "GUARD_RAIL"
+        elif type == 12:
+            return "CURB"
+        elif type == 13:
+            return "STRUCTURE"
+        elif type == 14:
+            return "BARRIER"
+        elif type == 15:
+            return "SOUND_BARRIER"
+        else:
+            return "UNSUPPORTED: {}".format(type)
 
     def unselect_object(self):
         if self.selected_object:
@@ -575,18 +716,20 @@ class View:
 
         # First register intersections
         for index, lane in enumerate(gt.lane):
-            clf=lane.classification
+            clf = lane.classification
             if clf.type == osi3.LaneClassificationType.TYPE_INTERSECTION:
-                self.intersection_ids.append((lane.id.value, [a.value for a in clf.free_lane_boundary_id]))
+                self.intersection_ids.append(
+                    (lane.id.value, [a.value for a in clf.free_lane_boundary_id])
+                )
                 continue
 
         for index, lane in enumerate(gt.lane):
-            clf=lane.classification
+            clf = lane.classification
             if clf.type == osi3.LaneClassificationType.TYPE_INTERSECTION:
                 continue
             elif len(clf.centerline) > 0:
-                i=0
-                line=[]
+                i = 0
+                line = []
                 while i < len(clf.centerline):
                     p0 = clf.centerline[i]
                     line += [(p0.x, p0.y)]
@@ -595,10 +738,16 @@ class View:
                 idx.append(index)
                 lines.append(line)
             else:
-                print('skipping lane of type {} with id {}'.format(clf.type, lane.id.value))
+                print(
+                    "skipping lane of type {} with id {}".format(
+                        clf.type, lane.id.value
+                    )
+                )
 
-        self.plot_colors["CenterLine"] = '#BBBBFF'
-        collection = mc.LineCollection(lines, picker=5, label="CenterLine", color=self.plot_colors["CenterLine"])
+        self.plot_colors["CenterLine"] = "#BBBBFF"
+        collection = mc.LineCollection(
+            lines, picker=5, label="CenterLine", color=self.plot_colors["CenterLine"]
+        )
         self.osi_ids_by_collection[collection] = ids
         self.osi_idx_by_collection[collection] = idx
         plot = self.ax.add_collection(collection)
@@ -609,20 +758,22 @@ class View:
         for index, l in enumerate(gt.lane_boundary):
             ids = []
             indices = []
-            i=0
+            i = 0
             type = l.classification.type
             points = []  # create one list for polyline
-            scatter_points = [[],[]]
+            scatter_points = [[], []]
             indices.append(index)
 
-            if type == 3 or type == 4 or type == 5:  # solid line or dashed line or botts dots
-                color = '#222222'
+            if (
+                type == 3 or type == 4 or type == 5
+            ):  # solid line or dashed line or botts dots
+                color = "#222222"
             else:
                 if type == 2:
-                    color = '#DDDDDD'  # light gray for NO_LINE
+                    color = "#DDDDDD"  # light gray for NO_LINE
                     no_line_type = True
                 else:
-                    color = '#FF9999'  # light red as default for various unsupported line types
+                    color = "#FF9999"  # light red as default for various unsupported line types
                     unknown_line_type = True
 
             while i < len(l.boundary_line):
@@ -632,8 +783,8 @@ class View:
                     scatter_points[1].append(p.y)
                 if type == 4:  # dashed line
                     # one polyline per collection dash segment
-                    if i < len(l.boundary_line)-1:
-                        p2 = l.boundary_line[i+1].position
+                    if i < len(l.boundary_line) - 1:
+                        p2 = l.boundary_line[i + 1].position
                     else:
                         p2 = p  # make a dot instead of line
                     points.append([(p.x, p.y), (p2.x, p2.y)])
@@ -641,25 +792,34 @@ class View:
                     indices.append(index)
                     i += 2
                 else:
-                    if i==0:
+                    if i == 0:
                         # only one polyline per collection
                         ids.append(l.id.value)
                         indices.append(index)
                         points.append([])
-                    points[0]+=([(p.x, p.y)])
+                    points[0] += [(p.x, p.y)]
                     i += 1
 
             vals = [(self.rmtype2string(type), color, 1.0, 3.0)]
             for i_id in self.intersection_ids:
-                if (l.id.value in i_id[1]):
-                    vals.append(('INTERSECTION', '#CCCC44', 3.0, 6.0))
+                if l.id.value in i_id[1]:
+                    vals.append(("INTERSECTION", "#CCCC44", 3.0, 6.0))
 
             for val in vals:
                 if type == 5:  # botts dots
-                    collection = self.ax.scatter(scatter_points[0], scatter_points[1], label=val[0], color=val[1], s=val[3], picker=5)
+                    collection = self.ax.scatter(
+                        scatter_points[0],
+                        scatter_points[1],
+                        label=val[0],
+                        color=val[1],
+                        s=val[3],
+                        picker=5,
+                    )
                     plot = self.ax.add_collection(collection)
                 else:
-                    collection = mc.LineCollection(points, label=val[0], color=val[1], picker=5, linewidths=val[2])
+                    collection = mc.LineCollection(
+                        points, label=val[0], color=val[1], picker=5, linewidths=val[2]
+                    )
                     plot = self.ax.add_collection(collection)
 
                 ids.append(l.id.value)
@@ -675,9 +835,17 @@ class View:
                 self.osi_idx_by_collection[collection] = indices
 
         if no_line_type:
-            print('Boundary type {} plotted with light gray color'.format(self.rmtype2string(type)))
+            print(
+                "Boundary type {} plotted with light gray color".format(
+                    self.rmtype2string(type)
+                )
+            )
         if unknown_line_type:
-            print('Unsupported lane boundary type: {} plotted with light red color'.format(self.rmtype2string(type)))
+            print(
+                "Unsupported lane boundary type: {} plotted with light red color".format(
+                    self.rmtype2string(type)
+                )
+            )
 
         # road markings
         for i, rm in enumerate(gt.road_marking):
@@ -685,13 +853,13 @@ class View:
             vertices = []
             for bp in bps:
                 vertices.append((bp.x, bp.y))
-            #patch = self.ax.add_patch(patches.Polygon(vertices, label="road_marking".format(rm.id.value, index), facecolor='#FFFFFF', edgecolor='black', linewidth=1, picker=5))
-            #self.osi_ids_by_stationary[patch] = rm.id.value
-            #self.osi_idx_by_stationary[patch] = i
+            # patch = self.ax.add_patch(patches.Polygon(vertices, label="road_marking".format(rm.id.value, index), facecolor='#FFFFFF', edgecolor='black', linewidth=1, picker=5))
+            # self.osi_ids_by_stationary[patch] = rm.id.value
+            # self.osi_idx_by_stationary[patch] = i
 
         # stationary objects
         for index, s in enumerate(gt.stationary_object):
-            if hasattr(s, 'base'):
+            if hasattr(s, "base"):
                 b = s.base
                 hdg = b.orientation.yaw
                 patch = None
@@ -699,23 +867,69 @@ class View:
                     vertices = []
                     for p in b.base_polygon:
                         vertices.append((p.x, p.y))
-                    patch = self.ax.add_patch(patches.Polygon(vertices, label="stationary_polygon", facecolor='#CCCCCC', edgecolor='black', linewidth=1, picker=5, fill=True, zorder=2))
-                    patch.set_transform(transforms.Affine2D().rotate_deg(np.rad2deg(0)).translate(b.position.x, b.position.y) + self.ax.transData)
+                    patch = self.ax.add_patch(
+                        patches.Polygon(
+                            vertices,
+                            label="stationary_polygon",
+                            facecolor="#CCCCCC",
+                            edgecolor="black",
+                            linewidth=1,
+                            picker=5,
+                            fill=True,
+                            zorder=2,
+                        )
+                    )
+                    patch.set_transform(
+                        transforms.Affine2D()
+                        .rotate_deg(np.rad2deg(0))
+                        .translate(b.position.x, b.position.y)
+                        + self.ax.transData
+                    )
                 else:
                     w = b.dimension.width
                     l = b.dimension.length
-                    patch = self.ax.add_patch(plt.Rectangle((-l/2, -w/2), l, w, label="stationary_bb", facecolor='#CCCCCC', edgecolor='black', lw=1, picker=5, fill=True, zorder=2))
-                    patch.set_transform(transforms.Affine2D().rotate_deg(np.rad2deg(hdg)).translate(b.position.x, b.position.y) + self.ax.transData)
+                    patch = self.ax.add_patch(
+                        plt.Rectangle(
+                            (-l / 2, -w / 2),
+                            l,
+                            w,
+                            label="stationary_bb",
+                            facecolor="#CCCCCC",
+                            edgecolor="black",
+                            lw=1,
+                            picker=5,
+                            fill=True,
+                            zorder=2,
+                        )
+                    )
+                    patch.set_transform(
+                        transforms.Affine2D()
+                        .rotate_deg(np.rad2deg(hdg))
+                        .translate(b.position.x, b.position.y)
+                        + self.ax.transData
+                    )
                 self.osi_ids_by_stationary[patch] = s.id.value
                 self.osi_idx_by_stationary[patch] = index
 
     def update_pick_text(self, label, index, id, instance):
-        self.text.set_text('selected:\n{}\nidx {} id {} # {}\n'.format(label, index, id, instance))
+        self.text.set_text(
+            "selected:\n{}\nidx {} id {} # {}\n".format(label, index, id, instance)
+        )
 
     def update_follow_text(self):
         if self.follow_object_index >= 0:
             obj = self.bb_objects.bb_objects[self.follow_object_index]
-            self.text.set_text('follow: {}\nidx {} id {}\nx {:.2f} y {:.2f}\nh {:.2f} v {:.2f}'.format(obj.patch.get_label(), self.follow_object_index, obj.id, obj.x, obj.y, obj.h, obj.v))
+            self.text.set_text(
+                "follow: {}\nidx {} id {}\nx {:.2f} y {:.2f}\nh {:.2f} v {:.2f}".format(
+                    obj.patch.get_label(),
+                    self.follow_object_index,
+                    obj.id,
+                    obj.x,
+                    obj.y,
+                    obj.h,
+                    obj.v,
+                )
+            )
 
     def select_object(self, artist=None, index=None):
         self.unselect_object()
@@ -729,7 +943,13 @@ class View:
             if index is None:
                 # stationary object?
                 if artist in self.osi_ids_by_stationary:
-                    self.text.set_text("selected:\n{}\nids {} idx {}\n".format(artist.get_label(), self.osi_ids_by_stationary[artist], self.osi_idx_by_stationary[artist]))
+                    self.text.set_text(
+                        "selected:\n{}\nids {} idx {}\n".format(
+                            artist.get_label(),
+                            self.osi_ids_by_stationary[artist],
+                            self.osi_idx_by_stationary[artist],
+                        )
+                    )
                     return  # no need of update function for stationary objects
                 # else moving object?
                 else:
@@ -760,12 +980,14 @@ class View:
 
     # Button action to toggle grid visibility
     def toggle_grid(self, event):
-        self.ax.grid(not self.ax.xaxis._major_tick_kw['gridOn'])  # Toggle grid visibility
+        self.ax.grid(
+            not self.ax.xaxis._major_tick_kw["gridOn"]
+        )  # Toggle grid visibility
         self.redraw()
 
+
 class OSIMCAPViewer:
-    def __init__(self, osi_filename=None, gts = None):
-        
+    def __init__(self, osi_filename=None, gts=None):
         self.view = None
         self.first_timestamp = 0.0
         if osi_filename is not None:
@@ -773,9 +995,9 @@ class OSIMCAPViewer:
             ground_truths = betterosi.read(osi_filename, return_ground_truth=True)
         elif gts is not None:
             ground_truths = gts
-            self.filename = ''
+            self.filename = ""
         else:
-            raise NotImplementedError('either osi_filename or gts must be set')
+            raise NotImplementedError("either osi_filename or gts must be set")
         for msg in ground_truths:
             self.gt = msg
             timestamp = self.gt.timestamp.seconds + self.gt.timestamp.nanos * 1e-9
@@ -786,16 +1008,35 @@ class OSIMCAPViewer:
                 self.view = View(self.gt, self.filename)
             if len(self.gt.moving_object) > 0:
                 # retrieve timestamp
-                timestamp = self.gt.timestamp.seconds + self.gt.timestamp.nanos * 1e-9 - self.first_timestamp
+                timestamp = (
+                    self.gt.timestamp.seconds
+                    + self.gt.timestamp.nanos * 1e-9
+                    - self.first_timestamp
+                )
                 for obj in self.gt.moving_object:
-                    if hasattr(obj,'base'):
+                    if hasattr(obj, "base"):
                         bb = self.view.bb_objects.get_bb_object(obj.id.value)
                         v = np.sqrt(obj.base.velocity.x**2 + obj.base.velocity.y**2)
                         if bb is None:
-                            bb = BBObject(obj.id.value, obj.base.position.x, obj.base.position.y, obj.base.orientation.yaw, v, obj.base.dimension.length, obj.base.dimension.width, self.view.ax)
+                            bb = BBObject(
+                                obj.id.value,
+                                obj.base.position.x,
+                                obj.base.position.y,
+                                obj.base.orientation.yaw,
+                                v,
+                                obj.base.dimension.length,
+                                obj.base.dimension.width,
+                                self.view.ax,
+                            )
                             self.view.add_bb_object(bb)
                         # add keyframe
-                        bb.add_keyframe(timestamp, obj.base.position.x, obj.base.position.y, obj.base.orientation.yaw, v)
+                        bb.add_keyframe(
+                            timestamp,
+                            obj.base.position.x,
+                            obj.base.position.y,
+                            obj.base.orientation.yaw,
+                            v,
+                        )
         if self.view is not None:
             self.view.set_last_timestamp(timestamp)
 
@@ -804,14 +1045,13 @@ def main():
     if len(sys.argv) > 1:
         filename = sys.argv[1]
     else:
-        print('Usage: {} <osi or mcap file>'.format(os.path.basename(sys.argv[0])))
+        print("Usage: {} <osi or mcap file>".format(os.path.basename(sys.argv[0])))
         exit(-1)
 
     OSIMCAPViewer(filename)
     plt.show()
-    exit (0)
-if __name__ == '__main__':
+    exit(0)
+
+
+if __name__ == "__main__":
     main()
-    
-    
-    
