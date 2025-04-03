@@ -50,7 +50,13 @@ Repository = "https://github.com/ika-rwth-aachen/betterosi"
 [project.scripts]
 betterosi-viewer = "betterosi.viewer:main"
 betterosi-to-mcap = "betterosi.osi2mcap:app"
-betterosi-generate-descriptor-json = "betterosi.descriptor:app"
 
 [tool.ruff]
 lint.ignore = ["E741", "E701"]
+
+[tool.pytest.ini_options]
+addopts = "--codeblocks --cov=betterosi --cov-report=xml --cov-report=html --cov-report=term-missing"
+testpaths = [
+    "README.md"
+]
+log_cli = true

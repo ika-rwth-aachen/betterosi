@@ -15,43 +15,32 @@ Since OSI and esmini are under MPL, also this repository is published under MPL-
 ## Install
 
 `pip install betterosi`
+## Create an OSI or MCAP trace
 
-## Read OSI and MCAP
-The following code creates a list of GroundTruth messages from an MCAP file for OSI trace containing SensorViews or GroundTruth messages.
+To create an OSI or MCAP trace, you need to use `betterosi.Writer`. After creating the OSI Message of your desire, just add it to the `Writer` as shown in the examples below for either MCAP traaces or OSI traces. 
+
+
+<!--pytest.mark.skip-->
 ```python
 import betterosi
 
-ground_truths = betterosi.read('filepath.mcap/filepath.osi', return_ground_truth=True)
-sensor_views = betterosi.read('filepath.osi', return_sensor_view=True)
-any_osi_message = betterosi.read('filepath.mcap')
-
-```
-## Writing MCAP file
-With the following code you can create an MCAP file. If you change the filepath `test.mcap` to `test.osi`, an OSI tracefile will be created.
-
-### Create MCAP
-
-```python
-with betterosi.Writer(f'test.mcap') as writer:
+with betterosi.Writer('test.mcap') as writer:
     gt = betterosi.GroundTruth(...)
     writer.add(gt)
-```
 
-### Create OSI
-```python
-with betterosi.Writer(f'test.osi') as writer:
+with betterosi.Writer('test.osi') as writer:
     sv = betterosi.SensorView(...)
     writer.add(sv)
 ```
 
-### Full example
+Below a full example is given which creates three files, and MCAP trace and and OSI trace with GroundTruth messages and a MCAP trace of SensorViews. If you use the code, you obviously just need one of the writers.
 
 ```python
 import betterosi
 NANOS_PER_SEC = 1_000_000_000
 
 
-with betterosi.Writer(f'test.mcap') as writer:
+with betterosi.Writer('test.mcap') as writer_mcap, betterosi.Writer('test.osi') as writer_osi, betterosi.Writer('test_sv.mcap') as writer_sv:
     moving_object = betterosi.MovingObject(id=betterosi.Identifier(value=42),
         type = betterosi.MovingObjectType.TYPE_UNKNOWN,
         base=betterosi.BaseMoving(
@@ -68,14 +57,58 @@ with betterosi.Writer(f'test.mcap') as writer:
         ],
         host_vehicle_id=betterosi.Identifier(value=0)
     )
+    sv = betterosi.SensorView(
+        version=betterosi.InterfaceVersion(version_major= 3, version_minor=7, version_patch=0),
+        timestamp=betterosi.Timestamp(seconds=0, nanos=0),
+        global_ground_truth=gt,
+        host_vehicle_id=betterosi.Identifier(value=0)
+    )
     # Generate 1000 OSI messages for a duration of 10 seconds
     for i in range(1000):
         total_nanos = i*0.01*NANOS_PER_SEC
         gt.timestamp.seconds = int(total_nanos // NANOS_PER_SEC)
         gt.timestamp.nanos = int(total_nanos % NANOS_PER_SEC)
         moving_object.base.position.x += 0.5
+        sv.timestamp = gt.timestamp
 
-        writer.add(gt)
+        writer_mcap.add(gt)
+        writer_osi.add(gt)
+        writer_sv.add(sv)
+```
+
+When writing MCAP messages you can specifiy the topic in the writer and the add function by setting the `topic` argument. When reading such files, set the argument `mcap_topic` to the same string.
+
+## Read OSI and MCAP
+With `betterosi.read` you can read an mcap or osi trace. `read` returns a generator. With the following code, you can get a list of the GroundTruth messages from a trace, even if the GroundTruth are nested inside SensorViews. It works the same for OSI traces.
+
+```python
+import betterosi
+ground_truths = list(betterosi.read('test_sv.mcap', return_ground_truth=True))
+print([len(ground_truths), ground_truths[0]])
+```
+Above code prints the following:
+<!--pytest-codeblocks:expected-output-->
+```
+[1000, GroundTruth(version=InterfaceVersion(version_major=3, version_minor=7), timestamp=Timestamp(), host_vehicle_id=Identifier(), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3D(length=5.0, width=2.0, height=1.0), position=Vector3D(x=0.5), orientation=Orientation3D(), velocity=Vector3D(x=1.0)))])]
+```
+
+If you want a list of the sensor views directly:
+
+```python
+import betterosi
+sensor_views = betterosi.read('test_sv.mcap', return_sensor_view=True)
+print(next(sensor_views))
+```
+The above prints:
+<!--pytest-codeblocks:expected-output-->
+```
+SensorView(version=InterfaceVersion(version_major=3, version_minor=7), timestamp=Timestamp(), global_ground_truth=GroundTruth(version=InterfaceVersion(version_major=3, version_minor=7), timestamp=Timestamp(), host_vehicle_id=Identifier(), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3D(length=5.0, width=2.0, height=1.0), position=Vector3D(x=0.5), orientation=Orientation3D(), velocity=Vector3D(x=1.0)))]), host_vehicle_id=Identifier())
+```
+If you want to read any OSI trace, you just need to give the filename.
+```python
+import betterosi
+any_osi_message = betterosi.read('test.osi')
+any_osi_message = betterosi.read('test.mcap')
 ```
 
 
