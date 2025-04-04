@@ -1,5 +1,11 @@
 # betterosi - a python library for reading and writing open-simulation-interface files using betterproto2
 
+[![](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/ika-rwth-aachen/betterosi/blob/master/LICENSE) 
+[![](https://img.shields.io/pypi/v/betterosi.svg)](https://pypi.python.org/pypi/betterosi)
+[![](https://github.com/ika-rwth-aachen/betterosi/workflows/CI/badge.svg)](https://github.com/ika-rwth-aachen/betterosi/actions)
+[![](https://img.shields.io/pypi/pyversions/betterosi.svg)](https://pypi.python.org/pypi/betterosi/)
+[![](https://img.shields.io/github/issues-raw/ika-rwth-aachen/betterosi.svg)](https://github.com/ika-rwth-aachen/betterosi/issues)
+
 A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
 
 - Supports writing and reading either mcap or osi files with `betterosi.Writer` and `betterosi.read`.
@@ -11,6 +17,12 @@ The library uses code from [esmini](https://github.com/esmini/esmini) (`betteros
 The library uses code generation of [python-betterproto2-compiler](https://github.com/betterproto/python-betterproto2-compiler) to generate python code from the protobuf definitions of [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface).
 
 Since OSI and esmini are under MPL, also this repository is published under MPL-2.0 license.
+
+## Differences to OSI 3.7.0
+The proto definitions extend the OSI 3.7.0 definitions in the following ways:
+- Add `MapAsamOpenDrive` Message: Packages the XML content of an ASAM OpenDRIVE map in a proto Message
+
+See [omega-prime](https://github.com/ika-rwth-aachen/omega-prime) for details.
 
 ## Install
 
