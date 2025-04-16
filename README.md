@@ -142,4 +142,18 @@ python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generate
 
 # LICENSE and Copyright
 This code is published under MPL-2.0 license. 
-It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2.0 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.o
+It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2.0 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.0.
+
+# Acknowledgements
+
+This package is developed as part of the [SYNERGIES project](https://synergies-ccam.eu).
+
+<img src="https://raw.githubusercontent.com/ika-rwth-aachen/betterosi/refs/heads/main/synergies.svg"
+style="width:2in" />
+
+
+
+Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or European Climate, Infrastructure and Environment Executive Agency (CINEA). Neither the European Union nor the granting authority can be held responsible for them. 
+
+<img src="https://raw.githubusercontent.com/ika-rwth-aachen/betterosi/refs/heads/main/funded_by_eu.svg"
+style="width:4in" />
