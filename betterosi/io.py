@@ -5,8 +5,7 @@ from typing import Any
 from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
 from mcap_protobuf.writer import Writer as McapWriter
-
-from . import osi3trace
+import struct
 from .generated import osi3
 
 MESSAGES_TYPE = [
@@ -49,6 +48,20 @@ def gen2betterosi(
     return None
 
 
+def iter_osi_trace_file(f, m):
+    while True:
+        length_bytes = f.read(4)
+        if not length_bytes:
+            break  # EOF
+        if len(length_bytes) < 4:
+            raise ValueError("Truncated length header")
+        (msg_len,) = struct.unpack("<I", length_bytes)
+        message = f.read(msg_len)
+        if len(message) < msg_len:
+            raise ValueError("Truncated message body")
+        yield m.parse(message)
+
+
 def read(
     filepath: str,
     return_sensor_view=False,
@@ -58,8 +71,8 @@ def read(
     osi_message_type: str | None = None,
 ) -> list[Any]:
     p = Path(filepath)
-    if p.suffix == ".mcap":
-        with p.open("rb") as f:
+    with p.open("rb") as f:
+        if p.suffix == ".mcap":
             reader = make_reader(f, decoder_factories=[DecoderFactory()])
             views = (
                 gen2betterosi(
@@ -74,31 +87,32 @@ def read(
                 )
             )
             views = (v for v in views if v is not None)
-            for view in views:
-                yield view
-    elif p.suffix == ".osi":
-        if return_sensor_view or return_ground_truth:
-            try:
-                next(iter(osi3trace.OSITrace(str(filepath), "SensorView")))
-                is_sv = True
-            except RuntimeError as e:
-                if return_sensor_view:
-                    raise e
-                is_sv = False
-            if is_sv:
-                views = osi3trace.OSITrace(str(filepath), "SensorView")
-                if not return_sensor_view:
-                    views = (m.global_ground_truth for m in views)
+        elif p.suffix == ".osi":
+            if return_sensor_view or return_ground_truth:
+                try:
+                    with p.open("r") as t:
+                        _ = next(iter_osi_trace_file(t, osi3.SensorView))
+                        is_sv = True
+                except Exception as e:
+                    if return_sensor_view:
+                        raise e
+                    is_sv = False
+                if is_sv:
+                    views = iter_osi_trace_file(f, osi3.SensorView)
+                    if not return_sensor_view:
+                        views = (m.global_ground_truth for m in views)
+                else:
+                    views = iter_osi_trace_file(f, osi3.GroundTruth)
             else:
-                views = osi3trace.OSITrace(str(filepath), "GroundTruth")
+                if osi_message_type is None:
+                    raise ValueError(
+                        "Specify the osi_message_type, e.g., `GroundTruth`."
+                    )
+                views = iter_osi_trace_file(f, getattr(osi3, osi_message_type))
         else:
-            if osi_message_type is None:
-                raise ValueError("Specify the osi_message_type, e.g., `GroundTruth`.")
-            views = osi3trace.OSITrace(str(filepath), osi_message_type)
-        for view in views:
-            yield view
-    else:
-        raise NotImplementedError()
+            raise NotImplementedError()
+        for v in views:
+            yield v
 
 
 class Writer:

@@ -4,26 +4,10 @@
 # This file has been @generated
 
 __all__ = (
-    "Edition",
-    "ExtensionRangeOptionsVerificationState",
-    "FeatureSetEnumType",
-    "FeatureSetFieldPresence",
-    "FeatureSetJsonFormat",
-    "FeatureSetMessageEncoding",
-    "FeatureSetRepeatedFieldEncoding",
-    "FeatureSetUtf8Validation",
-    "FieldDescriptorProtoLabel",
-    "FieldDescriptorProtoType",
-    "FieldOptionsCType",
-    "FieldOptionsJsType",
-    "FieldOptionsOptionRetention",
-    "FieldOptionsOptionTargetType",
-    "FileOptionsOptimizeMode",
-    "GeneratedCodeInfoAnnotationSemantic",
-    "MethodOptionsIdempotencyLevel",
     "DescriptorProto",
     "DescriptorProtoExtensionRange",
     "DescriptorProtoReservedRange",
+    "Edition",
     "EnumDescriptorProto",
     "EnumDescriptorProtoEnumReservedRange",
     "EnumOptions",
@@ -31,27 +15,47 @@ __all__ = (
     "EnumValueOptions",
     "ExtensionRangeOptions",
     "ExtensionRangeOptionsDeclaration",
+    "ExtensionRangeOptionsVerificationState",
     "FeatureSet",
     "FeatureSetDefaults",
     "FeatureSetDefaultsFeatureSetEditionDefault",
+    "FeatureSetEnforceNamingStyle",
+    "FeatureSetEnumType",
+    "FeatureSetFieldPresence",
+    "FeatureSetJsonFormat",
+    "FeatureSetMessageEncoding",
+    "FeatureSetRepeatedFieldEncoding",
+    "FeatureSetUtf8Validation",
+    "FeatureSetVisibilityFeature",
+    "FeatureSetVisibilityFeatureDefaultSymbolVisibility",
     "FieldDescriptorProto",
+    "FieldDescriptorProtoLabel",
+    "FieldDescriptorProtoType",
     "FieldOptions",
+    "FieldOptionsCType",
     "FieldOptionsEditionDefault",
     "FieldOptionsFeatureSupport",
+    "FieldOptionsJsType",
+    "FieldOptionsOptionRetention",
+    "FieldOptionsOptionTargetType",
     "FileDescriptorProto",
     "FileDescriptorSet",
     "FileOptions",
+    "FileOptionsOptimizeMode",
     "GeneratedCodeInfo",
     "GeneratedCodeInfoAnnotation",
+    "GeneratedCodeInfoAnnotationSemantic",
     "MessageOptions",
     "MethodDescriptorProto",
     "MethodOptions",
+    "MethodOptionsIdempotencyLevel",
     "OneofDescriptorProto",
     "OneofOptions",
     "ServiceDescriptorProto",
     "ServiceOptions",
     "SourceCodeInfo",
     "SourceCodeInfoLocation",
+    "SymbolVisibility",
     "UninterpretedOption",
     "UninterpretedOptionNamePart",
 )
@@ -60,10 +64,13 @@ import warnings
 from dataclasses import dataclass
 
 import betterproto2
+from google.protobuf.descriptor import Descriptor, EnumDescriptor
 
+from ...google_proto_descriptor_pool import default_google_proto_descriptor_pool
 from ...message_pool import default_message_pool
 
-betterproto2.check_compiler_version("0.3.1")
+_COMPILER_VERSION = "0.7.1"
+betterproto2.check_compiler_version(_COMPILER_VERSION)
 
 
 class Edition(betterproto2.Enum):
@@ -71,9 +78,9 @@ class Edition(betterproto2.Enum):
     The full set of known editions.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x07Edition\x12\x11\n\x0fEDITION_UNKNOWN\x12\x13\n\x0eEDITION_LEGACY\x10\x84\x07\x12\x13\n\x0eEDITION_PROTO2\x10\xe6\x07\x12\x13\n\x0eEDITION_PROTO3\x10\xe7\x07\x12\x11\n\x0cEDITION_2023\x10\xe8\x07\x12\x11\n\x0cEDITION_2024\x10\xe9\x07\x12\x17\n\x13EDITION_1_TEST_ONLY\x10\x01\x12\x17\n\x13EDITION_2_TEST_ONLY\x10\x02\x12\x1d\n\x17EDITION_99997_TEST_ONLY\x10\x9d\x8d\x06\x12\x1d\n\x17EDITION_99998_TEST_ONLY\x10\x9e\x8d\x06\x12\x1d\n\x17EDITION_99999_TEST_ONLY\x10\x9f\x8d\x06\x12\x13\n\x0bEDITION_MAX\x10\xff\xff\xff\xff\x07"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name["Edition"]
 
     UNKNOWN = 0
     """
@@ -126,15 +133,32 @@ class Edition(betterproto2.Enum):
     support a new edition.
     """
 
+    betterproto_proto_names = {
+        0: "EDITION_UNKNOWN",
+        900: "EDITION_LEGACY",
+        998: "EDITION_PROTO2",
+        999: "EDITION_PROTO3",
+        1000: "EDITION_2023",
+        1001: "EDITION_2024",
+        1: "EDITION_1_TEST_ONLY",
+        2: "EDITION_2_TEST_ONLY",
+        99997: "EDITION_99997_TEST_ONLY",
+        99998: "EDITION_99998_TEST_ONLY",
+        99999: "EDITION_99999_TEST_ONLY",
+        2147483647: "EDITION_MAX",
+    }
+
 
 class ExtensionRangeOptionsVerificationState(betterproto2.Enum):
     """
     The verification state of the extension range.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n'ExtensionRangeOptions.VerificationState\x12\r\n\x0bDECLARATION\x12\x0e\n\nUNVERIFIED\x10\x01"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "ExtensionRangeOptions.VerificationState"
+        ]
 
     DECLARATION = 0
     """
@@ -144,10 +168,26 @@ class ExtensionRangeOptionsVerificationState(betterproto2.Enum):
     UNVERIFIED = 1
 
 
+class FeatureSetEnforceNamingStyle(betterproto2.Enum):
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.EnforceNamingStyle"
+        ]
+
+    ENFORCE_NAMING_STYLE_UNKNOWN = 0
+
+    STYLE2024 = 1
+
+    STYLE_LEGACY = 2
+
+
 class FeatureSetEnumType(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x13FeatureSet.EnumType\x12\x13\n\x11ENUM_TYPE_UNKNOWN\x12\x08\n\x04OPEN\x10\x01\x12\n\n\x06CLOSED\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.EnumType"
+        ]
 
     ENUM_TYPE_UNKNOWN = 0
 
@@ -157,9 +197,11 @@ class FeatureSetEnumType(betterproto2.Enum):
 
 
 class FeatureSetFieldPresence(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x18FeatureSet.FieldPresence\x12\x18\n\x16FIELD_PRESENCE_UNKNOWN\x12\x0c\n\x08EXPLICIT\x10\x01\x12\x0c\n\x08IMPLICIT\x10\x02\x12\x13\n\x0fLEGACY_REQUIRED\x10\x03"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.FieldPresence"
+        ]
 
     FIELD_PRESENCE_UNKNOWN = 0
 
@@ -171,9 +213,11 @@ class FeatureSetFieldPresence(betterproto2.Enum):
 
 
 class FeatureSetJsonFormat(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x15FeatureSet.JsonFormat\x12\x15\n\x13JSON_FORMAT_UNKNOWN\x12\t\n\x05ALLOW\x10\x01\x12\x16\n\x12LEGACY_BEST_EFFORT\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.JsonFormat"
+        ]
 
     JSON_FORMAT_UNKNOWN = 0
 
@@ -183,9 +227,11 @@ class FeatureSetJsonFormat(betterproto2.Enum):
 
 
 class FeatureSetMessageEncoding(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1aFeatureSet.MessageEncoding\x12\x1a\n\x18MESSAGE_ENCODING_UNKNOWN\x12\x13\n\x0fLENGTH_PREFIXED\x10\x01\x12\r\n\tDELIMITED\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.MessageEncoding"
+        ]
 
     MESSAGE_ENCODING_UNKNOWN = 0
 
@@ -195,9 +241,11 @@ class FeatureSetMessageEncoding(betterproto2.Enum):
 
 
 class FeatureSetRepeatedFieldEncoding(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n FeatureSet.RepeatedFieldEncoding\x12!\n\x1fREPEATED_FIELD_ENCODING_UNKNOWN\x12\n\n\x06PACKED\x10\x01\x12\x0c\n\x08EXPANDED\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.RepeatedFieldEncoding"
+        ]
 
     REPEATED_FIELD_ENCODING_UNKNOWN = 0
 
@@ -207,9 +255,11 @@ class FeatureSetRepeatedFieldEncoding(betterproto2.Enum):
 
 
 class FeatureSetUtf8Validation(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x19FeatureSet.Utf8Validation\x12\x19\n\x17UTF8_VALIDATION_UNKNOWN\x12\n\n\x06VERIFY\x10\x02\x12\x08\n\x04NONE\x10\x03"\x04\x08\x01\x10\x01'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.Utf8Validation"
+        ]
 
     UTF8_VALIDATION_UNKNOWN = 0
 
@@ -218,62 +268,104 @@ class FeatureSetUtf8Validation(betterproto2.Enum):
     NONE = 3
 
 
-class FieldDescriptorProtoLabel(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1aFieldDescriptorProto.Label\x12\x12\n\x0eLABEL_OPTIONAL\x10\x01\x12\x12\n\x0eLABEL_REPEATED\x10\x03\x12\x12\n\x0eLABEL_REQUIRED\x10\x02"
+class FeatureSetVisibilityFeatureDefaultSymbolVisibility(betterproto2.Enum):
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FeatureSet.VisibilityFeature.DefaultSymbolVisibility"
+        ]
 
-    LABEL_OPTIONAL = 1
+    DEFAULT_SYMBOL_VISIBILITY_UNKNOWN = 0
+
+    EXPORT_ALL = 1
+    """
+    Default pre-EDITION_2024, all UNSET visibility are export.
+    """
+
+    EXPORT_TOP_LEVEL = 2
+    """
+    All top-level symbols default to export, nested default to local.
+    """
+
+    LOCAL_ALL = 3
+    """
+    All symbols default to local.
+    """
+
+    STRICT = 4
+    """
+    All symbols local by default. Nested types cannot be exported.
+    With special case caveat for message { enum {} reserved 1 to max; }
+    This is the recommended setting for new protos.
+    """
+
+
+class FieldDescriptorProtoLabel(betterproto2.Enum):
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldDescriptorProto.Label"
+        ]
+
+    OPTIONAL = 1
     """
     0 is reserved for errors
     """
 
-    LABEL_REPEATED = 3
+    REPEATED = 3
 
-    LABEL_REQUIRED = 2
+    REQUIRED = 2
     """
     The required label is only allowed in google.protobuf.  In proto3 and Editions
     it's explicitly prohibited.  In Editions, the `field_presence` feature
     can be used to get this behavior.
     """
 
+    betterproto_proto_names = {
+        1: "LABEL_OPTIONAL",
+        3: "LABEL_REPEATED",
+        2: "LABEL_REQUIRED",
+    }
+
 
 class FieldDescriptorProtoType(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x19FieldDescriptorProto.Type\x12\x0f\n\x0bTYPE_DOUBLE\x10\x01\x12\x0e\n\nTYPE_FLOAT\x10\x02\x12\x0e\n\nTYPE_INT64\x10\x03\x12\x0f\n\x0bTYPE_UINT64\x10\x04\x12\x0e\n\nTYPE_INT32\x10\x05\x12\x10\n\x0cTYPE_FIXED64\x10\x06\x12\x10\n\x0cTYPE_FIXED32\x10\x07\x12\r\n\tTYPE_BOOL\x10\x08\x12\x0f\n\x0bTYPE_STRING\x10\t\x12\x0e\n\nTYPE_GROUP\x10\n\x12\x10\n\x0cTYPE_MESSAGE\x10\x0b\x12\x0e\n\nTYPE_BYTES\x10\x0c\x12\x0f\n\x0bTYPE_UINT32\x10\r\x12\r\n\tTYPE_ENUM\x10\x0e\x12\x11\n\rTYPE_SFIXED32\x10\x0f\x12\x11\n\rTYPE_SFIXED64\x10\x10\x12\x0f\n\x0bTYPE_SINT32\x10\x11\x12\x0f\n\x0bTYPE_SINT64\x10\x12"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldDescriptorProto.Type"
+        ]
 
-    TYPE_DOUBLE = 1
+    DOUBLE = 1
     """
     0 is reserved for errors.
     Order is weird for historical reasons.
     """
 
-    TYPE_FLOAT = 2
+    FLOAT = 2
 
-    TYPE_INT64 = 3
+    INT64 = 3
     """
     Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
     negative values are likely.
     """
 
-    TYPE_UINT64 = 4
+    UINT64 = 4
 
-    TYPE_INT32 = 5
+    INT32 = 5
     """
     Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
     negative values are likely.
     """
 
-    TYPE_FIXED64 = 6
+    FIXED64 = 6
 
-    TYPE_FIXED32 = 7
+    FIXED32 = 7
 
-    TYPE_BOOL = 8
+    BOOL = 8
 
-    TYPE_STRING = 9
+    STRING = 9
 
-    TYPE_GROUP = 10
+    GROUP = 10
     """
     Tag-delimited aggregate.
     Group type is deprecated and not supported after google.protobuf. However, Proto3
@@ -282,39 +374,62 @@ class FieldDescriptorProtoType(betterproto2.Enum):
     can be enabled via the `message_encoding` feature.
     """
 
-    TYPE_MESSAGE = 11
+    MESSAGE = 11
     """
     Length-delimited aggregate.
     """
 
-    TYPE_BYTES = 12
+    BYTES = 12
     """
     New in version 2.
     """
 
-    TYPE_UINT32 = 13
+    UINT32 = 13
 
-    TYPE_ENUM = 14
+    ENUM = 14
 
-    TYPE_SFIXED32 = 15
+    SFIXED32 = 15
 
-    TYPE_SFIXED64 = 16
+    SFIXED64 = 16
 
-    TYPE_SINT32 = 17
+    SINT32 = 17
     """
     Uses ZigZag encoding.
     """
 
-    TYPE_SINT64 = 18
+    SINT64 = 18
     """
     Uses ZigZag encoding.
     """
+
+    betterproto_proto_names = {
+        1: "TYPE_DOUBLE",
+        2: "TYPE_FLOAT",
+        3: "TYPE_INT64",
+        4: "TYPE_UINT64",
+        5: "TYPE_INT32",
+        6: "TYPE_FIXED64",
+        7: "TYPE_FIXED32",
+        8: "TYPE_BOOL",
+        9: "TYPE_STRING",
+        10: "TYPE_GROUP",
+        11: "TYPE_MESSAGE",
+        12: "TYPE_BYTES",
+        13: "TYPE_UINT32",
+        14: "TYPE_ENUM",
+        15: "TYPE_SFIXED32",
+        16: "TYPE_SFIXED64",
+        17: "TYPE_SINT32",
+        18: "TYPE_SINT64",
+    }
 
 
 class FieldOptionsCType(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x12FieldOptions.CType\x12\x08\n\x06STRING\x12\x08\n\x04CORD\x10\x01\x12\x10\n\x0cSTRING_PIECE\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldOptions.CType"
+        ]
 
     STRING = 0
     """
@@ -335,9 +450,11 @@ class FieldOptionsCType(betterproto2.Enum):
 
 
 class FieldOptionsJsType(betterproto2.Enum):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x13FieldOptions.JSType\x12\x0b\n\tJS_NORMAL\x12\r\n\tJS_STRING\x10\x01\x12\r\n\tJS_NUMBER\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldOptions.JSType"
+        ]
 
     JS_NORMAL = 0
     """
@@ -360,9 +477,11 @@ class FieldOptionsOptionRetention(betterproto2.Enum):
     If set to RETENTION_SOURCE, the option will be omitted from the binary.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1cFieldOptions.OptionRetention\x12\x13\n\x11RETENTION_UNKNOWN\x12\x15\n\x11RETENTION_RUNTIME\x10\x01\x12\x14\n\x10RETENTION_SOURCE\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldOptions.OptionRetention"
+        ]
 
     RETENTION_UNKNOWN = 0
 
@@ -378,9 +497,11 @@ class FieldOptionsOptionTargetType(betterproto2.Enum):
     option on any kind of entity.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1dFieldOptions.OptionTargetType\x12\x15\n\x13TARGET_TYPE_UNKNOWN\x12\x14\n\x10TARGET_TYPE_FILE\x10\x01\x12\x1f\n\x1bTARGET_TYPE_EXTENSION_RANGE\x10\x02\x12\x17\n\x13TARGET_TYPE_MESSAGE\x10\x03\x12\x15\n\x11TARGET_TYPE_FIELD\x10\x04\x12\x15\n\x11TARGET_TYPE_ONEOF\x10\x05\x12\x14\n\x10TARGET_TYPE_ENUM\x10\x06\x12\x1a\n\x16TARGET_TYPE_ENUM_ENTRY\x10\x07\x12\x17\n\x13TARGET_TYPE_SERVICE\x10\x08\x12\x16\n\x12TARGET_TYPE_METHOD\x10\t"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FieldOptions.OptionTargetType"
+        ]
 
     TARGET_TYPE_UNKNOWN = 0
 
@@ -408,9 +529,11 @@ class FileOptionsOptimizeMode(betterproto2.Enum):
     Generated classes can be optimized for speed or code size.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x18FileOptions.OptimizeMode\x12\t\n\x05SPEED\x10\x01\x12\r\n\tCODE_SIZE\x10\x02\x12\x10\n\x0cLITE_RUNTIME\x10\x03"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "FileOptions.OptimizeMode"
+        ]
 
     SPEED = 1
     """
@@ -436,9 +559,11 @@ class GeneratedCodeInfoAnnotationSemantic(betterproto2.Enum):
     .proto file.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n%GeneratedCodeInfo.Annotation.Semantic\x12\x06\n\x04NONE\x12\x07\n\x03SET\x10\x01\x12\t\n\x05ALIAS\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "GeneratedCodeInfo.Annotation.Semantic"
+        ]
 
     NONE = 0
     """
@@ -463,9 +588,11 @@ class MethodOptionsIdempotencyLevel(betterproto2.Enum):
     methods, and PUT verb for idempotent methods instead of the default POST.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1eMethodOptions.IdempotencyLevel\x12\x15\n\x13IDEMPOTENCY_UNKNOWN\x12\x13\n\x0fNO_SIDE_EFFECTS\x10\x01\x12\x0e\n\nIDEMPOTENT\x10\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "MethodOptions.IdempotencyLevel"
+        ]
 
     IDEMPOTENCY_UNKNOWN = 0
 
@@ -480,15 +607,39 @@ class MethodOptionsIdempotencyLevel(betterproto2.Enum):
     """
 
 
+class SymbolVisibility(betterproto2.Enum):
+    """
+    Describes the 'visibility' of a symbol with respect to the proto import
+    system. Symbols can only be imported when the visibility rules do not prevent
+    it (ex: local symbols cannot be imported).  Visibility modifiers can only set
+    on `message` and `enum` as they are the only types available to be referenced
+    from other files.
+    """
+
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> EnumDescriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.enum_types_by_name[
+            "SymbolVisibility"
+        ]
+
+    VISIBILITY_UNSET = 0
+
+    VISIBILITY_LOCAL = 1
+
+    VISIBILITY_EXPORT = 2
+
+
 @dataclass(eq=False, repr=False)
 class DescriptorProto(betterproto2.Message):
     """
     Describes a message type.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x0fDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12;\n\x05field\x18\x02 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\x05field\x12C\n\textension\x18\x06 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\textension\x12A\n\x0bnested_type\x18\x03 \x03(\x0b2 .google.protobuf.DescriptorProtoR\nnestedType\x12A\n\tenum_type\x18\x04 \x03(\x0b2$.google.protobuf.EnumDescriptorProtoR\x08enumType\x12X\n\x0fextension_range\x18\x05 \x03(\x0b2/.google.protobuf.DescriptorProto.ExtensionRangeR\x0eextensionRange\x12D\n\noneof_decl\x18\x08 \x03(\x0b2%.google.protobuf.OneofDescriptorProtoR\toneofDecl\x129\n\x07options\x18\x07 \x01(\x0b2\x1f.google.protobuf.MessageOptionsR\x07options\x12U\n\x0ereserved_range\x18\t \x03(\x0b2..google.protobuf.DescriptorProto.ReservedRangeR\rreservedRange\x12#\n\rreserved_name\x18\n \x03(\tR\x0creservedName\x1a\x8a\x01\n\x1eDescriptorProto.ExtensionRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end\x12@\n\x07options\x18\x03 \x01(\x0b2&.google.protobuf.ExtensionRangeOptionsR\x07options\x1aG\n\x1dDescriptorProto.ReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "DescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -532,6 +683,13 @@ class DescriptorProto(betterproto2.Message):
     A given name may only be reserved once.
     """
 
+    visibility: "SymbolVisibility" = betterproto2.field(
+        11, betterproto2.TYPE_ENUM, default_factory=lambda: SymbolVisibility(0)
+    )
+    """
+    Support for `export` and `local` keywords on enums.
+    """
+
 
 default_message_pool.register_message(
     "google.protobuf", "DescriptorProto", DescriptorProto
@@ -540,9 +698,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class DescriptorProtoExtensionRange(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1eDescriptorProto.ExtensionRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end\x12@\n\x07options\x18\x03 \x01(\x0b2&.google.protobuf.ExtensionRangeOptionsR\x07options"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "DescriptorProto.ExtensionRange"
+        ]
 
     start: "int" = betterproto2.field(1, betterproto2.TYPE_INT32)
     """
@@ -572,9 +732,11 @@ class DescriptorProtoReservedRange(betterproto2.Message):
     not overlap.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1dDescriptorProto.ReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "DescriptorProto.ReservedRange"
+        ]
 
     start: "int" = betterproto2.field(1, betterproto2.TYPE_INT32)
     """
@@ -598,9 +760,11 @@ class EnumDescriptorProto(betterproto2.Message):
     Describes an enum type.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x13EnumDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12?\n\x05value\x18\x02 \x03(\x0b2).google.protobuf.EnumValueDescriptorProtoR\x05value\x126\n\x07options\x18\x03 \x01(\x0b2\x1c.google.protobuf.EnumOptionsR\x07options\x12]\n\x0ereserved_range\x18\x04 \x03(\x0b26.google.protobuf.EnumDescriptorProto.EnumReservedRangeR\rreservedRange\x12#\n\rreserved_name\x18\x05 \x03(\tR\x0creservedName\x1aO\n%EnumDescriptorProto.EnumReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "EnumDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -629,6 +793,13 @@ class EnumDescriptorProto(betterproto2.Message):
     be reserved once.
     """
 
+    visibility: "SymbolVisibility" = betterproto2.field(
+        6, betterproto2.TYPE_ENUM, default_factory=lambda: SymbolVisibility(0)
+    )
+    """
+    Support for `export` and `local` keywords on enums.
+    """
+
 
 default_message_pool.register_message(
     "google.protobuf", "EnumDescriptorProto", EnumDescriptorProto
@@ -646,9 +817,11 @@ class EnumDescriptorProtoEnumReservedRange(betterproto2.Message):
     domain.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n%EnumDescriptorProto.EnumReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "EnumDescriptorProto.EnumReservedRange"
+        ]
 
     start: "int" = betterproto2.field(1, betterproto2.TYPE_INT32)
     """
@@ -670,9 +843,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class EnumOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x0bEnumOptions\x12\x1f\n\x0ballow_alias\x18\x02 \x01(\x08R\nallowAlias\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12V\n&deprecated_legacy_json_field_conflicts\x18\x06 \x01(\x08R"deprecatedLegacyJsonFieldConflictsB\x02\x18\x01\x127\n\x08features\x18\x07 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x05\x10\x06'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "EnumOptions"
+        ]
 
     allow_alias: "bool" = betterproto2.field(2, betterproto2.TYPE_BOOL)
     """
@@ -705,6 +880,9 @@ class EnumOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
@@ -732,9 +910,11 @@ class EnumValueDescriptorProto(betterproto2.Message):
     Describes a value within an enum.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x18EnumValueDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x06number\x18\x02 \x01(\x05R\x06number\x12;\n\x07options\x18\x03 \x01(\x0b2!.google.protobuf.EnumValueOptionsR\x07options"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "EnumValueDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -752,9 +932,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class EnumValueOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x10EnumValueOptions\x12%\n\ndeprecated\x18\x01 \x01(\x08:\x05falseR\ndeprecated\x127\n\x08features\x18\x02 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12(\n\x0cdebug_redact\x18\x03 \x01(\x08:\x05falseR\x0bdebugRedact\x12U\n\x0ffeature_support\x18\x04 \x01(\x0b2,.google.protobuf.FieldOptions.FeatureSupportR\x0efeatureSupport\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "EnumValueOptions"
+        ]
 
     deprecated: "bool" = betterproto2.field(1, betterproto2.TYPE_BOOL)
     """
@@ -769,6 +951,9 @@ class EnumValueOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     debug_redact: "bool" = betterproto2.field(3, betterproto2.TYPE_BOOL)
@@ -800,9 +985,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class ExtensionRangeOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x15ExtensionRangeOptions\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption\x12Y\n\x0bdeclaration\x18\x02 \x03(\x0b22.google.protobuf.ExtensionRangeOptions.DeclarationR\x0bdeclarationB\x03\x88\x01\x02\x127\n\x08features\x182 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12m\n\x0cverification\x18\x03 \x01(\x0e28.google.protobuf.ExtensionRangeOptions.VerificationState:\nUNVERIFIEDR\x0cverificationB\x03\x88\x01\x02\x1a\xaa\x01\n!ExtensionRangeOptions.Declaration\x12\x16\n\x06number\x18\x01 \x01(\x05R\x06number\x12\x1b\n\tfull_name\x18\x02 \x01(\tR\x08fullName\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n\x08reserved\x18\x05 \x01(\x08R\x08reserved\x12\x1a\n\x08repeated\x18\x06 \x01(\x08R\x08repeatedJ\x04\x08\x04\x10\x05\"H\n'ExtensionRangeOptions.VerificationState\x12\r\n\x0bDECLARATION\x12\x0e\n\nUNVERIFIED\x10\x01*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "ExtensionRangeOptions"
+        ]
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
         999, betterproto2.TYPE_MESSAGE, repeated=True
@@ -846,9 +1033,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class ExtensionRangeOptionsDeclaration(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n!ExtensionRangeOptions.Declaration\x12\x16\n\x06number\x18\x01 \x01(\x05R\x06number\x12\x1b\n\tfull_name\x18\x02 \x01(\tR\x08fullName\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n\x08reserved\x18\x05 \x01(\x08R\x08reserved\x12\x1a\n\x08repeated\x18\x06 \x01(\x08R\x08repeatedJ\x04\x08\x04\x10\x05"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "ExtensionRangeOptions.Declaration"
+        ]
 
     number: "int" = betterproto2.field(1, betterproto2.TYPE_INT32)
     """
@@ -903,9 +1092,11 @@ class FeatureSet(betterproto2.Message):
     conflict here.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\nFeatureSet\x12\x90\x01\n\x0efield_presence\x18\x01 \x01(\x0e2).google.protobuf.FeatureSet.FieldPresenceR\rfieldPresenceB>\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\r\x18\x84\x07\x12\x08EXPLICIT\xa2\x01\r\x18\xe7\x07\x12\x08IMPLICIT\xa2\x01\r\x18\xe8\x07\x12\x08EXPLICIT\xb2\x01\x03\x08\xe8\x07\x12k\n\tenum_type\x18\x02 \x01(\x0e2$.google.protobuf.FeatureSet.EnumTypeR\x08enumTypeB(\x88\x01\x01\x9a\x01\x02\x06\x01\xa2\x01\x0b\x18\x84\x07\x12\x06CLOSED\xa2\x01\t\x18\xe7\x07\x12\x04OPEN\xb2\x01\x03\x08\xe8\x07\x12\x97\x01\n\x17repeated_field_encoding\x18\x03 \x01(\x0e21.google.protobuf.FeatureSet.RepeatedFieldEncodingR\x15repeatedFieldEncodingB,\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\r\x18\x84\x07\x12\x08EXPANDED\xa2\x01\x0b\x18\xe7\x07\x12\x06PACKED\xb2\x01\x03\x08\xe8\x07\x12}\n\x0futf8_validation\x18\x04 \x01(\x0e2*.google.protobuf.FeatureSet.Utf8ValidationR\x0eutf8ValidationB(\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\t\x18\x84\x07\x12\x04NONE\xa2\x01\x0b\x18\xe7\x07\x12\x06VERIFY\xb2\x01\x03\x08\xe8\x07\x12}\n\x10message_encoding\x18\x05 \x01(\x0e2+.google.protobuf.FeatureSet.MessageEncodingR\x0fmessageEncodingB%\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\x14\x18\x84\x07\x12\x0fLENGTH_PREFIXED\xb2\x01\x03\x08\xe8\x07\x12\x7f\n\x0bjson_format\x18\x06 \x01(\x0e2&.google.protobuf.FeatureSet.JsonFormatR\njsonFormatB6\x88\x01\x01\x9a\x01\x03\x03\x06\x01\xa2\x01\x17\x18\x84\x07\x12\x12LEGACY_BEST_EFFORT\xa2\x01\n\x18\xe7\x07\x12\x05ALLOW\xb2\x01\x03\x08\xe8\x07"e\n\x18FeatureSet.FieldPresence\x12\x18\n\x16FIELD_PRESENCE_UNKNOWN\x12\x0c\n\x08EXPLICIT\x10\x01\x12\x0c\n\x08IMPLICIT\x10\x02\x12\x13\n\x0fLEGACY_REQUIRED\x10\x03"@\n\x13FeatureSet.EnumType\x12\x13\n\x11ENUM_TYPE_UNKNOWN\x12\x08\n\x04OPEN\x10\x01\x12\n\n\x06CLOSED\x10\x02"_\n FeatureSet.RepeatedFieldEncoding\x12!\n\x1fREPEATED_FIELD_ENCODING_UNKNOWN\x12\n\n\x06PACKED\x10\x01\x12\x0c\n\x08EXPANDED\x10\x02"R\n\x19FeatureSet.Utf8Validation\x12\x19\n\x17UTF8_VALIDATION_UNKNOWN\x12\n\n\x06VERIFY\x10\x02\x12\x08\n\x04NONE\x10\x03"\x04\x08\x01\x10\x01"\\\n\x1aFeatureSet.MessageEncoding\x12\x1a\n\x18MESSAGE_ENCODING_UNKNOWN\x12\x13\n\x0fLENGTH_PREFIXED\x10\x01\x12\r\n\tDELIMITED\x10\x02"Q\n\x15FeatureSet.JsonFormat\x12\x15\n\x13JSON_FORMAT_UNKNOWN\x12\t\n\x05ALLOW\x10\x01\x12\x16\n\x12LEGACY_BEST_EFFORT\x10\x02*\x8b\x01\x08\xe8\x07\x10\x8bN\x1a\x82\x01\x12\x1d\x08\xe8\x07\x12\x07.pb.cpp\x1a\x0f.pb.CppFeatures\x12\x1f\x08\xe9\x07\x12\x08.pb.java\x1a\x10.pb.JavaFeatures\x12\x1b\x08\xea\x07\x12\x06.pb.go\x1a\x0e.pb.GoFeatures\x12#\x08\x86N\x12\n.pb.proto1\x1a\x12.pb.Proto1Features*\x06\x08\x8bN\x10\x90N*\x06\x08\x90N\x10\x91NJ\x06\x08\xe7\x07\x10\xe8\x07'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FeatureSet"
+        ]
 
     field_presence: "FeatureSetFieldPresence" = betterproto2.field(
         1, betterproto2.TYPE_ENUM, default_factory=lambda: FeatureSetFieldPresence(0)
@@ -933,8 +1124,40 @@ class FeatureSet(betterproto2.Message):
         6, betterproto2.TYPE_ENUM, default_factory=lambda: FeatureSetJsonFormat(0)
     )
 
+    enforce_naming_style: "FeatureSetEnforceNamingStyle" = betterproto2.field(
+        7,
+        betterproto2.TYPE_ENUM,
+        default_factory=lambda: FeatureSetEnforceNamingStyle(0),
+    )
+
+    default_symbol_visibility: "FeatureSetVisibilityFeatureDefaultSymbolVisibility" = (
+        betterproto2.field(
+            8,
+            betterproto2.TYPE_ENUM,
+            default_factory=lambda: FeatureSetVisibilityFeatureDefaultSymbolVisibility(
+                0
+            ),
+        )
+    )
+
 
 default_message_pool.register_message("google.protobuf", "FeatureSet", FeatureSet)
+
+
+@dataclass(eq=False, repr=False)
+class FeatureSetVisibilityFeature(betterproto2.Message):
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FeatureSet.VisibilityFeature"
+        ]
+
+    pass
+
+
+default_message_pool.register_message(
+    "google.protobuf", "FeatureSet.VisibilityFeature", FeatureSetVisibilityFeature
+)
 
 
 @dataclass(eq=False, repr=False)
@@ -946,9 +1169,11 @@ class FeatureSetDefaults(betterproto2.Message):
     for the closest matching edition, followed by proto merges.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x12FeatureSetDefaults\x12X\n\x08defaults\x18\x01 \x03(\x0b2<.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefaultR\x08defaults\x12A\n\x0fminimum_edition\x18\x04 \x01(\x0e2\x18.google.protobuf.EditionR\x0eminimumEdition\x12A\n\x0fmaximum_edition\x18\x05 \x01(\x0e2\x18.google.protobuf.EditionR\x0emaximumEdition\x1a\x8b\x02\n+FeatureSetDefaults.FeatureSetEditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12N\n\x14overridable_features\x18\x04 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x13overridableFeatures\x12B\n\x0efixed_features\x18\x05 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\rfixedFeaturesJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03R\x08features"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FeatureSetDefaults"
+        ]
 
     defaults: "list[FeatureSetDefaultsFeatureSetEditionDefault]" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, repeated=True
@@ -985,9 +1210,11 @@ class FeatureSetDefaultsFeatureSetEditionDefault(betterproto2.Message):
     be used.  This field must be in strict ascending order by edition.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n+FeatureSetDefaults.FeatureSetEditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12N\n\x14overridable_features\x18\x04 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x13overridableFeatures\x12B\n\x0efixed_features\x18\x05 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\rfixedFeaturesJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03R\x08features"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FeatureSetDefaults.FeatureSetEditionDefault"
+        ]
 
     edition: "Edition" = betterproto2.field(
         3, betterproto2.TYPE_ENUM, default_factory=lambda: Edition(0)
@@ -1021,9 +1248,11 @@ class FieldDescriptorProto(betterproto2.Message):
     Describes a field within a message.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x14FieldDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x06number\x18\x03 \x01(\x05R\x06number\x12A\n\x05label\x18\x04 \x01(\x0e2+.google.protobuf.FieldDescriptorProto.LabelR\x05label\x12>\n\x04type\x18\x05 \x01(\x0e2*.google.protobuf.FieldDescriptorProto.TypeR\x04type\x12\x1b\n\ttype_name\x18\x06 \x01(\tR\x08typeName\x12\x1a\n\x08extendee\x18\x02 \x01(\tR\x08extendee\x12#\n\rdefault_value\x18\x07 \x01(\tR\x0cdefaultValue\x12\x1f\n\x0boneof_index\x18\t \x01(\x05R\noneofIndex\x12\x1b\n\tjson_name\x18\n \x01(\tR\x08jsonName\x127\n\x07options\x18\x08 \x01(\x0b2\x1d.google.protobuf.FieldOptionsR\x07options\x12\'\n\x0fproto3_optional\x18\x11 \x01(\x08R\x0eproto3Optional"\xcb\x02\n\x19FieldDescriptorProto.Type\x12\x0f\n\x0bTYPE_DOUBLE\x10\x01\x12\x0e\n\nTYPE_FLOAT\x10\x02\x12\x0e\n\nTYPE_INT64\x10\x03\x12\x0f\n\x0bTYPE_UINT64\x10\x04\x12\x0e\n\nTYPE_INT32\x10\x05\x12\x10\n\x0cTYPE_FIXED64\x10\x06\x12\x10\n\x0cTYPE_FIXED32\x10\x07\x12\r\n\tTYPE_BOOL\x10\x08\x12\x0f\n\x0bTYPE_STRING\x10\t\x12\x0e\n\nTYPE_GROUP\x10\n\x12\x10\n\x0cTYPE_MESSAGE\x10\x0b\x12\x0e\n\nTYPE_BYTES\x10\x0c\x12\x0f\n\x0bTYPE_UINT32\x10\r\x12\r\n\tTYPE_ENUM\x10\x0e\x12\x11\n\rTYPE_SFIXED32\x10\x0f\x12\x11\n\rTYPE_SFIXED64\x10\x10\x12\x0f\n\x0bTYPE_SINT32\x10\x11\x12\x0f\n\x0bTYPE_SINT64\x10\x12"X\n\x1aFieldDescriptorProto.Label\x12\x12\n\x0eLABEL_OPTIONAL\x10\x01\x12\x12\n\x0eLABEL_REPEATED\x10\x03\x12\x12\n\x0eLABEL_REQUIRED\x10\x02'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FieldDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -1115,9 +1344,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class FieldOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x0cFieldOptions\x12A\n\x05ctype\x18\x01 \x01(\x0e2#.google.protobuf.FieldOptions.CType:\x06STRINGR\x05ctype\x12\x16\n\x06packed\x18\x02 \x01(\x08R\x06packed\x12G\n\x06jstype\x18\x06 \x01(\x0e2$.google.protobuf.FieldOptions.JSType:\tJS_NORMALR\x06jstype\x12\x19\n\x04lazy\x18\x05 \x01(\x08:\x05falseR\x04lazy\x12.\n\x0funverified_lazy\x18\x0f \x01(\x08:\x05falseR\x0eunverifiedLazy\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12\x19\n\x04weak\x18\n \x01(\x08:\x05falseR\x04weak\x12(\n\x0cdebug_redact\x18\x10 \x01(\x08:\x05falseR\x0bdebugRedact\x12K\n\tretention\x18\x11 \x01(\x0e2-.google.protobuf.FieldOptions.OptionRetentionR\tretention\x12H\n\x07targets\x18\x13 \x03(\x0e2..google.protobuf.FieldOptions.OptionTargetTypeR\x07targets\x12W\n\x10edition_defaults\x18\x14 \x03(\x0b2,.google.protobuf.FieldOptions.EditionDefaultR\x0feditionDefaults\x127\n\x08features\x18\x15 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12U\n\x0ffeature_support\x18\x16 \x01(\x0b2,.google.protobuf.FieldOptions.FeatureSupportR\x0efeatureSupport\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption\x1ag\n\x1bFieldOptions.EditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\x1a\xa3\x02\n\x1bFieldOptions.FeatureSupport\x12G\n\x12edition_introduced\x18\x01 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionIntroduced\x12G\n\x12edition_deprecated\x18\x02 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionDeprecated\x12/\n\x13deprecation_warning\x18\x03 \x01(\tR\x12deprecationWarning\x12A\n\x0fedition_removed\x18\x04 \x01(\x0e2\x18.google.protobuf.EditionR\x0eeditionRemoved":\n\x12FieldOptions.CType\x12\x08\n\x06STRING\x12\x08\n\x04CORD\x10\x01\x12\x10\n\x0cSTRING_PIECE\x10\x02"@\n\x13FieldOptions.JSType\x12\x0b\n\tJS_NORMAL\x12\r\n\tJS_STRING\x10\x01\x12\r\n\tJS_NUMBER\x10\x02"`\n\x1cFieldOptions.OptionRetention\x12\x13\n\x11RETENTION_UNKNOWN\x12\x15\n\x11RETENTION_RUNTIME\x10\x01\x12\x14\n\x10RETENTION_SOURCE\x10\x02"\x97\x02\n\x1dFieldOptions.OptionTargetType\x12\x15\n\x13TARGET_TYPE_UNKNOWN\x12\x14\n\x10TARGET_TYPE_FILE\x10\x01\x12\x1f\n\x1bTARGET_TYPE_EXTENSION_RANGE\x10\x02\x12\x17\n\x13TARGET_TYPE_MESSAGE\x10\x03\x12\x15\n\x11TARGET_TYPE_FIELD\x10\x04\x12\x15\n\x11TARGET_TYPE_ONEOF\x10\x05\x12\x14\n\x10TARGET_TYPE_ENUM\x10\x06\x12\x1a\n\x16TARGET_TYPE_ENUM_ENTRY\x10\x07\x12\x17\n\x13TARGET_TYPE_SERVICE\x10\x08\x12\x16\n\x12TARGET_TYPE_METHOD\x10\t*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x04\x10\x05J\x04\x08\x12\x10\x13'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FieldOptions"
+        ]
 
     ctype: "FieldOptionsCType" = betterproto2.field(
         1, betterproto2.TYPE_ENUM, default_factory=lambda: FieldOptionsCType(0)
@@ -1231,6 +1462,9 @@ class FieldOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     feature_support: "FieldOptionsFeatureSupport | None" = betterproto2.field(
@@ -1250,9 +1484,11 @@ default_message_pool.register_message("google.protobuf", "FieldOptions", FieldOp
 
 @dataclass(eq=False, repr=False)
 class FieldOptionsEditionDefault(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1bFieldOptions.EditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FieldOptions.EditionDefault"
+        ]
 
     edition: "Edition" = betterproto2.field(
         3, betterproto2.TYPE_ENUM, default_factory=lambda: Edition(0)
@@ -1275,9 +1511,11 @@ class FieldOptionsFeatureSupport(betterproto2.Message):
     Information about the support window of a feature.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1bFieldOptions.FeatureSupport\x12G\n\x12edition_introduced\x18\x01 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionIntroduced\x12G\n\x12edition_deprecated\x18\x02 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionDeprecated\x12/\n\x13deprecation_warning\x18\x03 \x01(\tR\x12deprecationWarning\x12A\n\x0fedition_removed\x18\x04 \x01(\x0e2\x18.google.protobuf.EditionR\x0eeditionRemoved"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FieldOptions.FeatureSupport"
+        ]
 
     edition_introduced: "Edition" = betterproto2.field(
         1, betterproto2.TYPE_ENUM, default_factory=lambda: Edition(0)
@@ -1323,9 +1561,11 @@ class FileDescriptorProto(betterproto2.Message):
     Describes a complete .proto file.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x13FileDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n\x07package\x18\x02 \x01(\tR\x07package\x12\x1e\n\ndependency\x18\x03 \x03(\tR\ndependency\x12+\n\x11public_dependency\x18\n \x03(\x05R\x10publicDependency\x12'\n\x0fweak_dependency\x18\x0b \x03(\x05R\x0eweakDependency\x12C\n\x0cmessage_type\x18\x04 \x03(\x0b2 .google.protobuf.DescriptorProtoR\x0bmessageType\x12A\n\tenum_type\x18\x05 \x03(\x0b2$.google.protobuf.EnumDescriptorProtoR\x08enumType\x12A\n\x07service\x18\x06 \x03(\x0b2'.google.protobuf.ServiceDescriptorProtoR\x07service\x12C\n\textension\x18\x07 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\textension\x126\n\x07options\x18\x08 \x01(\x0b2\x1c.google.protobuf.FileOptionsR\x07options\x12I\n\x10source_code_info\x18\t \x01(\x0b2\x1f.google.protobuf.SourceCodeInfoR\x0esourceCodeInfo\x12\x16\n\x06syntax\x18\x0c \x01(\tR\x06syntax\x122\n\x07edition\x18\x0e \x01(\x0e2\x18.google.protobuf.EditionR\x07edition"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FileDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
     """
@@ -1357,6 +1597,14 @@ class FileDescriptorProto(betterproto2.Message):
     """
     Indexes of the weak imported files in the dependency list.
     For Google-internal migration only. Do not use.
+    """
+
+    option_dependency: "list[str]" = betterproto2.field(
+        15, betterproto2.TYPE_STRING, repeated=True
+    )
+    """
+    Names of files imported by this file purely for the purpose of providing
+    option extensions. These are excluded from the dependency list above.
     """
 
     message_type: "list[DescriptorProto]" = betterproto2.field(
@@ -1398,6 +1646,9 @@ class FileDescriptorProto(betterproto2.Message):
     The supported values are "proto2", "proto3", and "editions".
 
     If `edition` is present, this value must be "editions".
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     edition: "Edition" = betterproto2.field(
@@ -1405,6 +1656,9 @@ class FileDescriptorProto(betterproto2.Message):
     )
     """
     The edition of the proto file.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
 
@@ -1420,9 +1674,11 @@ class FileDescriptorSet(betterproto2.Message):
     files it parses.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x11FileDescriptorSet\x128\n\x04file\x18\x01 \x03(\x0b2$.google.protobuf.FileDescriptorProtoR\x04file*{\x08\x80\xec\xca\xff\x01\x10\x81\xec\xca\xff\x01\x1am\x12k\x08\x80\xec\xca\xff\x01\x124.buf.descriptor.v1.buf_file_descriptor_set_extension\x1a-.buf.descriptor.v1.FileDescriptorSetExtension"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FileDescriptorSet"
+        ]
 
     file: "list[FileDescriptorProto]" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, repeated=True
@@ -1470,9 +1726,11 @@ class FileOptions(betterproto2.Message):
       to automatically assign option numbers.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x0bFileOptions\x12!\n\x0cjava_package\x18\x01 \x01(\tR\x0bjavaPackage\x120\n\x14java_outer_classname\x18\x08 \x01(\tR\x12javaOuterClassname\x125\n\x13java_multiple_files\x18\n \x01(\x08:\x05falseR\x11javaMultipleFiles\x12D\n\x1djava_generate_equals_and_hash\x18\x14 \x01(\x08R\x19javaGenerateEqualsAndHashB\x02\x18\x01\x12:\n\x16java_string_check_utf8\x18\x1b \x01(\x08:\x05falseR\x13javaStringCheckUtf8\x12S\n\x0coptimize_for\x18\t \x01(\x0e2).google.protobuf.FileOptions.OptimizeMode:\x05SPEEDR\x0boptimizeFor\x12\x1d\n\ngo_package\x18\x0b \x01(\tR\tgoPackage\x125\n\x13cc_generic_services\x18\x10 \x01(\x08:\x05falseR\x11ccGenericServices\x129\n\x15java_generic_services\x18\x11 \x01(\x08:\x05falseR\x13javaGenericServices\x125\n\x13py_generic_services\x18\x12 \x01(\x08:\x05falseR\x11pyGenericServices\x12%\n\ndeprecated\x18\x17 \x01(\x08:\x05falseR\ndeprecated\x12.\n\x10cc_enable_arenas\x18\x1f \x01(\x08:\x04trueR\x0eccEnableArenas\x12*\n\x11objc_class_prefix\x18$ \x01(\tR\x0fobjcClassPrefix\x12)\n\x10csharp_namespace\x18% \x01(\tR\x0fcsharpNamespace\x12!\n\x0cswift_prefix\x18' \x01(\tR\x0bswiftPrefix\x12(\n\x10php_class_prefix\x18( \x01(\tR\x0ephpClassPrefix\x12#\n\rphp_namespace\x18) \x01(\tR\x0cphpNamespace\x124\n\x16php_metadata_namespace\x18, \x01(\tR\x14phpMetadataNamespace\x12!\n\x0cruby_package\x18- \x01(\tR\x0brubyPackage\x127\n\x08features\x182 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption\"F\n\x18FileOptions.OptimizeMode\x12\t\n\x05SPEED\x10\x01\x12\r\n\tCODE_SIZE\x10\x02\x12\x10\n\x0cLITE_RUNTIME\x10\x03*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08*\x10+J\x04\x08&\x10'R\x14php_generic_services"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "FileOptions"
+        ]
 
     java_package: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
     """
@@ -1618,6 +1876,9 @@ class FileOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
@@ -1648,9 +1909,11 @@ class GeneratedCodeInfo(betterproto2.Message):
     source file, but may contain references to different source .proto files.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x11GeneratedCodeInfo\x12M\n\nannotation\x18\x01 \x03(\x0b2-.google.protobuf.GeneratedCodeInfo.AnnotationR\nannotation\x1a\x98\x02\n\x1cGeneratedCodeInfo.Annotation\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x1f\n\x0bsource_file\x18\x02 \x01(\tR\nsourceFile\x12\x14\n\x05begin\x18\x03 \x01(\x05R\x05begin\x12\x10\n\x03end\x18\x04 \x01(\x05R\x03end\x12R\n\x08semantic\x18\x05 \x01(\x0e26.google.protobuf.GeneratedCodeInfo.Annotation.SemanticR\x08semantic"C\n%GeneratedCodeInfo.Annotation.Semantic\x12\x06\n\x04NONE\x12\x07\n\x03SET\x10\x01\x12\t\n\x05ALIAS\x10\x02'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "GeneratedCodeInfo"
+        ]
 
     annotation: "list[GeneratedCodeInfoAnnotation]" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, repeated=True
@@ -1668,9 +1931,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class GeneratedCodeInfoAnnotation(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x1cGeneratedCodeInfo.Annotation\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x1f\n\x0bsource_file\x18\x02 \x01(\tR\nsourceFile\x12\x14\n\x05begin\x18\x03 \x01(\x05R\x05begin\x12\x10\n\x03end\x18\x04 \x01(\x05R\x03end\x12R\n\x08semantic\x18\x05 \x01(\x0e26.google.protobuf.GeneratedCodeInfo.Annotation.SemanticR\x08semantic"C\n%GeneratedCodeInfo.Annotation.Semantic\x12\x06\n\x04NONE\x12\x07\n\x03SET\x10\x01\x12\t\n\x05ALIAS\x10\x02'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "GeneratedCodeInfo.Annotation"
+        ]
 
     path: "list[int]" = betterproto2.field(1, betterproto2.TYPE_INT32, repeated=True)
     """
@@ -1710,9 +1975,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class MessageOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x0eMessageOptions\x12<\n\x17message_set_wire_format\x18\x01 \x01(\x08:\x05falseR\x14messageSetWireFormat\x12L\n\x1fno_standard_descriptor_accessor\x18\x02 \x01(\x08:\x05falseR\x1cnoStandardDescriptorAccessor\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12\x1b\n\tmap_entry\x18\x07 \x01(\x08R\x08mapEntry\x12V\n&deprecated_legacy_json_field_conflicts\x18\x0b \x01(\x08R"deprecatedLegacyJsonFieldConflictsB\x02\x18\x01\x127\n\x08features\x18\x0c \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x08\x10\tJ\x04\x08\t\x10\n'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "MessageOptions"
+        ]
 
     message_set_wire_format: "bool" = betterproto2.field(1, betterproto2.TYPE_BOOL)
     """
@@ -1799,6 +2066,9 @@ class MessageOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
@@ -1828,9 +2098,11 @@ class MethodDescriptorProto(betterproto2.Message):
     Describes a method of a service.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x15MethodDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\ninput_type\x18\x02 \x01(\tR\tinputType\x12\x1f\n\x0boutput_type\x18\x03 \x01(\tR\noutputType\x128\n\x07options\x18\x04 \x01(\x0b2\x1e.google.protobuf.MethodOptionsR\x07options\x120\n\x10client_streaming\x18\x05 \x01(\x08:\x05falseR\x0fclientStreaming\x120\n\x10server_streaming\x18\x06 \x01(\x08:\x05falseR\x0fserverStreaming"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "MethodDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -1864,9 +2136,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class MethodOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\rMethodOptions\x12%\n\ndeprecated\x18! \x01(\x08:\x05falseR\ndeprecated\x12q\n\x11idempotency_level\x18" \x01(\x0e2/.google.protobuf.MethodOptions.IdempotencyLevel:\x13IDEMPOTENCY_UNKNOWNR\x10idempotencyLevel\x127\n\x08features\x18# \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption"\\\n\x1eMethodOptions.IdempotencyLevel\x12\x15\n\x13IDEMPOTENCY_UNKNOWN\x12\x13\n\x0fNO_SIDE_EFFECTS\x10\x01\x12\x0e\n\nIDEMPOTENT\x10\x02*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "MethodOptions"
+        ]
 
     deprecated: "bool" = betterproto2.field(33, betterproto2.TYPE_BOOL)
     """
@@ -1892,6 +2166,9 @@ class MethodOptions(betterproto2.Message):
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
@@ -1911,9 +2188,11 @@ class OneofDescriptorProto(betterproto2.Message):
     Describes a oneof.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x14OneofDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x127\n\x07options\x18\x02 \x01(\x0b2\x1d.google.protobuf.OneofOptionsR\x07options"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "OneofDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -1929,15 +2208,20 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class OneofOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x0cOneofOptions\x127\n\x08features\x18\x01 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "OneofOptions"
+        ]
 
     features: "FeatureSet | None" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     uninterpreted_option: "list[UninterpretedOption]" = betterproto2.field(
@@ -1957,9 +2241,11 @@ class ServiceDescriptorProto(betterproto2.Message):
     Describes a service.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x16ServiceDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12>\n\x06method\x18\x02 \x03(\x0b2&.google.protobuf.MethodDescriptorProtoR\x06method\x129\n\x07options\x18\x03 \x01(\x0b2\x1f.google.protobuf.ServiceOptionsR\x07options"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "ServiceDescriptorProto"
+        ]
 
     name: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -1979,15 +2265,20 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class ServiceOptions(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b'\n\x0eServiceOptions\x127\n\x08features\x18" \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12%\n\ndeprecated\x18! \x01(\x08:\x05falseR\ndeprecated\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02'
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "ServiceOptions"
+        ]
 
     features: "FeatureSet | None" = betterproto2.field(
         34, betterproto2.TYPE_MESSAGE, optional=True
     )
     """
     Any features defined in the specific edition.
+    WARNING: This field should only be used by protobuf plugins or special
+    cases like the proto compiler. Other uses are discouraged and
+    developers should rely on the protoreflect APIs for their client language.
     """
 
     deprecated: "bool" = betterproto2.field(33, betterproto2.TYPE_BOOL)
@@ -2026,9 +2317,11 @@ class SourceCodeInfo(betterproto2.Message):
     FileDescriptorProto was generated.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x0eSourceCodeInfo\x12D\n\x08location\x18\x01 \x03(\x0b2(.google.protobuf.SourceCodeInfo.LocationR\x08location\x1a\xdd\x01\n\x17SourceCodeInfo.Location\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x16\n\x04span\x18\x02 \x03(\x05R\x04spanB\x02\x10\x01\x12)\n\x10leading_comments\x18\x03 \x01(\tR\x0fleadingComments\x12+\n\x11trailing_comments\x18\x04 \x01(\tR\x10trailingComments\x12:\n\x19leading_detached_comments\x18\x06 \x03(\tR\x17leadingDetachedComments*u\x08\x80\xec\xca\xff\x01\x10\x81\xec\xca\xff\x01\x1ag\x12e\x08\x80\xec\xca\xff\x01\x121.buf.descriptor.v1.buf_source_code_info_extension\x1a*.buf.descriptor.v1.SourceCodeInfoExtension"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "SourceCodeInfo"
+        ]
 
     location: "list[SourceCodeInfoLocation]" = betterproto2.field(
         1, betterproto2.TYPE_MESSAGE, repeated=True
@@ -2087,9 +2380,11 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class SourceCodeInfoLocation(betterproto2.Message):
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x17SourceCodeInfo.Location\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x16\n\x04span\x18\x02 \x03(\x05R\x04spanB\x02\x10\x01\x12)\n\x10leading_comments\x18\x03 \x01(\tR\x0fleadingComments\x12+\n\x11trailing_comments\x18\x04 \x01(\tR\x10trailingComments\x12:\n\x19leading_detached_comments\x18\x06 \x03(\tR\x17leadingDetachedComments"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "SourceCodeInfo.Location"
+        ]
 
     path: "list[int]" = betterproto2.field(1, betterproto2.TYPE_INT32, repeated=True)
     """
@@ -2201,9 +2496,11 @@ class UninterpretedOption(betterproto2.Message):
     in them.
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x13UninterpretedOption\x12A\n\x04name\x18\x02 \x03(\x0b2-.google.protobuf.UninterpretedOption.NamePartR\x04name\x12)\n\x10identifier_value\x18\x03 \x01(\tR\x0fidentifierValue\x12,\n\x12positive_int_value\x18\x04 \x01(\x04R\x10positiveIntValue\x12,\n\x12negative_int_value\x18\x05 \x01(\x03R\x10negativeIntValue\x12!\n\x0cdouble_value\x18\x06 \x01(\x01R\x0bdoubleValue\x12!\n\x0cstring_value\x18\x07 \x01(\x0cR\x0bstringValue\x12'\n\x0faggregate_value\x18\x08 \x01(\tR\x0eaggregateValue\x1a^\n\x1cUninterpretedOption.NamePart\x12\x1b\n\tname_part\x18\x01 \x02(\tR\x08namePart\x12!\n\x0cis_extension\x18\x02 \x02(\x08R\x0bisExtension"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "UninterpretedOption"
+        ]
 
     name: "list[UninterpretedOptionNamePart]" = betterproto2.field(
         2, betterproto2.TYPE_MESSAGE, repeated=True
@@ -2241,9 +2538,11 @@ class UninterpretedOptionNamePart(betterproto2.Message):
     "foo.(bar.baz).moo".
     """
 
-    @staticmethod
-    def _serialized_pb():
-        return b"\n\x1cUninterpretedOption.NamePart\x12\x1b\n\tname_part\x18\x01 \x02(\tR\x08namePart\x12!\n\x0cis_extension\x18\x02 \x02(\x08R\x0bisExtension"
+    @betterproto2.classproperty
+    def DESCRIPTOR(self) -> Descriptor:
+        return GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR.message_types_by_name[
+            "UninterpretedOption.NamePart"
+        ]
 
     name_part: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
 
@@ -2252,4 +2551,9 @@ class UninterpretedOptionNamePart(betterproto2.Message):
 
 default_message_pool.register_message(
     "google.protobuf", "UninterpretedOption.NamePart", UninterpretedOptionNamePart
+)
+
+
+GOOGLE_PROTOBUF_DESCRIPTOR_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n google/protobuf/descriptor.proto\x12\x0fgoogle.protobuf"\xca\x01\n\x11FileDescriptorSet\x128\n\x04file\x18\x01 \x03(\x0b2$.google.protobuf.FileDescriptorProtoR\x04file*{\x08\x80\xec\xca\xff\x01\x10\x81\xec\xca\xff\x01\x1am\x12k\x08\x80\xec\xca\xff\x01\x124.buf.descriptor.v1.buf_file_descriptor_set_extension\x1a-.buf.descriptor.v1.FileDescriptorSetExtension"\xc5\x05\n\x13FileDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n\x07package\x18\x02 \x01(\tR\x07package\x12\x1e\n\ndependency\x18\x03 \x03(\tR\ndependency\x12+\n\x11public_dependency\x18\n \x03(\x05R\x10publicDependency\x12\'\n\x0fweak_dependency\x18\x0b \x03(\x05R\x0eweakDependency\x12+\n\x11option_dependency\x18\x0f \x03(\tR\x10optionDependency\x12C\n\x0cmessage_type\x18\x04 \x03(\x0b2 .google.protobuf.DescriptorProtoR\x0bmessageType\x12A\n\tenum_type\x18\x05 \x03(\x0b2$.google.protobuf.EnumDescriptorProtoR\x08enumType\x12A\n\x07service\x18\x06 \x03(\x0b2\'.google.protobuf.ServiceDescriptorProtoR\x07service\x12C\n\textension\x18\x07 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\textension\x126\n\x07options\x18\x08 \x01(\x0b2\x1c.google.protobuf.FileOptionsR\x07options\x12I\n\x10source_code_info\x18\t \x01(\x0b2\x1f.google.protobuf.SourceCodeInfoR\x0esourceCodeInfo\x12\x16\n\x06syntax\x18\x0c \x01(\tR\x06syntax\x122\n\x07edition\x18\x0e \x01(\x0e2\x18.google.protobuf.EditionR\x07edition"\xfc\x06\n\x0fDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12;\n\x05field\x18\x02 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\x05field\x12C\n\textension\x18\x06 \x03(\x0b2%.google.protobuf.FieldDescriptorProtoR\textension\x12A\n\x0bnested_type\x18\x03 \x03(\x0b2 .google.protobuf.DescriptorProtoR\nnestedType\x12A\n\tenum_type\x18\x04 \x03(\x0b2$.google.protobuf.EnumDescriptorProtoR\x08enumType\x12X\n\x0fextension_range\x18\x05 \x03(\x0b2/.google.protobuf.DescriptorProto.ExtensionRangeR\x0eextensionRange\x12D\n\noneof_decl\x18\x08 \x03(\x0b2%.google.protobuf.OneofDescriptorProtoR\toneofDecl\x129\n\x07options\x18\x07 \x01(\x0b2\x1f.google.protobuf.MessageOptionsR\x07options\x12U\n\x0ereserved_range\x18\t \x03(\x0b2..google.protobuf.DescriptorProto.ReservedRangeR\rreservedRange\x12#\n\rreserved_name\x18\n \x03(\tR\x0creservedName\x12A\n\nvisibility\x18\x0b \x01(\x0e2!.google.protobuf.SymbolVisibilityR\nvisibility\x1az\n\x0eExtensionRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end\x12@\n\x07options\x18\x03 \x01(\x0b2&.google.protobuf.ExtensionRangeOptionsR\x07options\x1a7\n\rReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"\xca\x04\n\x15ExtensionRangeOptions\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption\x12Y\n\x0bdeclaration\x18\x02 \x03(\x0b22.google.protobuf.ExtensionRangeOptions.DeclarationR\x0bdeclarationB\x03\x88\x01\x02\x127\n\x08features\x182 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12m\n\x0cverification\x18\x03 \x01(\x0e28.google.protobuf.ExtensionRangeOptions.VerificationState:\nUNVERIFIEDR\x0cverificationB\x03\x88\x01\x02\x1a\x94\x01\n\x0bDeclaration\x12\x16\n\x06number\x18\x01 \x01(\x05R\x06number\x12\x1b\n\tfull_name\x18\x02 \x01(\tR\x08fullName\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n\x08reserved\x18\x05 \x01(\x08R\x08reserved\x12\x1a\n\x08repeated\x18\x06 \x01(\x08R\x08repeatedJ\x04\x08\x04\x10\x05"2\n\x11VerificationState\x12\r\n\x0bDECLARATION\x12\x0e\n\nUNVERIFIED\x10\x01*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"\xc1\x06\n\x14FieldDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x06number\x18\x03 \x01(\x05R\x06number\x12A\n\x05label\x18\x04 \x01(\x0e2+.google.protobuf.FieldDescriptorProto.LabelR\x05label\x12>\n\x04type\x18\x05 \x01(\x0e2*.google.protobuf.FieldDescriptorProto.TypeR\x04type\x12\x1b\n\ttype_name\x18\x06 \x01(\tR\x08typeName\x12\x1a\n\x08extendee\x18\x02 \x01(\tR\x08extendee\x12#\n\rdefault_value\x18\x07 \x01(\tR\x0cdefaultValue\x12\x1f\n\x0boneof_index\x18\t \x01(\x05R\noneofIndex\x12\x1b\n\tjson_name\x18\n \x01(\tR\x08jsonName\x127\n\x07options\x18\x08 \x01(\x0b2\x1d.google.protobuf.FieldOptionsR\x07options\x12\'\n\x0fproto3_optional\x18\x11 \x01(\x08R\x0eproto3Optional"\xb6\x02\n\x04Type\x12\x0f\n\x0bTYPE_DOUBLE\x10\x01\x12\x0e\n\nTYPE_FLOAT\x10\x02\x12\x0e\n\nTYPE_INT64\x10\x03\x12\x0f\n\x0bTYPE_UINT64\x10\x04\x12\x0e\n\nTYPE_INT32\x10\x05\x12\x10\n\x0cTYPE_FIXED64\x10\x06\x12\x10\n\x0cTYPE_FIXED32\x10\x07\x12\r\n\tTYPE_BOOL\x10\x08\x12\x0f\n\x0bTYPE_STRING\x10\t\x12\x0e\n\nTYPE_GROUP\x10\n\x12\x10\n\x0cTYPE_MESSAGE\x10\x0b\x12\x0e\n\nTYPE_BYTES\x10\x0c\x12\x0f\n\x0bTYPE_UINT32\x10\r\x12\r\n\tTYPE_ENUM\x10\x0e\x12\x11\n\rTYPE_SFIXED32\x10\x0f\x12\x11\n\rTYPE_SFIXED64\x10\x10\x12\x0f\n\x0bTYPE_SINT32\x10\x11\x12\x0f\n\x0bTYPE_SINT64\x10\x12"C\n\x05Label\x12\x12\n\x0eLABEL_OPTIONAL\x10\x01\x12\x12\n\x0eLABEL_REPEATED\x10\x03\x12\x12\n\x0eLABEL_REQUIRED\x10\x02"c\n\x14OneofDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x127\n\x07options\x18\x02 \x01(\x0b2\x1d.google.protobuf.OneofOptionsR\x07options"\xa6\x03\n\x13EnumDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12?\n\x05value\x18\x02 \x03(\x0b2).google.protobuf.EnumValueDescriptorProtoR\x05value\x126\n\x07options\x18\x03 \x01(\x0b2\x1c.google.protobuf.EnumOptionsR\x07options\x12]\n\x0ereserved_range\x18\x04 \x03(\x0b26.google.protobuf.EnumDescriptorProto.EnumReservedRangeR\rreservedRange\x12#\n\rreserved_name\x18\x05 \x03(\tR\x0creservedName\x12A\n\nvisibility\x18\x06 \x01(\x0e2!.google.protobuf.SymbolVisibilityR\nvisibility\x1a;\n\x11EnumReservedRange\x12\x14\n\x05start\x18\x01 \x01(\x05R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x05R\x03end"\x83\x01\n\x18EnumValueDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x06number\x18\x02 \x01(\x05R\x06number\x12;\n\x07options\x18\x03 \x01(\x0b2!.google.protobuf.EnumValueOptionsR\x07options"\xa7\x01\n\x16ServiceDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12>\n\x06method\x18\x02 \x03(\x0b2&.google.protobuf.MethodDescriptorProtoR\x06method\x129\n\x07options\x18\x03 \x01(\x0b2\x1f.google.protobuf.ServiceOptionsR\x07options"\x89\x02\n\x15MethodDescriptorProto\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\ninput_type\x18\x02 \x01(\tR\tinputType\x12\x1f\n\x0boutput_type\x18\x03 \x01(\tR\noutputType\x128\n\x07options\x18\x04 \x01(\x0b2\x1e.google.protobuf.MethodOptionsR\x07options\x120\n\x10client_streaming\x18\x05 \x01(\x08:\x05falseR\x0fclientStreaming\x120\n\x10server_streaming\x18\x06 \x01(\x08:\x05falseR\x0fserverStreaming"\xad\t\n\x0bFileOptions\x12!\n\x0cjava_package\x18\x01 \x01(\tR\x0bjavaPackage\x120\n\x14java_outer_classname\x18\x08 \x01(\tR\x12javaOuterClassname\x125\n\x13java_multiple_files\x18\n \x01(\x08:\x05falseR\x11javaMultipleFiles\x12D\n\x1djava_generate_equals_and_hash\x18\x14 \x01(\x08R\x19javaGenerateEqualsAndHashB\x02\x18\x01\x12:\n\x16java_string_check_utf8\x18\x1b \x01(\x08:\x05falseR\x13javaStringCheckUtf8\x12S\n\x0coptimize_for\x18\t \x01(\x0e2).google.protobuf.FileOptions.OptimizeMode:\x05SPEEDR\x0boptimizeFor\x12\x1d\n\ngo_package\x18\x0b \x01(\tR\tgoPackage\x125\n\x13cc_generic_services\x18\x10 \x01(\x08:\x05falseR\x11ccGenericServices\x129\n\x15java_generic_services\x18\x11 \x01(\x08:\x05falseR\x13javaGenericServices\x125\n\x13py_generic_services\x18\x12 \x01(\x08:\x05falseR\x11pyGenericServices\x12%\n\ndeprecated\x18\x17 \x01(\x08:\x05falseR\ndeprecated\x12.\n\x10cc_enable_arenas\x18\x1f \x01(\x08:\x04trueR\x0eccEnableArenas\x12*\n\x11objc_class_prefix\x18$ \x01(\tR\x0fobjcClassPrefix\x12)\n\x10csharp_namespace\x18% \x01(\tR\x0fcsharpNamespace\x12!\n\x0cswift_prefix\x18\' \x01(\tR\x0bswiftPrefix\x12(\n\x10php_class_prefix\x18( \x01(\tR\x0ephpClassPrefix\x12#\n\rphp_namespace\x18) \x01(\tR\x0cphpNamespace\x124\n\x16php_metadata_namespace\x18, \x01(\tR\x14phpMetadataNamespace\x12!\n\x0cruby_package\x18- \x01(\tR\x0brubyPackage\x127\n\x08features\x182 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption":\n\x0cOptimizeMode\x12\t\n\x05SPEED\x10\x01\x12\r\n\tCODE_SIZE\x10\x02\x12\x10\n\x0cLITE_RUNTIME\x10\x03*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08*\x10+J\x04\x08&\x10\'R\x14php_generic_services"\xf4\x03\n\x0eMessageOptions\x12<\n\x17message_set_wire_format\x18\x01 \x01(\x08:\x05falseR\x14messageSetWireFormat\x12L\n\x1fno_standard_descriptor_accessor\x18\x02 \x01(\x08:\x05falseR\x1cnoStandardDescriptorAccessor\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12\x1b\n\tmap_entry\x18\x07 \x01(\x08R\x08mapEntry\x12V\n&deprecated_legacy_json_field_conflicts\x18\x0b \x01(\x08R"deprecatedLegacyJsonFieldConflictsB\x02\x18\x01\x127\n\x08features\x18\x0c \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x08\x10\tJ\x04\x08\t\x10\n"\x95\r\n\x0cFieldOptions\x12A\n\x05ctype\x18\x01 \x01(\x0e2#.google.protobuf.FieldOptions.CType:\x06STRINGR\x05ctype\x12\x16\n\x06packed\x18\x02 \x01(\x08R\x06packed\x12G\n\x06jstype\x18\x06 \x01(\x0e2$.google.protobuf.FieldOptions.JSType:\tJS_NORMALR\x06jstype\x12\x19\n\x04lazy\x18\x05 \x01(\x08:\x05falseR\x04lazy\x12.\n\x0funverified_lazy\x18\x0f \x01(\x08:\x05falseR\x0eunverifiedLazy\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12\x19\n\x04weak\x18\n \x01(\x08:\x05falseR\x04weak\x12(\n\x0cdebug_redact\x18\x10 \x01(\x08:\x05falseR\x0bdebugRedact\x12K\n\tretention\x18\x11 \x01(\x0e2-.google.protobuf.FieldOptions.OptionRetentionR\tretention\x12H\n\x07targets\x18\x13 \x03(\x0e2..google.protobuf.FieldOptions.OptionTargetTypeR\x07targets\x12W\n\x10edition_defaults\x18\x14 \x03(\x0b2,.google.protobuf.FieldOptions.EditionDefaultR\x0feditionDefaults\x127\n\x08features\x18\x15 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12U\n\x0ffeature_support\x18\x16 \x01(\x0b2,.google.protobuf.FieldOptions.FeatureSupportR\x0efeatureSupport\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption\x1aZ\n\x0eEditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\x1a\x96\x02\n\x0eFeatureSupport\x12G\n\x12edition_introduced\x18\x01 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionIntroduced\x12G\n\x12edition_deprecated\x18\x02 \x01(\x0e2\x18.google.protobuf.EditionR\x11editionDeprecated\x12/\n\x13deprecation_warning\x18\x03 \x01(\tR\x12deprecationWarning\x12A\n\x0fedition_removed\x18\x04 \x01(\x0e2\x18.google.protobuf.EditionR\x0eeditionRemoved"-\n\x05CType\x12\x08\n\x06STRING\x12\x08\n\x04CORD\x10\x01\x12\x10\n\x0cSTRING_PIECE\x10\x02"3\n\x06JSType\x12\x0b\n\tJS_NORMAL\x12\r\n\tJS_STRING\x10\x01\x12\r\n\tJS_NUMBER\x10\x02"S\n\x0fOptionRetention\x12\x13\n\x11RETENTION_UNKNOWN\x12\x15\n\x11RETENTION_RUNTIME\x10\x01\x12\x14\n\x10RETENTION_SOURCE\x10\x02"\x8a\x02\n\x10OptionTargetType\x12\x15\n\x13TARGET_TYPE_UNKNOWN\x12\x14\n\x10TARGET_TYPE_FILE\x10\x01\x12\x1f\n\x1bTARGET_TYPE_EXTENSION_RANGE\x10\x02\x12\x17\n\x13TARGET_TYPE_MESSAGE\x10\x03\x12\x15\n\x11TARGET_TYPE_FIELD\x10\x04\x12\x15\n\x11TARGET_TYPE_ONEOF\x10\x05\x12\x14\n\x10TARGET_TYPE_ENUM\x10\x06\x12\x1a\n\x16TARGET_TYPE_ENUM_ENTRY\x10\x07\x12\x17\n\x13TARGET_TYPE_SERVICE\x10\x08\x12\x16\n\x12TARGET_TYPE_METHOD\x10\t*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x04\x10\x05J\x04\x08\x12\x10\x13"\xac\x01\n\x0cOneofOptions\x127\n\x08features\x18\x01 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"\xd1\x02\n\x0bEnumOptions\x12\x1f\n\x0ballow_alias\x18\x02 \x01(\x08R\nallowAlias\x12%\n\ndeprecated\x18\x03 \x01(\x08:\x05falseR\ndeprecated\x12V\n&deprecated_legacy_json_field_conflicts\x18\x06 \x01(\x08R"deprecatedLegacyJsonFieldConflictsB\x02\x18\x01\x127\n\x08features\x18\x07 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02J\x04\x08\x05\x10\x06"\xd8\x02\n\x10EnumValueOptions\x12%\n\ndeprecated\x18\x01 \x01(\x08:\x05falseR\ndeprecated\x127\n\x08features\x18\x02 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12(\n\x0cdebug_redact\x18\x03 \x01(\x08:\x05falseR\x0bdebugRedact\x12U\n\x0ffeature_support\x18\x04 \x01(\x0b2,.google.protobuf.FieldOptions.FeatureSupportR\x0efeatureSupport\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"\xd5\x01\n\x0eServiceOptions\x127\n\x08features\x18" \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12%\n\ndeprecated\x18! \x01(\x08:\x05falseR\ndeprecated\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"\x97\x03\n\rMethodOptions\x12%\n\ndeprecated\x18! \x01(\x08:\x05falseR\ndeprecated\x12q\n\x11idempotency_level\x18" \x01(\x0e2/.google.protobuf.MethodOptions.IdempotencyLevel:\x13IDEMPOTENCY_UNKNOWNR\x10idempotencyLevel\x127\n\x08features\x18# \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x08features\x12X\n\x14uninterpreted_option\x18\xe7\x07 \x03(\x0b2$.google.protobuf.UninterpretedOptionR\x13uninterpretedOption"N\n\x10IdempotencyLevel\x12\x15\n\x13IDEMPOTENCY_UNKNOWN\x12\x13\n\x0fNO_SIDE_EFFECTS\x10\x01\x12\x0e\n\nIDEMPOTENT\x10\x02*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02"\x9a\x03\n\x13UninterpretedOption\x12A\n\x04name\x18\x02 \x03(\x0b2-.google.protobuf.UninterpretedOption.NamePartR\x04name\x12)\n\x10identifier_value\x18\x03 \x01(\tR\x0fidentifierValue\x12,\n\x12positive_int_value\x18\x04 \x01(\x04R\x10positiveIntValue\x12,\n\x12negative_int_value\x18\x05 \x01(\x03R\x10negativeIntValue\x12!\n\x0cdouble_value\x18\x06 \x01(\x01R\x0bdoubleValue\x12!\n\x0cstring_value\x18\x07 \x01(\x0cR\x0bstringValue\x12\'\n\x0faggregate_value\x18\x08 \x01(\tR\x0eaggregateValue\x1aJ\n\x08NamePart\x12\x1b\n\tname_part\x18\x01 \x02(\tR\x08namePart\x12!\n\x0cis_extension\x18\x02 \x02(\x08R\x0bisExtension"\xa8\x10\n\nFeatureSet\x12\x91\x01\n\x0efield_presence\x18\x01 \x01(\x0e2).google.protobuf.FeatureSet.FieldPresenceR\rfieldPresenceB?\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\r\x12\x08EXPLICIT\x18\x84\x07\xa2\x01\r\x12\x08IMPLICIT\x18\xe7\x07\xa2\x01\r\x12\x08EXPLICIT\x18\xe8\x07\xb2\x01\x03\x08\xe8\x07\x12l\n\tenum_type\x18\x02 \x01(\x0e2$.google.protobuf.FeatureSet.EnumTypeR\x08enumTypeB)\x88\x01\x01\x98\x01\x06\x98\x01\x01\xa2\x01\x0b\x12\x06CLOSED\x18\x84\x07\xa2\x01\t\x12\x04OPEN\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12\x98\x01\n\x17repeated_field_encoding\x18\x03 \x01(\x0e21.google.protobuf.FeatureSet.RepeatedFieldEncodingR\x15repeatedFieldEncodingB-\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\r\x12\x08EXPANDED\x18\x84\x07\xa2\x01\x0b\x12\x06PACKED\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12~\n\x0futf8_validation\x18\x04 \x01(\x0e2*.google.protobuf.FeatureSet.Utf8ValidationR\x0eutf8ValidationB)\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\t\x12\x04NONE\x18\x84\x07\xa2\x01\x0b\x12\x06VERIFY\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12~\n\x10message_encoding\x18\x05 \x01(\x0e2+.google.protobuf.FeatureSet.MessageEncodingR\x0fmessageEncodingB&\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\x14\x12\x0fLENGTH_PREFIXED\x18\x84\x07\xb2\x01\x03\x08\xe8\x07\x12\x82\x01\n\x0bjson_format\x18\x06 \x01(\x0e2&.google.protobuf.FeatureSet.JsonFormatR\njsonFormatB9\x88\x01\x01\x98\x01\x03\x98\x01\x06\x98\x01\x01\xa2\x01\x17\x12\x12LEGACY_BEST_EFFORT\x18\x84\x07\xa2\x01\n\x12\x05ALLOW\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12\xab\x01\n\x14enforce_naming_style\x18\x07 \x01(\x0e2..google.protobuf.FeatureSet.EnforceNamingStyleR\x12enforceNamingStyleBI\x88\x01\x02\x98\x01\x01\x98\x01\x02\x98\x01\x03\x98\x01\x04\x98\x01\x05\x98\x01\x06\x98\x01\x07\x98\x01\x08\x98\x01\t\xa2\x01\x11\x12\x0cSTYLE_LEGACY\x18\x84\x07\xa2\x01\x0e\x12\tSTYLE2024\x18\xe9\x07\xb2\x01\x03\x08\xe9\x07\x12\xb9\x01\n\x19default_symbol_visibility\x18\x08 \x01(\x0e2E.google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibilityR\x17defaultSymbolVisibilityB6\x88\x01\x02\x98\x01\x01\xa2\x01\x0f\x12\nEXPORT_ALL\x18\x84\x07\xa2\x01\x15\x12\x10EXPORT_TOP_LEVEL\x18\xe9\x07\xb2\x01\x03\x08\xe9\x07\x1a\x9e\x01\n\x11VisibilityFeature"\x7f\n\x17DefaultSymbolVisibility\x12#\n!DEFAULT_SYMBOL_VISIBILITY_UNKNOWN\x12\x0e\n\nEXPORT_ALL\x10\x01\x12\x14\n\x10EXPORT_TOP_LEVEL\x10\x02\x12\r\n\tLOCAL_ALL\x10\x03\x12\n\n\x06STRICT\x10\x04J\x08\x08\x01\x10\x80\x80\x80\x80\x02"Z\n\rFieldPresence\x12\x18\n\x16FIELD_PRESENCE_UNKNOWN\x12\x0c\n\x08EXPLICIT\x10\x01\x12\x0c\n\x08IMPLICIT\x10\x02\x12\x13\n\x0fLEGACY_REQUIRED\x10\x03"5\n\x08EnumType\x12\x13\n\x11ENUM_TYPE_UNKNOWN\x12\x08\n\x04OPEN\x10\x01\x12\n\n\x06CLOSED\x10\x02"T\n\x15RepeatedFieldEncoding\x12!\n\x1fREPEATED_FIELD_ENCODING_UNKNOWN\x12\n\n\x06PACKED\x10\x01\x12\x0c\n\x08EXPANDED\x10\x02"G\n\x0eUtf8Validation\x12\x19\n\x17UTF8_VALIDATION_UNKNOWN\x12\n\n\x06VERIFY\x10\x02\x12\x08\n\x04NONE\x10\x03"\x04\x08\x01\x10\x01"Q\n\x0fMessageEncoding\x12\x1a\n\x18MESSAGE_ENCODING_UNKNOWN\x12\x13\n\x0fLENGTH_PREFIXED\x10\x01\x12\r\n\tDELIMITED\x10\x02"F\n\nJsonFormat\x12\x15\n\x13JSON_FORMAT_UNKNOWN\x12\t\n\x05ALLOW\x10\x01\x12\x16\n\x12LEGACY_BEST_EFFORT\x10\x02"U\n\x12EnforceNamingStyle\x12\x1e\n\x1cENFORCE_NAMING_STYLE_UNKNOWN\x12\r\n\tSTYLE2024\x10\x01\x12\x10\n\x0cSTYLE_LEGACY\x10\x02*\xb0\x01\x08\xe8\x07\x10\x8bN\x1a\xa7\x01\x12\x1d\x08\xe8\x07\x12\x07.pb.cpp\x1a\x0f.pb.CppFeatures\x12\x1f\x08\xe9\x07\x12\x08.pb.java\x1a\x10.pb.JavaFeatures\x12\x1b\x08\xea\x07\x12\x06.pb.go\x1a\x0e.pb.GoFeatures\x12#\x08\xeb\x07\x12\n.pb.python\x1a\x12.pb.PythonFeatures\x12#\x08\x86N\x12\n.pb.proto1\x1a\x12.pb.Proto1Features*\x06\x08\x8bN\x10\x90N*\x06\x08\x90N\x10\x91NJ\x06\x08\xe7\x07\x10\xe8\x07"\xef\x03\n\x12FeatureSetDefaults\x12X\n\x08defaults\x18\x01 \x03(\x0b2<.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefaultR\x08defaults\x12A\n\x0fminimum_edition\x18\x04 \x01(\x0e2\x18.google.protobuf.EditionR\x0eminimumEdition\x12A\n\x0fmaximum_edition\x18\x05 \x01(\x0e2\x18.google.protobuf.EditionR\x0emaximumEdition\x1a\xf8\x01\n\x18FeatureSetEditionDefault\x122\n\x07edition\x18\x03 \x01(\x0e2\x18.google.protobuf.EditionR\x07edition\x12N\n\x14overridable_features\x18\x04 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\x13overridableFeatures\x12B\n\x0efixed_features\x18\x05 \x01(\x0b2\x1b.google.protobuf.FeatureSetR\rfixedFeaturesJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03R\x08features"\x9e\x03\n\x0eSourceCodeInfo\x12D\n\x08location\x18\x01 \x03(\x0b2(.google.protobuf.SourceCodeInfo.LocationR\x08location\x1a\xce\x01\n\x08Location\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x16\n\x04span\x18\x02 \x03(\x05R\x04spanB\x02\x10\x01\x12)\n\x10leading_comments\x18\x03 \x01(\tR\x0fleadingComments\x12+\n\x11trailing_comments\x18\x04 \x01(\tR\x10trailingComments\x12:\n\x19leading_detached_comments\x18\x06 \x03(\tR\x17leadingDetachedComments*u\x08\x80\xec\xca\xff\x01\x10\x81\xec\xca\xff\x01\x1ag\x12e\x08\x80\xec\xca\xff\x01\x121.buf.descriptor.v1.buf_source_code_info_extension\x1a*.buf.descriptor.v1.SourceCodeInfoExtension"\xce\x02\n\x11GeneratedCodeInfo\x12M\n\nannotation\x18\x01 \x03(\x0b2-.google.protobuf.GeneratedCodeInfo.AnnotationR\nannotation\x1a\xe9\x01\n\nAnnotation\x12\x16\n\x04path\x18\x01 \x03(\x05R\x04pathB\x02\x10\x01\x12\x1f\n\x0bsource_file\x18\x02 \x01(\tR\nsourceFile\x12\x14\n\x05begin\x18\x03 \x01(\x05R\x05begin\x12\x10\n\x03end\x18\x04 \x01(\x05R\x03end\x12R\n\x08semantic\x18\x05 \x01(\x0e26.google.protobuf.GeneratedCodeInfo.Annotation.SemanticR\x08semantic"&\n\x08Semantic\x12\x06\n\x04NONE\x12\x07\n\x03SET\x10\x01\x12\t\n\x05ALIAS\x10\x02*\xa5\x02\n\x07Edition\x12\x11\n\x0fEDITION_UNKNOWN\x12\x13\n\x0eEDITION_LEGACY\x10\x84\x07\x12\x13\n\x0eEDITION_PROTO2\x10\xe6\x07\x12\x13\n\x0eEDITION_PROTO3\x10\xe7\x07\x12\x11\n\x0cEDITION_2023\x10\xe8\x07\x12\x11\n\x0cEDITION_2024\x10\xe9\x07\x12\x17\n\x13EDITION_1_TEST_ONLY\x10\x01\x12\x17\n\x13EDITION_2_TEST_ONLY\x10\x02\x12\x1d\n\x17EDITION_99997_TEST_ONLY\x10\x9d\x8d\x06\x12\x1d\n\x17EDITION_99998_TEST_ONLY\x10\x9e\x8d\x06\x12\x1d\n\x17EDITION_99999_TEST_ONLY\x10\x9f\x8d\x06\x12\x13\n\x0bEDITION_MAX\x10\xff\xff\xff\xff\x07*S\n\x10SymbolVisibility\x12\x12\n\x10VISIBILITY_UNSET\x12\x14\n\x10VISIBILITY_LOCAL\x10\x01\x12\x15\n\x11VISIBILITY_EXPORT\x10\x02B~\n\x13com.google.protobufB\x10DescriptorProtosH\x01Z-google.golang.org/protobuf/types/descriptorpb\xf8\x01\x01\xa2\x02\x03GPB\xaa\x02\x1aGoogle.Protobuf.Reflection'
 )
