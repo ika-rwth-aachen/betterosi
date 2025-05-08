@@ -4,26 +4,10 @@
 # This file has been @generated
 
 __all__ = (
-    "Edition",
-    "ExtensionRangeOptionsVerificationState",
-    "FeatureSetEnumType",
-    "FeatureSetFieldPresence",
-    "FeatureSetJsonFormat",
-    "FeatureSetMessageEncoding",
-    "FeatureSetRepeatedFieldEncoding",
-    "FeatureSetUtf8Validation",
-    "FieldDescriptorProtoLabel",
-    "FieldDescriptorProtoType",
-    "FieldOptionsCType",
-    "FieldOptionsJsType",
-    "FieldOptionsOptionRetention",
-    "FieldOptionsOptionTargetType",
-    "FileOptionsOptimizeMode",
-    "GeneratedCodeInfoAnnotationSemantic",
-    "MethodOptionsIdempotencyLevel",
     "DescriptorProto",
     "DescriptorProtoExtensionRange",
     "DescriptorProtoReservedRange",
+    "Edition",
     "EnumDescriptorProto",
     "EnumDescriptorProtoEnumReservedRange",
     "EnumOptions",
@@ -31,21 +15,37 @@ __all__ = (
     "EnumValueOptions",
     "ExtensionRangeOptions",
     "ExtensionRangeOptionsDeclaration",
+    "ExtensionRangeOptionsVerificationState",
     "FeatureSet",
     "FeatureSetDefaults",
     "FeatureSetDefaultsFeatureSetEditionDefault",
+    "FeatureSetEnumType",
+    "FeatureSetFieldPresence",
+    "FeatureSetJsonFormat",
+    "FeatureSetMessageEncoding",
+    "FeatureSetRepeatedFieldEncoding",
+    "FeatureSetUtf8Validation",
     "FieldDescriptorProto",
+    "FieldDescriptorProtoLabel",
+    "FieldDescriptorProtoType",
     "FieldOptions",
+    "FieldOptionsCType",
     "FieldOptionsEditionDefault",
     "FieldOptionsFeatureSupport",
+    "FieldOptionsJsType",
+    "FieldOptionsOptionRetention",
+    "FieldOptionsOptionTargetType",
     "FileDescriptorProto",
     "FileDescriptorSet",
     "FileOptions",
+    "FileOptionsOptimizeMode",
     "GeneratedCodeInfo",
     "GeneratedCodeInfoAnnotation",
+    "GeneratedCodeInfoAnnotationSemantic",
     "MessageOptions",
     "MethodDescriptorProto",
     "MethodOptions",
+    "MethodOptionsIdempotencyLevel",
     "OneofDescriptorProto",
     "OneofOptions",
     "ServiceDescriptorProto",
@@ -63,7 +63,7 @@ import betterproto2
 
 from ...message_pool import default_message_pool
 
-betterproto2.check_compiler_version("0.3.1")
+betterproto2.check_compiler_version("0.5.1")
 
 
 class Edition(betterproto2.Enum):
@@ -905,7 +905,7 @@ class FeatureSet(betterproto2.Message):
 
     @staticmethod
     def _serialized_pb():
-        return b'\n\nFeatureSet\x12\x90\x01\n\x0efield_presence\x18\x01 \x01(\x0e2).google.protobuf.FeatureSet.FieldPresenceR\rfieldPresenceB>\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\r\x18\x84\x07\x12\x08EXPLICIT\xa2\x01\r\x18\xe7\x07\x12\x08IMPLICIT\xa2\x01\r\x18\xe8\x07\x12\x08EXPLICIT\xb2\x01\x03\x08\xe8\x07\x12k\n\tenum_type\x18\x02 \x01(\x0e2$.google.protobuf.FeatureSet.EnumTypeR\x08enumTypeB(\x88\x01\x01\x9a\x01\x02\x06\x01\xa2\x01\x0b\x18\x84\x07\x12\x06CLOSED\xa2\x01\t\x18\xe7\x07\x12\x04OPEN\xb2\x01\x03\x08\xe8\x07\x12\x97\x01\n\x17repeated_field_encoding\x18\x03 \x01(\x0e21.google.protobuf.FeatureSet.RepeatedFieldEncodingR\x15repeatedFieldEncodingB,\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\r\x18\x84\x07\x12\x08EXPANDED\xa2\x01\x0b\x18\xe7\x07\x12\x06PACKED\xb2\x01\x03\x08\xe8\x07\x12}\n\x0futf8_validation\x18\x04 \x01(\x0e2*.google.protobuf.FeatureSet.Utf8ValidationR\x0eutf8ValidationB(\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\t\x18\x84\x07\x12\x04NONE\xa2\x01\x0b\x18\xe7\x07\x12\x06VERIFY\xb2\x01\x03\x08\xe8\x07\x12}\n\x10message_encoding\x18\x05 \x01(\x0e2+.google.protobuf.FeatureSet.MessageEncodingR\x0fmessageEncodingB%\x88\x01\x01\x9a\x01\x02\x04\x01\xa2\x01\x14\x18\x84\x07\x12\x0fLENGTH_PREFIXED\xb2\x01\x03\x08\xe8\x07\x12\x7f\n\x0bjson_format\x18\x06 \x01(\x0e2&.google.protobuf.FeatureSet.JsonFormatR\njsonFormatB6\x88\x01\x01\x9a\x01\x03\x03\x06\x01\xa2\x01\x17\x18\x84\x07\x12\x12LEGACY_BEST_EFFORT\xa2\x01\n\x18\xe7\x07\x12\x05ALLOW\xb2\x01\x03\x08\xe8\x07"e\n\x18FeatureSet.FieldPresence\x12\x18\n\x16FIELD_PRESENCE_UNKNOWN\x12\x0c\n\x08EXPLICIT\x10\x01\x12\x0c\n\x08IMPLICIT\x10\x02\x12\x13\n\x0fLEGACY_REQUIRED\x10\x03"@\n\x13FeatureSet.EnumType\x12\x13\n\x11ENUM_TYPE_UNKNOWN\x12\x08\n\x04OPEN\x10\x01\x12\n\n\x06CLOSED\x10\x02"_\n FeatureSet.RepeatedFieldEncoding\x12!\n\x1fREPEATED_FIELD_ENCODING_UNKNOWN\x12\n\n\x06PACKED\x10\x01\x12\x0c\n\x08EXPANDED\x10\x02"R\n\x19FeatureSet.Utf8Validation\x12\x19\n\x17UTF8_VALIDATION_UNKNOWN\x12\n\n\x06VERIFY\x10\x02\x12\x08\n\x04NONE\x10\x03"\x04\x08\x01\x10\x01"\\\n\x1aFeatureSet.MessageEncoding\x12\x1a\n\x18MESSAGE_ENCODING_UNKNOWN\x12\x13\n\x0fLENGTH_PREFIXED\x10\x01\x12\r\n\tDELIMITED\x10\x02"Q\n\x15FeatureSet.JsonFormat\x12\x15\n\x13JSON_FORMAT_UNKNOWN\x12\t\n\x05ALLOW\x10\x01\x12\x16\n\x12LEGACY_BEST_EFFORT\x10\x02*\x8b\x01\x08\xe8\x07\x10\x8bN\x1a\x82\x01\x12\x1d\x08\xe8\x07\x12\x07.pb.cpp\x1a\x0f.pb.CppFeatures\x12\x1f\x08\xe9\x07\x12\x08.pb.java\x1a\x10.pb.JavaFeatures\x12\x1b\x08\xea\x07\x12\x06.pb.go\x1a\x0e.pb.GoFeatures\x12#\x08\x86N\x12\n.pb.proto1\x1a\x12.pb.Proto1Features*\x06\x08\x8bN\x10\x90N*\x06\x08\x90N\x10\x91NJ\x06\x08\xe7\x07\x10\xe8\x07'
+        return b'\n\nFeatureSet\x12\x91\x01\n\x0efield_presence\x18\x01 \x01(\x0e2).google.protobuf.FeatureSet.FieldPresenceR\rfieldPresenceB?\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\r\x12\x08EXPLICIT\x18\x84\x07\xa2\x01\r\x12\x08IMPLICIT\x18\xe7\x07\xa2\x01\r\x12\x08EXPLICIT\x18\xe8\x07\xb2\x01\x03\x08\xe8\x07\x12l\n\tenum_type\x18\x02 \x01(\x0e2$.google.protobuf.FeatureSet.EnumTypeR\x08enumTypeB)\x88\x01\x01\x98\x01\x06\x98\x01\x01\xa2\x01\x0b\x12\x06CLOSED\x18\x84\x07\xa2\x01\t\x12\x04OPEN\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12\x98\x01\n\x17repeated_field_encoding\x18\x03 \x01(\x0e21.google.protobuf.FeatureSet.RepeatedFieldEncodingR\x15repeatedFieldEncodingB-\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\r\x12\x08EXPANDED\x18\x84\x07\xa2\x01\x0b\x12\x06PACKED\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12~\n\x0futf8_validation\x18\x04 \x01(\x0e2*.google.protobuf.FeatureSet.Utf8ValidationR\x0eutf8ValidationB)\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\t\x12\x04NONE\x18\x84\x07\xa2\x01\x0b\x12\x06VERIFY\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07\x12~\n\x10message_encoding\x18\x05 \x01(\x0e2+.google.protobuf.FeatureSet.MessageEncodingR\x0fmessageEncodingB&\x88\x01\x01\x98\x01\x04\x98\x01\x01\xa2\x01\x14\x12\x0fLENGTH_PREFIXED\x18\x84\x07\xb2\x01\x03\x08\xe8\x07\x12\x82\x01\n\x0bjson_format\x18\x06 \x01(\x0e2&.google.protobuf.FeatureSet.JsonFormatR\njsonFormatB9\x88\x01\x01\x98\x01\x03\x98\x01\x06\x98\x01\x01\xa2\x01\x17\x12\x12LEGACY_BEST_EFFORT\x18\x84\x07\xa2\x01\n\x12\x05ALLOW\x18\xe7\x07\xb2\x01\x03\x08\xe8\x07"e\n\x18FeatureSet.FieldPresence\x12\x18\n\x16FIELD_PRESENCE_UNKNOWN\x12\x0c\n\x08EXPLICIT\x10\x01\x12\x0c\n\x08IMPLICIT\x10\x02\x12\x13\n\x0fLEGACY_REQUIRED\x10\x03"@\n\x13FeatureSet.EnumType\x12\x13\n\x11ENUM_TYPE_UNKNOWN\x12\x08\n\x04OPEN\x10\x01\x12\n\n\x06CLOSED\x10\x02"_\n FeatureSet.RepeatedFieldEncoding\x12!\n\x1fREPEATED_FIELD_ENCODING_UNKNOWN\x12\n\n\x06PACKED\x10\x01\x12\x0c\n\x08EXPANDED\x10\x02"R\n\x19FeatureSet.Utf8Validation\x12\x19\n\x17UTF8_VALIDATION_UNKNOWN\x12\n\n\x06VERIFY\x10\x02\x12\x08\n\x04NONE\x10\x03"\x04\x08\x01\x10\x01"\\\n\x1aFeatureSet.MessageEncoding\x12\x1a\n\x18MESSAGE_ENCODING_UNKNOWN\x12\x13\n\x0fLENGTH_PREFIXED\x10\x01\x12\r\n\tDELIMITED\x10\x02"Q\n\x15FeatureSet.JsonFormat\x12\x15\n\x13JSON_FORMAT_UNKNOWN\x12\t\n\x05ALLOW\x10\x01\x12\x16\n\x12LEGACY_BEST_EFFORT\x10\x02*\x8b\x01\x08\xe8\x07\x10\x8bN\x1a\x82\x01\x12\x1d\x08\xe8\x07\x12\x07.pb.cpp\x1a\x0f.pb.CppFeatures\x12\x1f\x08\xe9\x07\x12\x08.pb.java\x1a\x10.pb.JavaFeatures\x12\x1b\x08\xea\x07\x12\x06.pb.go\x1a\x0e.pb.GoFeatures\x12#\x08\x86N\x12\n.pb.proto1\x1a\x12.pb.Proto1Features*\x06\x08\x8bN\x10\x90N*\x06\x08\x90N\x10\x91NJ\x06\x08\xe7\x07\x10\xe8\x07'
 
     field_presence: "FeatureSetFieldPresence" = betterproto2.field(
         1, betterproto2.TYPE_ENUM, default_factory=lambda: FeatureSetFieldPresence(0)
