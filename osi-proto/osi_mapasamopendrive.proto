@@ -3,6 +3,6 @@ option optimize_for = SPEED;
 package osi3;
 message MapAsamOpenDrive
 {
-    required string map_reference = 1;
-    required string open_drive_xml_content = 2;  
+    string map_reference = 1;
+    string open_drive_xml_content = 2;  
 }
