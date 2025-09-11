@@ -33,6 +33,12 @@ class EnumWrapper:
             else:
                 return self.wrapped(n)
 
+    def __iter__(self):
+        return iter(self.wrapped)
+
+    def __call__(self, val):
+        return self.wrapped(val)
+
 
 enums = {
     o: getattr(osi, o)
