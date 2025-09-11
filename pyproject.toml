@@ -34,7 +34,7 @@ dependencies = [
     'tqdm'
 ]
 
-version = "0.8.0"
+version = "0.8.1"
 
 [project.optional-dependencies]
 test = ['ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks']
