@@ -1,11 +1,10 @@
 [build-system]
-requires = ["setuptools", "ruff"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-build-scripts", "ruff", "betterproto2_compiler","grpcio-tools"]
+build-backend = "hatchling.build"
 
 [tool.setuptools.packages.find]
 include = ["betterosi*"]
 namespaces = false
-
 
 [project]
 name = "betterosi"
@@ -26,17 +25,16 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    'betterproto2[all]==0.3.1',
+    'betterproto2[all] (>=0.8.0,<1)',
     'mcap',
     'mcap-protobuf-support',
-    'protobuf',
     'matplotlib',
     'numpy',
     'typer',
     'tqdm'
 ]
 
-version = "0.3.6"
+version = "0.8.0"
 
 [project.optional-dependencies]
 test = ['ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks']
@@ -45,9 +43,12 @@ test = ['ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov
 Homepage = "https://github.com/ika-rwth-aachen/betterosi"
 Repository = "https://github.com/ika-rwth-aachen/betterosi"
 
-[tool.setuptools.package-data]
-"betterosi" = [
-    "descriptors.json"
+
+[[tool.hatch.build.hooks.build-scripts.scripts]]
+commands = [
+    "python gen_protos.py"
+]
+artifacts = [
 ]
 
 [project.scripts]

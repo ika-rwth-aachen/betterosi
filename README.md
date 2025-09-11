@@ -54,7 +54,7 @@ NANOS_PER_SEC = 1_000_000_000
 
 with betterosi.Writer('test.mcap') as writer_mcap, betterosi.Writer('test.osi') as writer_osi, betterosi.Writer('test_sv.mcap') as writer_sv:
     moving_object = betterosi.MovingObject(id=betterosi.Identifier(value=42),
-        type = betterosi.MovingObjectType.TYPE_UNKNOWN,
+        type = betterosi.MovingObjectType.UNKNOWN,
         base=betterosi.BaseMoving(
             dimension= betterosi.Dimension3D(length=5, width=2, height=1),
             position = betterosi.Vector3D(x=0, y=0, z=0),
@@ -127,22 +127,25 @@ any_osi_message = betterosi.read('test.mcap')
 # Generate library code
 
 ```
-pip install grpcio-tools git+https://github.com/MichaelSchuldes/python-betterproto2-compiler@serialized_descriptors
+pip install grpcio-tools betterproto2_compiler
+
+
+python gen_protos.py
 ```
 
-cd into osi-proto and run the following command to generate the code 
+cd into osi-proto and run the following command to generate the code
 
 ```
 cd osi-proto
 
 mkdir ../betterosi/generated
 
-python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto osi_mapasamopendrive.proto
+python -m grpc_tools.protoc -I . --python_betterproto2_out=../betterosi/generated --python_betterproto2_opt=google_protobuf_descriptors osi_common.proto osi_datarecording.proto osi_detectedlane.proto osi_detectedobject.proto osi_detectedoccupant.proto osi_detectedroadmarking.proto osi_detectedtrafficlight.proto osi_detectedtrafficsign.proto osi_environment.proto osi_featuredata.proto osi_groundtruth.proto osi_hostvehicledata.proto osi_lane.proto osi_logicaldetectiondata.proto osi_logicallane.proto osi_motionrequest.proto osi_object.proto osi_occupant.proto osi_referenceline.proto osi_roadmarking.proto osi_route.proto osi_sensordata.proto osi_sensorspecific.proto osi_sensorview.proto osi_sensorviewconfiguration.proto osi_streamingupdate.proto osi_trafficcommand.proto osi_trafficcommandupdate.proto osi_trafficlight.proto osi_trafficsign.proto osi_trafficupdate.proto osi_version.proto osi_mapasamopendrive.proto
 ```
 
 # LICENSE and Copyright
-This code is published under MPL-2.0 license. 
-It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2.0 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) ([osi-proto/*](osi-proto/) and [betterosi/osi3trace.py](betterosi/osi3trace.py)) under MPL-2.0.
+This code is published under MPL-2.0 license.
+It utilizes and modifies parts of [esmini](https://github.com/esmini/esmini) ([betterosi/viewer.py](betterosi/viewer.py)) under MPL-2.0 and [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) [osi-proto/*](osi-proto/) under MPL-2.0.
 
 # Acknowledgements
 
@@ -157,3 +160,11 @@ Funded by the European Union. Views and opinions expressed are however those of 
 
 <img src="https://raw.githubusercontent.com/ika-rwth-aachen/betterosi/refs/heads/main/funded_by_eu.svg"
 style="width:4in" />
+
+# Notice
+
+> [!IMPORTANT]
+> The project is open-sourced and maintained by the [**Institute for Automotive Engineering (ika) at RWTH Aachen University**](https://www.ika.rwth-aachen.de/).
+> We cover a wide variety of research topics within our [*Vehicle Intelligence & Automated Driving*](https://www.ika.rwth-aachen.de/en/competences/fields-of-research/vehicle-intelligence-automated-driving.html) domain.
+> If you would like to learn more about how we can support your automated driving or robotics efforts, feel free to reach out to us!
+> :email: ***opensource@ika.rwth-aachen.de***
