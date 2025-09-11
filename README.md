@@ -128,6 +128,9 @@ any_osi_message = betterosi.read('test.mcap')
 
 ```
 pip install grpcio-tools betterproto2_compiler
+
+
+python gen_protos.py
 ```
 
 cd into osi-proto and run the following command to generate the code

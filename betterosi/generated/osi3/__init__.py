@@ -258,7 +258,7 @@ from google.protobuf.descriptor import Descriptor, EnumDescriptor
 from ..google_proto_descriptor_pool import default_google_proto_descriptor_pool
 from ..message_pool import default_message_pool
 
-_COMPILER_VERSION = "0.7.1"
+_COMPILER_VERSION = "0.8.0"
 betterproto2.check_compiler_version(_COMPILER_VERSION)
 
 
@@ -267,8 +267,9 @@ class BoundingBoxType(betterproto2.Enum):
     Definition of different types of object contained within the bounding box
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.enum_types_by_name["BoundingBox.Type"]
 
     UNKNOWN = 0
@@ -316,15 +317,29 @@ class BoundingBoxType(betterproto2.Enum):
     of the parent object.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_BASE_STRUCTURE",
-        3: "TYPE_PROTRUDING_STRUCTURE",
-        4: "TYPE_CARGO",
-        5: "TYPE_DOOR",
-        6: "TYPE_SIDE_MIRROR",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_BASE_STRUCTURE",
+            3: "TYPE_PROTRUDING_STRUCTURE",
+            4: "TYPE_CARGO",
+            5: "TYPE_DOOR",
+            6: "TYPE_SIDE_MIRROR",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_BASE_STRUCTURE": 2,
+            "TYPE_PROTRUDING_STRUCTURE": 3,
+            "TYPE_CARGO": 4,
+            "TYPE_DOOR": 5,
+            "TYPE_SIDE_MIRROR": 6,
+        }
 
 
 class CameraDetectionColor(betterproto2.Enum):
@@ -335,8 +350,9 @@ class CameraDetectionColor(betterproto2.Enum):
     4.0.0. Use \\c ColorDescription instead.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "CameraDetection.Color"
         ]
@@ -409,21 +425,41 @@ class CameraDetectionColor(betterproto2.Enum):
     Shape with reflective color.
     """
 
-    betterproto_proto_names = {
-        0: "COLOR_UNKNOWN",
-        1: "COLOR_OTHER",
-        2: "COLOR_BLACK",
-        3: "COLOR_GRAY",
-        3: "COLOR_GREY",
-        4: "COLOR_WHITE",
-        5: "COLOR_YELLOW",
-        6: "COLOR_ORANGE",
-        7: "COLOR_RED",
-        8: "COLOR_VIOLET",
-        9: "COLOR_BLUE",
-        10: "COLOR_GREEN",
-        11: "COLOR_REFLECTIVE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "COLOR_UNKNOWN",
+            1: "COLOR_OTHER",
+            2: "COLOR_BLACK",
+            3: "COLOR_GRAY",
+            3: "COLOR_GREY",
+            4: "COLOR_WHITE",
+            5: "COLOR_YELLOW",
+            6: "COLOR_ORANGE",
+            7: "COLOR_RED",
+            8: "COLOR_VIOLET",
+            9: "COLOR_BLUE",
+            10: "COLOR_GREEN",
+            11: "COLOR_REFLECTIVE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "COLOR_UNKNOWN": 0,
+            "COLOR_OTHER": 1,
+            "COLOR_BLACK": 2,
+            "COLOR_GRAY": 3,
+            "COLOR_GREY": 3,
+            "COLOR_WHITE": 4,
+            "COLOR_YELLOW": 5,
+            "COLOR_ORANGE": 6,
+            "COLOR_RED": 7,
+            "COLOR_VIOLET": 8,
+            "COLOR_BLUE": 9,
+            "COLOR_GREEN": 10,
+            "COLOR_REFLECTIVE": 11,
+        }
 
 
 class CameraDetectionImageShapeType(betterproto2.Enum):
@@ -431,8 +467,9 @@ class CameraDetectionImageShapeType(betterproto2.Enum):
     Definition of different image shape types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "CameraDetection.ImageShapeType"
         ]
@@ -512,16 +549,31 @@ class CameraDetectionImageShapeType(betterproto2.Enum):
     connected in the point cloud.
     """
 
-    betterproto_proto_names = {
-        0: "IMAGE_SHAPE_TYPE_UNKNOWN",
-        1: "IMAGE_SHAPE_TYPE_OTHER",
-        2: "IMAGE_SHAPE_TYPE_POINT",
-        3: "IMAGE_SHAPE_TYPE_BOX",
-        4: "IMAGE_SHAPE_TYPE_ELLIPSE",
-        5: "IMAGE_SHAPE_TYPE_POLYGON",
-        6: "IMAGE_SHAPE_TYPE_POLYLINE",
-        7: "IMAGE_SHAPE_TYPE_POINT_CLOUD",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "IMAGE_SHAPE_TYPE_UNKNOWN",
+            1: "IMAGE_SHAPE_TYPE_OTHER",
+            2: "IMAGE_SHAPE_TYPE_POINT",
+            3: "IMAGE_SHAPE_TYPE_BOX",
+            4: "IMAGE_SHAPE_TYPE_ELLIPSE",
+            5: "IMAGE_SHAPE_TYPE_POLYGON",
+            6: "IMAGE_SHAPE_TYPE_POLYLINE",
+            7: "IMAGE_SHAPE_TYPE_POINT_CLOUD",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "IMAGE_SHAPE_TYPE_UNKNOWN": 0,
+            "IMAGE_SHAPE_TYPE_OTHER": 1,
+            "IMAGE_SHAPE_TYPE_POINT": 2,
+            "IMAGE_SHAPE_TYPE_BOX": 3,
+            "IMAGE_SHAPE_TYPE_ELLIPSE": 4,
+            "IMAGE_SHAPE_TYPE_POLYGON": 5,
+            "IMAGE_SHAPE_TYPE_POLYLINE": 6,
+            "IMAGE_SHAPE_TYPE_POINT_CLOUD": 7,
+        }
 
 
 class CameraSensorViewConfigurationChannelFormat(betterproto2.Enum):
@@ -529,8 +581,9 @@ class CameraSensorViewConfigurationChannelFormat(betterproto2.Enum):
     Channel format.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.enum_types_by_name[
             "CameraSensorViewConfiguration.ChannelFormat"
         ]
@@ -667,34 +720,67 @@ class CameraSensorViewConfigurationChannelFormat(betterproto2.Enum):
     Red Clear Clear Blue Channels Single Precision FP Linear.
     """
 
-    betterproto_proto_names = {
-        0: "CHANNEL_FORMAT_UNKNOWN",
-        1: "CHANNEL_FORMAT_OTHER",
-        2: "CHANNEL_FORMAT_MONO_U8_LIN",
-        3: "CHANNEL_FORMAT_MONO_U16_LIN",
-        4: "CHANNEL_FORMAT_MONO_U32_LIN",
-        5: "CHANNEL_FORMAT_MONO_F32_LIN",
-        6: "CHANNEL_FORMAT_RGB_U8_LIN",
-        7: "CHANNEL_FORMAT_RGB_U16_LIN",
-        8: "CHANNEL_FORMAT_RGB_U32_LIN",
-        9: "CHANNEL_FORMAT_RGB_F32_LIN",
-        10: "CHANNEL_FORMAT_BAYER_BGGR_U8_LIN",
-        11: "CHANNEL_FORMAT_BAYER_BGGR_U16_LIN",
-        12: "CHANNEL_FORMAT_BAYER_BGGR_U32_LIN",
-        13: "CHANNEL_FORMAT_BAYER_BGGR_F32_LIN",
-        14: "CHANNEL_FORMAT_BAYER_RGGB_U8_LIN",
-        15: "CHANNEL_FORMAT_BAYER_RGGB_U16_LIN",
-        16: "CHANNEL_FORMAT_BAYER_RGGB_U32_LIN",
-        17: "CHANNEL_FORMAT_BAYER_RGGB_F32_LIN",
-        18: "CHANNEL_FORMAT_RCCC_U8_LIN",
-        19: "CHANNEL_FORMAT_RCCC_U16_LIN",
-        20: "CHANNEL_FORMAT_RCCC_U32_LIN",
-        21: "CHANNEL_FORMAT_RCCC_F32_LIN",
-        22: "CHANNEL_FORMAT_RCCB_U8_LIN",
-        23: "CHANNEL_FORMAT_RCCB_U16_LIN",
-        24: "CHANNEL_FORMAT_RCCB_U32_LIN",
-        25: "CHANNEL_FORMAT_RCCB_F32_LIN",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "CHANNEL_FORMAT_UNKNOWN",
+            1: "CHANNEL_FORMAT_OTHER",
+            2: "CHANNEL_FORMAT_MONO_U8_LIN",
+            3: "CHANNEL_FORMAT_MONO_U16_LIN",
+            4: "CHANNEL_FORMAT_MONO_U32_LIN",
+            5: "CHANNEL_FORMAT_MONO_F32_LIN",
+            6: "CHANNEL_FORMAT_RGB_U8_LIN",
+            7: "CHANNEL_FORMAT_RGB_U16_LIN",
+            8: "CHANNEL_FORMAT_RGB_U32_LIN",
+            9: "CHANNEL_FORMAT_RGB_F32_LIN",
+            10: "CHANNEL_FORMAT_BAYER_BGGR_U8_LIN",
+            11: "CHANNEL_FORMAT_BAYER_BGGR_U16_LIN",
+            12: "CHANNEL_FORMAT_BAYER_BGGR_U32_LIN",
+            13: "CHANNEL_FORMAT_BAYER_BGGR_F32_LIN",
+            14: "CHANNEL_FORMAT_BAYER_RGGB_U8_LIN",
+            15: "CHANNEL_FORMAT_BAYER_RGGB_U16_LIN",
+            16: "CHANNEL_FORMAT_BAYER_RGGB_U32_LIN",
+            17: "CHANNEL_FORMAT_BAYER_RGGB_F32_LIN",
+            18: "CHANNEL_FORMAT_RCCC_U8_LIN",
+            19: "CHANNEL_FORMAT_RCCC_U16_LIN",
+            20: "CHANNEL_FORMAT_RCCC_U32_LIN",
+            21: "CHANNEL_FORMAT_RCCC_F32_LIN",
+            22: "CHANNEL_FORMAT_RCCB_U8_LIN",
+            23: "CHANNEL_FORMAT_RCCB_U16_LIN",
+            24: "CHANNEL_FORMAT_RCCB_U32_LIN",
+            25: "CHANNEL_FORMAT_RCCB_F32_LIN",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "CHANNEL_FORMAT_UNKNOWN": 0,
+            "CHANNEL_FORMAT_OTHER": 1,
+            "CHANNEL_FORMAT_MONO_U8_LIN": 2,
+            "CHANNEL_FORMAT_MONO_U16_LIN": 3,
+            "CHANNEL_FORMAT_MONO_U32_LIN": 4,
+            "CHANNEL_FORMAT_MONO_F32_LIN": 5,
+            "CHANNEL_FORMAT_RGB_U8_LIN": 6,
+            "CHANNEL_FORMAT_RGB_U16_LIN": 7,
+            "CHANNEL_FORMAT_RGB_U32_LIN": 8,
+            "CHANNEL_FORMAT_RGB_F32_LIN": 9,
+            "CHANNEL_FORMAT_BAYER_BGGR_U8_LIN": 10,
+            "CHANNEL_FORMAT_BAYER_BGGR_U16_LIN": 11,
+            "CHANNEL_FORMAT_BAYER_BGGR_U32_LIN": 12,
+            "CHANNEL_FORMAT_BAYER_BGGR_F32_LIN": 13,
+            "CHANNEL_FORMAT_BAYER_RGGB_U8_LIN": 14,
+            "CHANNEL_FORMAT_BAYER_RGGB_U16_LIN": 15,
+            "CHANNEL_FORMAT_BAYER_RGGB_U32_LIN": 16,
+            "CHANNEL_FORMAT_BAYER_RGGB_F32_LIN": 17,
+            "CHANNEL_FORMAT_RCCC_U8_LIN": 18,
+            "CHANNEL_FORMAT_RCCC_U16_LIN": 19,
+            "CHANNEL_FORMAT_RCCC_U32_LIN": 20,
+            "CHANNEL_FORMAT_RCCC_F32_LIN": 21,
+            "CHANNEL_FORMAT_RCCB_U8_LIN": 22,
+            "CHANNEL_FORMAT_RCCB_U16_LIN": 23,
+            "CHANNEL_FORMAT_RCCB_U32_LIN": 24,
+            "CHANNEL_FORMAT_RCCB_F32_LIN": 25,
+        }
 
 
 class CameraSensorViewConfigurationPixelOrder(betterproto2.Enum):
@@ -710,8 +796,9 @@ class CameraSensorViewConfigurationPixelOrder(betterproto2.Enum):
     system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.enum_types_by_name[
             "CameraSensorViewConfiguration.PixelOrder"
         ]
@@ -744,12 +831,23 @@ class CameraSensorViewConfigurationPixelOrder(betterproto2.Enum):
 
     """
 
-    betterproto_proto_names = {
-        0: "PIXEL_ORDER_DEFAULT",
-        1: "PIXEL_ORDER_OTHER",
-        2: "PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM",
-        3: "PIXEL_ORDER_LEFT_RIGHT_BOTTOM_TOP",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "PIXEL_ORDER_DEFAULT",
+            1: "PIXEL_ORDER_OTHER",
+            2: "PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM",
+            3: "PIXEL_ORDER_LEFT_RIGHT_BOTTOM_TOP",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "PIXEL_ORDER_DEFAULT": 0,
+            "PIXEL_ORDER_OTHER": 1,
+            "PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM": 2,
+            "PIXEL_ORDER_LEFT_RIGHT_BOTTOM_TOP": 3,
+        }
 
 
 class DetectedEntityHeaderDataQualifier(betterproto2.Enum):
@@ -759,8 +857,9 @@ class DetectedEntityHeaderDataQualifier(betterproto2.Enum):
     interface.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_SENSORDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectedEntityHeader.DataQualifier"
         ]
@@ -800,15 +899,29 @@ class DetectedEntityHeaderDataQualifier(betterproto2.Enum):
     Sensor temporary available.
     """
 
-    betterproto_proto_names = {
-        0: "DATA_QUALIFIER_UNKNOWN",
-        1: "DATA_QUALIFIER_OTHER",
-        2: "DATA_QUALIFIER_AVAILABLE",
-        3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
-        4: "DATA_QUALIFIER_NOT_AVAILABLE",
-        5: "DATA_QUALIFIER_BLINDNESS",
-        6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DATA_QUALIFIER_UNKNOWN",
+            1: "DATA_QUALIFIER_OTHER",
+            2: "DATA_QUALIFIER_AVAILABLE",
+            3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
+            4: "DATA_QUALIFIER_NOT_AVAILABLE",
+            5: "DATA_QUALIFIER_BLINDNESS",
+            6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DATA_QUALIFIER_UNKNOWN": 0,
+            "DATA_QUALIFIER_OTHER": 1,
+            "DATA_QUALIFIER_AVAILABLE": 2,
+            "DATA_QUALIFIER_AVAILABLE_REDUCED": 3,
+            "DATA_QUALIFIER_NOT_AVAILABLE": 4,
+            "DATA_QUALIFIER_BLINDNESS": 5,
+            "DATA_QUALIFIER_TEMPORARY_AVAILABLE": 6,
+        }
 
 
 class DetectedItemHeaderMeasurementState(betterproto2.Enum):
@@ -816,8 +929,9 @@ class DetectedItemHeaderMeasurementState(betterproto2.Enum):
     Definition of measurement states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectedItemHeader.MeasurementState"
         ]
@@ -844,12 +958,23 @@ class DetectedItemHeaderMeasurementState(betterproto2.Enum):
     Values provided by tracking only.
     """
 
-    betterproto_proto_names = {
-        0: "MEASUREMENT_STATE_UNKNOWN",
-        1: "MEASUREMENT_STATE_OTHER",
-        2: "MEASUREMENT_STATE_MEASURED",
-        3: "MEASUREMENT_STATE_PREDICTED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MEASUREMENT_STATE_UNKNOWN",
+            1: "MEASUREMENT_STATE_OTHER",
+            2: "MEASUREMENT_STATE_MEASURED",
+            3: "MEASUREMENT_STATE_PREDICTED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MEASUREMENT_STATE_UNKNOWN": 0,
+            "MEASUREMENT_STATE_OTHER": 1,
+            "MEASUREMENT_STATE_MEASURED": 2,
+            "MEASUREMENT_STATE_PREDICTED": 3,
+        }
 
 
 class DetectedMovingObjectMovementState(betterproto2.Enum):
@@ -857,8 +982,9 @@ class DetectedMovingObjectMovementState(betterproto2.Enum):
     Information about a possible movement of the object during tracking.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectedMovingObject.MovementState"
         ]
@@ -889,13 +1015,25 @@ class DetectedMovingObjectMovementState(betterproto2.Enum):
     currently not moving.
     """
 
-    betterproto_proto_names = {
-        0: "MOVEMENT_STATE_UNKNOWN",
-        1: "MOVEMENT_STATE_OTHER",
-        2: "MOVEMENT_STATE_STATIONARY",
-        3: "MOVEMENT_STATE_MOVING",
-        4: "MOVEMENT_STATE_STOPPED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MOVEMENT_STATE_UNKNOWN",
+            1: "MOVEMENT_STATE_OTHER",
+            2: "MOVEMENT_STATE_STATIONARY",
+            3: "MOVEMENT_STATE_MOVING",
+            4: "MOVEMENT_STATE_STOPPED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MOVEMENT_STATE_UNKNOWN": 0,
+            "MOVEMENT_STATE_OTHER": 1,
+            "MOVEMENT_STATE_STATIONARY": 2,
+            "MOVEMENT_STATE_MOVING": 3,
+            "MOVEMENT_STATE_STOPPED": 4,
+        }
 
 
 class DetectedMovingObjectReferencePoint(betterproto2.Enum):
@@ -905,8 +1043,9 @@ class DetectedMovingObjectReferencePoint(betterproto2.Enum):
     respectively. The z position is always considered as middle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectedMovingObject.ReferencePoint"
         ]
@@ -973,19 +1112,37 @@ class DetectedMovingObjectReferencePoint(betterproto2.Enum):
     Front-Right of the bounding box.
     """
 
-    betterproto_proto_names = {
-        0: "REFERENCE_POINT_UNKNOWN",
-        1: "REFERENCE_POINT_OTHER",
-        2: "REFERENCE_POINT_CENTER",
-        3: "REFERENCE_POINT_MIDDLE_LEFT",
-        4: "REFERENCE_POINT_MIDDLE_RIGHT",
-        5: "REFERENCE_POINT_REAR_MIDDLE",
-        6: "REFERENCE_POINT_REAR_LEFT",
-        7: "REFERENCE_POINT_REAR_RIGHT",
-        8: "REFERENCE_POINT_FRONT_MIDDLE",
-        9: "REFERENCE_POINT_FRONT_LEFT",
-        10: "REFERENCE_POINT_FRONT_RIGHT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "REFERENCE_POINT_UNKNOWN",
+            1: "REFERENCE_POINT_OTHER",
+            2: "REFERENCE_POINT_CENTER",
+            3: "REFERENCE_POINT_MIDDLE_LEFT",
+            4: "REFERENCE_POINT_MIDDLE_RIGHT",
+            5: "REFERENCE_POINT_REAR_MIDDLE",
+            6: "REFERENCE_POINT_REAR_LEFT",
+            7: "REFERENCE_POINT_REAR_RIGHT",
+            8: "REFERENCE_POINT_FRONT_MIDDLE",
+            9: "REFERENCE_POINT_FRONT_LEFT",
+            10: "REFERENCE_POINT_FRONT_RIGHT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "REFERENCE_POINT_UNKNOWN": 0,
+            "REFERENCE_POINT_OTHER": 1,
+            "REFERENCE_POINT_CENTER": 2,
+            "REFERENCE_POINT_MIDDLE_LEFT": 3,
+            "REFERENCE_POINT_MIDDLE_RIGHT": 4,
+            "REFERENCE_POINT_REAR_MIDDLE": 5,
+            "REFERENCE_POINT_REAR_LEFT": 6,
+            "REFERENCE_POINT_REAR_RIGHT": 7,
+            "REFERENCE_POINT_FRONT_MIDDLE": 8,
+            "REFERENCE_POINT_FRONT_LEFT": 9,
+            "REFERENCE_POINT_FRONT_RIGHT": 10,
+        }
 
 
 class DetectedTrafficSignDetectedMainSignGeometry(betterproto2.Enum):
@@ -993,8 +1150,9 @@ class DetectedTrafficSignDetectedMainSignGeometry(betterproto2.Enum):
     Definition of traffic sign geometries.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectedTrafficSign.DetectedMainSign.Geometry"
         ]
@@ -1071,21 +1229,41 @@ class DetectedTrafficSignDetectedMainSignGeometry(betterproto2.Enum):
     Traffic sign has an octagon geometry. (8 corners)
     """
 
-    betterproto_proto_names = {
-        0: "GEOMETRY_UNKNOWN",
-        1: "GEOMETRY_OTHER",
-        2: "GEOMETRY_CIRCLE",
-        3: "GEOMETRY_TRIANGLE_TOP",
-        4: "GEOMETRY_TRIANGLE_DOWN",
-        5: "GEOMETRY_SQUARE",
-        6: "GEOMETRY_POLE",
-        7: "GEOMETRY_RECTANGLE",
-        8: "GEOMETRY_PLATE",
-        9: "GEOMETRY_DIAMOND",
-        10: "GEOMETRY_ARROW_LEFT",
-        11: "GEOMETRY_ARROW_RIGHT",
-        12: "GEOMETRY_OCTAGON",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "GEOMETRY_UNKNOWN",
+            1: "GEOMETRY_OTHER",
+            2: "GEOMETRY_CIRCLE",
+            3: "GEOMETRY_TRIANGLE_TOP",
+            4: "GEOMETRY_TRIANGLE_DOWN",
+            5: "GEOMETRY_SQUARE",
+            6: "GEOMETRY_POLE",
+            7: "GEOMETRY_RECTANGLE",
+            8: "GEOMETRY_PLATE",
+            9: "GEOMETRY_DIAMOND",
+            10: "GEOMETRY_ARROW_LEFT",
+            11: "GEOMETRY_ARROW_RIGHT",
+            12: "GEOMETRY_OCTAGON",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "GEOMETRY_UNKNOWN": 0,
+            "GEOMETRY_OTHER": 1,
+            "GEOMETRY_CIRCLE": 2,
+            "GEOMETRY_TRIANGLE_TOP": 3,
+            "GEOMETRY_TRIANGLE_DOWN": 4,
+            "GEOMETRY_SQUARE": 5,
+            "GEOMETRY_POLE": 6,
+            "GEOMETRY_RECTANGLE": 7,
+            "GEOMETRY_PLATE": 8,
+            "GEOMETRY_DIAMOND": 9,
+            "GEOMETRY_ARROW_LEFT": 10,
+            "GEOMETRY_ARROW_RIGHT": 11,
+            "GEOMETRY_OCTAGON": 12,
+        }
 
 
 class DetectionClassification(betterproto2.Enum):
@@ -1093,8 +1271,9 @@ class DetectionClassification(betterproto2.Enum):
     Definition of a basic detection classifications.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "DetectionClassification"
         ]
@@ -1130,14 +1309,27 @@ class DetectionClassification(betterproto2.Enum):
     Under-drivable (sign gantry etc.).
     """
 
-    betterproto_proto_names = {
-        0: "DETECTION_CLASSIFICATION_UNKNOWN",
-        1: "DETECTION_CLASSIFICATION_OTHER",
-        2: "DETECTION_CLASSIFICATION_INVALID",
-        3: "DETECTION_CLASSIFICATION_CLUTTER",
-        4: "DETECTION_CLASSIFICATION_OVERDRIVABLE",
-        5: "DETECTION_CLASSIFICATION_UNDERDRIVABLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DETECTION_CLASSIFICATION_UNKNOWN",
+            1: "DETECTION_CLASSIFICATION_OTHER",
+            2: "DETECTION_CLASSIFICATION_INVALID",
+            3: "DETECTION_CLASSIFICATION_CLUTTER",
+            4: "DETECTION_CLASSIFICATION_OVERDRIVABLE",
+            5: "DETECTION_CLASSIFICATION_UNDERDRIVABLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DETECTION_CLASSIFICATION_UNKNOWN": 0,
+            "DETECTION_CLASSIFICATION_OTHER": 1,
+            "DETECTION_CLASSIFICATION_INVALID": 2,
+            "DETECTION_CLASSIFICATION_CLUTTER": 3,
+            "DETECTION_CLASSIFICATION_OVERDRIVABLE": 4,
+            "DETECTION_CLASSIFICATION_UNDERDRIVABLE": 5,
+        }
 
 
 class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
@@ -1167,8 +1359,9 @@ class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
     [5] Crabb, G. I., Beaumont, R. & Webster, D. (2008, October 17). <em>Review of the class and quality of street lighting</em>. Transport Research Laboratory. Retrieved January 25, 2020, from http://courtneystrong.com/wp-content/uploads/2017/07/css-sl1-class-and-quality-of-street-lighting.pdf
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.enum_types_by_name[
             "EnvironmentalConditions.AmbientIllumination"
         ]
@@ -1248,19 +1441,37 @@ class EnvironmentalConditionsAmbientIllumination(betterproto2.Enum):
     than 120000 lx
     """
 
-    betterproto_proto_names = {
-        0: "AMBIENT_ILLUMINATION_UNKNOWN",
-        1: "AMBIENT_ILLUMINATION_OTHER",
-        2: "AMBIENT_ILLUMINATION_LEVEL1",
-        3: "AMBIENT_ILLUMINATION_LEVEL2",
-        4: "AMBIENT_ILLUMINATION_LEVEL3",
-        5: "AMBIENT_ILLUMINATION_LEVEL4",
-        6: "AMBIENT_ILLUMINATION_LEVEL5",
-        7: "AMBIENT_ILLUMINATION_LEVEL6",
-        8: "AMBIENT_ILLUMINATION_LEVEL7",
-        9: "AMBIENT_ILLUMINATION_LEVEL8",
-        10: "AMBIENT_ILLUMINATION_LEVEL9",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "AMBIENT_ILLUMINATION_UNKNOWN",
+            1: "AMBIENT_ILLUMINATION_OTHER",
+            2: "AMBIENT_ILLUMINATION_LEVEL1",
+            3: "AMBIENT_ILLUMINATION_LEVEL2",
+            4: "AMBIENT_ILLUMINATION_LEVEL3",
+            5: "AMBIENT_ILLUMINATION_LEVEL4",
+            6: "AMBIENT_ILLUMINATION_LEVEL5",
+            7: "AMBIENT_ILLUMINATION_LEVEL6",
+            8: "AMBIENT_ILLUMINATION_LEVEL7",
+            9: "AMBIENT_ILLUMINATION_LEVEL8",
+            10: "AMBIENT_ILLUMINATION_LEVEL9",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "AMBIENT_ILLUMINATION_UNKNOWN": 0,
+            "AMBIENT_ILLUMINATION_OTHER": 1,
+            "AMBIENT_ILLUMINATION_LEVEL1": 2,
+            "AMBIENT_ILLUMINATION_LEVEL2": 3,
+            "AMBIENT_ILLUMINATION_LEVEL3": 4,
+            "AMBIENT_ILLUMINATION_LEVEL4": 5,
+            "AMBIENT_ILLUMINATION_LEVEL5": 6,
+            "AMBIENT_ILLUMINATION_LEVEL6": 7,
+            "AMBIENT_ILLUMINATION_LEVEL7": 8,
+            "AMBIENT_ILLUMINATION_LEVEL8": 9,
+            "AMBIENT_ILLUMINATION_LEVEL9": 10,
+        }
 
 
 class EnvironmentalConditionsCloudLayerFractionalCloudCover(betterproto2.Enum):
@@ -1278,8 +1489,9 @@ class EnvironmentalConditionsCloudLayerFractionalCloudCover(betterproto2.Enum):
     [2] UBC The University of British Columbia. (2018). <em>ATSC 113 Weather for Sailing, Flying & Snow Sports</em>. Retrieved March 8, 2022, from https://www.eoas.ubc.ca/courses/atsc113/flying/met_concepts/01-met_concepts/01c-cloud_coverage/index.html
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.enum_types_by_name[
             "EnvironmentalConditions.CloudLayer.FractionalCloudCover"
         ]
@@ -1344,20 +1556,39 @@ class EnvironmentalConditionsCloudLayerFractionalCloudCover(betterproto2.Enum):
     Sky obscured, describes situations where the sky is not perceivable, e.g. in dense fog.
     """
 
-    betterproto_proto_names = {
-        0: "FRACTIONAL_CLOUD_COVER_UNKNOWN",
-        1: "FRACTIONAL_CLOUD_COVER_OTHER",
-        2: "FRACTIONAL_CLOUD_COVER_ZERO_OKTAS",
-        3: "FRACTIONAL_CLOUD_COVER_ONE_OKTAS",
-        4: "FRACTIONAL_CLOUD_COVER_TWO_OKTAS",
-        5: "FRACTIONAL_CLOUD_COVER_THREE_OKTAS",
-        6: "FRACTIONAL_CLOUD_COVER_FOUR_OKTAS",
-        7: "FRACTIONAL_CLOUD_COVER_FIVE_OKTAS",
-        8: "FRACTIONAL_CLOUD_COVER_SIX_OKTAS",
-        9: "FRACTIONAL_CLOUD_COVER_SEVEN_OKTAS",
-        10: "FRACTIONAL_CLOUD_COVER_EIGHT_OKTAS",
-        11: "FRACTIONAL_CLOUD_COVER_SKY_OBSCURED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "FRACTIONAL_CLOUD_COVER_UNKNOWN",
+            1: "FRACTIONAL_CLOUD_COVER_OTHER",
+            2: "FRACTIONAL_CLOUD_COVER_ZERO_OKTAS",
+            3: "FRACTIONAL_CLOUD_COVER_ONE_OKTAS",
+            4: "FRACTIONAL_CLOUD_COVER_TWO_OKTAS",
+            5: "FRACTIONAL_CLOUD_COVER_THREE_OKTAS",
+            6: "FRACTIONAL_CLOUD_COVER_FOUR_OKTAS",
+            7: "FRACTIONAL_CLOUD_COVER_FIVE_OKTAS",
+            8: "FRACTIONAL_CLOUD_COVER_SIX_OKTAS",
+            9: "FRACTIONAL_CLOUD_COVER_SEVEN_OKTAS",
+            10: "FRACTIONAL_CLOUD_COVER_EIGHT_OKTAS",
+            11: "FRACTIONAL_CLOUD_COVER_SKY_OBSCURED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "FRACTIONAL_CLOUD_COVER_UNKNOWN": 0,
+            "FRACTIONAL_CLOUD_COVER_OTHER": 1,
+            "FRACTIONAL_CLOUD_COVER_ZERO_OKTAS": 2,
+            "FRACTIONAL_CLOUD_COVER_ONE_OKTAS": 3,
+            "FRACTIONAL_CLOUD_COVER_TWO_OKTAS": 4,
+            "FRACTIONAL_CLOUD_COVER_THREE_OKTAS": 5,
+            "FRACTIONAL_CLOUD_COVER_FOUR_OKTAS": 6,
+            "FRACTIONAL_CLOUD_COVER_FIVE_OKTAS": 7,
+            "FRACTIONAL_CLOUD_COVER_SIX_OKTAS": 8,
+            "FRACTIONAL_CLOUD_COVER_SEVEN_OKTAS": 9,
+            "FRACTIONAL_CLOUD_COVER_EIGHT_OKTAS": 10,
+            "FRACTIONAL_CLOUD_COVER_SKY_OBSCURED": 11,
+        }
 
 
 class EnvironmentalConditionsFog(betterproto2.Enum):
@@ -1380,8 +1611,9 @@ class EnvironmentalConditionsFog(betterproto2.Enum):
     [4] Meteorological Office UK. (2020). <em>Homepage of the Meteorological Office - How we measure visibility</em>. Retrieved January 25, 2020, from http://www.metoffice.gov.uk/guide/weather/observations-guide/how-we-measure-visibility
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.enum_types_by_name[
             "EnvironmentalConditions.Fog"
         ]
@@ -1437,18 +1669,35 @@ class EnvironmentalConditionsFog(betterproto2.Enum):
     (allowed to use rear fog light according to [3])
     """
 
-    betterproto_proto_names = {
-        0: "FOG_UNKNOWN",
-        1: "FOG_OTHER",
-        2: "FOG_EXCELLENT_VISIBILITY",
-        3: "FOG_GOOD_VISIBILITY",
-        4: "FOG_MODERATE_VISIBILITY",
-        5: "FOG_POOR_VISIBILITY",
-        6: "FOG_MIST",
-        7: "FOG_LIGHT",
-        8: "FOG_THICK",
-        9: "FOG_DENSE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "FOG_UNKNOWN",
+            1: "FOG_OTHER",
+            2: "FOG_EXCELLENT_VISIBILITY",
+            3: "FOG_GOOD_VISIBILITY",
+            4: "FOG_MODERATE_VISIBILITY",
+            5: "FOG_POOR_VISIBILITY",
+            6: "FOG_MIST",
+            7: "FOG_LIGHT",
+            8: "FOG_THICK",
+            9: "FOG_DENSE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "FOG_UNKNOWN": 0,
+            "FOG_OTHER": 1,
+            "FOG_EXCELLENT_VISIBILITY": 2,
+            "FOG_GOOD_VISIBILITY": 3,
+            "FOG_MODERATE_VISIBILITY": 4,
+            "FOG_POOR_VISIBILITY": 5,
+            "FOG_MIST": 6,
+            "FOG_LIGHT": 7,
+            "FOG_THICK": 8,
+            "FOG_DENSE": 9,
+        }
 
 
 class EnvironmentalConditionsPrecipitation(betterproto2.Enum):
@@ -1460,8 +1709,9 @@ class EnvironmentalConditionsPrecipitation(betterproto2.Enum):
     [1] Paulat, M., Frei, C., Hagen, M. & Wernli, H. (2008). A gridded dataset of hourly precipitation in Germany: Its construction, climatology and application. <em>Meteorologische Zeitschrift</em>. Vol. 17, No. 6. pp. 719-732. Berlin, Stuttgart, Germany. https://doi.org/10.1127/0941-2948/2008/0332
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.enum_types_by_name[
             "EnvironmentalConditions.Precipitation"
         ]
@@ -1512,17 +1762,33 @@ class EnvironmentalConditionsPrecipitation(betterproto2.Enum):
     Extreme intensity of precipitation, when I in [149,infinity[ mm/h
     """
 
-    betterproto_proto_names = {
-        0: "PRECIPITATION_UNKNOWN",
-        1: "PRECIPITATION_OTHER",
-        2: "PRECIPITATION_NONE",
-        3: "PRECIPITATION_VERY_LIGHT",
-        4: "PRECIPITATION_LIGHT",
-        5: "PRECIPITATION_MODERATE",
-        6: "PRECIPITATION_HEAVY",
-        7: "PRECIPITATION_VERY_HEAVY",
-        8: "PRECIPITATION_EXTREME",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "PRECIPITATION_UNKNOWN",
+            1: "PRECIPITATION_OTHER",
+            2: "PRECIPITATION_NONE",
+            3: "PRECIPITATION_VERY_LIGHT",
+            4: "PRECIPITATION_LIGHT",
+            5: "PRECIPITATION_MODERATE",
+            6: "PRECIPITATION_HEAVY",
+            7: "PRECIPITATION_VERY_HEAVY",
+            8: "PRECIPITATION_EXTREME",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "PRECIPITATION_UNKNOWN": 0,
+            "PRECIPITATION_OTHER": 1,
+            "PRECIPITATION_NONE": 2,
+            "PRECIPITATION_VERY_LIGHT": 3,
+            "PRECIPITATION_LIGHT": 4,
+            "PRECIPITATION_MODERATE": 5,
+            "PRECIPITATION_HEAVY": 6,
+            "PRECIPITATION_VERY_HEAVY": 7,
+            "PRECIPITATION_EXTREME": 8,
+        }
 
 
 class HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverrideReason(
@@ -1532,8 +1798,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverrideReason(
     Ways in which a driver could override a driving function.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "HostVehicleData.VehicleAutomatedDrivingFunction.DriverOverride.Reason"
         ]
@@ -1548,10 +1815,19 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverrideReason(
     The driver has applied sufficient steering input.
     """
 
-    betterproto_proto_names = {
-        0: "REASON_BRAKE_PEDAL",
-        1: "REASON_STEERING_INPUT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "REASON_BRAKE_PEDAL",
+            1: "REASON_STEERING_INPUT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "REASON_BRAKE_PEDAL": 0,
+            "REASON_STEERING_INPUT": 1,
+        }
 
 
 class HostVehicleDataVehicleAutomatedDrivingFunctionName(betterproto2.Enum):
@@ -1565,8 +1841,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionName(betterproto2.Enum):
     [2] Automated Driving, German Association of the Automotive Industry (VDA), Retrieved October 22, 2021, from https://www.vda.de/en/topics/innovation-and-technology/automated-driving/automated-driving
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "HostVehicleData.VehicleAutomatedDrivingFunction.Name"
         ]
@@ -1701,34 +1978,67 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionName(betterproto2.Enum):
     Speed limit control
     """
 
-    betterproto_proto_names = {
-        0: "NAME_UNKNOWN",
-        1: "NAME_OTHER",
-        2: "NAME_BLIND_SPOT_WARNING",
-        3: "NAME_FORWARD_COLLISION_WARNING",
-        4: "NAME_LANE_DEPARTURE_WARNING",
-        5: "NAME_PARKING_COLLISION_WARNING",
-        6: "NAME_REAR_CROSS_TRAFFIC_WARNING",
-        7: "NAME_AUTOMATIC_EMERGENCY_BRAKING",
-        8: "NAME_AUTOMATIC_EMERGENCY_STEERING",
-        9: "NAME_REVERSE_AUTOMATIC_EMERGENCY_BRAKING",
-        10: "NAME_ADAPTIVE_CRUISE_CONTROL",
-        11: "NAME_LANE_KEEPING_ASSIST",
-        12: "NAME_ACTIVE_DRIVING_ASSISTANCE",
-        13: "NAME_BACKUP_CAMERA",
-        14: "NAME_SURROUND_VIEW_CAMERA",
-        15: "NAME_ACTIVE_PARKING_ASSISTANCE",
-        16: "NAME_REMOTE_PARKING_ASSISTANCE",
-        17: "NAME_TRAILER_ASSISTANCE",
-        18: "NAME_AUTOMATIC_HIGH_BEAMS",
-        19: "NAME_DRIVER_MONITORING",
-        20: "NAME_HEAD_UP_DISPLAY",
-        21: "NAME_NIGHT_VISION",
-        22: "NAME_URBAN_DRIVING",
-        23: "NAME_HIGHWAY_AUTOPILOT",
-        24: "NAME_CRUISE_CONTROL",
-        25: "NAME_SPEED_LIMIT_CONTROL",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "NAME_UNKNOWN",
+            1: "NAME_OTHER",
+            2: "NAME_BLIND_SPOT_WARNING",
+            3: "NAME_FORWARD_COLLISION_WARNING",
+            4: "NAME_LANE_DEPARTURE_WARNING",
+            5: "NAME_PARKING_COLLISION_WARNING",
+            6: "NAME_REAR_CROSS_TRAFFIC_WARNING",
+            7: "NAME_AUTOMATIC_EMERGENCY_BRAKING",
+            8: "NAME_AUTOMATIC_EMERGENCY_STEERING",
+            9: "NAME_REVERSE_AUTOMATIC_EMERGENCY_BRAKING",
+            10: "NAME_ADAPTIVE_CRUISE_CONTROL",
+            11: "NAME_LANE_KEEPING_ASSIST",
+            12: "NAME_ACTIVE_DRIVING_ASSISTANCE",
+            13: "NAME_BACKUP_CAMERA",
+            14: "NAME_SURROUND_VIEW_CAMERA",
+            15: "NAME_ACTIVE_PARKING_ASSISTANCE",
+            16: "NAME_REMOTE_PARKING_ASSISTANCE",
+            17: "NAME_TRAILER_ASSISTANCE",
+            18: "NAME_AUTOMATIC_HIGH_BEAMS",
+            19: "NAME_DRIVER_MONITORING",
+            20: "NAME_HEAD_UP_DISPLAY",
+            21: "NAME_NIGHT_VISION",
+            22: "NAME_URBAN_DRIVING",
+            23: "NAME_HIGHWAY_AUTOPILOT",
+            24: "NAME_CRUISE_CONTROL",
+            25: "NAME_SPEED_LIMIT_CONTROL",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "NAME_UNKNOWN": 0,
+            "NAME_OTHER": 1,
+            "NAME_BLIND_SPOT_WARNING": 2,
+            "NAME_FORWARD_COLLISION_WARNING": 3,
+            "NAME_LANE_DEPARTURE_WARNING": 4,
+            "NAME_PARKING_COLLISION_WARNING": 5,
+            "NAME_REAR_CROSS_TRAFFIC_WARNING": 6,
+            "NAME_AUTOMATIC_EMERGENCY_BRAKING": 7,
+            "NAME_AUTOMATIC_EMERGENCY_STEERING": 8,
+            "NAME_REVERSE_AUTOMATIC_EMERGENCY_BRAKING": 9,
+            "NAME_ADAPTIVE_CRUISE_CONTROL": 10,
+            "NAME_LANE_KEEPING_ASSIST": 11,
+            "NAME_ACTIVE_DRIVING_ASSISTANCE": 12,
+            "NAME_BACKUP_CAMERA": 13,
+            "NAME_SURROUND_VIEW_CAMERA": 14,
+            "NAME_ACTIVE_PARKING_ASSISTANCE": 15,
+            "NAME_REMOTE_PARKING_ASSISTANCE": 16,
+            "NAME_TRAILER_ASSISTANCE": 17,
+            "NAME_AUTOMATIC_HIGH_BEAMS": 18,
+            "NAME_DRIVER_MONITORING": 19,
+            "NAME_HEAD_UP_DISPLAY": 20,
+            "NAME_NIGHT_VISION": 21,
+            "NAME_URBAN_DRIVING": 22,
+            "NAME_HIGHWAY_AUTOPILOT": 23,
+            "NAME_CRUISE_CONTROL": 24,
+            "NAME_SPEED_LIMIT_CONTROL": 25,
+        }
 
 
 class HostVehicleDataVehicleAutomatedDrivingFunctionState(betterproto2.Enum):
@@ -1739,8 +2049,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionState(betterproto2.Enum):
     and features.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "HostVehicleData.VehicleAutomatedDrivingFunction.State"
         ]
@@ -1787,15 +2098,29 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionState(betterproto2.Enum):
     shown to the driver, or emergency braking is being applied/
     """
 
-    betterproto_proto_names = {
-        0: "STATE_UNKNOWN",
-        1: "STATE_OTHER",
-        2: "STATE_ERRORED",
-        3: "STATE_UNAVAILABLE",
-        4: "STATE_AVAILABLE",
-        5: "STATE_STANDBY",
-        6: "STATE_ACTIVE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "STATE_UNKNOWN",
+            1: "STATE_OTHER",
+            2: "STATE_ERRORED",
+            3: "STATE_UNAVAILABLE",
+            4: "STATE_AVAILABLE",
+            5: "STATE_STANDBY",
+            6: "STATE_ACTIVE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "STATE_UNKNOWN": 0,
+            "STATE_OTHER": 1,
+            "STATE_ERRORED": 2,
+            "STATE_UNAVAILABLE": 3,
+            "STATE_AVAILABLE": 4,
+            "STATE_STANDBY": 5,
+            "STATE_ACTIVE": 6,
+        }
 
 
 class HostVehicleDataVehicleBasicsOperatingState(betterproto2.Enum):
@@ -1804,8 +2129,9 @@ class HostVehicleDataVehicleBasicsOperatingState(betterproto2.Enum):
     It is user specific which states are used and how their transitions work.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "HostVehicleData.VehicleBasics.OperatingState"
         ]
@@ -1857,16 +2183,31 @@ class HostVehicleDataVehicleBasicsOperatingState(betterproto2.Enum):
     The electrical state that is necessary for analysis and diagnostics.
     """
 
-    betterproto_proto_names = {
-        0: "OPERATING_STATE_UNKNOWN",
-        1: "OPERATING_STATE_OTHER",
-        2: "OPERATING_STATE_SLEEP",
-        3: "OPERATING_STATE_STANDBY",
-        4: "OPERATING_STATE_BOARDING",
-        5: "OPERATING_STATE_ENTERTAINMENT",
-        6: "OPERATING_STATE_DRIVING",
-        7: "OPERATING_STATE_DIAGNOSTIC",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "OPERATING_STATE_UNKNOWN",
+            1: "OPERATING_STATE_OTHER",
+            2: "OPERATING_STATE_SLEEP",
+            3: "OPERATING_STATE_STANDBY",
+            4: "OPERATING_STATE_BOARDING",
+            5: "OPERATING_STATE_ENTERTAINMENT",
+            6: "OPERATING_STATE_DRIVING",
+            7: "OPERATING_STATE_DIAGNOSTIC",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "OPERATING_STATE_UNKNOWN": 0,
+            "OPERATING_STATE_OTHER": 1,
+            "OPERATING_STATE_SLEEP": 2,
+            "OPERATING_STATE_STANDBY": 3,
+            "OPERATING_STATE_BOARDING": 4,
+            "OPERATING_STATE_ENTERTAINMENT": 5,
+            "OPERATING_STATE_DRIVING": 6,
+            "OPERATING_STATE_DIAGNOSTIC": 7,
+        }
 
 
 class HostVehicleDataVehiclePowertrainMotorType(betterproto2.Enum):
@@ -1874,8 +2215,9 @@ class HostVehicleDataVehiclePowertrainMotorType(betterproto2.Enum):
     Definition which type of motor is used.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "HostVehicleData.VehiclePowertrain.Motor.Type"
         ]
@@ -1905,13 +2247,25 @@ class HostVehicleDataVehiclePowertrainMotorType(betterproto2.Enum):
     A motor working electric.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_OTTO",
-        3: "TYPE_DIESEL",
-        4: "TYPE_ELECTRIC",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_OTTO",
+            3: "TYPE_DIESEL",
+            4: "TYPE_ELECTRIC",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_OTTO": 2,
+            "TYPE_DIESEL": 3,
+            "TYPE_ELECTRIC": 4,
+        }
 
 
 class LaneClassificationSubtype(betterproto2.Enum):
@@ -1920,8 +2274,9 @@ class LaneClassificationSubtype(betterproto2.Enum):
 
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "Lane.Classification.Subtype"
         ]
@@ -2046,23 +2401,45 @@ class LaneClassificationSubtype(betterproto2.Enum):
     driving, it should be used in combination with TYPE_DRIVING.
     """
 
-    betterproto_proto_names = {
-        0: "SUBTYPE_UNKNOWN",
-        1: "SUBTYPE_OTHER",
-        2: "SUBTYPE_NORMAL",
-        3: "SUBTYPE_BIKING",
-        4: "SUBTYPE_SIDEWALK",
-        5: "SUBTYPE_PARKING",
-        6: "SUBTYPE_STOP",
-        7: "SUBTYPE_RESTRICTED",
-        8: "SUBTYPE_BORDER",
-        9: "SUBTYPE_SHOULDER",
-        10: "SUBTYPE_EXIT",
-        11: "SUBTYPE_ENTRY",
-        12: "SUBTYPE_ONRAMP",
-        13: "SUBTYPE_OFFRAMP",
-        14: "SUBTYPE_CONNECTINGRAMP",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "SUBTYPE_UNKNOWN",
+            1: "SUBTYPE_OTHER",
+            2: "SUBTYPE_NORMAL",
+            3: "SUBTYPE_BIKING",
+            4: "SUBTYPE_SIDEWALK",
+            5: "SUBTYPE_PARKING",
+            6: "SUBTYPE_STOP",
+            7: "SUBTYPE_RESTRICTED",
+            8: "SUBTYPE_BORDER",
+            9: "SUBTYPE_SHOULDER",
+            10: "SUBTYPE_EXIT",
+            11: "SUBTYPE_ENTRY",
+            12: "SUBTYPE_ONRAMP",
+            13: "SUBTYPE_OFFRAMP",
+            14: "SUBTYPE_CONNECTINGRAMP",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "SUBTYPE_UNKNOWN": 0,
+            "SUBTYPE_OTHER": 1,
+            "SUBTYPE_NORMAL": 2,
+            "SUBTYPE_BIKING": 3,
+            "SUBTYPE_SIDEWALK": 4,
+            "SUBTYPE_PARKING": 5,
+            "SUBTYPE_STOP": 6,
+            "SUBTYPE_RESTRICTED": 7,
+            "SUBTYPE_BORDER": 8,
+            "SUBTYPE_SHOULDER": 9,
+            "SUBTYPE_EXIT": 10,
+            "SUBTYPE_ENTRY": 11,
+            "SUBTYPE_ONRAMP": 12,
+            "SUBTYPE_OFFRAMP": 13,
+            "SUBTYPE_CONNECTINGRAMP": 14,
+        }
 
 
 class LaneClassificationType(betterproto2.Enum):
@@ -2070,8 +2447,9 @@ class LaneClassificationType(betterproto2.Enum):
     Definition of available lane types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.enum_types_by_name["Lane.Classification.Type"]
 
     UNKNOWN = 0
@@ -2105,13 +2483,25 @@ class LaneClassificationType(betterproto2.Enum):
     \\image html OSI_X-Junction.svg "" width=600px
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_DRIVING",
-        3: "TYPE_NONDRIVING",
-        4: "TYPE_INTERSECTION",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_DRIVING",
+            3: "TYPE_NONDRIVING",
+            4: "TYPE_INTERSECTION",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_DRIVING": 2,
+            "TYPE_NONDRIVING": 3,
+            "TYPE_INTERSECTION": 4,
+        }
 
 
 class LaneBoundaryBoundaryPointDash(betterproto2.Enum):
@@ -2125,8 +2515,9 @@ class LaneBoundaryBoundaryPointDash(betterproto2.Enum):
     points of the boundary line are defined.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LaneBoundary.BoundaryPoint.Dash"
         ]
@@ -2166,14 +2557,27 @@ class LaneBoundaryBoundaryPointDash(betterproto2.Enum):
     a gap.
     """
 
-    betterproto_proto_names = {
-        0: "DASH_UNKNOWN",
-        1: "DASH_OTHER",
-        2: "DASH_START",
-        3: "DASH_CONTINUE",
-        4: "DASH_END",
-        5: "DASH_GAP",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DASH_UNKNOWN",
+            1: "DASH_OTHER",
+            2: "DASH_START",
+            3: "DASH_CONTINUE",
+            4: "DASH_END",
+            5: "DASH_GAP",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DASH_UNKNOWN": 0,
+            "DASH_OTHER": 1,
+            "DASH_START": 2,
+            "DASH_CONTINUE": 3,
+            "DASH_END": 4,
+            "DASH_GAP": 5,
+        }
 
 
 class LaneBoundaryClassificationColor(betterproto2.Enum):
@@ -2186,8 +2590,9 @@ class LaneBoundaryClassificationColor(betterproto2.Enum):
     lane markings only. They do not represent an actual visual appearance.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LaneBoundary.Classification.Color"
         ]
@@ -2245,18 +2650,35 @@ class LaneBoundaryClassificationColor(betterproto2.Enum):
     Marking with orange color.
     """
 
-    betterproto_proto_names = {
-        0: "COLOR_UNKNOWN",
-        1: "COLOR_OTHER",
-        2: "COLOR_NONE",
-        3: "COLOR_WHITE",
-        4: "COLOR_YELLOW",
-        5: "COLOR_RED",
-        6: "COLOR_BLUE",
-        7: "COLOR_GREEN",
-        8: "COLOR_VIOLET",
-        9: "COLOR_ORANGE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "COLOR_UNKNOWN",
+            1: "COLOR_OTHER",
+            2: "COLOR_NONE",
+            3: "COLOR_WHITE",
+            4: "COLOR_YELLOW",
+            5: "COLOR_RED",
+            6: "COLOR_BLUE",
+            7: "COLOR_GREEN",
+            8: "COLOR_VIOLET",
+            9: "COLOR_ORANGE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "COLOR_UNKNOWN": 0,
+            "COLOR_OTHER": 1,
+            "COLOR_NONE": 2,
+            "COLOR_WHITE": 3,
+            "COLOR_YELLOW": 4,
+            "COLOR_RED": 5,
+            "COLOR_BLUE": 6,
+            "COLOR_GREEN": 7,
+            "COLOR_VIOLET": 8,
+            "COLOR_ORANGE": 9,
+        }
 
 
 class LaneBoundaryClassificationType(betterproto2.Enum):
@@ -2267,8 +2689,9 @@ class LaneBoundaryClassificationType(betterproto2.Enum):
     side of the lane boundary.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LaneBoundary.Classification.Type"
         ]
@@ -2357,24 +2780,47 @@ class LaneBoundaryClassificationType(betterproto2.Enum):
     A sound barrier.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_NO_LINE",
-        3: "TYPE_SOLID_LINE",
-        4: "TYPE_DASHED_LINE",
-        5: "TYPE_BOTTS_DOTS",
-        6: "TYPE_ROAD_EDGE",
-        7: "TYPE_SNOW_EDGE",
-        8: "TYPE_GRASS_EDGE",
-        9: "TYPE_GRAVEL_EDGE",
-        10: "TYPE_SOIL_EDGE",
-        11: "TYPE_GUARD_RAIL",
-        12: "TYPE_CURB",
-        13: "TYPE_STRUCTURE",
-        14: "TYPE_BARRIER",
-        15: "TYPE_SOUND_BARRIER",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_NO_LINE",
+            3: "TYPE_SOLID_LINE",
+            4: "TYPE_DASHED_LINE",
+            5: "TYPE_BOTTS_DOTS",
+            6: "TYPE_ROAD_EDGE",
+            7: "TYPE_SNOW_EDGE",
+            8: "TYPE_GRASS_EDGE",
+            9: "TYPE_GRAVEL_EDGE",
+            10: "TYPE_SOIL_EDGE",
+            11: "TYPE_GUARD_RAIL",
+            12: "TYPE_CURB",
+            13: "TYPE_STRUCTURE",
+            14: "TYPE_BARRIER",
+            15: "TYPE_SOUND_BARRIER",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_NO_LINE": 2,
+            "TYPE_SOLID_LINE": 3,
+            "TYPE_DASHED_LINE": 4,
+            "TYPE_BOTTS_DOTS": 5,
+            "TYPE_ROAD_EDGE": 6,
+            "TYPE_SNOW_EDGE": 7,
+            "TYPE_GRASS_EDGE": 8,
+            "TYPE_GRAVEL_EDGE": 9,
+            "TYPE_SOIL_EDGE": 10,
+            "TYPE_GUARD_RAIL": 11,
+            "TYPE_CURB": 12,
+            "TYPE_STRUCTURE": 13,
+            "TYPE_BARRIER": 14,
+            "TYPE_SOUND_BARRIER": 15,
+        }
 
 
 class LogicalDetectionClassification(betterproto2.Enum):
@@ -2382,8 +2828,9 @@ class LogicalDetectionClassification(betterproto2.Enum):
     Definition of basic logical detection classifications.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "LogicalDetectionClassification"
         ]
@@ -2419,14 +2866,27 @@ class LogicalDetectionClassification(betterproto2.Enum):
     Under-drivable (sign gantry etc.).
     """
 
-    betterproto_proto_names = {
-        0: "LOGICAL_DETECTION_CLASSIFICATION_UNKNOWN",
-        1: "LOGICAL_DETECTION_CLASSIFICATION_OTHER",
-        2: "LOGICAL_DETECTION_CLASSIFICATION_INVALID",
-        3: "LOGICAL_DETECTION_CLASSIFICATION_CLUTTER",
-        4: "LOGICAL_DETECTION_CLASSIFICATION_OVERDRIVABLE",
-        5: "LOGICAL_DETECTION_CLASSIFICATION_UNDERDRIVABLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "LOGICAL_DETECTION_CLASSIFICATION_UNKNOWN",
+            1: "LOGICAL_DETECTION_CLASSIFICATION_OTHER",
+            2: "LOGICAL_DETECTION_CLASSIFICATION_INVALID",
+            3: "LOGICAL_DETECTION_CLASSIFICATION_CLUTTER",
+            4: "LOGICAL_DETECTION_CLASSIFICATION_OVERDRIVABLE",
+            5: "LOGICAL_DETECTION_CLASSIFICATION_UNDERDRIVABLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "LOGICAL_DETECTION_CLASSIFICATION_UNKNOWN": 0,
+            "LOGICAL_DETECTION_CLASSIFICATION_OTHER": 1,
+            "LOGICAL_DETECTION_CLASSIFICATION_INVALID": 2,
+            "LOGICAL_DETECTION_CLASSIFICATION_CLUTTER": 3,
+            "LOGICAL_DETECTION_CLASSIFICATION_OVERDRIVABLE": 4,
+            "LOGICAL_DETECTION_CLASSIFICATION_UNDERDRIVABLE": 5,
+        }
 
 
 class LogicalDetectionDataHeaderDataQualifier(betterproto2.Enum):
@@ -2435,8 +2895,9 @@ class LogicalDetectionDataHeaderDataQualifier(betterproto2.Enum):
     interface.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "LogicalDetectionDataHeader.DataQualifier"
         ]
@@ -2481,16 +2942,31 @@ class LogicalDetectionDataHeaderDataQualifier(betterproto2.Enum):
     Sensor invalid.
     """
 
-    betterproto_proto_names = {
-        0: "DATA_QUALIFIER_UNKNOWN",
-        1: "DATA_QUALIFIER_OTHER",
-        2: "DATA_QUALIFIER_AVAILABLE",
-        3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
-        4: "DATA_QUALIFIER_NOT_AVAILABLE",
-        5: "DATA_QUALIFIER_BLINDNESS",
-        6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
-        7: "DATA_QUALIFIER_INVALID",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DATA_QUALIFIER_UNKNOWN",
+            1: "DATA_QUALIFIER_OTHER",
+            2: "DATA_QUALIFIER_AVAILABLE",
+            3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
+            4: "DATA_QUALIFIER_NOT_AVAILABLE",
+            5: "DATA_QUALIFIER_BLINDNESS",
+            6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
+            7: "DATA_QUALIFIER_INVALID",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DATA_QUALIFIER_UNKNOWN": 0,
+            "DATA_QUALIFIER_OTHER": 1,
+            "DATA_QUALIFIER_AVAILABLE": 2,
+            "DATA_QUALIFIER_AVAILABLE_REDUCED": 3,
+            "DATA_QUALIFIER_NOT_AVAILABLE": 4,
+            "DATA_QUALIFIER_BLINDNESS": 5,
+            "DATA_QUALIFIER_TEMPORARY_AVAILABLE": 6,
+            "DATA_QUALIFIER_INVALID": 7,
+        }
 
 
 class LogicalLaneMoveDirection(betterproto2.Enum):
@@ -2508,8 +2984,9 @@ class LogicalLaneMoveDirection(betterproto2.Enum):
     time.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LogicalLane.MoveDirection"
         ]
@@ -2546,13 +3023,25 @@ class LogicalLaneMoveDirection(betterproto2.Enum):
     Objects may move in both directions.
     """
 
-    betterproto_proto_names = {
-        0: "MOVE_DIRECTION_UNKNOWN",
-        1: "MOVE_DIRECTION_OTHER",
-        2: "MOVE_DIRECTION_INCREASING_S",
-        3: "MOVE_DIRECTION_DECREASING_S",
-        4: "MOVE_DIRECTION_BOTH_ALLOWED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MOVE_DIRECTION_UNKNOWN",
+            1: "MOVE_DIRECTION_OTHER",
+            2: "MOVE_DIRECTION_INCREASING_S",
+            3: "MOVE_DIRECTION_DECREASING_S",
+            4: "MOVE_DIRECTION_BOTH_ALLOWED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MOVE_DIRECTION_UNKNOWN": 0,
+            "MOVE_DIRECTION_OTHER": 1,
+            "MOVE_DIRECTION_INCREASING_S": 2,
+            "MOVE_DIRECTION_DECREASING_S": 3,
+            "MOVE_DIRECTION_BOTH_ALLOWED": 4,
+        }
 
 
 class LogicalLaneTrafficRuleTrafficRuleType(betterproto2.Enum):
@@ -2561,8 +3050,9 @@ class LogicalLaneTrafficRuleTrafficRuleType(betterproto2.Enum):
     The type of the the traffic rule.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LogicalLane.TrafficRule.TrafficRuleType"
         ]
@@ -2572,9 +3062,17 @@ class LogicalLaneTrafficRuleTrafficRuleType(betterproto2.Enum):
     Traffic rule is of type speed limit
     """
 
-    betterproto_proto_names = {
-        0: "TRAFFIC_RULE_TYPE_SPEED_LIMIT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TRAFFIC_RULE_TYPE_SPEED_LIMIT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TRAFFIC_RULE_TYPE_SPEED_LIMIT": 0,
+        }
 
 
 class LogicalLaneType(betterproto2.Enum):
@@ -2588,8 +3086,9 @@ class LogicalLaneType(betterproto2.Enum):
     should be added later, in alignment with OpenDRIVE.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.enum_types_by_name["LogicalLane.Type"]
 
     UNKNOWN = 0
@@ -2710,27 +3209,53 @@ class LogicalLaneType(betterproto2.Enum):
     #overlapping_lane then describes where a tram crosses other lanes.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_NORMAL",
-        3: "TYPE_BIKING",
-        4: "TYPE_SIDEWALK",
-        5: "TYPE_PARKING",
-        6: "TYPE_STOP",
-        7: "TYPE_RESTRICTED",
-        8: "TYPE_BORDER",
-        9: "TYPE_SHOULDER",
-        10: "TYPE_EXIT",
-        11: "TYPE_ENTRY",
-        12: "TYPE_ONRAMP",
-        13: "TYPE_OFFRAMP",
-        14: "TYPE_CONNECTINGRAMP",
-        15: "TYPE_MEDIAN",
-        16: "TYPE_CURB",
-        17: "TYPE_RAIL",
-        18: "TYPE_TRAM",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_NORMAL",
+            3: "TYPE_BIKING",
+            4: "TYPE_SIDEWALK",
+            5: "TYPE_PARKING",
+            6: "TYPE_STOP",
+            7: "TYPE_RESTRICTED",
+            8: "TYPE_BORDER",
+            9: "TYPE_SHOULDER",
+            10: "TYPE_EXIT",
+            11: "TYPE_ENTRY",
+            12: "TYPE_ONRAMP",
+            13: "TYPE_OFFRAMP",
+            14: "TYPE_CONNECTINGRAMP",
+            15: "TYPE_MEDIAN",
+            16: "TYPE_CURB",
+            17: "TYPE_RAIL",
+            18: "TYPE_TRAM",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_NORMAL": 2,
+            "TYPE_BIKING": 3,
+            "TYPE_SIDEWALK": 4,
+            "TYPE_PARKING": 5,
+            "TYPE_STOP": 6,
+            "TYPE_RESTRICTED": 7,
+            "TYPE_BORDER": 8,
+            "TYPE_SHOULDER": 9,
+            "TYPE_EXIT": 10,
+            "TYPE_ENTRY": 11,
+            "TYPE_ONRAMP": 12,
+            "TYPE_OFFRAMP": 13,
+            "TYPE_CONNECTINGRAMP": 14,
+            "TYPE_MEDIAN": 15,
+            "TYPE_CURB": 16,
+            "TYPE_RAIL": 17,
+            "TYPE_TRAM": 18,
+        }
 
 
 class LogicalLaneBoundaryPassingRule(betterproto2.Enum):
@@ -2744,8 +3269,9 @@ class LogicalLaneBoundaryPassingRule(betterproto2.Enum):
     (i.e. it may be overridden by signs).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.enum_types_by_name[
             "LogicalLaneBoundary.PassingRule"
         ]
@@ -2801,14 +3327,27 @@ class LogicalLaneBoundaryPassingRule(betterproto2.Enum):
     left).
     """
 
-    betterproto_proto_names = {
-        0: "PASSING_RULE_UNKNOWN",
-        1: "PASSING_RULE_OTHER",
-        2: "PASSING_RULE_NONE_ALLOWED",
-        3: "PASSING_RULE_INCREASING_T",
-        4: "PASSING_RULE_DECREASING_T",
-        5: "PASSING_RULE_BOTH_ALLOWED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "PASSING_RULE_UNKNOWN",
+            1: "PASSING_RULE_OTHER",
+            2: "PASSING_RULE_NONE_ALLOWED",
+            3: "PASSING_RULE_INCREASING_T",
+            4: "PASSING_RULE_DECREASING_T",
+            5: "PASSING_RULE_BOTH_ALLOWED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "PASSING_RULE_UNKNOWN": 0,
+            "PASSING_RULE_OTHER": 1,
+            "PASSING_RULE_NONE_ALLOWED": 2,
+            "PASSING_RULE_INCREASING_T": 3,
+            "PASSING_RULE_DECREASING_T": 4,
+            "PASSING_RULE_BOTH_ALLOWED": 5,
+        }
 
 
 class MotionRequestMotionRequestType(betterproto2.Enum):
@@ -2817,8 +3356,9 @@ class MotionRequestMotionRequestType(betterproto2.Enum):
     Each option corresponds to a field in the message.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_MOTIONREQUEST_PROTO_DESCRIPTOR.enum_types_by_name[
             "MotionRequest.MotionRequestType"
         ]
@@ -2833,10 +3373,19 @@ class MotionRequestMotionRequestType(betterproto2.Enum):
     Desired trajectory calculated by the function.
     """
 
-    betterproto_proto_names = {
-        0: "MOTION_REQUEST_TYPE_DESIRED_STATE",
-        1: "MOTION_REQUEST_TYPE_TRAJECTORY",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MOTION_REQUEST_TYPE_DESIRED_STATE",
+            1: "MOTION_REQUEST_TYPE_TRAJECTORY",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MOTION_REQUEST_TYPE_DESIRED_STATE": 0,
+            "MOTION_REQUEST_TYPE_TRAJECTORY": 1,
+        }
 
 
 class MovingObjectPedestrianAttributesBoneType(betterproto2.Enum):
@@ -2846,8 +3395,9 @@ class MovingObjectPedestrianAttributesBoneType(betterproto2.Enum):
     \\image html OSI_PedestrianModelHierarchy.jpg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.PedestrianAttributes.Bone.Type"
         ]
@@ -2953,28 +3503,55 @@ class MovingObjectPedestrianAttributesBoneType(betterproto2.Enum):
     Bone defining the right foot.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_ROOT",
-        1: "TYPE_HIP",
-        2: "TYPE_LOWER_SPINE",
-        3: "TYPE_UPPER_SPINE",
-        4: "TYPE_NECK",
-        5: "TYPE_HEAD",
-        6: "TYPE_SHOULDER_L",
-        7: "TYPE_SHOULDER_R",
-        8: "TYPE_UPPER_ARM_L",
-        9: "TYPE_UPPER_ARM_R",
-        10: "TYPE_LOWER_ARM_L",
-        11: "TYPE_LOWER_ARM_R",
-        12: "TYPE_FULL_HAND_L",
-        13: "TYPE_FULL_HAND_R",
-        14: "TYPE_UPPER_LEG_L",
-        15: "TYPE_UPPER_LEG_R",
-        16: "TYPE_LOWER_LEG_L",
-        17: "TYPE_LOWER_LEG_R",
-        18: "TYPE_FULL_FOOT_L",
-        19: "TYPE_FULL_FOOT_R",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_ROOT",
+            1: "TYPE_HIP",
+            2: "TYPE_LOWER_SPINE",
+            3: "TYPE_UPPER_SPINE",
+            4: "TYPE_NECK",
+            5: "TYPE_HEAD",
+            6: "TYPE_SHOULDER_L",
+            7: "TYPE_SHOULDER_R",
+            8: "TYPE_UPPER_ARM_L",
+            9: "TYPE_UPPER_ARM_R",
+            10: "TYPE_LOWER_ARM_L",
+            11: "TYPE_LOWER_ARM_R",
+            12: "TYPE_FULL_HAND_L",
+            13: "TYPE_FULL_HAND_R",
+            14: "TYPE_UPPER_LEG_L",
+            15: "TYPE_UPPER_LEG_R",
+            16: "TYPE_LOWER_LEG_L",
+            17: "TYPE_LOWER_LEG_R",
+            18: "TYPE_FULL_FOOT_L",
+            19: "TYPE_FULL_FOOT_R",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_ROOT": 0,
+            "TYPE_HIP": 1,
+            "TYPE_LOWER_SPINE": 2,
+            "TYPE_UPPER_SPINE": 3,
+            "TYPE_NECK": 4,
+            "TYPE_HEAD": 5,
+            "TYPE_SHOULDER_L": 6,
+            "TYPE_SHOULDER_R": 7,
+            "TYPE_UPPER_ARM_L": 8,
+            "TYPE_UPPER_ARM_R": 9,
+            "TYPE_LOWER_ARM_L": 10,
+            "TYPE_LOWER_ARM_R": 11,
+            "TYPE_FULL_HAND_L": 12,
+            "TYPE_FULL_HAND_R": 13,
+            "TYPE_UPPER_LEG_L": 14,
+            "TYPE_UPPER_LEG_R": 15,
+            "TYPE_LOWER_LEG_L": 16,
+            "TYPE_LOWER_LEG_R": 17,
+            "TYPE_FULL_FOOT_L": 18,
+            "TYPE_FULL_FOOT_R": 19,
+        }
 
 
 class MovingObjectType(betterproto2.Enum):
@@ -2982,8 +3559,9 @@ class MovingObjectType(betterproto2.Enum):
     Definition of object types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name["MovingObject.Type"]
 
     UNKNOWN = 0
@@ -3011,13 +3589,25 @@ class MovingObjectType(betterproto2.Enum):
     Object is an animal.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_VEHICLE",
-        3: "TYPE_PEDESTRIAN",
-        4: "TYPE_ANIMAL",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_VEHICLE",
+            3: "TYPE_PEDESTRIAN",
+            4: "TYPE_ANIMAL",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_VEHICLE": 2,
+            "TYPE_PEDESTRIAN": 3,
+            "TYPE_ANIMAL": 4,
+        }
 
 
 class MovingObjectVehicleClassificationLightStateBrakeLightState(betterproto2.Enum):
@@ -3025,8 +3615,9 @@ class MovingObjectVehicleClassificationLightStateBrakeLightState(betterproto2.En
     Definition of brake light states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.VehicleClassification.LightState.BrakeLightState"
         ]
@@ -3058,13 +3649,25 @@ class MovingObjectVehicleClassificationLightStateBrakeLightState(betterproto2.En
     stronger braking).
     """
 
-    betterproto_proto_names = {
-        0: "BRAKE_LIGHT_STATE_UNKNOWN",
-        1: "BRAKE_LIGHT_STATE_OTHER",
-        2: "BRAKE_LIGHT_STATE_OFF",
-        3: "BRAKE_LIGHT_STATE_NORMAL",
-        4: "BRAKE_LIGHT_STATE_STRONG",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "BRAKE_LIGHT_STATE_UNKNOWN",
+            1: "BRAKE_LIGHT_STATE_OTHER",
+            2: "BRAKE_LIGHT_STATE_OFF",
+            3: "BRAKE_LIGHT_STATE_NORMAL",
+            4: "BRAKE_LIGHT_STATE_STRONG",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "BRAKE_LIGHT_STATE_UNKNOWN": 0,
+            "BRAKE_LIGHT_STATE_OTHER": 1,
+            "BRAKE_LIGHT_STATE_OFF": 2,
+            "BRAKE_LIGHT_STATE_NORMAL": 3,
+            "BRAKE_LIGHT_STATE_STRONG": 4,
+        }
 
 
 class MovingObjectVehicleClassificationLightStateGenericLightState(betterproto2.Enum):
@@ -3073,8 +3676,9 @@ class MovingObjectVehicleClassificationLightStateGenericLightState(betterproto2.
     off.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.VehicleClassification.LightState.GenericLightState"
         ]
@@ -3117,15 +3721,29 @@ class MovingObjectVehicleClassificationLightStateGenericLightState(betterproto2.
     To be used for service vehicles.
     """
 
-    betterproto_proto_names = {
-        0: "GENERIC_LIGHT_STATE_UNKNOWN",
-        1: "GENERIC_LIGHT_STATE_OTHER",
-        2: "GENERIC_LIGHT_STATE_OFF",
-        3: "GENERIC_LIGHT_STATE_ON",
-        4: "GENERIC_LIGHT_STATE_FLASHING_BLUE",
-        5: "GENERIC_LIGHT_STATE_FLASHING_BLUE_AND_RED",
-        6: "GENERIC_LIGHT_STATE_FLASHING_AMBER",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "GENERIC_LIGHT_STATE_UNKNOWN",
+            1: "GENERIC_LIGHT_STATE_OTHER",
+            2: "GENERIC_LIGHT_STATE_OFF",
+            3: "GENERIC_LIGHT_STATE_ON",
+            4: "GENERIC_LIGHT_STATE_FLASHING_BLUE",
+            5: "GENERIC_LIGHT_STATE_FLASHING_BLUE_AND_RED",
+            6: "GENERIC_LIGHT_STATE_FLASHING_AMBER",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "GENERIC_LIGHT_STATE_UNKNOWN": 0,
+            "GENERIC_LIGHT_STATE_OTHER": 1,
+            "GENERIC_LIGHT_STATE_OFF": 2,
+            "GENERIC_LIGHT_STATE_ON": 3,
+            "GENERIC_LIGHT_STATE_FLASHING_BLUE": 4,
+            "GENERIC_LIGHT_STATE_FLASHING_BLUE_AND_RED": 5,
+            "GENERIC_LIGHT_STATE_FLASHING_AMBER": 6,
+        }
 
 
 class MovingObjectVehicleClassificationLightStateIndicatorState(betterproto2.Enum):
@@ -3133,8 +3751,9 @@ class MovingObjectVehicleClassificationLightStateIndicatorState(betterproto2.Enu
     Definition of indicator states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.VehicleClassification.LightState.IndicatorState"
         ]
@@ -3170,14 +3789,27 @@ class MovingObjectVehicleClassificationLightStateIndicatorState(betterproto2.Enu
     Hazard/warning light, i.e. both indicators, are on.
     """
 
-    betterproto_proto_names = {
-        0: "INDICATOR_STATE_UNKNOWN",
-        1: "INDICATOR_STATE_OTHER",
-        2: "INDICATOR_STATE_OFF",
-        3: "INDICATOR_STATE_LEFT",
-        4: "INDICATOR_STATE_RIGHT",
-        5: "INDICATOR_STATE_WARNING",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "INDICATOR_STATE_UNKNOWN",
+            1: "INDICATOR_STATE_OTHER",
+            2: "INDICATOR_STATE_OFF",
+            3: "INDICATOR_STATE_LEFT",
+            4: "INDICATOR_STATE_RIGHT",
+            5: "INDICATOR_STATE_WARNING",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "INDICATOR_STATE_UNKNOWN": 0,
+            "INDICATOR_STATE_OTHER": 1,
+            "INDICATOR_STATE_OFF": 2,
+            "INDICATOR_STATE_LEFT": 3,
+            "INDICATOR_STATE_RIGHT": 4,
+            "INDICATOR_STATE_WARNING": 5,
+        }
 
 
 class MovingObjectVehicleClassificationRole(betterproto2.Enum):
@@ -3195,8 +3827,9 @@ class MovingObjectVehicleClassificationRole(betterproto2.Enum):
     in message LightState.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.VehicleClassification.Role"
         ]
@@ -3256,19 +3889,37 @@ class MovingObjectVehicleClassificationRole(betterproto2.Enum):
     The vehicle role is military, e.g. camouflaged truck.
     """
 
-    betterproto_proto_names = {
-        0: "ROLE_UNKNOWN",
-        1: "ROLE_OTHER",
-        2: "ROLE_CIVIL",
-        3: "ROLE_AMBULANCE",
-        4: "ROLE_FIRE",
-        5: "ROLE_POLICE",
-        6: "ROLE_PUBLIC_TRANSPORT",
-        7: "ROLE_ROAD_ASSISTANCE",
-        8: "ROLE_GARBAGE_COLLECTION",
-        9: "ROLE_ROAD_CONSTRUCTION",
-        10: "ROLE_MILITARY",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "ROLE_UNKNOWN",
+            1: "ROLE_OTHER",
+            2: "ROLE_CIVIL",
+            3: "ROLE_AMBULANCE",
+            4: "ROLE_FIRE",
+            5: "ROLE_POLICE",
+            6: "ROLE_PUBLIC_TRANSPORT",
+            7: "ROLE_ROAD_ASSISTANCE",
+            8: "ROLE_GARBAGE_COLLECTION",
+            9: "ROLE_ROAD_CONSTRUCTION",
+            10: "ROLE_MILITARY",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "ROLE_UNKNOWN": 0,
+            "ROLE_OTHER": 1,
+            "ROLE_CIVIL": 2,
+            "ROLE_AMBULANCE": 3,
+            "ROLE_FIRE": 4,
+            "ROLE_POLICE": 5,
+            "ROLE_PUBLIC_TRANSPORT": 6,
+            "ROLE_ROAD_ASSISTANCE": 7,
+            "ROLE_GARBAGE_COLLECTION": 8,
+            "ROLE_ROAD_CONSTRUCTION": 9,
+            "ROLE_MILITARY": 10,
+        }
 
 
 class MovingObjectVehicleClassificationType(betterproto2.Enum):
@@ -3294,8 +3945,9 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
     between a HEAVY_TRUCK and a DELIVERY_VAN, or a TRAILER and a SEMITRAILER.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "MovingObject.VehicleClassification.Type"
         ]
@@ -3432,27 +4084,53 @@ class MovingObjectVehicleClassificationType(betterproto2.Enum):
     motorized versions.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_SMALL_CAR",
-        3: "TYPE_COMPACT_CAR",
-        4: "TYPE_CAR",
-        4: "TYPE_MEDIUM_CAR",
-        5: "TYPE_LUXURY_CAR",
-        6: "TYPE_DELIVERY_VAN",
-        7: "TYPE_HEAVY_TRUCK",
-        16: "TYPE_SEMITRACTOR",
-        8: "TYPE_SEMITRAILER",
-        9: "TYPE_TRAILER",
-        10: "TYPE_MOTORBIKE",
-        11: "TYPE_BICYCLE",
-        12: "TYPE_BUS",
-        13: "TYPE_TRAM",
-        14: "TYPE_TRAIN",
-        15: "TYPE_WHEELCHAIR",
-        17: "TYPE_STANDUP_SCOOTER",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_SMALL_CAR",
+            3: "TYPE_COMPACT_CAR",
+            4: "TYPE_CAR",
+            4: "TYPE_MEDIUM_CAR",
+            5: "TYPE_LUXURY_CAR",
+            6: "TYPE_DELIVERY_VAN",
+            7: "TYPE_HEAVY_TRUCK",
+            16: "TYPE_SEMITRACTOR",
+            8: "TYPE_SEMITRAILER",
+            9: "TYPE_TRAILER",
+            10: "TYPE_MOTORBIKE",
+            11: "TYPE_BICYCLE",
+            12: "TYPE_BUS",
+            13: "TYPE_TRAM",
+            14: "TYPE_TRAIN",
+            15: "TYPE_WHEELCHAIR",
+            17: "TYPE_STANDUP_SCOOTER",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_SMALL_CAR": 2,
+            "TYPE_COMPACT_CAR": 3,
+            "TYPE_CAR": 4,
+            "TYPE_MEDIUM_CAR": 4,
+            "TYPE_LUXURY_CAR": 5,
+            "TYPE_DELIVERY_VAN": 6,
+            "TYPE_HEAVY_TRUCK": 7,
+            "TYPE_SEMITRACTOR": 16,
+            "TYPE_SEMITRAILER": 8,
+            "TYPE_TRAILER": 9,
+            "TYPE_MOTORBIKE": 10,
+            "TYPE_BICYCLE": 11,
+            "TYPE_BUS": 12,
+            "TYPE_TRAM": 13,
+            "TYPE_TRAIN": 14,
+            "TYPE_WHEELCHAIR": 15,
+            "TYPE_STANDUP_SCOOTER": 17,
+        }
 
 
 class OccupantClassificationSeat(betterproto2.Enum):
@@ -3460,8 +4138,9 @@ class OccupantClassificationSeat(betterproto2.Enum):
     Definition of seat positions.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OCCUPANT_PROTO_DESCRIPTOR.enum_types_by_name[
             "Occupant.Classification.Seat"
         ]
@@ -3523,19 +4202,37 @@ class OccupantClassificationSeat(betterproto2.Enum):
     Seat position is in the third row, middle seat.
     """
 
-    betterproto_proto_names = {
-        0: "SEAT_UNKNOWN",
-        1: "SEAT_OTHER",
-        2: "SEAT_FRONT_LEFT",
-        3: "SEAT_FRONT_RIGHT",
-        4: "SEAT_FRONT_MIDDLE",
-        5: "SEAT_BACK_LEFT",
-        6: "SEAT_BACK_RIGHT",
-        7: "SEAT_BACK_MIDDLE",
-        8: "SEAT_THIRD_ROW_LEFT",
-        9: "SEAT_THIRD_ROW_RIGHT",
-        10: "SEAT_THIRD_ROW_MIDDLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "SEAT_UNKNOWN",
+            1: "SEAT_OTHER",
+            2: "SEAT_FRONT_LEFT",
+            3: "SEAT_FRONT_RIGHT",
+            4: "SEAT_FRONT_MIDDLE",
+            5: "SEAT_BACK_LEFT",
+            6: "SEAT_BACK_RIGHT",
+            7: "SEAT_BACK_MIDDLE",
+            8: "SEAT_THIRD_ROW_LEFT",
+            9: "SEAT_THIRD_ROW_RIGHT",
+            10: "SEAT_THIRD_ROW_MIDDLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "SEAT_UNKNOWN": 0,
+            "SEAT_OTHER": 1,
+            "SEAT_FRONT_LEFT": 2,
+            "SEAT_FRONT_RIGHT": 3,
+            "SEAT_FRONT_MIDDLE": 4,
+            "SEAT_BACK_LEFT": 5,
+            "SEAT_BACK_RIGHT": 6,
+            "SEAT_BACK_MIDDLE": 7,
+            "SEAT_THIRD_ROW_LEFT": 8,
+            "SEAT_THIRD_ROW_RIGHT": 9,
+            "SEAT_THIRD_ROW_MIDDLE": 10,
+        }
 
 
 class OccupantClassificationSteeringControl(betterproto2.Enum):
@@ -3543,8 +4240,9 @@ class OccupantClassificationSteeringControl(betterproto2.Enum):
     Definition of hands related to the steering wheel (mostly driver).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OCCUPANT_PROTO_DESCRIPTOR.enum_types_by_name[
             "Occupant.Classification.SteeringControl"
         ]
@@ -3589,15 +4287,29 @@ class OccupantClassificationSteeringControl(betterproto2.Enum):
     Only right hand is on the steering wheel.
     """
 
-    betterproto_proto_names = {
-        0: "STEERING_CONTROL_UNKNOWN",
-        1: "STEERING_CONTROL_OTHER",
-        2: "STEERING_CONTROL_NO_HAND",
-        3: "STEERING_CONTROL_ONE_HAND",
-        4: "STEERING_CONTROL_BOTH_HANDS",
-        5: "STEERING_CONTROL_LEFT_HAND",
-        6: "STEERING_CONTROL_RIGHT_HAND",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "STEERING_CONTROL_UNKNOWN",
+            1: "STEERING_CONTROL_OTHER",
+            2: "STEERING_CONTROL_NO_HAND",
+            3: "STEERING_CONTROL_ONE_HAND",
+            4: "STEERING_CONTROL_BOTH_HANDS",
+            5: "STEERING_CONTROL_LEFT_HAND",
+            6: "STEERING_CONTROL_RIGHT_HAND",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "STEERING_CONTROL_UNKNOWN": 0,
+            "STEERING_CONTROL_OTHER": 1,
+            "STEERING_CONTROL_NO_HAND": 2,
+            "STEERING_CONTROL_ONE_HAND": 3,
+            "STEERING_CONTROL_BOTH_HANDS": 4,
+            "STEERING_CONTROL_LEFT_HAND": 5,
+            "STEERING_CONTROL_RIGHT_HAND": 6,
+        }
 
 
 class ReferenceLineType(betterproto2.Enum):
@@ -3610,8 +4322,9 @@ class ReferenceLineType(betterproto2.Enum):
     See also: "Adding T coordinates"
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_REFERENCELINE_PROTO_DESCRIPTOR.enum_types_by_name[
             "ReferenceLine.Type"
         ]
@@ -3633,10 +4346,19 @@ class ReferenceLineType(betterproto2.Enum):
     \\note If this type is used, ReferenceLinePoint::t_axis_yaw must be set.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_POLYLINE",
-        1: "TYPE_POLYLINE_WITH_T_AXIS",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_POLYLINE",
+            1: "TYPE_POLYLINE_WITH_T_AXIS",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_POLYLINE": 0,
+            "TYPE_POLYLINE_WITH_T_AXIS": 1,
+        }
 
 
 class RoadMarkingClassificationColor(betterproto2.Enum):
@@ -3647,8 +4369,9 @@ class RoadMarkingClassificationColor(betterproto2.Enum):
     road markings only. They do not represent an actual visual appearance.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ROADMARKING_PROTO_DESCRIPTOR.enum_types_by_name[
             "RoadMarking.Classification.Color"
         ]
@@ -3699,17 +4422,33 @@ class RoadMarkingClassificationColor(betterproto2.Enum):
     Marking with orange color.
     """
 
-    betterproto_proto_names = {
-        0: "COLOR_UNKNOWN",
-        1: "COLOR_OTHER",
-        2: "COLOR_WHITE",
-        3: "COLOR_YELLOW",
-        5: "COLOR_BLUE",
-        6: "COLOR_RED",
-        7: "COLOR_GREEN",
-        8: "COLOR_VIOLET",
-        9: "COLOR_ORANGE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "COLOR_UNKNOWN",
+            1: "COLOR_OTHER",
+            2: "COLOR_WHITE",
+            3: "COLOR_YELLOW",
+            5: "COLOR_BLUE",
+            6: "COLOR_RED",
+            7: "COLOR_GREEN",
+            8: "COLOR_VIOLET",
+            9: "COLOR_ORANGE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "COLOR_UNKNOWN": 0,
+            "COLOR_OTHER": 1,
+            "COLOR_WHITE": 2,
+            "COLOR_YELLOW": 3,
+            "COLOR_BLUE": 5,
+            "COLOR_RED": 6,
+            "COLOR_GREEN": 7,
+            "COLOR_VIOLET": 8,
+            "COLOR_ORANGE": 9,
+        }
 
 
 class RoadMarkingClassificationType(betterproto2.Enum):
@@ -3717,8 +4456,9 @@ class RoadMarkingClassificationType(betterproto2.Enum):
     Definition of road marking types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_ROADMARKING_PROTO_DESCRIPTOR.enum_types_by_name[
             "RoadMarking.Classification.Type"
         ]
@@ -3768,16 +4508,31 @@ class RoadMarkingClassificationType(betterproto2.Enum):
     Paint on the road surface indicating a generic character string.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_PAINTED_TRAFFIC_SIGN",
-        3: "TYPE_SYMBOLIC_TRAFFIC_SIGN",
-        4: "TYPE_TEXTUAL_TRAFFIC_SIGN",
-        5: "TYPE_GENERIC_SYMBOL",
-        6: "TYPE_GENERIC_LINE",
-        7: "TYPE_GENERIC_TEXT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_PAINTED_TRAFFIC_SIGN",
+            3: "TYPE_SYMBOLIC_TRAFFIC_SIGN",
+            4: "TYPE_TEXTUAL_TRAFFIC_SIGN",
+            5: "TYPE_GENERIC_SYMBOL",
+            6: "TYPE_GENERIC_LINE",
+            7: "TYPE_GENERIC_TEXT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_PAINTED_TRAFFIC_SIGN": 2,
+            "TYPE_SYMBOLIC_TRAFFIC_SIGN": 3,
+            "TYPE_TEXTUAL_TRAFFIC_SIGN": 4,
+            "TYPE_GENERIC_SYMBOL": 5,
+            "TYPE_GENERIC_LINE": 6,
+            "TYPE_GENERIC_TEXT": 7,
+        }
 
 
 class SensorDetectionHeaderDataQualifier(betterproto2.Enum):
@@ -3786,8 +4541,9 @@ class SensorDetectionHeaderDataQualifier(betterproto2.Enum):
     interface.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "SensorDetectionHeader.DataQualifier"
         ]
@@ -3832,16 +4588,31 @@ class SensorDetectionHeaderDataQualifier(betterproto2.Enum):
     Sensor invalid.
     """
 
-    betterproto_proto_names = {
-        0: "DATA_QUALIFIER_UNKNOWN",
-        1: "DATA_QUALIFIER_OTHER",
-        2: "DATA_QUALIFIER_AVAILABLE",
-        3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
-        4: "DATA_QUALIFIER_NOT_AVAILABLE",
-        5: "DATA_QUALIFIER_BLINDNESS",
-        6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
-        7: "DATA_QUALIFIER_INVALID",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DATA_QUALIFIER_UNKNOWN",
+            1: "DATA_QUALIFIER_OTHER",
+            2: "DATA_QUALIFIER_AVAILABLE",
+            3: "DATA_QUALIFIER_AVAILABLE_REDUCED",
+            4: "DATA_QUALIFIER_NOT_AVAILABLE",
+            5: "DATA_QUALIFIER_BLINDNESS",
+            6: "DATA_QUALIFIER_TEMPORARY_AVAILABLE",
+            7: "DATA_QUALIFIER_INVALID",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DATA_QUALIFIER_UNKNOWN": 0,
+            "DATA_QUALIFIER_OTHER": 1,
+            "DATA_QUALIFIER_AVAILABLE": 2,
+            "DATA_QUALIFIER_AVAILABLE_REDUCED": 3,
+            "DATA_QUALIFIER_NOT_AVAILABLE": 4,
+            "DATA_QUALIFIER_BLINDNESS": 5,
+            "DATA_QUALIFIER_TEMPORARY_AVAILABLE": 6,
+            "DATA_QUALIFIER_INVALID": 7,
+        }
 
 
 class SensorDetectionHeaderExtendedQualifier(betterproto2.Enum):
@@ -3850,8 +4621,9 @@ class SensorDetectionHeaderExtendedQualifier(betterproto2.Enum):
     event data qualifier, \\c #data_qualifier, is reduced or not available.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.enum_types_by_name[
             "SensorDetectionHeader.ExtendedQualifier"
         ]
@@ -3922,21 +4694,41 @@ class SensorDetectionHeaderExtendedQualifier(betterproto2.Enum):
     Beginning blockage, sensor specific for front radar.
     """
 
-    betterproto_proto_names = {
-        0: "EXTENDED_QUALIFIER_UNKNOWN",
-        1: "EXTENDED_QUALIFIER_OTHER",
-        2: "EXTENDED_QUALIFIER_NORMAL_OPERATION_MODE",
-        3: "EXTENDED_QUALIFIER_POWER_UP_OR_DOWN",
-        4: "EXTENDED_QUALIFIER_SENSOR_NOT_CALIBRATED",
-        5: "EXTENDED_QUALIFIER_SENSOR_BLOCKED",
-        6: "EXTENDED_QUALIFIER_SENSOR_MISALIGNED",
-        7: "EXTENDED_QUALIFIER_BAD_SENSOR_ENVIRONMENTAL_CONDITION",
-        8: "EXTENDED_QUALIFIER_REDUCED_FIELD_OF_VIEW",
-        9: "EXTENDED_QUALIFIER_INPUT_NOT_AVAILABLE",
-        10: "EXTENDED_QUALIFIER_INTERNAL_REASON",
-        11: "EXTENDED_QUALIFIER_EXTERNAL_DISTURBANCE",
-        12: "EXTENDED_QUALIFIER_BEGINNING_BLOCKAGE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "EXTENDED_QUALIFIER_UNKNOWN",
+            1: "EXTENDED_QUALIFIER_OTHER",
+            2: "EXTENDED_QUALIFIER_NORMAL_OPERATION_MODE",
+            3: "EXTENDED_QUALIFIER_POWER_UP_OR_DOWN",
+            4: "EXTENDED_QUALIFIER_SENSOR_NOT_CALIBRATED",
+            5: "EXTENDED_QUALIFIER_SENSOR_BLOCKED",
+            6: "EXTENDED_QUALIFIER_SENSOR_MISALIGNED",
+            7: "EXTENDED_QUALIFIER_BAD_SENSOR_ENVIRONMENTAL_CONDITION",
+            8: "EXTENDED_QUALIFIER_REDUCED_FIELD_OF_VIEW",
+            9: "EXTENDED_QUALIFIER_INPUT_NOT_AVAILABLE",
+            10: "EXTENDED_QUALIFIER_INTERNAL_REASON",
+            11: "EXTENDED_QUALIFIER_EXTERNAL_DISTURBANCE",
+            12: "EXTENDED_QUALIFIER_BEGINNING_BLOCKAGE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "EXTENDED_QUALIFIER_UNKNOWN": 0,
+            "EXTENDED_QUALIFIER_OTHER": 1,
+            "EXTENDED_QUALIFIER_NORMAL_OPERATION_MODE": 2,
+            "EXTENDED_QUALIFIER_POWER_UP_OR_DOWN": 3,
+            "EXTENDED_QUALIFIER_SENSOR_NOT_CALIBRATED": 4,
+            "EXTENDED_QUALIFIER_SENSOR_BLOCKED": 5,
+            "EXTENDED_QUALIFIER_SENSOR_MISALIGNED": 6,
+            "EXTENDED_QUALIFIER_BAD_SENSOR_ENVIRONMENTAL_CONDITION": 7,
+            "EXTENDED_QUALIFIER_REDUCED_FIELD_OF_VIEW": 8,
+            "EXTENDED_QUALIFIER_INPUT_NOT_AVAILABLE": 9,
+            "EXTENDED_QUALIFIER_INTERNAL_REASON": 10,
+            "EXTENDED_QUALIFIER_EXTERNAL_DISTURBANCE": 11,
+            "EXTENDED_QUALIFIER_BEGINNING_BLOCKAGE": 12,
+        }
 
 
 class StationaryObjectClassificationColor(betterproto2.Enum):
@@ -3947,8 +4739,9 @@ class StationaryObjectClassificationColor(betterproto2.Enum):
     4.0.0. Use \\c ColorDescription instead.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "StationaryObject.Classification.Color"
         ]
@@ -4015,20 +4808,39 @@ class StationaryObjectClassificationColor(betterproto2.Enum):
     White.
     """
 
-    betterproto_proto_names = {
-        0: "COLOR_UNKNOWN",
-        1: "COLOR_OTHER",
-        2: "COLOR_YELLOW",
-        3: "COLOR_GREEN",
-        4: "COLOR_BLUE",
-        5: "COLOR_VIOLET",
-        6: "COLOR_RED",
-        7: "COLOR_ORANGE",
-        8: "COLOR_BLACK",
-        9: "COLOR_GRAY",
-        9: "COLOR_GREY",
-        10: "COLOR_WHITE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "COLOR_UNKNOWN",
+            1: "COLOR_OTHER",
+            2: "COLOR_YELLOW",
+            3: "COLOR_GREEN",
+            4: "COLOR_BLUE",
+            5: "COLOR_VIOLET",
+            6: "COLOR_RED",
+            7: "COLOR_ORANGE",
+            8: "COLOR_BLACK",
+            9: "COLOR_GRAY",
+            9: "COLOR_GREY",
+            10: "COLOR_WHITE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "COLOR_UNKNOWN": 0,
+            "COLOR_OTHER": 1,
+            "COLOR_YELLOW": 2,
+            "COLOR_GREEN": 3,
+            "COLOR_BLUE": 4,
+            "COLOR_VIOLET": 5,
+            "COLOR_RED": 6,
+            "COLOR_ORANGE": 7,
+            "COLOR_BLACK": 8,
+            "COLOR_GRAY": 9,
+            "COLOR_GREY": 9,
+            "COLOR_WHITE": 10,
+        }
 
 
 class StationaryObjectClassificationDensity(betterproto2.Enum):
@@ -4036,8 +4848,9 @@ class StationaryObjectClassificationDensity(betterproto2.Enum):
     Definition of material density types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "StationaryObject.Classification.Density"
         ]
@@ -4078,15 +4891,29 @@ class StationaryObjectClassificationDensity(betterproto2.Enum):
     Perforation max. ]5000; infinity[ mm
     """
 
-    betterproto_proto_names = {
-        0: "DENSITY_UNKNOWN",
-        1: "DENSITY_OTHER",
-        2: "DENSITY_SOLID",
-        3: "DENSITY_SMALL_MESH",
-        4: "DENSITY_MEDIAN_MESH",
-        5: "DENSITY_LARGE_MESH",
-        6: "DENSITY_OPEN",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DENSITY_UNKNOWN",
+            1: "DENSITY_OTHER",
+            2: "DENSITY_SOLID",
+            3: "DENSITY_SMALL_MESH",
+            4: "DENSITY_MEDIAN_MESH",
+            5: "DENSITY_LARGE_MESH",
+            6: "DENSITY_OPEN",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DENSITY_UNKNOWN": 0,
+            "DENSITY_OTHER": 1,
+            "DENSITY_SOLID": 2,
+            "DENSITY_SMALL_MESH": 3,
+            "DENSITY_MEDIAN_MESH": 4,
+            "DENSITY_LARGE_MESH": 5,
+            "DENSITY_OPEN": 6,
+        }
 
 
 class StationaryObjectClassificationMaterial(betterproto2.Enum):
@@ -4094,8 +4921,9 @@ class StationaryObjectClassificationMaterial(betterproto2.Enum):
     Definition of material types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "StationaryObject.Classification.Material"
         ]
@@ -4153,18 +4981,35 @@ class StationaryObjectClassificationMaterial(betterproto2.Enum):
     Mud structure.
     """
 
-    betterproto_proto_names = {
-        0: "MATERIAL_UNKNOWN",
-        1: "MATERIAL_OTHER",
-        2: "MATERIAL_WOOD",
-        3: "MATERIAL_PLASTIC",
-        4: "MATERIAL_CONCRETE",
-        5: "MATERIAL_METAL",
-        6: "MATERIAL_STONE",
-        7: "MATERIAL_GLASS",
-        7: "MATERIAL_GLAS",
-        8: "MATERIAL_MUD",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MATERIAL_UNKNOWN",
+            1: "MATERIAL_OTHER",
+            2: "MATERIAL_WOOD",
+            3: "MATERIAL_PLASTIC",
+            4: "MATERIAL_CONCRETE",
+            5: "MATERIAL_METAL",
+            6: "MATERIAL_STONE",
+            7: "MATERIAL_GLASS",
+            7: "MATERIAL_GLAS",
+            8: "MATERIAL_MUD",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MATERIAL_UNKNOWN": 0,
+            "MATERIAL_OTHER": 1,
+            "MATERIAL_WOOD": 2,
+            "MATERIAL_PLASTIC": 3,
+            "MATERIAL_CONCRETE": 4,
+            "MATERIAL_METAL": 5,
+            "MATERIAL_STONE": 6,
+            "MATERIAL_GLASS": 7,
+            "MATERIAL_GLAS": 7,
+            "MATERIAL_MUD": 8,
+        }
 
 
 class StationaryObjectClassificationType(betterproto2.Enum):
@@ -4172,8 +5017,9 @@ class StationaryObjectClassificationType(betterproto2.Enum):
     Definition of object types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.enum_types_by_name[
             "StationaryObject.Classification.Type"
         ]
@@ -4280,27 +5126,53 @@ class StationaryObjectClassificationType(betterproto2.Enum):
     in the environment, like street lights.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_BRIDGE",
-        3: "TYPE_BUILDING",
-        4: "TYPE_POLE",
-        5: "TYPE_PYLON",
-        6: "TYPE_DELINEATOR",
-        7: "TYPE_TREE",
-        8: "TYPE_BARRIER",
-        9: "TYPE_VEGETATION",
-        10: "TYPE_CURBSTONE",
-        11: "TYPE_WALL",
-        12: "TYPE_VERTICAL_STRUCTURE",
-        13: "TYPE_RECTANGULAR_STRUCTURE",
-        14: "TYPE_OVERHEAD_STRUCTURE",
-        15: "TYPE_REFLECTIVE_STRUCTURE",
-        16: "TYPE_CONSTRUCTION_SITE_ELEMENT",
-        17: "TYPE_SPEED_BUMP",
-        18: "TYPE_EMITTING_STRUCTURE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_BRIDGE",
+            3: "TYPE_BUILDING",
+            4: "TYPE_POLE",
+            5: "TYPE_PYLON",
+            6: "TYPE_DELINEATOR",
+            7: "TYPE_TREE",
+            8: "TYPE_BARRIER",
+            9: "TYPE_VEGETATION",
+            10: "TYPE_CURBSTONE",
+            11: "TYPE_WALL",
+            12: "TYPE_VERTICAL_STRUCTURE",
+            13: "TYPE_RECTANGULAR_STRUCTURE",
+            14: "TYPE_OVERHEAD_STRUCTURE",
+            15: "TYPE_REFLECTIVE_STRUCTURE",
+            16: "TYPE_CONSTRUCTION_SITE_ELEMENT",
+            17: "TYPE_SPEED_BUMP",
+            18: "TYPE_EMITTING_STRUCTURE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_BRIDGE": 2,
+            "TYPE_BUILDING": 3,
+            "TYPE_POLE": 4,
+            "TYPE_PYLON": 5,
+            "TYPE_DELINEATOR": 6,
+            "TYPE_TREE": 7,
+            "TYPE_BARRIER": 8,
+            "TYPE_VEGETATION": 9,
+            "TYPE_CURBSTONE": 10,
+            "TYPE_WALL": 11,
+            "TYPE_VERTICAL_STRUCTURE": 12,
+            "TYPE_RECTANGULAR_STRUCTURE": 13,
+            "TYPE_OVERHEAD_STRUCTURE": 14,
+            "TYPE_REFLECTIVE_STRUCTURE": 15,
+            "TYPE_CONSTRUCTION_SITE_ELEMENT": 16,
+            "TYPE_SPEED_BUMP": 17,
+            "TYPE_EMITTING_STRUCTURE": 18,
+        }
 
 
 class TrafficActionDynamicsShape(betterproto2.Enum):
@@ -4308,8 +5180,9 @@ class TrafficActionDynamicsShape(betterproto2.Enum):
     Definition of dynamic shapes.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficAction.DynamicsShape"
         ]
@@ -4339,13 +5212,25 @@ class TrafficActionDynamicsShape(betterproto2.Enum):
     Shape is a step function.
     """
 
-    betterproto_proto_names = {
-        0: "DYNAMICS_SHAPE_UNSPECIFIED",
-        1: "DYNAMICS_SHAPE_LINEAR",
-        2: "DYNAMICS_SHAPE_CUBIC",
-        3: "DYNAMICS_SHAPE_SINUSOIDAL",
-        4: "DYNAMICS_SHAPE_STEP",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DYNAMICS_SHAPE_UNSPECIFIED",
+            1: "DYNAMICS_SHAPE_LINEAR",
+            2: "DYNAMICS_SHAPE_CUBIC",
+            3: "DYNAMICS_SHAPE_SINUSOIDAL",
+            4: "DYNAMICS_SHAPE_STEP",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DYNAMICS_SHAPE_UNSPECIFIED": 0,
+            "DYNAMICS_SHAPE_LINEAR": 1,
+            "DYNAMICS_SHAPE_CUBIC": 2,
+            "DYNAMICS_SHAPE_SINUSOIDAL": 3,
+            "DYNAMICS_SHAPE_STEP": 4,
+        }
 
 
 class TrafficActionFollowingMode(betterproto2.Enum):
@@ -4353,8 +5238,9 @@ class TrafficActionFollowingMode(betterproto2.Enum):
     Definition of following mode.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficAction.FollowingMode"
         ]
@@ -4374,10 +5260,19 @@ class TrafficActionFollowingMode(betterproto2.Enum):
     for example, steering dynamics.
     """
 
-    betterproto_proto_names = {
-        0: "FOLLOWING_MODE_POSITION",
-        1: "FOLLOWING_MODE_FOLLOW",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "FOLLOWING_MODE_POSITION",
+            1: "FOLLOWING_MODE_FOLLOW",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "FOLLOWING_MODE_POSITION": 0,
+            "FOLLOWING_MODE_FOLLOW": 1,
+        }
 
 
 class TrafficLightClassificationColor(betterproto2.Enum):
@@ -4388,8 +5283,9 @@ class TrafficLightClassificationColor(betterproto2.Enum):
     only. They do not represent an actual visual appearance.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficLight.Classification.Color"
         ]
@@ -4429,15 +5325,29 @@ class TrafficLightClassificationColor(betterproto2.Enum):
     White light.
     """
 
-    betterproto_proto_names = {
-        0: "COLOR_UNKNOWN",
-        1: "COLOR_OTHER",
-        2: "COLOR_RED",
-        3: "COLOR_YELLOW",
-        4: "COLOR_GREEN",
-        5: "COLOR_BLUE",
-        6: "COLOR_WHITE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "COLOR_UNKNOWN",
+            1: "COLOR_OTHER",
+            2: "COLOR_RED",
+            3: "COLOR_YELLOW",
+            4: "COLOR_GREEN",
+            5: "COLOR_BLUE",
+            6: "COLOR_WHITE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "COLOR_UNKNOWN": 0,
+            "COLOR_OTHER": 1,
+            "COLOR_RED": 2,
+            "COLOR_YELLOW": 3,
+            "COLOR_GREEN": 4,
+            "COLOR_BLUE": 5,
+            "COLOR_WHITE": 6,
+        }
 
 
 class TrafficLightClassificationIcon(betterproto2.Enum):
@@ -4445,8 +5355,9 @@ class TrafficLightClassificationIcon(betterproto2.Enum):
     Definition of traffic light bulb icon.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficLight.Classification.Icon"
         ]
@@ -4597,33 +5508,65 @@ class TrafficLightClassificationIcon(betterproto2.Enum):
     and buses at the moment.
     """
 
-    betterproto_proto_names = {
-        0: "ICON_UNKNOWN",
-        1: "ICON_OTHER",
-        2: "ICON_NONE",
-        3: "ICON_ARROW_STRAIGHT_AHEAD",
-        4: "ICON_ARROW_LEFT",
-        5: "ICON_ARROW_DIAG_LEFT",
-        6: "ICON_ARROW_STRAIGHT_AHEAD_LEFT",
-        7: "ICON_ARROW_RIGHT",
-        8: "ICON_ARROW_DIAG_RIGHT",
-        9: "ICON_ARROW_STRAIGHT_AHEAD_RIGHT",
-        10: "ICON_ARROW_LEFT_RIGHT",
-        11: "ICON_ARROW_DOWN",
-        12: "ICON_ARROW_DOWN_LEFT",
-        13: "ICON_ARROW_DOWN_RIGHT",
-        14: "ICON_ARROW_CROSS",
-        15: "ICON_PEDESTRIAN",
-        16: "ICON_WALK",
-        17: "ICON_DONT_WALK",
-        18: "ICON_BICYCLE",
-        19: "ICON_PEDESTRIAN_AND_BICYCLE",
-        20: "ICON_COUNTDOWN_SECONDS",
-        21: "ICON_COUNTDOWN_PERCENT",
-        22: "ICON_TRAM",
-        23: "ICON_BUS",
-        24: "ICON_BUS_AND_TRAM",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "ICON_UNKNOWN",
+            1: "ICON_OTHER",
+            2: "ICON_NONE",
+            3: "ICON_ARROW_STRAIGHT_AHEAD",
+            4: "ICON_ARROW_LEFT",
+            5: "ICON_ARROW_DIAG_LEFT",
+            6: "ICON_ARROW_STRAIGHT_AHEAD_LEFT",
+            7: "ICON_ARROW_RIGHT",
+            8: "ICON_ARROW_DIAG_RIGHT",
+            9: "ICON_ARROW_STRAIGHT_AHEAD_RIGHT",
+            10: "ICON_ARROW_LEFT_RIGHT",
+            11: "ICON_ARROW_DOWN",
+            12: "ICON_ARROW_DOWN_LEFT",
+            13: "ICON_ARROW_DOWN_RIGHT",
+            14: "ICON_ARROW_CROSS",
+            15: "ICON_PEDESTRIAN",
+            16: "ICON_WALK",
+            17: "ICON_DONT_WALK",
+            18: "ICON_BICYCLE",
+            19: "ICON_PEDESTRIAN_AND_BICYCLE",
+            20: "ICON_COUNTDOWN_SECONDS",
+            21: "ICON_COUNTDOWN_PERCENT",
+            22: "ICON_TRAM",
+            23: "ICON_BUS",
+            24: "ICON_BUS_AND_TRAM",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "ICON_UNKNOWN": 0,
+            "ICON_OTHER": 1,
+            "ICON_NONE": 2,
+            "ICON_ARROW_STRAIGHT_AHEAD": 3,
+            "ICON_ARROW_LEFT": 4,
+            "ICON_ARROW_DIAG_LEFT": 5,
+            "ICON_ARROW_STRAIGHT_AHEAD_LEFT": 6,
+            "ICON_ARROW_RIGHT": 7,
+            "ICON_ARROW_DIAG_RIGHT": 8,
+            "ICON_ARROW_STRAIGHT_AHEAD_RIGHT": 9,
+            "ICON_ARROW_LEFT_RIGHT": 10,
+            "ICON_ARROW_DOWN": 11,
+            "ICON_ARROW_DOWN_LEFT": 12,
+            "ICON_ARROW_DOWN_RIGHT": 13,
+            "ICON_ARROW_CROSS": 14,
+            "ICON_PEDESTRIAN": 15,
+            "ICON_WALK": 16,
+            "ICON_DONT_WALK": 17,
+            "ICON_BICYCLE": 18,
+            "ICON_PEDESTRIAN_AND_BICYCLE": 19,
+            "ICON_COUNTDOWN_SECONDS": 20,
+            "ICON_COUNTDOWN_PERCENT": 21,
+            "ICON_TRAM": 22,
+            "ICON_BUS": 23,
+            "ICON_BUS_AND_TRAM": 24,
+        }
 
 
 class TrafficLightClassificationMode(betterproto2.Enum):
@@ -4631,8 +5574,9 @@ class TrafficLightClassificationMode(betterproto2.Enum):
     Definition of light modes for traffic lights.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficLight.Classification.Mode"
         ]
@@ -4667,14 +5611,27 @@ class TrafficLightClassificationMode(betterproto2.Enum):
     Light is counting.
     """
 
-    betterproto_proto_names = {
-        0: "MODE_UNKNOWN",
-        1: "MODE_OTHER",
-        2: "MODE_OFF",
-        3: "MODE_CONSTANT",
-        4: "MODE_FLASHING",
-        5: "MODE_COUNTING",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "MODE_UNKNOWN",
+            1: "MODE_OTHER",
+            2: "MODE_OFF",
+            3: "MODE_CONSTANT",
+            4: "MODE_FLASHING",
+            5: "MODE_COUNTING",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "MODE_UNKNOWN": 0,
+            "MODE_OTHER": 1,
+            "MODE_OFF": 2,
+            "MODE_CONSTANT": 3,
+            "MODE_FLASHING": 4,
+            "MODE_COUNTING": 5,
+        }
 
 
 class TrafficSignMainSignClassificationDirectionScope(betterproto2.Enum):
@@ -4684,8 +5641,9 @@ class TrafficSignMainSignClassificationDirectionScope(betterproto2.Enum):
     286) to the left.)
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.MainSign.Classification.DirectionScope"
         ]
@@ -4722,14 +5680,27 @@ class TrafficSignMainSignClassificationDirectionScope(betterproto2.Enum):
     sides.
     """
 
-    betterproto_proto_names = {
-        0: "DIRECTION_SCOPE_UNKNOWN",
-        1: "DIRECTION_SCOPE_OTHER",
-        2: "DIRECTION_SCOPE_NO_DIRECTION",
-        3: "DIRECTION_SCOPE_LEFT",
-        4: "DIRECTION_SCOPE_RIGHT",
-        5: "DIRECTION_SCOPE_LEFT_RIGHT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DIRECTION_SCOPE_UNKNOWN",
+            1: "DIRECTION_SCOPE_OTHER",
+            2: "DIRECTION_SCOPE_NO_DIRECTION",
+            3: "DIRECTION_SCOPE_LEFT",
+            4: "DIRECTION_SCOPE_RIGHT",
+            5: "DIRECTION_SCOPE_LEFT_RIGHT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DIRECTION_SCOPE_UNKNOWN": 0,
+            "DIRECTION_SCOPE_OTHER": 1,
+            "DIRECTION_SCOPE_NO_DIRECTION": 2,
+            "DIRECTION_SCOPE_LEFT": 3,
+            "DIRECTION_SCOPE_RIGHT": 4,
+            "DIRECTION_SCOPE_LEFT_RIGHT": 5,
+        }
 
 
 class TrafficSignMainSignClassificationType(betterproto2.Enum):
@@ -4760,8 +5731,9 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     <a href="https://releases.asam.net/OpenDRIVE/1.6.0/ASAM_OpenDRIVE_BS_V1-6-0.html#_signals">OpenDRIVE</a>.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.MainSign.Classification.Type"
         ]
@@ -10102,249 +11074,497 @@ class TrafficSignMainSignClassificationType(betterproto2.Enum):
     </table>
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_DANGER_SPOT",
-        87: "TYPE_ZEBRA_CROSSING",
-        110: "TYPE_FLIGHT",
-        200: "TYPE_CATTLE",
-        197: "TYPE_HORSE_RIDERS",
-        188: "TYPE_AMPHIBIANS",
-        96: "TYPE_FALLING_ROCKS",
-        94: "TYPE_SNOW_OR_ICE",
-        97: "TYPE_LOOSE_GRAVEL",
-        102: "TYPE_WATERSIDE",
-        210: "TYPE_CLEARANCE",
-        101: "TYPE_MOVABLE_BRIDGE",
-        3: "TYPE_RIGHT_BEFORE_LEFT_NEXT_INTERSECTION",
-        4: "TYPE_TURN_LEFT",
-        5: "TYPE_TURN_RIGHT",
-        6: "TYPE_DOUBLE_TURN_LEFT",
-        7: "TYPE_DOUBLE_TURN_RIGHT",
-        8: "TYPE_HILL_DOWNWARDS",
-        9: "TYPE_HILL_UPWARDS",
-        93: "TYPE_UNEVEN_ROAD",
-        95: "TYPE_ROAD_SLIPPERY_WET_OR_DIRTY",
-        98: "TYPE_SIDE_WINDS",
-        10: "TYPE_ROAD_NARROWING",
-        12: "TYPE_ROAD_NARROWING_RIGHT",
-        11: "TYPE_ROAD_NARROWING_LEFT",
-        13: "TYPE_ROAD_WORKS",
-        100: "TYPE_TRAFFIC_QUEUES",
-        14: "TYPE_TWO_WAY_TRAFFIC",
-        15: "TYPE_ATTENTION_TRAFFIC_LIGHT",
-        103: "TYPE_PEDESTRIANS",
-        106: "TYPE_CHILDREN_CROSSING",
-        107: "TYPE_CYCLE_ROUTE",
-        109: "TYPE_DEER_CROSSING",
-        144: "TYPE_UNGATED_LEVEL_CROSSING",
-        112: "TYPE_LEVEL_CROSSING_MARKER",
-        135: "TYPE_RAILWAY_TRAFFIC_PRIORITY",
-        16: "TYPE_GIVE_WAY",
-        17: "TYPE_STOP",
-        18: "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION",
-        19: "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION_UPSIDE_DOWN",
-        20: "TYPE_PRESCRIBED_LEFT_TURN",
-        21: "TYPE_PRESCRIBED_RIGHT_TURN",
-        22: "TYPE_PRESCRIBED_STRAIGHT",
-        24: "TYPE_PRESCRIBED_RIGHT_WAY",
-        23: "TYPE_PRESCRIBED_LEFT_WAY",
-        26: "TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT",
-        25: "TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT",
-        27: "TYPE_PRESCRIBED_LEFT_TURN_AND_RIGHT_TURN",
-        28: "TYPE_PRESCRIBED_LEFT_TURN_RIGHT_TURN_AND_STRAIGHT",
-        29: "TYPE_ROUNDABOUT",
-        30: "TYPE_ONEWAY_LEFT",
-        31: "TYPE_ONEWAY_RIGHT",
-        32: "TYPE_PASS_LEFT",
-        33: "TYPE_PASS_RIGHT",
-        128: "TYPE_SIDE_LANE_OPEN_FOR_TRAFFIC",
-        129: "TYPE_SIDE_LANE_CLOSED_FOR_TRAFFIC",
-        130: "TYPE_SIDE_LANE_CLOSING_FOR_TRAFFIC",
-        137: "TYPE_BUS_STOP",
-        138: "TYPE_TAXI_STAND",
-        145: "TYPE_BICYCLES_ONLY",
-        146: "TYPE_HORSE_RIDERS_ONLY",
-        147: "TYPE_PEDESTRIANS_ONLY",
-        148: "TYPE_BICYCLES_PEDESTRIANS_SHARED_ONLY",
-        149: "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY",
-        150: "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY",
-        151: "TYPE_PEDESTRIAN_ZONE_BEGIN",
-        152: "TYPE_PEDESTRIAN_ZONE_END",
-        153: "TYPE_BICYCLE_ROAD_BEGIN",
-        154: "TYPE_BICYCLE_ROAD_END",
-        34: "TYPE_BUS_LANE",
-        35: "TYPE_BUS_LANE_BEGIN",
-        36: "TYPE_BUS_LANE_END",
-        37: "TYPE_ALL_PROHIBITED",
-        38: "TYPE_MOTORIZED_MULTITRACK_PROHIBITED",
-        39: "TYPE_TRUCKS_PROHIBITED",
-        40: "TYPE_BICYCLES_PROHIBITED",
-        41: "TYPE_MOTORCYCLES_PROHIBITED",
-        155: "TYPE_MOPEDS_PROHIBITED",
-        156: "TYPE_HORSE_RIDERS_PROHIBITED",
-        157: "TYPE_HORSE_CARRIAGES_PROHIBITED",
-        158: "TYPE_CATTLE_PROHIBITED",
-        159: "TYPE_BUSES_PROHIBITED",
-        160: "TYPE_CARS_PROHIBITED",
-        161: "TYPE_CARS_TRAILERS_PROHIBITED",
-        162: "TYPE_TRUCKS_TRAILERS_PROHIBITED",
-        163: "TYPE_TRACTORS_PROHIBITED",
-        42: "TYPE_PEDESTRIANS_PROHIBITED",
-        43: "TYPE_MOTOR_VEHICLES_PROHIBITED",
-        164: "TYPE_HAZARDOUS_GOODS_VEHICLES_PROHIBITED",
-        165: "TYPE_OVER_WEIGHT_VEHICLES_PROHIBITED",
-        166: "TYPE_VEHICLES_AXLE_OVER_WEIGHT_PROHIBITED",
-        167: "TYPE_VEHICLES_EXCESS_WIDTH_PROHIBITED",
-        168: "TYPE_VEHICLES_EXCESS_HEIGHT_PROHIBITED",
-        169: "TYPE_VEHICLES_EXCESS_LENGTH_PROHIBITED",
-        44: "TYPE_DO_NOT_ENTER",
-        170: "TYPE_SNOW_CHAINS_REQUIRED",
-        171: "TYPE_WATER_POLLUTANT_VEHICLES_PROHIBITED",
-        45: "TYPE_ENVIRONMENTAL_ZONE_BEGIN",
-        46: "TYPE_ENVIRONMENTAL_ZONE_END",
-        47: "TYPE_NO_U_TURN_LEFT",
-        48: "TYPE_NO_U_TURN_RIGHT",
-        49: "TYPE_PRESCRIBED_U_TURN_LEFT",
-        50: "TYPE_PRESCRIBED_U_TURN_RIGHT",
-        51: "TYPE_MINIMUM_DISTANCE_FOR_TRUCKS",
-        52: "TYPE_SPEED_LIMIT_BEGIN",
-        53: "TYPE_SPEED_LIMIT_ZONE_BEGIN",
-        54: "TYPE_SPEED_LIMIT_ZONE_END",
-        55: "TYPE_MINIMUM_SPEED_BEGIN",
-        56: "TYPE_OVERTAKING_BAN_BEGIN",
-        57: "TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN",
-        58: "TYPE_SPEED_LIMIT_END",
-        59: "TYPE_MINIMUM_SPEED_END",
-        60: "TYPE_OVERTAKING_BAN_END",
-        61: "TYPE_OVERTAKING_BAN_FOR_TRUCKS_END",
-        62: "TYPE_ALL_RESTRICTIONS_END",
-        63: "TYPE_NO_STOPPING",
-        64: "TYPE_NO_PARKING",
-        65: "TYPE_NO_PARKING_ZONE_BEGIN",
-        66: "TYPE_NO_PARKING_ZONE_END",
-        67: "TYPE_RIGHT_OF_WAY_NEXT_INTERSECTION",
-        68: "TYPE_RIGHT_OF_WAY_BEGIN",
-        69: "TYPE_RIGHT_OF_WAY_END",
-        70: "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION",
-        71: "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION_UPSIDE_DOWN",
-        72: "TYPE_TOWN_BEGIN",
-        73: "TYPE_TOWN_END",
-        74: "TYPE_CAR_PARKING",
-        75: "TYPE_CAR_PARKING_ZONE_BEGIN",
-        76: "TYPE_CAR_PARKING_ZONE_END",
-        172: "TYPE_SIDEWALK_HALF_PARKING_LEFT",
-        173: "TYPE_SIDEWALK_HALF_PARKING_RIGHT",
-        174: "TYPE_SIDEWALK_PARKING_LEFT",
-        175: "TYPE_SIDEWALK_PARKING_RIGHT",
-        176: "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT",
-        177: "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT",
-        178: "TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT",
-        179: "TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT",
-        77: "TYPE_LIVING_STREET_BEGIN",
-        78: "TYPE_LIVING_STREET_END",
-        79: "TYPE_TUNNEL",
-        80: "TYPE_EMERGENCY_STOPPING_LEFT",
-        81: "TYPE_EMERGENCY_STOPPING_RIGHT",
-        82: "TYPE_HIGHWAY_BEGIN",
-        83: "TYPE_HIGHWAY_END",
-        84: "TYPE_EXPRESSWAY_BEGIN",
-        85: "TYPE_EXPRESSWAY_END",
-        183: "TYPE_NAMED_HIGHWAY_EXIT",
-        184: "TYPE_NAMED_EXPRESSWAY_EXIT",
-        185: "TYPE_NAMED_ROAD_EXIT",
-        86: "TYPE_HIGHWAY_EXIT",
-        186: "TYPE_EXPRESSWAY_EXIT",
-        187: "TYPE_ONEWAY_STREET",
-        189: "TYPE_CROSSING_GUARDS",
-        190: "TYPE_DEADEND",
-        191: "TYPE_DEADEND_EXCLUDING_DESIGNATED_ACTORS",
-        194: "TYPE_FIRST_AID_STATION",
-        195: "TYPE_POLICE_STATION",
-        196: "TYPE_TELEPHONE",
-        198: "TYPE_FILLING_STATION",
-        201: "TYPE_HOTEL",
-        202: "TYPE_INN",
-        203: "TYPE_KIOSK",
-        204: "TYPE_TOILET",
-        205: "TYPE_CHAPEL",
-        206: "TYPE_TOURIST_INFO",
-        207: "TYPE_REPAIR_SERVICE",
-        208: "TYPE_PEDESTRIAN_UNDERPASS",
-        209: "TYPE_PEDESTRIAN_BRIDGE",
-        213: "TYPE_CAMPER_PLACE",
-        214: "TYPE_ADVISORY_SPEED_LIMIT_BEGIN",
-        215: "TYPE_ADVISORY_SPEED_LIMIT_END",
-        216: "TYPE_PLACE_NAME",
-        217: "TYPE_TOURIST_ATTRACTION",
-        218: "TYPE_TOURIST_ROUTE",
-        219: "TYPE_TOURIST_AREA",
-        220: "TYPE_SHOULDER_NOT_PASSABLE_MOTOR_VEHICLES",
-        221: "TYPE_SHOULDER_UNSAFE_TRUCKS_TRACTORS",
-        222: "TYPE_TOLL_BEGIN",
-        223: "TYPE_TOLL_END",
-        224: "TYPE_TOLL_ROAD",
-        225: "TYPE_CUSTOMS",
-        226: "TYPE_INTERNATIONAL_BORDER_INFO",
-        227: "TYPE_STREETLIGHT_RED_BAND",
-        228: "TYPE_FEDERAL_HIGHWAY_ROUTE_NUMBER",
-        229: "TYPE_HIGHWAY_ROUTE_NUMBER",
-        230: "TYPE_HIGHWAY_INTERCHANGE_NUMBER",
-        231: "TYPE_EUROPEAN_ROUTE_NUMBER",
-        232: "TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT",
-        233: "TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT",
-        234: "TYPE_PRIMARY_ROAD_DIRECTION_LEFT",
-        235: "TYPE_PRIMARY_ROAD_DIRECTION_RIGHT",
-        236: "TYPE_SECONDARY_ROAD_DIRECTION_LEFT",
-        237: "TYPE_SECONDARY_ROAD_DIRECTION_RIGHT",
-        238: "TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT",
-        239: "TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT",
-        240: "TYPE_ROUTING_DESIGNATED_ACTORS",
-        143: "TYPE_DIRECTION_TO_HIGHWAY_LEFT",
-        108: "TYPE_DIRECTION_TO_HIGHWAY_RIGHT",
-        127: "TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT",
-        136: "TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT",
-        118: "TYPE_CONSOLIDATED_DIRECTIONS",
-        119: "TYPE_STREET_NAME",
-        120: "TYPE_DIRECTION_PREANNOUNCEMENT",
-        121: "TYPE_DIRECTION_PREANNOUNCEMENT_LANE_CONFIG",
-        122: "TYPE_DIRECTION_PREANNOUNCEMENT_HIGHWAY_ENTRIES",
-        123: "TYPE_HIGHWAY_ANNOUNCEMENT",
-        124: "TYPE_OTHER_ROAD_ANNOUNCEMENT",
-        125: "TYPE_HIGHWAY_ANNOUNCEMENT_TRUCK_STOP",
-        126: "TYPE_HIGHWAY_PREANNOUNCEMENT_DIRECTIONS",
-        88: "TYPE_POLE_EXIT",
-        180: "TYPE_HIGHWAY_DISTANCE_BOARD",
-        181: "TYPE_DETOUR_LEFT",
-        182: "TYPE_DETOUR_RIGHT",
-        131: "TYPE_NUMBERED_DETOUR",
-        132: "TYPE_DETOUR_BEGIN",
-        133: "TYPE_DETOUR_END",
-        134: "TYPE_DETOUR_ROUTING_BOARD",
-        111: "TYPE_OPTIONAL_DETOUR",
-        199: "TYPE_OPTIONAL_DETOUR_ROUTING",
-        211: "TYPE_ROUTE_RECOMMENDATION",
-        212: "TYPE_ROUTE_RECOMMENDATION_END",
-        192: "TYPE_ANNOUNCE_LANE_TRANSITION_LEFT",
-        193: "TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT",
-        90: "TYPE_ANNOUNCE_RIGHT_LANE_END",
-        89: "TYPE_ANNOUNCE_LEFT_LANE_END",
-        115: "TYPE_ANNOUNCE_RIGHT_LANE_BEGIN",
-        116: "TYPE_ANNOUNCE_LEFT_LANE_BEGIN",
-        117: "TYPE_ANNOUNCE_LANE_CONSOLIDATION",
-        142: "TYPE_DETOUR_CITY_BLOCK",
-        141: "TYPE_GATE",
-        91: "TYPE_POLE_WARNING",
-        140: "TYPE_TRAFFIC_CONE",
-        139: "TYPE_MOBILE_LANE_CLOSURE",
-        114: "TYPE_REFLECTOR_POST",
-        113: "TYPE_DIRECTIONAL_BOARD_WARNING",
-        104: "TYPE_GUIDING_PLATE",
-        105: "TYPE_GUIDING_PLATE_WEDGES",
-        99: "TYPE_PARKING_HAZARD",
-        92: "TYPE_TRAFFIC_LIGHT_GREEN_ARROW",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_DANGER_SPOT",
+            87: "TYPE_ZEBRA_CROSSING",
+            110: "TYPE_FLIGHT",
+            200: "TYPE_CATTLE",
+            197: "TYPE_HORSE_RIDERS",
+            188: "TYPE_AMPHIBIANS",
+            96: "TYPE_FALLING_ROCKS",
+            94: "TYPE_SNOW_OR_ICE",
+            97: "TYPE_LOOSE_GRAVEL",
+            102: "TYPE_WATERSIDE",
+            210: "TYPE_CLEARANCE",
+            101: "TYPE_MOVABLE_BRIDGE",
+            3: "TYPE_RIGHT_BEFORE_LEFT_NEXT_INTERSECTION",
+            4: "TYPE_TURN_LEFT",
+            5: "TYPE_TURN_RIGHT",
+            6: "TYPE_DOUBLE_TURN_LEFT",
+            7: "TYPE_DOUBLE_TURN_RIGHT",
+            8: "TYPE_HILL_DOWNWARDS",
+            9: "TYPE_HILL_UPWARDS",
+            93: "TYPE_UNEVEN_ROAD",
+            95: "TYPE_ROAD_SLIPPERY_WET_OR_DIRTY",
+            98: "TYPE_SIDE_WINDS",
+            10: "TYPE_ROAD_NARROWING",
+            12: "TYPE_ROAD_NARROWING_RIGHT",
+            11: "TYPE_ROAD_NARROWING_LEFT",
+            13: "TYPE_ROAD_WORKS",
+            100: "TYPE_TRAFFIC_QUEUES",
+            14: "TYPE_TWO_WAY_TRAFFIC",
+            15: "TYPE_ATTENTION_TRAFFIC_LIGHT",
+            103: "TYPE_PEDESTRIANS",
+            106: "TYPE_CHILDREN_CROSSING",
+            107: "TYPE_CYCLE_ROUTE",
+            109: "TYPE_DEER_CROSSING",
+            144: "TYPE_UNGATED_LEVEL_CROSSING",
+            112: "TYPE_LEVEL_CROSSING_MARKER",
+            135: "TYPE_RAILWAY_TRAFFIC_PRIORITY",
+            16: "TYPE_GIVE_WAY",
+            17: "TYPE_STOP",
+            18: "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION",
+            19: "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION_UPSIDE_DOWN",
+            20: "TYPE_PRESCRIBED_LEFT_TURN",
+            21: "TYPE_PRESCRIBED_RIGHT_TURN",
+            22: "TYPE_PRESCRIBED_STRAIGHT",
+            24: "TYPE_PRESCRIBED_RIGHT_WAY",
+            23: "TYPE_PRESCRIBED_LEFT_WAY",
+            26: "TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT",
+            25: "TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT",
+            27: "TYPE_PRESCRIBED_LEFT_TURN_AND_RIGHT_TURN",
+            28: "TYPE_PRESCRIBED_LEFT_TURN_RIGHT_TURN_AND_STRAIGHT",
+            29: "TYPE_ROUNDABOUT",
+            30: "TYPE_ONEWAY_LEFT",
+            31: "TYPE_ONEWAY_RIGHT",
+            32: "TYPE_PASS_LEFT",
+            33: "TYPE_PASS_RIGHT",
+            128: "TYPE_SIDE_LANE_OPEN_FOR_TRAFFIC",
+            129: "TYPE_SIDE_LANE_CLOSED_FOR_TRAFFIC",
+            130: "TYPE_SIDE_LANE_CLOSING_FOR_TRAFFIC",
+            137: "TYPE_BUS_STOP",
+            138: "TYPE_TAXI_STAND",
+            145: "TYPE_BICYCLES_ONLY",
+            146: "TYPE_HORSE_RIDERS_ONLY",
+            147: "TYPE_PEDESTRIANS_ONLY",
+            148: "TYPE_BICYCLES_PEDESTRIANS_SHARED_ONLY",
+            149: "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY",
+            150: "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY",
+            151: "TYPE_PEDESTRIAN_ZONE_BEGIN",
+            152: "TYPE_PEDESTRIAN_ZONE_END",
+            153: "TYPE_BICYCLE_ROAD_BEGIN",
+            154: "TYPE_BICYCLE_ROAD_END",
+            34: "TYPE_BUS_LANE",
+            35: "TYPE_BUS_LANE_BEGIN",
+            36: "TYPE_BUS_LANE_END",
+            37: "TYPE_ALL_PROHIBITED",
+            38: "TYPE_MOTORIZED_MULTITRACK_PROHIBITED",
+            39: "TYPE_TRUCKS_PROHIBITED",
+            40: "TYPE_BICYCLES_PROHIBITED",
+            41: "TYPE_MOTORCYCLES_PROHIBITED",
+            155: "TYPE_MOPEDS_PROHIBITED",
+            156: "TYPE_HORSE_RIDERS_PROHIBITED",
+            157: "TYPE_HORSE_CARRIAGES_PROHIBITED",
+            158: "TYPE_CATTLE_PROHIBITED",
+            159: "TYPE_BUSES_PROHIBITED",
+            160: "TYPE_CARS_PROHIBITED",
+            161: "TYPE_CARS_TRAILERS_PROHIBITED",
+            162: "TYPE_TRUCKS_TRAILERS_PROHIBITED",
+            163: "TYPE_TRACTORS_PROHIBITED",
+            42: "TYPE_PEDESTRIANS_PROHIBITED",
+            43: "TYPE_MOTOR_VEHICLES_PROHIBITED",
+            164: "TYPE_HAZARDOUS_GOODS_VEHICLES_PROHIBITED",
+            165: "TYPE_OVER_WEIGHT_VEHICLES_PROHIBITED",
+            166: "TYPE_VEHICLES_AXLE_OVER_WEIGHT_PROHIBITED",
+            167: "TYPE_VEHICLES_EXCESS_WIDTH_PROHIBITED",
+            168: "TYPE_VEHICLES_EXCESS_HEIGHT_PROHIBITED",
+            169: "TYPE_VEHICLES_EXCESS_LENGTH_PROHIBITED",
+            44: "TYPE_DO_NOT_ENTER",
+            170: "TYPE_SNOW_CHAINS_REQUIRED",
+            171: "TYPE_WATER_POLLUTANT_VEHICLES_PROHIBITED",
+            45: "TYPE_ENVIRONMENTAL_ZONE_BEGIN",
+            46: "TYPE_ENVIRONMENTAL_ZONE_END",
+            47: "TYPE_NO_U_TURN_LEFT",
+            48: "TYPE_NO_U_TURN_RIGHT",
+            49: "TYPE_PRESCRIBED_U_TURN_LEFT",
+            50: "TYPE_PRESCRIBED_U_TURN_RIGHT",
+            51: "TYPE_MINIMUM_DISTANCE_FOR_TRUCKS",
+            52: "TYPE_SPEED_LIMIT_BEGIN",
+            53: "TYPE_SPEED_LIMIT_ZONE_BEGIN",
+            54: "TYPE_SPEED_LIMIT_ZONE_END",
+            55: "TYPE_MINIMUM_SPEED_BEGIN",
+            56: "TYPE_OVERTAKING_BAN_BEGIN",
+            57: "TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN",
+            58: "TYPE_SPEED_LIMIT_END",
+            59: "TYPE_MINIMUM_SPEED_END",
+            60: "TYPE_OVERTAKING_BAN_END",
+            61: "TYPE_OVERTAKING_BAN_FOR_TRUCKS_END",
+            62: "TYPE_ALL_RESTRICTIONS_END",
+            63: "TYPE_NO_STOPPING",
+            64: "TYPE_NO_PARKING",
+            65: "TYPE_NO_PARKING_ZONE_BEGIN",
+            66: "TYPE_NO_PARKING_ZONE_END",
+            67: "TYPE_RIGHT_OF_WAY_NEXT_INTERSECTION",
+            68: "TYPE_RIGHT_OF_WAY_BEGIN",
+            69: "TYPE_RIGHT_OF_WAY_END",
+            70: "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION",
+            71: "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION_UPSIDE_DOWN",
+            72: "TYPE_TOWN_BEGIN",
+            73: "TYPE_TOWN_END",
+            74: "TYPE_CAR_PARKING",
+            75: "TYPE_CAR_PARKING_ZONE_BEGIN",
+            76: "TYPE_CAR_PARKING_ZONE_END",
+            172: "TYPE_SIDEWALK_HALF_PARKING_LEFT",
+            173: "TYPE_SIDEWALK_HALF_PARKING_RIGHT",
+            174: "TYPE_SIDEWALK_PARKING_LEFT",
+            175: "TYPE_SIDEWALK_PARKING_RIGHT",
+            176: "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT",
+            177: "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT",
+            178: "TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT",
+            179: "TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT",
+            77: "TYPE_LIVING_STREET_BEGIN",
+            78: "TYPE_LIVING_STREET_END",
+            79: "TYPE_TUNNEL",
+            80: "TYPE_EMERGENCY_STOPPING_LEFT",
+            81: "TYPE_EMERGENCY_STOPPING_RIGHT",
+            82: "TYPE_HIGHWAY_BEGIN",
+            83: "TYPE_HIGHWAY_END",
+            84: "TYPE_EXPRESSWAY_BEGIN",
+            85: "TYPE_EXPRESSWAY_END",
+            183: "TYPE_NAMED_HIGHWAY_EXIT",
+            184: "TYPE_NAMED_EXPRESSWAY_EXIT",
+            185: "TYPE_NAMED_ROAD_EXIT",
+            86: "TYPE_HIGHWAY_EXIT",
+            186: "TYPE_EXPRESSWAY_EXIT",
+            187: "TYPE_ONEWAY_STREET",
+            189: "TYPE_CROSSING_GUARDS",
+            190: "TYPE_DEADEND",
+            191: "TYPE_DEADEND_EXCLUDING_DESIGNATED_ACTORS",
+            194: "TYPE_FIRST_AID_STATION",
+            195: "TYPE_POLICE_STATION",
+            196: "TYPE_TELEPHONE",
+            198: "TYPE_FILLING_STATION",
+            201: "TYPE_HOTEL",
+            202: "TYPE_INN",
+            203: "TYPE_KIOSK",
+            204: "TYPE_TOILET",
+            205: "TYPE_CHAPEL",
+            206: "TYPE_TOURIST_INFO",
+            207: "TYPE_REPAIR_SERVICE",
+            208: "TYPE_PEDESTRIAN_UNDERPASS",
+            209: "TYPE_PEDESTRIAN_BRIDGE",
+            213: "TYPE_CAMPER_PLACE",
+            214: "TYPE_ADVISORY_SPEED_LIMIT_BEGIN",
+            215: "TYPE_ADVISORY_SPEED_LIMIT_END",
+            216: "TYPE_PLACE_NAME",
+            217: "TYPE_TOURIST_ATTRACTION",
+            218: "TYPE_TOURIST_ROUTE",
+            219: "TYPE_TOURIST_AREA",
+            220: "TYPE_SHOULDER_NOT_PASSABLE_MOTOR_VEHICLES",
+            221: "TYPE_SHOULDER_UNSAFE_TRUCKS_TRACTORS",
+            222: "TYPE_TOLL_BEGIN",
+            223: "TYPE_TOLL_END",
+            224: "TYPE_TOLL_ROAD",
+            225: "TYPE_CUSTOMS",
+            226: "TYPE_INTERNATIONAL_BORDER_INFO",
+            227: "TYPE_STREETLIGHT_RED_BAND",
+            228: "TYPE_FEDERAL_HIGHWAY_ROUTE_NUMBER",
+            229: "TYPE_HIGHWAY_ROUTE_NUMBER",
+            230: "TYPE_HIGHWAY_INTERCHANGE_NUMBER",
+            231: "TYPE_EUROPEAN_ROUTE_NUMBER",
+            232: "TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT",
+            233: "TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT",
+            234: "TYPE_PRIMARY_ROAD_DIRECTION_LEFT",
+            235: "TYPE_PRIMARY_ROAD_DIRECTION_RIGHT",
+            236: "TYPE_SECONDARY_ROAD_DIRECTION_LEFT",
+            237: "TYPE_SECONDARY_ROAD_DIRECTION_RIGHT",
+            238: "TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT",
+            239: "TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT",
+            240: "TYPE_ROUTING_DESIGNATED_ACTORS",
+            143: "TYPE_DIRECTION_TO_HIGHWAY_LEFT",
+            108: "TYPE_DIRECTION_TO_HIGHWAY_RIGHT",
+            127: "TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT",
+            136: "TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT",
+            118: "TYPE_CONSOLIDATED_DIRECTIONS",
+            119: "TYPE_STREET_NAME",
+            120: "TYPE_DIRECTION_PREANNOUNCEMENT",
+            121: "TYPE_DIRECTION_PREANNOUNCEMENT_LANE_CONFIG",
+            122: "TYPE_DIRECTION_PREANNOUNCEMENT_HIGHWAY_ENTRIES",
+            123: "TYPE_HIGHWAY_ANNOUNCEMENT",
+            124: "TYPE_OTHER_ROAD_ANNOUNCEMENT",
+            125: "TYPE_HIGHWAY_ANNOUNCEMENT_TRUCK_STOP",
+            126: "TYPE_HIGHWAY_PREANNOUNCEMENT_DIRECTIONS",
+            88: "TYPE_POLE_EXIT",
+            180: "TYPE_HIGHWAY_DISTANCE_BOARD",
+            181: "TYPE_DETOUR_LEFT",
+            182: "TYPE_DETOUR_RIGHT",
+            131: "TYPE_NUMBERED_DETOUR",
+            132: "TYPE_DETOUR_BEGIN",
+            133: "TYPE_DETOUR_END",
+            134: "TYPE_DETOUR_ROUTING_BOARD",
+            111: "TYPE_OPTIONAL_DETOUR",
+            199: "TYPE_OPTIONAL_DETOUR_ROUTING",
+            211: "TYPE_ROUTE_RECOMMENDATION",
+            212: "TYPE_ROUTE_RECOMMENDATION_END",
+            192: "TYPE_ANNOUNCE_LANE_TRANSITION_LEFT",
+            193: "TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT",
+            90: "TYPE_ANNOUNCE_RIGHT_LANE_END",
+            89: "TYPE_ANNOUNCE_LEFT_LANE_END",
+            115: "TYPE_ANNOUNCE_RIGHT_LANE_BEGIN",
+            116: "TYPE_ANNOUNCE_LEFT_LANE_BEGIN",
+            117: "TYPE_ANNOUNCE_LANE_CONSOLIDATION",
+            142: "TYPE_DETOUR_CITY_BLOCK",
+            141: "TYPE_GATE",
+            91: "TYPE_POLE_WARNING",
+            140: "TYPE_TRAFFIC_CONE",
+            139: "TYPE_MOBILE_LANE_CLOSURE",
+            114: "TYPE_REFLECTOR_POST",
+            113: "TYPE_DIRECTIONAL_BOARD_WARNING",
+            104: "TYPE_GUIDING_PLATE",
+            105: "TYPE_GUIDING_PLATE_WEDGES",
+            99: "TYPE_PARKING_HAZARD",
+            92: "TYPE_TRAFFIC_LIGHT_GREEN_ARROW",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_DANGER_SPOT": 2,
+            "TYPE_ZEBRA_CROSSING": 87,
+            "TYPE_FLIGHT": 110,
+            "TYPE_CATTLE": 200,
+            "TYPE_HORSE_RIDERS": 197,
+            "TYPE_AMPHIBIANS": 188,
+            "TYPE_FALLING_ROCKS": 96,
+            "TYPE_SNOW_OR_ICE": 94,
+            "TYPE_LOOSE_GRAVEL": 97,
+            "TYPE_WATERSIDE": 102,
+            "TYPE_CLEARANCE": 210,
+            "TYPE_MOVABLE_BRIDGE": 101,
+            "TYPE_RIGHT_BEFORE_LEFT_NEXT_INTERSECTION": 3,
+            "TYPE_TURN_LEFT": 4,
+            "TYPE_TURN_RIGHT": 5,
+            "TYPE_DOUBLE_TURN_LEFT": 6,
+            "TYPE_DOUBLE_TURN_RIGHT": 7,
+            "TYPE_HILL_DOWNWARDS": 8,
+            "TYPE_HILL_UPWARDS": 9,
+            "TYPE_UNEVEN_ROAD": 93,
+            "TYPE_ROAD_SLIPPERY_WET_OR_DIRTY": 95,
+            "TYPE_SIDE_WINDS": 98,
+            "TYPE_ROAD_NARROWING": 10,
+            "TYPE_ROAD_NARROWING_RIGHT": 12,
+            "TYPE_ROAD_NARROWING_LEFT": 11,
+            "TYPE_ROAD_WORKS": 13,
+            "TYPE_TRAFFIC_QUEUES": 100,
+            "TYPE_TWO_WAY_TRAFFIC": 14,
+            "TYPE_ATTENTION_TRAFFIC_LIGHT": 15,
+            "TYPE_PEDESTRIANS": 103,
+            "TYPE_CHILDREN_CROSSING": 106,
+            "TYPE_CYCLE_ROUTE": 107,
+            "TYPE_DEER_CROSSING": 109,
+            "TYPE_UNGATED_LEVEL_CROSSING": 144,
+            "TYPE_LEVEL_CROSSING_MARKER": 112,
+            "TYPE_RAILWAY_TRAFFIC_PRIORITY": 135,
+            "TYPE_GIVE_WAY": 16,
+            "TYPE_STOP": 17,
+            "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION": 18,
+            "TYPE_PRIORITY_TO_OPPOSITE_DIRECTION_UPSIDE_DOWN": 19,
+            "TYPE_PRESCRIBED_LEFT_TURN": 20,
+            "TYPE_PRESCRIBED_RIGHT_TURN": 21,
+            "TYPE_PRESCRIBED_STRAIGHT": 22,
+            "TYPE_PRESCRIBED_RIGHT_WAY": 24,
+            "TYPE_PRESCRIBED_LEFT_WAY": 23,
+            "TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT": 26,
+            "TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT": 25,
+            "TYPE_PRESCRIBED_LEFT_TURN_AND_RIGHT_TURN": 27,
+            "TYPE_PRESCRIBED_LEFT_TURN_RIGHT_TURN_AND_STRAIGHT": 28,
+            "TYPE_ROUNDABOUT": 29,
+            "TYPE_ONEWAY_LEFT": 30,
+            "TYPE_ONEWAY_RIGHT": 31,
+            "TYPE_PASS_LEFT": 32,
+            "TYPE_PASS_RIGHT": 33,
+            "TYPE_SIDE_LANE_OPEN_FOR_TRAFFIC": 128,
+            "TYPE_SIDE_LANE_CLOSED_FOR_TRAFFIC": 129,
+            "TYPE_SIDE_LANE_CLOSING_FOR_TRAFFIC": 130,
+            "TYPE_BUS_STOP": 137,
+            "TYPE_TAXI_STAND": 138,
+            "TYPE_BICYCLES_ONLY": 145,
+            "TYPE_HORSE_RIDERS_ONLY": 146,
+            "TYPE_PEDESTRIANS_ONLY": 147,
+            "TYPE_BICYCLES_PEDESTRIANS_SHARED_ONLY": 148,
+            "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY": 149,
+            "TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY": 150,
+            "TYPE_PEDESTRIAN_ZONE_BEGIN": 151,
+            "TYPE_PEDESTRIAN_ZONE_END": 152,
+            "TYPE_BICYCLE_ROAD_BEGIN": 153,
+            "TYPE_BICYCLE_ROAD_END": 154,
+            "TYPE_BUS_LANE": 34,
+            "TYPE_BUS_LANE_BEGIN": 35,
+            "TYPE_BUS_LANE_END": 36,
+            "TYPE_ALL_PROHIBITED": 37,
+            "TYPE_MOTORIZED_MULTITRACK_PROHIBITED": 38,
+            "TYPE_TRUCKS_PROHIBITED": 39,
+            "TYPE_BICYCLES_PROHIBITED": 40,
+            "TYPE_MOTORCYCLES_PROHIBITED": 41,
+            "TYPE_MOPEDS_PROHIBITED": 155,
+            "TYPE_HORSE_RIDERS_PROHIBITED": 156,
+            "TYPE_HORSE_CARRIAGES_PROHIBITED": 157,
+            "TYPE_CATTLE_PROHIBITED": 158,
+            "TYPE_BUSES_PROHIBITED": 159,
+            "TYPE_CARS_PROHIBITED": 160,
+            "TYPE_CARS_TRAILERS_PROHIBITED": 161,
+            "TYPE_TRUCKS_TRAILERS_PROHIBITED": 162,
+            "TYPE_TRACTORS_PROHIBITED": 163,
+            "TYPE_PEDESTRIANS_PROHIBITED": 42,
+            "TYPE_MOTOR_VEHICLES_PROHIBITED": 43,
+            "TYPE_HAZARDOUS_GOODS_VEHICLES_PROHIBITED": 164,
+            "TYPE_OVER_WEIGHT_VEHICLES_PROHIBITED": 165,
+            "TYPE_VEHICLES_AXLE_OVER_WEIGHT_PROHIBITED": 166,
+            "TYPE_VEHICLES_EXCESS_WIDTH_PROHIBITED": 167,
+            "TYPE_VEHICLES_EXCESS_HEIGHT_PROHIBITED": 168,
+            "TYPE_VEHICLES_EXCESS_LENGTH_PROHIBITED": 169,
+            "TYPE_DO_NOT_ENTER": 44,
+            "TYPE_SNOW_CHAINS_REQUIRED": 170,
+            "TYPE_WATER_POLLUTANT_VEHICLES_PROHIBITED": 171,
+            "TYPE_ENVIRONMENTAL_ZONE_BEGIN": 45,
+            "TYPE_ENVIRONMENTAL_ZONE_END": 46,
+            "TYPE_NO_U_TURN_LEFT": 47,
+            "TYPE_NO_U_TURN_RIGHT": 48,
+            "TYPE_PRESCRIBED_U_TURN_LEFT": 49,
+            "TYPE_PRESCRIBED_U_TURN_RIGHT": 50,
+            "TYPE_MINIMUM_DISTANCE_FOR_TRUCKS": 51,
+            "TYPE_SPEED_LIMIT_BEGIN": 52,
+            "TYPE_SPEED_LIMIT_ZONE_BEGIN": 53,
+            "TYPE_SPEED_LIMIT_ZONE_END": 54,
+            "TYPE_MINIMUM_SPEED_BEGIN": 55,
+            "TYPE_OVERTAKING_BAN_BEGIN": 56,
+            "TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN": 57,
+            "TYPE_SPEED_LIMIT_END": 58,
+            "TYPE_MINIMUM_SPEED_END": 59,
+            "TYPE_OVERTAKING_BAN_END": 60,
+            "TYPE_OVERTAKING_BAN_FOR_TRUCKS_END": 61,
+            "TYPE_ALL_RESTRICTIONS_END": 62,
+            "TYPE_NO_STOPPING": 63,
+            "TYPE_NO_PARKING": 64,
+            "TYPE_NO_PARKING_ZONE_BEGIN": 65,
+            "TYPE_NO_PARKING_ZONE_END": 66,
+            "TYPE_RIGHT_OF_WAY_NEXT_INTERSECTION": 67,
+            "TYPE_RIGHT_OF_WAY_BEGIN": 68,
+            "TYPE_RIGHT_OF_WAY_END": 69,
+            "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION": 70,
+            "TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION_UPSIDE_DOWN": 71,
+            "TYPE_TOWN_BEGIN": 72,
+            "TYPE_TOWN_END": 73,
+            "TYPE_CAR_PARKING": 74,
+            "TYPE_CAR_PARKING_ZONE_BEGIN": 75,
+            "TYPE_CAR_PARKING_ZONE_END": 76,
+            "TYPE_SIDEWALK_HALF_PARKING_LEFT": 172,
+            "TYPE_SIDEWALK_HALF_PARKING_RIGHT": 173,
+            "TYPE_SIDEWALK_PARKING_LEFT": 174,
+            "TYPE_SIDEWALK_PARKING_RIGHT": 175,
+            "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT": 176,
+            "TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT": 177,
+            "TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT": 178,
+            "TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT": 179,
+            "TYPE_LIVING_STREET_BEGIN": 77,
+            "TYPE_LIVING_STREET_END": 78,
+            "TYPE_TUNNEL": 79,
+            "TYPE_EMERGENCY_STOPPING_LEFT": 80,
+            "TYPE_EMERGENCY_STOPPING_RIGHT": 81,
+            "TYPE_HIGHWAY_BEGIN": 82,
+            "TYPE_HIGHWAY_END": 83,
+            "TYPE_EXPRESSWAY_BEGIN": 84,
+            "TYPE_EXPRESSWAY_END": 85,
+            "TYPE_NAMED_HIGHWAY_EXIT": 183,
+            "TYPE_NAMED_EXPRESSWAY_EXIT": 184,
+            "TYPE_NAMED_ROAD_EXIT": 185,
+            "TYPE_HIGHWAY_EXIT": 86,
+            "TYPE_EXPRESSWAY_EXIT": 186,
+            "TYPE_ONEWAY_STREET": 187,
+            "TYPE_CROSSING_GUARDS": 189,
+            "TYPE_DEADEND": 190,
+            "TYPE_DEADEND_EXCLUDING_DESIGNATED_ACTORS": 191,
+            "TYPE_FIRST_AID_STATION": 194,
+            "TYPE_POLICE_STATION": 195,
+            "TYPE_TELEPHONE": 196,
+            "TYPE_FILLING_STATION": 198,
+            "TYPE_HOTEL": 201,
+            "TYPE_INN": 202,
+            "TYPE_KIOSK": 203,
+            "TYPE_TOILET": 204,
+            "TYPE_CHAPEL": 205,
+            "TYPE_TOURIST_INFO": 206,
+            "TYPE_REPAIR_SERVICE": 207,
+            "TYPE_PEDESTRIAN_UNDERPASS": 208,
+            "TYPE_PEDESTRIAN_BRIDGE": 209,
+            "TYPE_CAMPER_PLACE": 213,
+            "TYPE_ADVISORY_SPEED_LIMIT_BEGIN": 214,
+            "TYPE_ADVISORY_SPEED_LIMIT_END": 215,
+            "TYPE_PLACE_NAME": 216,
+            "TYPE_TOURIST_ATTRACTION": 217,
+            "TYPE_TOURIST_ROUTE": 218,
+            "TYPE_TOURIST_AREA": 219,
+            "TYPE_SHOULDER_NOT_PASSABLE_MOTOR_VEHICLES": 220,
+            "TYPE_SHOULDER_UNSAFE_TRUCKS_TRACTORS": 221,
+            "TYPE_TOLL_BEGIN": 222,
+            "TYPE_TOLL_END": 223,
+            "TYPE_TOLL_ROAD": 224,
+            "TYPE_CUSTOMS": 225,
+            "TYPE_INTERNATIONAL_BORDER_INFO": 226,
+            "TYPE_STREETLIGHT_RED_BAND": 227,
+            "TYPE_FEDERAL_HIGHWAY_ROUTE_NUMBER": 228,
+            "TYPE_HIGHWAY_ROUTE_NUMBER": 229,
+            "TYPE_HIGHWAY_INTERCHANGE_NUMBER": 230,
+            "TYPE_EUROPEAN_ROUTE_NUMBER": 231,
+            "TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT": 232,
+            "TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT": 233,
+            "TYPE_PRIMARY_ROAD_DIRECTION_LEFT": 234,
+            "TYPE_PRIMARY_ROAD_DIRECTION_RIGHT": 235,
+            "TYPE_SECONDARY_ROAD_DIRECTION_LEFT": 236,
+            "TYPE_SECONDARY_ROAD_DIRECTION_RIGHT": 237,
+            "TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT": 238,
+            "TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT": 239,
+            "TYPE_ROUTING_DESIGNATED_ACTORS": 240,
+            "TYPE_DIRECTION_TO_HIGHWAY_LEFT": 143,
+            "TYPE_DIRECTION_TO_HIGHWAY_RIGHT": 108,
+            "TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT": 127,
+            "TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT": 136,
+            "TYPE_CONSOLIDATED_DIRECTIONS": 118,
+            "TYPE_STREET_NAME": 119,
+            "TYPE_DIRECTION_PREANNOUNCEMENT": 120,
+            "TYPE_DIRECTION_PREANNOUNCEMENT_LANE_CONFIG": 121,
+            "TYPE_DIRECTION_PREANNOUNCEMENT_HIGHWAY_ENTRIES": 122,
+            "TYPE_HIGHWAY_ANNOUNCEMENT": 123,
+            "TYPE_OTHER_ROAD_ANNOUNCEMENT": 124,
+            "TYPE_HIGHWAY_ANNOUNCEMENT_TRUCK_STOP": 125,
+            "TYPE_HIGHWAY_PREANNOUNCEMENT_DIRECTIONS": 126,
+            "TYPE_POLE_EXIT": 88,
+            "TYPE_HIGHWAY_DISTANCE_BOARD": 180,
+            "TYPE_DETOUR_LEFT": 181,
+            "TYPE_DETOUR_RIGHT": 182,
+            "TYPE_NUMBERED_DETOUR": 131,
+            "TYPE_DETOUR_BEGIN": 132,
+            "TYPE_DETOUR_END": 133,
+            "TYPE_DETOUR_ROUTING_BOARD": 134,
+            "TYPE_OPTIONAL_DETOUR": 111,
+            "TYPE_OPTIONAL_DETOUR_ROUTING": 199,
+            "TYPE_ROUTE_RECOMMENDATION": 211,
+            "TYPE_ROUTE_RECOMMENDATION_END": 212,
+            "TYPE_ANNOUNCE_LANE_TRANSITION_LEFT": 192,
+            "TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT": 193,
+            "TYPE_ANNOUNCE_RIGHT_LANE_END": 90,
+            "TYPE_ANNOUNCE_LEFT_LANE_END": 89,
+            "TYPE_ANNOUNCE_RIGHT_LANE_BEGIN": 115,
+            "TYPE_ANNOUNCE_LEFT_LANE_BEGIN": 116,
+            "TYPE_ANNOUNCE_LANE_CONSOLIDATION": 117,
+            "TYPE_DETOUR_CITY_BLOCK": 142,
+            "TYPE_GATE": 141,
+            "TYPE_POLE_WARNING": 91,
+            "TYPE_TRAFFIC_CONE": 140,
+            "TYPE_MOBILE_LANE_CLOSURE": 139,
+            "TYPE_REFLECTOR_POST": 114,
+            "TYPE_DIRECTIONAL_BOARD_WARNING": 113,
+            "TYPE_GUIDING_PLATE": 104,
+            "TYPE_GUIDING_PLATE_WEDGES": 105,
+            "TYPE_PARKING_HAZARD": 99,
+            "TYPE_TRAFFIC_LIGHT_GREEN_ARROW": 92,
+        }
 
 
 class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
@@ -10353,8 +11573,9 @@ class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
     reference to. E.g. bikes, trucks, cars, etc.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.SupplementarySign.Classification.Actor"
         ]
@@ -10610,56 +11831,111 @@ class TrafficSignSupplementarySignClassificationActor(betterproto2.Enum):
     Winter sportspeople
     """
 
-    betterproto_proto_names = {
-        0: "ACTOR_UNKNOWN",
-        1: "ACTOR_OTHER",
-        2: "ACTOR_NO_ACTOR",
-        3: "ACTOR_AGRICULTURAL_VEHICLES",
-        4: "ACTOR_BICYCLES",
-        5: "ACTOR_BUSES",
-        6: "ACTOR_CAMPERS",
-        7: "ACTOR_CARAVANS",
-        8: "ACTOR_CARS",
-        9: "ACTOR_CARS_WITH_CARAVANS",
-        10: "ACTOR_CARS_WITH_TRAILERS",
-        11: "ACTOR_CATTLE",
-        12: "ACTOR_CHILDREN",
-        13: "ACTOR_CONSTRUCTION_VEHICLES",
-        14: "ACTOR_DELIVERY_VEHICLES",
-        15: "ACTOR_DISABLED_PERSONS",
-        16: "ACTOR_EBIKES",
-        17: "ACTOR_ELECTRIC_VEHICLES",
-        18: "ACTOR_EMERGENCY_VEHICLES",
-        19: "ACTOR_FERRY_USERS",
-        20: "ACTOR_FORESTRY_VEHICLES",
-        21: "ACTOR_HAZARDOUS_GOODS_VEHICLES",
-        22: "ACTOR_HORSE_CARRIAGES",
-        23: "ACTOR_HORSE_RIDERS",
-        24: "ACTOR_INLINE_SKATERS",
-        25: "ACTOR_MEDICAL_VEHICLES",
-        26: "ACTOR_MILITARY_VEHICLES",
-        27: "ACTOR_MOPEDS",
-        28: "ACTOR_MOTORCYCLES",
-        29: "ACTOR_MOTORIZED_MULTITRACK_VEHICLES",
-        30: "ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES",
-        31: "ACTOR_PEDESTRIANS",
-        32: "ACTOR_PUBLIC_TRANSPORT_VEHICLES",
-        33: "ACTOR_RAILROAD_TRAFFIC",
-        34: "ACTOR_RESIDENTS",
-        35: "ACTOR_SLURRY_TRANSPORT",
-        36: "ACTOR_TAXIS",
-        37: "ACTOR_TRACTORS",
-        38: "ACTOR_TRAILERS",
-        39: "ACTOR_TRAMS",
-        40: "ACTOR_TRUCKS",
-        41: "ACTOR_TRUCKS_WITH_SEMITRAILERS",
-        42: "ACTOR_TRUCKS_WITH_TRAILERS",
-        43: "ACTOR_VEHICLES_WITH_GREEN_BADGES",
-        44: "ACTOR_VEHICLES_WITH_RED_BADGES",
-        45: "ACTOR_VEHICLES_WITH_YELLOW_BADGES",
-        46: "ACTOR_WATER_POLLUTANT_VEHICLES",
-        47: "ACTOR_WINTER_SPORTSPEOPLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "ACTOR_UNKNOWN",
+            1: "ACTOR_OTHER",
+            2: "ACTOR_NO_ACTOR",
+            3: "ACTOR_AGRICULTURAL_VEHICLES",
+            4: "ACTOR_BICYCLES",
+            5: "ACTOR_BUSES",
+            6: "ACTOR_CAMPERS",
+            7: "ACTOR_CARAVANS",
+            8: "ACTOR_CARS",
+            9: "ACTOR_CARS_WITH_CARAVANS",
+            10: "ACTOR_CARS_WITH_TRAILERS",
+            11: "ACTOR_CATTLE",
+            12: "ACTOR_CHILDREN",
+            13: "ACTOR_CONSTRUCTION_VEHICLES",
+            14: "ACTOR_DELIVERY_VEHICLES",
+            15: "ACTOR_DISABLED_PERSONS",
+            16: "ACTOR_EBIKES",
+            17: "ACTOR_ELECTRIC_VEHICLES",
+            18: "ACTOR_EMERGENCY_VEHICLES",
+            19: "ACTOR_FERRY_USERS",
+            20: "ACTOR_FORESTRY_VEHICLES",
+            21: "ACTOR_HAZARDOUS_GOODS_VEHICLES",
+            22: "ACTOR_HORSE_CARRIAGES",
+            23: "ACTOR_HORSE_RIDERS",
+            24: "ACTOR_INLINE_SKATERS",
+            25: "ACTOR_MEDICAL_VEHICLES",
+            26: "ACTOR_MILITARY_VEHICLES",
+            27: "ACTOR_MOPEDS",
+            28: "ACTOR_MOTORCYCLES",
+            29: "ACTOR_MOTORIZED_MULTITRACK_VEHICLES",
+            30: "ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES",
+            31: "ACTOR_PEDESTRIANS",
+            32: "ACTOR_PUBLIC_TRANSPORT_VEHICLES",
+            33: "ACTOR_RAILROAD_TRAFFIC",
+            34: "ACTOR_RESIDENTS",
+            35: "ACTOR_SLURRY_TRANSPORT",
+            36: "ACTOR_TAXIS",
+            37: "ACTOR_TRACTORS",
+            38: "ACTOR_TRAILERS",
+            39: "ACTOR_TRAMS",
+            40: "ACTOR_TRUCKS",
+            41: "ACTOR_TRUCKS_WITH_SEMITRAILERS",
+            42: "ACTOR_TRUCKS_WITH_TRAILERS",
+            43: "ACTOR_VEHICLES_WITH_GREEN_BADGES",
+            44: "ACTOR_VEHICLES_WITH_RED_BADGES",
+            45: "ACTOR_VEHICLES_WITH_YELLOW_BADGES",
+            46: "ACTOR_WATER_POLLUTANT_VEHICLES",
+            47: "ACTOR_WINTER_SPORTSPEOPLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "ACTOR_UNKNOWN": 0,
+            "ACTOR_OTHER": 1,
+            "ACTOR_NO_ACTOR": 2,
+            "ACTOR_AGRICULTURAL_VEHICLES": 3,
+            "ACTOR_BICYCLES": 4,
+            "ACTOR_BUSES": 5,
+            "ACTOR_CAMPERS": 6,
+            "ACTOR_CARAVANS": 7,
+            "ACTOR_CARS": 8,
+            "ACTOR_CARS_WITH_CARAVANS": 9,
+            "ACTOR_CARS_WITH_TRAILERS": 10,
+            "ACTOR_CATTLE": 11,
+            "ACTOR_CHILDREN": 12,
+            "ACTOR_CONSTRUCTION_VEHICLES": 13,
+            "ACTOR_DELIVERY_VEHICLES": 14,
+            "ACTOR_DISABLED_PERSONS": 15,
+            "ACTOR_EBIKES": 16,
+            "ACTOR_ELECTRIC_VEHICLES": 17,
+            "ACTOR_EMERGENCY_VEHICLES": 18,
+            "ACTOR_FERRY_USERS": 19,
+            "ACTOR_FORESTRY_VEHICLES": 20,
+            "ACTOR_HAZARDOUS_GOODS_VEHICLES": 21,
+            "ACTOR_HORSE_CARRIAGES": 22,
+            "ACTOR_HORSE_RIDERS": 23,
+            "ACTOR_INLINE_SKATERS": 24,
+            "ACTOR_MEDICAL_VEHICLES": 25,
+            "ACTOR_MILITARY_VEHICLES": 26,
+            "ACTOR_MOPEDS": 27,
+            "ACTOR_MOTORCYCLES": 28,
+            "ACTOR_MOTORIZED_MULTITRACK_VEHICLES": 29,
+            "ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES": 30,
+            "ACTOR_PEDESTRIANS": 31,
+            "ACTOR_PUBLIC_TRANSPORT_VEHICLES": 32,
+            "ACTOR_RAILROAD_TRAFFIC": 33,
+            "ACTOR_RESIDENTS": 34,
+            "ACTOR_SLURRY_TRANSPORT": 35,
+            "ACTOR_TAXIS": 36,
+            "ACTOR_TRACTORS": 37,
+            "ACTOR_TRAILERS": 38,
+            "ACTOR_TRAMS": 39,
+            "ACTOR_TRUCKS": 40,
+            "ACTOR_TRUCKS_WITH_SEMITRAILERS": 41,
+            "ACTOR_TRUCKS_WITH_TRAILERS": 42,
+            "ACTOR_VEHICLES_WITH_GREEN_BADGES": 43,
+            "ACTOR_VEHICLES_WITH_RED_BADGES": 44,
+            "ACTOR_VEHICLES_WITH_YELLOW_BADGES": 45,
+            "ACTOR_WATER_POLLUTANT_VEHICLES": 46,
+            "ACTOR_WINTER_SPORTSPEOPLE": 47,
+        }
 
 
 class TrafficSignSupplementarySignClassificationArrowDirection(betterproto2.Enum):
@@ -10667,8 +11943,9 @@ class TrafficSignSupplementarySignClassificationArrowDirection(betterproto2.Enum
     The direction to which the arrow points to
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.SupplementarySign.Classification.Arrow.Direction"
         ]
@@ -10887,41 +12164,81 @@ class TrafficSignSupplementarySignClassificationArrowDirection(betterproto2.Enum
     right lane and you have to drive back to turn left.
     """
 
-    betterproto_proto_names = {
-        0: "DIRECTION_UNKNOWN",
-        1: "DIRECTION_OTHER",
-        2: "DIRECTION_NO_DIRECTION",
-        3: "DIRECTION_DIRECT_0_DEG",
-        4: "DIRECTION_DIRECT_45_DEG_RIGHT",
-        5: "DIRECTION_DIRECT_45_DEG_LEFT",
-        6: "DIRECTION_DIRECT_90_DEG_RIGHT",
-        7: "DIRECTION_DIRECT_90_DEG_LEFT",
-        8: "DIRECTION_DIRECT_135_DEG_RIGHT",
-        9: "DIRECTION_DIRECT_135_DEG_LEFT",
-        10: "DIRECTION_DIRECT_180_DEG",
-        11: "DIRECTION_TURN_45_DEG_RIGHT",
-        12: "DIRECTION_TURN_45_DEG_LEFT",
-        13: "DIRECTION_TURN_90_DEG_RIGHT",
-        14: "DIRECTION_TURN_90_DEG_LEFT",
-        15: "DIRECTION_TURN_135_DEG_RIGHT",
-        16: "DIRECTION_TURN_135_DEG_LEFT",
-        17: "DIRECTION_TURN_180_DEG_RIGHT",
-        18: "DIRECTION_TURN_180_DEG_LEFT",
-        19: "DIRECTION_CIRCLE_0_DEG",
-        20: "DIRECTION_CIRCLE_45_DEG_RIGHT",
-        21: "DIRECTION_CIRCLE_45_DEG_LEFT",
-        22: "DIRECTION_CIRCLE_90_DEG_RIGHT",
-        23: "DIRECTION_CIRCLE_90_DEG_LEFT",
-        24: "DIRECTION_CIRCLE_135_DEG_RIGHT",
-        25: "DIRECTION_CIRCLE_135_DEG_LEFT",
-        26: "DIRECTION_CIRCLE_180_DEG",
-        27: "DIRECTION_KEEP_LEFT_TO_TURN_0_DEG",
-        28: "DIRECTION_KEEP_RIGHT_TO_TURN_0_DEG",
-        29: "DIRECTION_KEEP_LEFT_TO_TURN_90_DEG_RIGHT",
-        30: "DIRECTION_KEEP_RIGHT_TO_TURN_90_DEG_LEFT",
-        31: "DIRECTION_KEEP_LEFT_DRIVE_BACK_TO_TURN_90_DEG_RIGHT",
-        32: "DIRECTION_KEEP_RIGHT_DRIVE_BACK_TO_TURN_90_DEG_LEFT",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "DIRECTION_UNKNOWN",
+            1: "DIRECTION_OTHER",
+            2: "DIRECTION_NO_DIRECTION",
+            3: "DIRECTION_DIRECT_0_DEG",
+            4: "DIRECTION_DIRECT_45_DEG_RIGHT",
+            5: "DIRECTION_DIRECT_45_DEG_LEFT",
+            6: "DIRECTION_DIRECT_90_DEG_RIGHT",
+            7: "DIRECTION_DIRECT_90_DEG_LEFT",
+            8: "DIRECTION_DIRECT_135_DEG_RIGHT",
+            9: "DIRECTION_DIRECT_135_DEG_LEFT",
+            10: "DIRECTION_DIRECT_180_DEG",
+            11: "DIRECTION_TURN_45_DEG_RIGHT",
+            12: "DIRECTION_TURN_45_DEG_LEFT",
+            13: "DIRECTION_TURN_90_DEG_RIGHT",
+            14: "DIRECTION_TURN_90_DEG_LEFT",
+            15: "DIRECTION_TURN_135_DEG_RIGHT",
+            16: "DIRECTION_TURN_135_DEG_LEFT",
+            17: "DIRECTION_TURN_180_DEG_RIGHT",
+            18: "DIRECTION_TURN_180_DEG_LEFT",
+            19: "DIRECTION_CIRCLE_0_DEG",
+            20: "DIRECTION_CIRCLE_45_DEG_RIGHT",
+            21: "DIRECTION_CIRCLE_45_DEG_LEFT",
+            22: "DIRECTION_CIRCLE_90_DEG_RIGHT",
+            23: "DIRECTION_CIRCLE_90_DEG_LEFT",
+            24: "DIRECTION_CIRCLE_135_DEG_RIGHT",
+            25: "DIRECTION_CIRCLE_135_DEG_LEFT",
+            26: "DIRECTION_CIRCLE_180_DEG",
+            27: "DIRECTION_KEEP_LEFT_TO_TURN_0_DEG",
+            28: "DIRECTION_KEEP_RIGHT_TO_TURN_0_DEG",
+            29: "DIRECTION_KEEP_LEFT_TO_TURN_90_DEG_RIGHT",
+            30: "DIRECTION_KEEP_RIGHT_TO_TURN_90_DEG_LEFT",
+            31: "DIRECTION_KEEP_LEFT_DRIVE_BACK_TO_TURN_90_DEG_RIGHT",
+            32: "DIRECTION_KEEP_RIGHT_DRIVE_BACK_TO_TURN_90_DEG_LEFT",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "DIRECTION_UNKNOWN": 0,
+            "DIRECTION_OTHER": 1,
+            "DIRECTION_NO_DIRECTION": 2,
+            "DIRECTION_DIRECT_0_DEG": 3,
+            "DIRECTION_DIRECT_45_DEG_RIGHT": 4,
+            "DIRECTION_DIRECT_45_DEG_LEFT": 5,
+            "DIRECTION_DIRECT_90_DEG_RIGHT": 6,
+            "DIRECTION_DIRECT_90_DEG_LEFT": 7,
+            "DIRECTION_DIRECT_135_DEG_RIGHT": 8,
+            "DIRECTION_DIRECT_135_DEG_LEFT": 9,
+            "DIRECTION_DIRECT_180_DEG": 10,
+            "DIRECTION_TURN_45_DEG_RIGHT": 11,
+            "DIRECTION_TURN_45_DEG_LEFT": 12,
+            "DIRECTION_TURN_90_DEG_RIGHT": 13,
+            "DIRECTION_TURN_90_DEG_LEFT": 14,
+            "DIRECTION_TURN_135_DEG_RIGHT": 15,
+            "DIRECTION_TURN_135_DEG_LEFT": 16,
+            "DIRECTION_TURN_180_DEG_RIGHT": 17,
+            "DIRECTION_TURN_180_DEG_LEFT": 18,
+            "DIRECTION_CIRCLE_0_DEG": 19,
+            "DIRECTION_CIRCLE_45_DEG_RIGHT": 20,
+            "DIRECTION_CIRCLE_45_DEG_LEFT": 21,
+            "DIRECTION_CIRCLE_90_DEG_RIGHT": 22,
+            "DIRECTION_CIRCLE_90_DEG_LEFT": 23,
+            "DIRECTION_CIRCLE_135_DEG_RIGHT": 24,
+            "DIRECTION_CIRCLE_135_DEG_LEFT": 25,
+            "DIRECTION_CIRCLE_180_DEG": 26,
+            "DIRECTION_KEEP_LEFT_TO_TURN_0_DEG": 27,
+            "DIRECTION_KEEP_RIGHT_TO_TURN_0_DEG": 28,
+            "DIRECTION_KEEP_LEFT_TO_TURN_90_DEG_RIGHT": 29,
+            "DIRECTION_KEEP_RIGHT_TO_TURN_90_DEG_LEFT": 30,
+            "DIRECTION_KEEP_LEFT_DRIVE_BACK_TO_TURN_90_DEG_RIGHT": 31,
+            "DIRECTION_KEEP_RIGHT_DRIVE_BACK_TO_TURN_90_DEG_LEFT": 32,
+        }
 
 
 class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
@@ -10947,8 +12264,9 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     <a href="https://releases.asam.net/OpenDRIVE/1.6.0/ASAM_OpenDRIVE_BS_V1-6-0.html#_signals">OpenDRIVE</a>.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.SupplementarySign.Classification.Type"
         ]
@@ -14407,57 +15725,113 @@ class TrafficSignSupplementarySignClassificationType(betterproto2.Enum):
     instead.
     """
 
-    betterproto_proto_names = {
-        0: "TYPE_UNKNOWN",
-        1: "TYPE_OTHER",
-        2: "TYPE_NO_SIGN",
-        41: "TYPE_TEXT",
-        39: "TYPE_SPACE",
-        26: "TYPE_TIME",
-        30: "TYPE_ARROW",
-        46: "TYPE_CONSTRAINED_TO",
-        45: "TYPE_EXCEPT",
-        3: "TYPE_VALID_FOR_DISTANCE",
-        27: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_FOUR_WAY",
-        28: "TYPE_PRIORITY_ROAD_TOP_LEFT_FOUR_WAY",
-        32: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_STRAIGHT",
-        33: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_SIDEWAYS",
-        34: "TYPE_PRIORITY_ROAD_TOP_LEFT_THREE_WAY_STRAIGHT",
-        29: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_FOUR_WAY",
-        31: "TYPE_PRIORITY_ROAD_TOP_RIGHT_FOUR_WAY",
-        35: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_STRAIGHT",
-        36: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_SIDEWAY",
-        37: "TYPE_PRIORITY_ROAD_TOP_RIGHT_THREE_WAY_STRAIGHT",
-        4: "TYPE_VALID_IN_DISTANCE",
-        25: "TYPE_STOP_IN",
-        11: "TYPE_LEFT_ARROW",
-        13: "TYPE_LEFT_BEND_ARROW",
-        12: "TYPE_RIGHT_ARROW",
-        14: "TYPE_RIGHT_BEND_ARROW",
-        40: "TYPE_ACCIDENT",
-        9: "TYPE_SNOW",
-        8: "TYPE_FOG",
-        48: "TYPE_ROLLING_HIGHWAY_INFORMATION",
-        47: "TYPE_SERVICES",
-        5: "TYPE_TIME_RANGE",
-        43: "TYPE_PARKING_DISC_TIME_RESTRICTION",
-        6: "TYPE_WEIGHT",
-        44: "TYPE_WET",
-        42: "TYPE_PARKING_CONSTRAINT",
-        38: "TYPE_NO_WAITING_SIDE_STRIPES",
-        7: "TYPE_RAIN",
-        10: "TYPE_SNOW_RAIN",
-        19: "TYPE_NIGHT",
-        21: "TYPE_STOP_4_WAY",
-        15: "TYPE_TRUCK",
-        16: "TYPE_TRACTORS_MAY_BE_PASSED",
-        17: "TYPE_HAZARDOUS",
-        18: "TYPE_TRAILER",
-        20: "TYPE_ZONE",
-        22: "TYPE_MOTORCYCLE",
-        23: "TYPE_MOTORCYCLE_ALLOWED",
-        24: "TYPE_CAR",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TYPE_UNKNOWN",
+            1: "TYPE_OTHER",
+            2: "TYPE_NO_SIGN",
+            41: "TYPE_TEXT",
+            39: "TYPE_SPACE",
+            26: "TYPE_TIME",
+            30: "TYPE_ARROW",
+            46: "TYPE_CONSTRAINED_TO",
+            45: "TYPE_EXCEPT",
+            3: "TYPE_VALID_FOR_DISTANCE",
+            27: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_FOUR_WAY",
+            28: "TYPE_PRIORITY_ROAD_TOP_LEFT_FOUR_WAY",
+            32: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_STRAIGHT",
+            33: "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_SIDEWAYS",
+            34: "TYPE_PRIORITY_ROAD_TOP_LEFT_THREE_WAY_STRAIGHT",
+            29: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_FOUR_WAY",
+            31: "TYPE_PRIORITY_ROAD_TOP_RIGHT_FOUR_WAY",
+            35: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_STRAIGHT",
+            36: "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_SIDEWAY",
+            37: "TYPE_PRIORITY_ROAD_TOP_RIGHT_THREE_WAY_STRAIGHT",
+            4: "TYPE_VALID_IN_DISTANCE",
+            25: "TYPE_STOP_IN",
+            11: "TYPE_LEFT_ARROW",
+            13: "TYPE_LEFT_BEND_ARROW",
+            12: "TYPE_RIGHT_ARROW",
+            14: "TYPE_RIGHT_BEND_ARROW",
+            40: "TYPE_ACCIDENT",
+            9: "TYPE_SNOW",
+            8: "TYPE_FOG",
+            48: "TYPE_ROLLING_HIGHWAY_INFORMATION",
+            47: "TYPE_SERVICES",
+            5: "TYPE_TIME_RANGE",
+            43: "TYPE_PARKING_DISC_TIME_RESTRICTION",
+            6: "TYPE_WEIGHT",
+            44: "TYPE_WET",
+            42: "TYPE_PARKING_CONSTRAINT",
+            38: "TYPE_NO_WAITING_SIDE_STRIPES",
+            7: "TYPE_RAIN",
+            10: "TYPE_SNOW_RAIN",
+            19: "TYPE_NIGHT",
+            21: "TYPE_STOP_4_WAY",
+            15: "TYPE_TRUCK",
+            16: "TYPE_TRACTORS_MAY_BE_PASSED",
+            17: "TYPE_HAZARDOUS",
+            18: "TYPE_TRAILER",
+            20: "TYPE_ZONE",
+            22: "TYPE_MOTORCYCLE",
+            23: "TYPE_MOTORCYCLE_ALLOWED",
+            24: "TYPE_CAR",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TYPE_UNKNOWN": 0,
+            "TYPE_OTHER": 1,
+            "TYPE_NO_SIGN": 2,
+            "TYPE_TEXT": 41,
+            "TYPE_SPACE": 39,
+            "TYPE_TIME": 26,
+            "TYPE_ARROW": 30,
+            "TYPE_CONSTRAINED_TO": 46,
+            "TYPE_EXCEPT": 45,
+            "TYPE_VALID_FOR_DISTANCE": 3,
+            "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_FOUR_WAY": 27,
+            "TYPE_PRIORITY_ROAD_TOP_LEFT_FOUR_WAY": 28,
+            "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_STRAIGHT": 32,
+            "TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_SIDEWAYS": 33,
+            "TYPE_PRIORITY_ROAD_TOP_LEFT_THREE_WAY_STRAIGHT": 34,
+            "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_FOUR_WAY": 29,
+            "TYPE_PRIORITY_ROAD_TOP_RIGHT_FOUR_WAY": 31,
+            "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_STRAIGHT": 35,
+            "TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_SIDEWAY": 36,
+            "TYPE_PRIORITY_ROAD_TOP_RIGHT_THREE_WAY_STRAIGHT": 37,
+            "TYPE_VALID_IN_DISTANCE": 4,
+            "TYPE_STOP_IN": 25,
+            "TYPE_LEFT_ARROW": 11,
+            "TYPE_LEFT_BEND_ARROW": 13,
+            "TYPE_RIGHT_ARROW": 12,
+            "TYPE_RIGHT_BEND_ARROW": 14,
+            "TYPE_ACCIDENT": 40,
+            "TYPE_SNOW": 9,
+            "TYPE_FOG": 8,
+            "TYPE_ROLLING_HIGHWAY_INFORMATION": 48,
+            "TYPE_SERVICES": 47,
+            "TYPE_TIME_RANGE": 5,
+            "TYPE_PARKING_DISC_TIME_RESTRICTION": 43,
+            "TYPE_WEIGHT": 6,
+            "TYPE_WET": 44,
+            "TYPE_PARKING_CONSTRAINT": 42,
+            "TYPE_NO_WAITING_SIDE_STRIPES": 38,
+            "TYPE_RAIN": 7,
+            "TYPE_SNOW_RAIN": 10,
+            "TYPE_NIGHT": 19,
+            "TYPE_STOP_4_WAY": 21,
+            "TYPE_TRUCK": 15,
+            "TYPE_TRACTORS_MAY_BE_PASSED": 16,
+            "TYPE_HAZARDOUS": 17,
+            "TYPE_TRAILER": 18,
+            "TYPE_ZONE": 20,
+            "TYPE_MOTORCYCLE": 22,
+            "TYPE_MOTORCYCLE_ALLOWED": 23,
+            "TYPE_CAR": 24,
+        }
 
 
 class TrafficSignVariability(betterproto2.Enum):
@@ -14465,8 +15839,9 @@ class TrafficSignVariability(betterproto2.Enum):
     Definition of the variability of a traffic sign.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSign.Variability"
         ]
@@ -14518,15 +15893,29 @@ class TrafficSignVariability(betterproto2.Enum):
     traffic sign attached to a road works vehicle.
     """
 
-    betterproto_proto_names = {
-        0: "VARIABILITY_UNKNOWN",
-        1: "VARIABILITY_OTHER",
-        2: "VARIABILITY_FIXED",
-        3: "VARIABILITY_VARIABLE",
-        4: "VARIABILITY_MOVABLE",
-        5: "VARIABILITY_MUTABLE",
-        6: "VARIABILITY_MOVABLE_AND_MUTABLE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "VARIABILITY_UNKNOWN",
+            1: "VARIABILITY_OTHER",
+            2: "VARIABILITY_FIXED",
+            3: "VARIABILITY_VARIABLE",
+            4: "VARIABILITY_MOVABLE",
+            5: "VARIABILITY_MUTABLE",
+            6: "VARIABILITY_MOVABLE_AND_MUTABLE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "VARIABILITY_UNKNOWN": 0,
+            "VARIABILITY_OTHER": 1,
+            "VARIABILITY_FIXED": 2,
+            "VARIABILITY_VARIABLE": 3,
+            "VARIABILITY_MOVABLE": 4,
+            "VARIABILITY_MUTABLE": 5,
+            "VARIABILITY_MOVABLE_AND_MUTABLE": 6,
+        }
 
 
 class TrafficSignValueUnit(betterproto2.Enum):
@@ -14534,8 +15923,9 @@ class TrafficSignValueUnit(betterproto2.Enum):
     Unit for values on traffic sign.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.enum_types_by_name[
             "TrafficSignValue.Unit"
         ]
@@ -14687,28 +16077,55 @@ class TrafficSignValueUnit(betterproto2.Enum):
     Unit: min
     """
 
-    betterproto_proto_names = {
-        0: "UNIT_UNKNOWN",
-        1: "UNIT_OTHER",
-        2: "UNIT_NO_UNIT",
-        3: "UNIT_KILOMETER_PER_HOUR",
-        4: "UNIT_MILE_PER_HOUR",
-        5: "UNIT_METER",
-        6: "UNIT_KILOMETER",
-        7: "UNIT_FEET",
-        8: "UNIT_MILE",
-        9: "UNIT_METRIC_TON",
-        10: "UNIT_LONG_TON",
-        11: "UNIT_SHORT_TON",
-        15: "UNIT_HOUR",
-        12: "UNIT_MINUTES",
-        16: "UNIT_DAY_OF_MONTH",
-        13: "UNIT_DAY",
-        14: "UNIT_PERCENTAGE",
-        17: "UNIT_DURATION_DAY",
-        18: "UNIT_DURATION_HOUR",
-        19: "UNIT_DURATION_MINUTE",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "UNIT_UNKNOWN",
+            1: "UNIT_OTHER",
+            2: "UNIT_NO_UNIT",
+            3: "UNIT_KILOMETER_PER_HOUR",
+            4: "UNIT_MILE_PER_HOUR",
+            5: "UNIT_METER",
+            6: "UNIT_KILOMETER",
+            7: "UNIT_FEET",
+            8: "UNIT_MILE",
+            9: "UNIT_METRIC_TON",
+            10: "UNIT_LONG_TON",
+            11: "UNIT_SHORT_TON",
+            15: "UNIT_HOUR",
+            12: "UNIT_MINUTES",
+            16: "UNIT_DAY_OF_MONTH",
+            13: "UNIT_DAY",
+            14: "UNIT_PERCENTAGE",
+            17: "UNIT_DURATION_DAY",
+            18: "UNIT_DURATION_HOUR",
+            19: "UNIT_DURATION_MINUTE",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "UNIT_UNKNOWN": 0,
+            "UNIT_OTHER": 1,
+            "UNIT_NO_UNIT": 2,
+            "UNIT_KILOMETER_PER_HOUR": 3,
+            "UNIT_MILE_PER_HOUR": 4,
+            "UNIT_METER": 5,
+            "UNIT_KILOMETER": 6,
+            "UNIT_FEET": 7,
+            "UNIT_MILE": 8,
+            "UNIT_METRIC_TON": 9,
+            "UNIT_LONG_TON": 10,
+            "UNIT_SHORT_TON": 11,
+            "UNIT_HOUR": 15,
+            "UNIT_MINUTES": 12,
+            "UNIT_DAY_OF_MONTH": 16,
+            "UNIT_DAY": 13,
+            "UNIT_PERCENTAGE": 14,
+            "UNIT_DURATION_DAY": 17,
+            "UNIT_DURATION_HOUR": 18,
+            "UNIT_DURATION_MINUTE": 19,
+        }
 
 
 class UltrasonicSpecificObjectDataTrend(betterproto2.Enum):
@@ -14717,8 +16134,9 @@ class UltrasonicSpecificObjectDataTrend(betterproto2.Enum):
     Describes the general moving direction of the detection.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.enum_types_by_name[
             "UltrasonicSpecificObjectData.Trend"
         ]
@@ -14755,14 +16173,27 @@ class UltrasonicSpecificObjectDataTrend(betterproto2.Enum):
     Distance (object, sensor) is increasing.
     """
 
-    betterproto_proto_names = {
-        0: "TREND_UNKNOWN",
-        1: "TREND_OTHER",
-        2: "TREND_CONSTANT_APPROACHING",
-        3: "TREND_CONSTANT",
-        4: "TREND_APPROACHING",
-        5: "TREND_DEPARTING",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TREND_UNKNOWN",
+            1: "TREND_OTHER",
+            2: "TREND_CONSTANT_APPROACHING",
+            3: "TREND_CONSTANT",
+            4: "TREND_APPROACHING",
+            5: "TREND_DEPARTING",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TREND_UNKNOWN": 0,
+            "TREND_OTHER": 1,
+            "TREND_CONSTANT_APPROACHING": 2,
+            "TREND_CONSTANT": 3,
+            "TREND_APPROACHING": 4,
+            "TREND_DEPARTING": 5,
+        }
 
 
 class UltrasonicSpecificObjectDataTrilaterationStatus(betterproto2.Enum):
@@ -14772,8 +16203,9 @@ class UltrasonicSpecificObjectDataTrilaterationStatus(betterproto2.Enum):
     sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> EnumDescriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> EnumDescriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.enum_types_by_name[
             "UltrasonicSpecificObjectData.TrilaterationStatus"
         ]
@@ -14798,12 +16230,23 @@ class UltrasonicSpecificObjectDataTrilaterationStatus(betterproto2.Enum):
     Trilateration used.
     """
 
-    betterproto_proto_names = {
-        0: "TRILATERATION_STATUS_UNKNOWN",
-        1: "TRILATERATION_STATUS_OTHER",
-        2: "TRILATERATION_STATUS_NOT_TRILATERATED",
-        3: "TRILATERATION_STATUS_TRILATERATED",
-    }
+    @classmethod
+    def betterproto_value_to_renamed_proto_names(cls) -> dict[int, str]:
+        return {
+            0: "TRILATERATION_STATUS_UNKNOWN",
+            1: "TRILATERATION_STATUS_OTHER",
+            2: "TRILATERATION_STATUS_NOT_TRILATERATED",
+            3: "TRILATERATION_STATUS_TRILATERATED",
+        }
+
+    @classmethod
+    def betterproto_renamed_proto_names_to_value(cls) -> dict[str, int]:
+        return {
+            "TRILATERATION_STATUS_UNKNOWN": 0,
+            "TRILATERATION_STATUS_OTHER": 1,
+            "TRILATERATION_STATUS_NOT_TRILATERATED": 2,
+            "TRILATERATION_STATUS_TRILATERATED": 3,
+        }
 
 
 @dataclass(eq=False, repr=False)
@@ -14826,8 +16269,9 @@ class BaseMoving(betterproto2.Message):
     (see: \\c MovingObject vehicle reference point).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["BaseMoving"]
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -15002,8 +16446,9 @@ class BaseStationary(betterproto2.Message):
     \\c Vehicle vehicle reference point).)
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["BaseStationary"]
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -15110,8 +16555,9 @@ class BoundingBox(betterproto2.Message):
     \\c BaseStationary .
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["BoundingBox"]
 
     dimension: "Dimension3D | None" = betterproto2.field(
@@ -15173,8 +16619,9 @@ class CameraDetection(betterproto2.Message):
     \\brief Camera detection from the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name["CameraDetection"]
 
     existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -15489,8 +16936,9 @@ class CameraDetectionData(betterproto2.Message):
     \\brief Data from one camera sensor including a list of detections.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "CameraDetectionData"
         ]
@@ -15536,8 +16984,9 @@ class CameraDetectionSpecificHeader(betterproto2.Message):
     \\brief Specific header extension for camera sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "CameraDetectionSpecificHeader"
         ]
@@ -15567,8 +17016,9 @@ class CameraPoint(betterproto2.Message):
     \\brief Camera point from the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name["CameraPoint"]
 
     existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -15613,8 +17063,9 @@ class CameraSensorView(betterproto2.Message):
     Camera specific sensor view data.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name["CameraSensorView"]
 
     view_configuration: "CameraSensorViewConfiguration | None" = betterproto2.field(
@@ -15646,8 +17097,9 @@ class CameraSensorViewConfiguration(betterproto2.Message):
     by the environment simulation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "CameraSensorViewConfiguration"
         ]
@@ -15837,8 +17289,9 @@ class CameraSpecificObjectData(betterproto2.Message):
     currently no fields.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.message_types_by_name[
             "CameraSpecificObjectData"
         ]
@@ -15860,8 +17313,9 @@ class ColorCmyk(betterproto2.Message):
     ColorCMYK provides values for cyan, magenta, yellow and key/black.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorCMYK"]
 
     cyan: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -15908,8 +17362,9 @@ class ColorDescription(betterproto2.Message):
     or describe a perceived color (e.g. CameraDetections).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorDescription"]
 
     grey: "ColorGrey | None" = betterproto2.field(
@@ -15967,8 +17422,9 @@ class ColorGrey(betterproto2.Message):
     ColorGrey defines a grayscale.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorGrey"]
 
     grey: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -15991,8 +17447,9 @@ class ColorHsv(betterproto2.Message):
     ColorHSV provides values for hue, saturation and value/brightness.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorHSV"]
 
     hue: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -16030,8 +17487,9 @@ class ColorLuv(betterproto2.Message):
     ColorLUV provides values for luminance, U- and V-coordinate.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorLUV"]
 
     luminance: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -16068,8 +17526,9 @@ class ColorRgb(betterproto2.Message):
     ColorRGB provides values for red, green and blue.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorRGB"]
 
     red: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -16106,8 +17565,9 @@ class ColorRgbir(betterproto2.Message):
     ColorRGBIR provides values for red, green, blue and infrared.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ColorRGBIR"]
 
     red: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -16149,8 +17609,9 @@ class DetectedEntityHeader(betterproto2.Message):
     \\brief The header attributes of each detected entity.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedEntityHeader"
         ]
@@ -16197,8 +17658,9 @@ class DetectedItemHeader(betterproto2.Message):
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedItemHeader"
         ]
@@ -16283,8 +17745,9 @@ class DetectedLane(betterproto2.Message):
     \\brief A lane segment as detected by the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDLANE_PROTO_DESCRIPTOR.message_types_by_name["DetectedLane"]
 
     header: "DetectedItemHeader | None" = betterproto2.field(
@@ -16313,8 +17776,9 @@ class DetectedLaneCandidateLane(betterproto2.Message):
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedLane.CandidateLane"
         ]
@@ -16367,8 +17831,9 @@ class DetectedLaneBoundary(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedLaneBoundary"
         ]
@@ -16458,8 +17923,9 @@ class DetectedLaneBoundaryCandidateLaneBoundary(betterproto2.Message):
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedLaneBoundary.CandidateLaneBoundary"
         ]
@@ -16513,8 +17979,9 @@ class DetectedMovingObject(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedMovingObject"
         ]
@@ -16671,8 +18138,9 @@ class DetectedMovingObjectCandidateMovingObject(betterproto2.Message):
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedMovingObject.CandidateMovingObject"
         ]
@@ -16784,8 +18252,9 @@ class DetectedOccupant(betterproto2.Message):
     \\brief A vehicle occupant as detected and perceived by an interior sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOCCUPANT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedOccupant"
         ]
@@ -16817,8 +18286,9 @@ class DetectedOccupantCandidateOccupant(betterproto2.Message):
     the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOCCUPANT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedOccupant.CandidateOccupant"
         ]
@@ -16878,8 +18348,9 @@ class DetectedRoadMarking(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDROADMARKING_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedRoadMarking"
         ]
@@ -16956,8 +18427,9 @@ class DetectedRoadMarkingCandidateRoadMarking(betterproto2.Message):
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDROADMARKING_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedRoadMarking.CandidateRoadMarking"
         ]
@@ -17013,8 +18485,9 @@ class DetectedStationaryObject(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedStationaryObject"
         ]
@@ -17111,8 +18584,9 @@ class DetectedStationaryObjectCandidateStationaryObject(betterproto2.Message):
     by the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedStationaryObject.CandidateStationaryObject"
         ]
@@ -17168,8 +18642,9 @@ class DetectedTrafficLight(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICLIGHT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficLight"
         ]
@@ -17233,8 +18708,9 @@ class DetectedTrafficLightCandidateTrafficLight(betterproto2.Message):
     the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICLIGHT_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficLight.CandidateTrafficLight"
         ]
@@ -17289,8 +18765,9 @@ class DetectedTrafficSign(betterproto2.Message):
     vehicle coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficSign"
         ]
@@ -17331,8 +18808,9 @@ class DetectedTrafficSignDetectedMainSign(betterproto2.Message):
     \\image html OSI_DetectedMainSign.svg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficSign.DetectedMainSign"
         ]
@@ -17399,8 +18877,9 @@ class DetectedTrafficSignDetectedMainSignCandidateMainSign(betterproto2.Message)
     sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficSign.DetectedMainSign.CandidateMainSign"
         ]
@@ -17447,8 +18926,9 @@ class DetectedTrafficSignDetectedSupplementarySign(betterproto2.Message):
     \\image html OSI_DetectedSupplementarySign.svg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficSign.DetectedSupplementarySign"
         ]
@@ -17508,8 +18988,9 @@ class DetectedTrafficSignDetectedSupplementarySignCandidateSupplementarySign(
     the sensor.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "DetectedTrafficSign.DetectedSupplementarySign.CandidateSupplementarySign"
         ]
@@ -17562,8 +19043,9 @@ class Dimension3D(betterproto2.Message):
     x-axis (=length), y-axis (=width) and z-axis (=height).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Dimension3d"]
 
     length: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -17614,8 +19096,9 @@ class EnvironmentalConditions(betterproto2.Message):
     \\note These conditions apply locally around the host vehicle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.message_types_by_name[
             "EnvironmentalConditions"
         ]
@@ -17768,8 +19251,9 @@ class EnvironmentalConditionsCloudLayer(betterproto2.Message):
     \\brief Description of a cloud layer.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.message_types_by_name[
             "EnvironmentalConditions.CloudLayer"
         ]
@@ -17798,8 +19282,9 @@ class EnvironmentalConditionsSun(betterproto2.Message):
     \\brief Properties of the sun.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.message_types_by_name[
             "EnvironmentalConditions.Sun"
         ]
@@ -17865,8 +19350,9 @@ class EnvironmentalConditionsTimeOfDay(betterproto2.Message):
     the corresponding \\c #osi3::BaseStationary or \\c #osi3::BaseMoving .
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.message_types_by_name[
             "EnvironmentalConditions.TimeOfDay"
         ]
@@ -17899,8 +19385,9 @@ class EnvironmentalConditionsWind(betterproto2.Message):
     \\brief Defines wind properties.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ENVIRONMENT_PROTO_DESCRIPTOR.message_types_by_name[
             "EnvironmentalConditions.Wind"
         ]
@@ -17950,8 +19437,9 @@ class ExternalReference(betterproto2.Message):
     \\note ExternalReference is optional and can be left empty.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["ExternalReference"]
 
     reference: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
@@ -18032,8 +19520,9 @@ class FeatureData(betterproto2.Message):
     treatment of the sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name["FeatureData"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -18089,8 +19578,9 @@ class GenericSensorView(betterproto2.Message):
     Generic sensor view data.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name[
             "GenericSensorView"
         ]
@@ -18114,8 +19604,9 @@ class GenericSensorViewConfiguration(betterproto2.Message):
     by the environment simulation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "GenericSensorViewConfiguration"
         ]
@@ -18207,8 +19698,9 @@ class GeodeticPosition(betterproto2.Message):
     \\brief The geodetic position of an object, that is, the center of the 3D bounding box.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["GeodeticPosition"]
 
     longitude: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -18269,8 +19761,9 @@ class GroundTruth(betterproto2.Message):
     \\image html OSI_GroundTruth.svg "Ground Truth"
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_GROUNDTRUTH_PROTO_DESCRIPTOR.message_types_by_name["GroundTruth"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -18503,8 +19996,9 @@ class GroundTruthProjFrameOffset(betterproto2.Message):
     zWorld = zOSI + zOffset
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_GROUNDTRUTH_PROTO_DESCRIPTOR.message_types_by_name[
             "GroundTruth.ProjFrameOffset"
         ]
@@ -18541,8 +20035,9 @@ class HostVehicleData(betterproto2.Message):
     \\image html OSI_HostVehicle.svg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData"
         ]
@@ -18677,8 +20172,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunction(betterproto2.Message):
     \\brief State of one automated driving function on the host vehicle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleAutomatedDrivingFunction"
         ]
@@ -18759,8 +20255,9 @@ class HostVehicleDataVehicleAutomatedDrivingFunctionDriverOverride(
     an automated driving function.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleAutomatedDrivingFunction.DriverOverride"
         ]
@@ -18794,8 +20291,9 @@ class HostVehicleDataVehicleBasics(betterproto2.Message):
     \\brief Base parameters and overall states of the vehicle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleBasics"
         ]
@@ -18832,8 +20330,9 @@ class HostVehicleDataVehicleBrakeSystem(betterproto2.Message):
     \\brief The focus here is on the description of the brake system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleBrakeSystem"
         ]
@@ -18865,8 +20364,9 @@ class HostVehicleDataVehicleLocalization(betterproto2.Message):
     This data uses the reference point coincident with the center (x,y,z) of the bounding box.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleLocalization"
         ]
@@ -18914,8 +20414,9 @@ class HostVehicleDataVehicleMotion(betterproto2.Message):
     under neutral load conditions as defined in \\c MovingObject::VehicleAttributes::bbcenter_to_rear.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleMotion"
         ]
@@ -18980,8 +20481,9 @@ class HostVehicleDataVehiclePowertrain(betterproto2.Message):
     \\brief State description of the powertrain.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehiclePowertrain"
         ]
@@ -19033,8 +20535,9 @@ class HostVehicleDataVehiclePowertrainMotor(betterproto2.Message):
     \\brief A description of the motor states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehiclePowertrain.Motor"
         ]
@@ -19077,8 +20580,9 @@ class HostVehicleDataVehicleSteering(betterproto2.Message):
     \\brief The focus here is on the description of the steering train.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleSteering"
         ]
@@ -19103,8 +20607,9 @@ class HostVehicleDataVehicleWheels(betterproto2.Message):
     \\brief The focus here is on the description of internal wheel states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleWheels"
         ]
@@ -19131,8 +20636,9 @@ class HostVehicleDataVehicleWheelsWheelData(betterproto2.Message):
     \\brief The focus here is on the description of internal wheel states.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "HostVehicleData.VehicleWheels.WheelData"
         ]
@@ -19211,8 +20717,9 @@ class Identifier(betterproto2.Message):
     reserved and indicates an invalid ID or error.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Identifier"]
 
     value: "int" = betterproto2.field(1, betterproto2.TYPE_UINT64)
@@ -19253,8 +20760,9 @@ class InterfaceVersion(betterproto2.Message):
     The meaning of different InterfaceVersions is defined in the versioning chapter of the official OSI documentation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_VERSION_PROTO_DESCRIPTOR.message_types_by_name["InterfaceVersion"]
 
     version_major: "int" = betterproto2.field(1, betterproto2.TYPE_UINT32)
@@ -19286,8 +20794,9 @@ class KeyValuePair(betterproto2.Message):
     which is opaque to the general OSI interface.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["KeyValuePair"]
 
     key: "str" = betterproto2.field(1, betterproto2.TYPE_STRING)
@@ -19335,8 +20844,9 @@ class Lane(betterproto2.Message):
     the respective ids.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name["Lane"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -19499,8 +21009,9 @@ class LaneClassification(betterproto2.Message):
     \\c #osi3::Vector3d elements.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name["Lane.Classification"]
 
     type: "LaneClassificationType" = betterproto2.field(
@@ -19795,8 +21306,9 @@ class LaneClassificationLanePairing(betterproto2.Message):
     elements of the lanes with the respective ids.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name[
             "Lane.Classification.LanePairing"
         ]
@@ -19836,8 +21348,9 @@ class LaneClassificationRoadCondition(betterproto2.Message):
     \\brief The condition of the road surface.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name[
             "Lane.Classification.RoadCondition"
         ]
@@ -19968,8 +21481,9 @@ class LaneBoundary(betterproto2.Message):
     for \\c #osi3::LaneBoundary::BoundaryPoint elements.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name["LaneBoundary"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -20087,8 +21601,9 @@ class LaneBoundaryBoundaryPoint(betterproto2.Message):
     for \\c #osi3::LaneBoundary::BoundaryPoint elements.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LaneBoundary.BoundaryPoint"
         ]
@@ -20240,8 +21755,9 @@ class LaneBoundaryClassification(betterproto2.Message):
     the respective ids.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LaneBoundary.Classification"
         ]
@@ -20293,8 +21809,9 @@ class LidarDetection(betterproto2.Message):
     \\brief A point or vertical line in a lidar point cloud.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name["LidarDetection"]
 
     existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -20441,8 +21958,9 @@ class LidarDetectionData(betterproto2.Message):
     \\brief Data from one lidar sensor including a list of detections.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "LidarDetectionData"
         ]
@@ -20474,8 +21992,9 @@ class LidarSensorView(betterproto2.Message):
     Lidar specific sensor view data.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name["LidarSensorView"]
 
     view_configuration: "LidarSensorViewConfiguration | None" = betterproto2.field(
@@ -20506,8 +22025,9 @@ class LidarSensorViewReflection(betterproto2.Message):
     \\brief Definition of the lidar reflection.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name[
             "LidarSensorView.Reflection"
         ]
@@ -20578,8 +22098,9 @@ class LidarSensorViewConfiguration(betterproto2.Message):
     by the environment simulation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "LidarSensorViewConfiguration"
         ]
@@ -20761,8 +22282,9 @@ class LidarSpecificObjectData(betterproto2.Message):
     currently no fields.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.message_types_by_name[
             "LidarSpecificObjectData"
         ]
@@ -20782,8 +22304,9 @@ class LogicalDetection(betterproto2.Message):
     \\brief A logical detection that could be based on multiple sensors and sensor types.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalDetection"
         ]
@@ -20937,8 +22460,9 @@ class LogicalDetectionData(betterproto2.Message):
     \\c SensorView::mounting_position (e.g. center of rear axle of the ego car) in Cartesian coordinates.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalDetectionData"
         ]
@@ -20992,8 +22516,9 @@ class LogicalDetectionDataHeader(betterproto2.Message):
     \\brief The header attributes of each sensor's logical detections list.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalDetectionDataHeader"
         ]
@@ -21124,8 +22649,9 @@ class LogicalLane(betterproto2.Message):
     Note: all the relations shown above are also defined outside of intersections.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name["LogicalLane"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -21449,8 +22975,9 @@ class LogicalLaneLaneConnection(betterproto2.Message):
     \\brief Connection to another lane (predecessor or successor)
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.LaneConnection"
         ]
@@ -21485,8 +23012,9 @@ class LogicalLaneLaneRelation(betterproto2.Message):
     \\brief Relation of this lane to another logical lane
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.LaneRelation"
         ]
@@ -21545,8 +23073,9 @@ class LogicalLanePhysicalLaneReference(betterproto2.Message):
     \\brief Reference to a physical lane.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.PhysicalLaneReference"
         ]
@@ -21604,8 +23133,9 @@ class LogicalLaneTrafficRule(betterproto2.Message):
     \\brief Logical Model of a traffic rule on a lane.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.TrafficRule"
         ]
@@ -21650,8 +23180,9 @@ class LogicalLaneTrafficRuleSpeedLimit(betterproto2.Message):
     \\brief Speed limit on a lane.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.TrafficRule.SpeedLimit"
         ]
@@ -21682,8 +23213,9 @@ class LogicalLaneTrafficRuleTrafficRuleValidity(betterproto2.Message):
     \\brief Validity information for a traffic rule.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.TrafficRule.TrafficRuleValidity"
         ]
@@ -21735,8 +23267,9 @@ class LogicalLaneTrafficRuleTrafficRuleValidityTypeValidity(betterproto2.Message
     \\brief Type of traffic participant for which a rule is valid.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLane.TrafficRule.TrafficRuleValidity.TypeValidity"
         ]
@@ -21803,8 +23336,9 @@ class LogicalLaneAssignment(betterproto2.Message):
     case, and will be 0.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLaneAssignment"
         ]
@@ -21899,8 +23433,9 @@ class LogicalLaneBoundary(betterproto2.Message):
       LogicalLane, if needed.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLaneBoundary"
         ]
@@ -22058,8 +23593,9 @@ class LogicalLaneBoundaryLogicalBoundaryPoint(betterproto2.Message):
     \\brief A point on the boundary
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_LOGICALLANE_PROTO_DESCRIPTOR.message_types_by_name[
             "LogicalLaneBoundary.LogicalBoundaryPoint"
         ]
@@ -22093,8 +23629,9 @@ default_message_pool.register_message(
 
 @dataclass(eq=False, repr=False)
 class MapAsamOpenDrive(betterproto2.Message):
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_MAPASAMOPENDRIVE_PROTO_DESCRIPTOR.message_types_by_name[
             "MapAsamOpenDrive"
         ]
@@ -22125,8 +23662,9 @@ class MotionRequest(betterproto2.Message):
     Units are m for positions, m/s for velocities, and m/s^2 for accelerations.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_MOTIONREQUEST_PROTO_DESCRIPTOR.message_types_by_name["MotionRequest"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -22193,8 +23731,9 @@ class MotionRequestDesiredState(betterproto2.Message):
     specified time.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_MOTIONREQUEST_PROTO_DESCRIPTOR.message_types_by_name[
             "MotionRequest.DesiredState"
         ]
@@ -22256,8 +23795,9 @@ class MotionRequestDesiredTrajectory(betterproto2.Message):
     \\note The trajectory is kept as a separate message for future extensions.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_MOTIONREQUEST_PROTO_DESCRIPTOR.message_types_by_name[
             "MotionRequest.DesiredTrajectory"
         ]
@@ -22289,8 +23829,9 @@ class MountingPosition(betterproto2.Message):
     Details are specified in each instance where \\c MountingPosition is used.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["MountingPosition"]
 
     position: "Vector3D | None" = betterproto2.field(
@@ -22333,8 +23874,9 @@ class MovingObject(betterproto2.Message):
     MovingObject::Type is set to #TYPE_VEHICLE.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name["MovingObject"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -22496,8 +24038,9 @@ class MovingObjectMovingObjectClassification(betterproto2.Message):
     \\c MovingObject (host or other).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.MovingObjectClassification"
         ]
@@ -22553,8 +24096,9 @@ class MovingObjectPedestrianAttributes(betterproto2.Message):
     describing a pedestrian in more detail.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.PedestrianAttributes"
         ]
@@ -22600,8 +24144,9 @@ class MovingObjectPedestrianAttributesBone(betterproto2.Message):
     should be followed for identifying bones.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.PedestrianAttributes.Bone"
         ]
@@ -22724,8 +24269,9 @@ class MovingObjectVehicleAttributes(betterproto2.Message):
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.VehicleAttributes"
         ]
@@ -22826,8 +24372,9 @@ class MovingObjectVehicleAttributesWheelData(betterproto2.Message):
     It is not intended to be used for dynamic calculations, for example.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.VehicleAttributes.WheelData"
         ]
@@ -22939,8 +24486,9 @@ class MovingObjectVehicleClassification(betterproto2.Message):
     \\c MovingObject (host or other).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.VehicleClassification"
         ]
@@ -23002,8 +24550,9 @@ class MovingObjectVehicleClassificationLightState(betterproto2.Message):
     \\brief The state of the lights of a vehicle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "MovingObject.VehicleClassification.LightState"
         ]
@@ -23137,8 +24686,9 @@ class Occupant(betterproto2.Message):
     \\brief An occupant of a host vehicle, especially the driver of the vehicle.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OCCUPANT_PROTO_DESCRIPTOR.message_types_by_name["Occupant"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -23186,8 +24736,9 @@ class OccupantClassification(betterproto2.Message):
     \\brief Information regarding the classification of the occupant.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OCCUPANT_PROTO_DESCRIPTOR.message_types_by_name[
             "Occupant.Classification"
         ]
@@ -23256,8 +24807,9 @@ class Orientation3D(betterproto2.Message):
     [1] DIN Deutsches Institut fuer Normung e. V. (2013). <em>DIN ISO 8855 Strassenfahrzeuge - Fahrzeugdynamik und Fahrverhalten - Begriffe</em>. (DIN ISO 8855:2013-11). Berlin, Germany.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Orientation3d"]
 
     roll: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -23292,8 +24844,9 @@ class Pedalry(betterproto2.Message):
     \\brief A description for the positions of the pedals.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Pedalry"]
 
     pedal_position_acceleration: "float" = betterproto2.field(
@@ -23329,8 +24882,9 @@ class Polygon3D(betterproto2.Message):
     A polygon in 3 dimensions which contains a list of vertices.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Polygon3d"]
 
     vertex: "list[Vector3D]" = betterproto2.field(
@@ -23351,8 +24905,9 @@ class RadarDetection(betterproto2.Message):
     \\brief A radar detection.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name["RadarDetection"]
 
     existence_probability: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -23474,8 +25029,9 @@ class RadarDetectionData(betterproto2.Message):
     \\brief Data from one radar sensor including a list of detections.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "RadarDetectionData"
         ]
@@ -23507,8 +25063,9 @@ class RadarSensorView(betterproto2.Message):
     Radar specific sensor view data.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name["RadarSensorView"]
 
     view_configuration: "RadarSensorViewConfiguration | None" = betterproto2.field(
@@ -23539,8 +25096,9 @@ class RadarSensorViewReflection(betterproto2.Message):
     \\brief Definition of the radar reflection.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name[
             "RadarSensorView.Reflection"
         ]
@@ -23610,8 +25168,9 @@ class RadarSensorViewConfiguration(betterproto2.Message):
     by the environment simulation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "RadarSensorViewConfiguration"
         ]
@@ -23774,8 +25333,9 @@ class RadarSensorViewConfigurationAntennaDiagramEntry(betterproto2.Message):
     \\note Rotation is defined analog Spherical3d
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "RadarSensorViewConfiguration.AntennaDiagramEntry"
         ]
@@ -23820,8 +25380,9 @@ class RadarSpecificObjectData(betterproto2.Message):
     radar sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.message_types_by_name[
             "RadarSpecificObjectData"
         ]
@@ -23861,8 +25422,9 @@ class ReferenceLine(betterproto2.Message):
       In the author's experience, the benefits of a polyline outweigh the costs.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_REFERENCELINE_PROTO_DESCRIPTOR.message_types_by_name["ReferenceLine"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -24124,8 +25686,9 @@ class ReferenceLineReferenceLinePoint(betterproto2.Message):
     \\brief A point on the reference line
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_REFERENCELINE_PROTO_DESCRIPTOR.message_types_by_name[
             "ReferenceLine.ReferenceLinePoint"
         ]
@@ -24182,8 +25745,9 @@ class RoadMarking(betterproto2.Message):
     as part of \\c Lane.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ROADMARKING_PROTO_DESCRIPTOR.message_types_by_name["RoadMarking"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -24279,8 +25843,9 @@ class RoadMarkingClassification(betterproto2.Message):
     \\brief \\c Classification data for a road surface marking.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ROADMARKING_PROTO_DESCRIPTOR.message_types_by_name[
             "RoadMarking.Classification"
         ]
@@ -24519,8 +26084,9 @@ class Route(betterproto2.Message):
     logical lane segments (green, blue and red).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ROUTE_PROTO_DESCRIPTOR.message_types_by_name["Route"]
 
     route_id: "Identifier | None" = betterproto2.field(
@@ -24567,8 +26133,9 @@ class RouteLogicalLaneSegment(betterproto2.Message):
     definition direction.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ROUTE_PROTO_DESCRIPTOR.message_types_by_name[
             "Route.LogicalLaneSegment"
         ]
@@ -24646,8 +26213,9 @@ class RouteRouteSegment(betterproto2.Message):
     s-positions will be different.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_ROUTE_PROTO_DESCRIPTOR.message_types_by_name["Route.RouteSegment"]
 
     lane_segment: "list[RouteLogicalLaneSegment]" = betterproto2.field(
@@ -24691,8 +26259,9 @@ class SensorData(betterproto2.Message):
     output.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORDATA_PROTO_DESCRIPTOR.message_types_by_name["SensorData"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -25030,8 +26599,9 @@ class SensorDataVirtualDetectionArea(betterproto2.Message):
     the rough shapes expected.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "SensorData.VirtualDetectionArea"
         ]
@@ -25058,8 +26628,9 @@ class SensorDataSeries(betterproto2.Message):
     recording or internal buffering by some sensor models.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DATARECORDING_PROTO_DESCRIPTOR.message_types_by_name[
             "SensorDataSeries"
         ]
@@ -25083,8 +26654,9 @@ class SensorDataSeriesList(betterproto2.Message):
     \\c SensorData messages.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_DATARECORDING_PROTO_DESCRIPTOR.message_types_by_name[
             "SensorDataSeriesList"
         ]
@@ -25109,8 +26681,9 @@ class SensorDetectionHeader(betterproto2.Message):
     \\brief The header attributes of each sensor's detection list.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "SensorDetectionHeader"
         ]
@@ -25260,8 +26833,9 @@ class SensorView(betterproto2.Message):
     depending on model architecture.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name["SensorView"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -25496,8 +27070,9 @@ class SensorViewConfiguration(betterproto2.Message):
     not always be the preferred approach for reasons of IP protection.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "SensorViewConfiguration"
         ]
@@ -25731,8 +27306,9 @@ class SpatialSignalStrength(betterproto2.Message):
     and the corresponding signal strength in dBm (decibels per milliwatt).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name[
             "SpatialSignalStrength"
         ]
@@ -25792,8 +27368,9 @@ class Spherical3D(betterproto2.Message):
     (Unit_{vector_x}* \\f$ \\c #distance \\f$ ) \\f$
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Spherical3d"]
 
     distance: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -25839,8 +27416,9 @@ class StatePoint(betterproto2.Message):
     only the pose variables are relevant and the timestamp is ignored.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["StatePoint"]
 
     timestamp: "Timestamp | None" = betterproto2.field(
@@ -25887,8 +27465,9 @@ class StationaryObject(betterproto2.Message):
     \\c StationaryObject excludes traffic lights, traffic signs and road marking
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name["StationaryObject"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -25981,8 +27560,9 @@ class StationaryObjectClassification(betterproto2.Message):
     \\brief Classification data for a stationary object.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "StationaryObject.Classification"
         ]
@@ -26080,8 +27660,9 @@ class StationaryObjectClassificationEmittingStructureAttribute(betterproto2.Mess
     of the emitting structure.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_OBJECT_PROTO_DESCRIPTOR.message_types_by_name[
             "StationaryObject.Classification.EmittingStructureAttribute"
         ]
@@ -26130,8 +27711,9 @@ class StreamingUpdate(betterproto2.Message):
     use case to update certain objects at a later point in time.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_STREAMINGUPDATE_PROTO_DESCRIPTOR.message_types_by_name[
             "StreamingUpdate"
         ]
@@ -26238,8 +27820,9 @@ class Timestamp(betterproto2.Message):
     mandatory.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Timestamp"]
 
     seconds: "int" = betterproto2.field(1, betterproto2.TYPE_INT64)
@@ -26297,8 +27880,9 @@ class TrafficAction(betterproto2.Message):
     traffic participant to report back on potentially dismissed actions.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction"
         ]
@@ -26402,8 +27986,9 @@ class TrafficActionAbortActionsAction(betterproto2.Message):
     termination of the referenced actions.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.AbortActionsAction"
         ]
@@ -26449,8 +28034,9 @@ class TrafficActionAcquireGlobalPositionAction(betterproto2.Message):
     OpenSCENARIO 1.0 using a WorldPosition position argument.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.AcquireGlobalPositionAction"
         ]
@@ -26499,8 +28085,9 @@ class TrafficActionActionHeader(betterproto2.Message):
     \\brief The action header
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.ActionHeader"
         ]
@@ -26542,8 +28129,9 @@ class TrafficActionCustomAction(betterproto2.Message):
     providing a customizable user defined action.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.CustomAction"
         ]
@@ -26589,8 +28177,9 @@ class TrafficActionDynamicConstraints(betterproto2.Message):
     certain speeds/acceleration levels.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.DynamicConstraints"
         ]
@@ -26633,8 +28222,9 @@ class TrafficActionEndActionsAction(betterproto2.Message):
     gracefully.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.EndActionsAction"
         ]
@@ -26679,8 +28269,9 @@ class TrafficActionFollowPathAction(betterproto2.Message):
     OpenSCENARIO 1.0 using a 3/6D trajectory with shape Polyline.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.FollowPathAction"
         ]
@@ -26746,8 +28337,9 @@ class TrafficActionFollowTrajectoryAction(betterproto2.Message):
     OpenSCENARIO 1.0 using a 4/7D trajectory with shape Polyline.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.FollowTrajectoryAction"
         ]
@@ -26813,8 +28405,9 @@ class TrafficActionLaneChangeAction(betterproto2.Message):
     lane change.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.LaneChangeAction"
         ]
@@ -26882,8 +28475,9 @@ class TrafficActionLaneOffsetAction(betterproto2.Message):
     \\note This action is aligned with LaneOffsetAction of OpenSCENARIO 1.0.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.LaneOffsetAction"
         ]
@@ -26937,8 +28531,9 @@ class TrafficActionLateralDistanceAction(betterproto2.Message):
     of TYPE_DRIVING, not for lanes of TYPE_NONDRIVING or TYPE_INTERSECTION.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.LateralDistanceAction"
         ]
@@ -27015,8 +28610,9 @@ class TrafficActionLongitudinalDistanceAction(betterproto2.Message):
     of TYPE_DRIVING, not for lanes of TYPE_NONDRIVING or TYPE_INTERSECTION.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.LongitudinalDistanceAction"
         ]
@@ -27093,8 +28689,9 @@ class TrafficActionSpeedAction(betterproto2.Message):
     speed transition.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.SpeedAction"
         ]
@@ -27160,8 +28757,9 @@ class TrafficActionTeleportAction(betterproto2.Message):
     OpenSCENARIO 1.0 using a WorldPosition position argument.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficAction.TeleportAction"
         ]
@@ -27215,8 +28813,9 @@ class TrafficCommand(betterproto2.Message):
     atomic actions as described in OpenSCENARIO 1.0 or later.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficCommand"
         ]
@@ -27298,8 +28897,9 @@ class TrafficCommandUpdate(betterproto2.Message):
     versions.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMANDUPDATE_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficCommandUpdate"
         ]
@@ -27374,8 +28974,9 @@ class TrafficCommandUpdateDismissedAction(betterproto2.Message):
     \\brief Action which a traffic participant dismisses.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICCOMMANDUPDATE_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficCommandUpdate.DismissedAction"
         ]
@@ -27417,8 +29018,9 @@ class TrafficLight(betterproto2.Message):
     bulbs, e.g. red, yellow, green are three separate traffic lights.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR.message_types_by_name["TrafficLight"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -27504,8 +29106,9 @@ class TrafficLightClassification(betterproto2.Message):
     \\brief \\c Classification data for a traffic light.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficLight.Classification"
         ]
@@ -27606,8 +29209,9 @@ class TrafficSign(betterproto2.Message):
     coordinate system.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name["TrafficSign"]
 
     id: "Identifier | None" = betterproto2.field(
@@ -27678,8 +29282,9 @@ class TrafficSignMainSign(betterproto2.Message):
     \\image html OSI_MainSign.svg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSign.MainSign"
         ]
@@ -27754,8 +29359,9 @@ class TrafficSignMainSignClassification(betterproto2.Message):
     based on the German Road Traffic Regulations (StVO).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSign.MainSign.Classification"
         ]
@@ -27946,8 +29552,9 @@ class TrafficSignSupplementarySign(betterproto2.Message):
     \\image html OSI_SupplementarySign.svg
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSign.SupplementarySign"
         ]
@@ -28011,8 +29618,9 @@ class TrafficSignSupplementarySignClassification(betterproto2.Message):
     based on the German Road Traffic Regulations (StVO).
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSign.SupplementarySign.Classification"
         ]
@@ -28177,8 +29785,9 @@ class TrafficSignSupplementarySignClassificationArrow(betterproto2.Message):
     \\brief An arrow denoting a direction shown on the traffic sign.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSign.SupplementarySign.Classification.Arrow"
         ]
@@ -28218,8 +29827,9 @@ class TrafficSignValue(betterproto2.Message):
     user-defined procedure
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICSIGN_PROTO_DESCRIPTOR.message_types_by_name[
             "TrafficSignValue"
         ]
@@ -28266,8 +29876,9 @@ class TrafficUpdate(betterproto2.Message):
     information, re-use existing message.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_TRAFFICUPDATE_PROTO_DESCRIPTOR.message_types_by_name["TrafficUpdate"]
 
     version: "InterfaceVersion | None" = betterproto2.field(
@@ -28356,8 +29967,9 @@ class UltrasonicDetection(betterproto2.Message):
     \\note Direct detections lie on circles with the sensor as center.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicDetection"
         ]
@@ -28427,8 +30039,9 @@ class UltrasonicDetectionData(betterproto2.Message):
     \\note Direct detections lie on circles with the sending sensor as center.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicDetectionData"
         ]
@@ -28476,8 +30089,9 @@ class UltrasonicDetectionSpecificHeader(betterproto2.Message):
     \\brief Specific header extension for ultrasonic sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicDetectionSpecificHeader"
         ]
@@ -28525,8 +30139,9 @@ class UltrasonicIndirectDetection(betterproto2.Message):
     sensor in the focal points.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_FEATUREDATA_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicIndirectDetection"
         ]
@@ -28603,8 +30218,9 @@ class UltrasonicSensorView(betterproto2.Message):
     Ultrasonic specific sensor view data.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEW_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicSensorView"
         ]
@@ -28630,8 +30246,9 @@ class UltrasonicSensorViewConfiguration(betterproto2.Message):
     provided by the environment simulation.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicSensorViewConfiguration"
         ]
@@ -28724,8 +30341,9 @@ class UltrasonicSpecificObjectData(betterproto2.Message):
     ultrasonic sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicSpecificObjectData"
         ]
@@ -28803,8 +30421,9 @@ class UltrasonicSpecificObjectDataSignalway(betterproto2.Message):
     specific to ultrasonic sensors.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR.message_types_by_name[
             "UltrasonicSpecificObjectData.Signalway"
         ]
@@ -28842,8 +30461,9 @@ class Vector2D(betterproto2.Message):
     accelerations.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Vector2d"]
 
     x: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -28877,8 +30497,9 @@ class Vector3D(betterproto2.Message):
     accelerations.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["Vector3d"]
 
     x: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -28913,8 +30534,9 @@ class VehicleSteeringWheel(betterproto2.Message):
     \\brief A description of the steering wheel.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["VehicleSteeringWheel"]
 
     angle: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -28963,8 +30585,9 @@ class WavelengthData(betterproto2.Message):
     Additionally, the number of samples within this range is defined in this message.
     """
 
-    @betterproto2.classproperty
-    def DESCRIPTOR(self) -> Descriptor:
+    @betterproto2.staticproperty
+    @staticmethod
+    def DESCRIPTOR() -> Descriptor:
         return OSI_COMMON_PROTO_DESCRIPTOR.message_types_by_name["WavelengthData"]
 
     start: "float" = betterproto2.field(1, betterproto2.TYPE_DOUBLE)
@@ -28995,62 +30618,17 @@ default_message_pool.register_message("osi3", "WavelengthData", WavelengthData)
 OSI_COMMON_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x10osi_common.proto\x12\x04osi3"4\n\x08Vector3d\x12\x0c\n\x01x\x18\x01 \x01(\x01R\x01x\x12\x0c\n\x01y\x18\x02 \x01(\x01R\x01y\x12\x0c\n\x01z\x18\x03 \x01(\x01R\x01z"&\n\x08Vector2d\x12\x0c\n\x01x\x18\x01 \x01(\x01R\x01x\x12\x0c\n\x01y\x18\x02 \x01(\x01R\x01y";\n\tTimestamp\x12\x18\n\x07seconds\x18\x01 \x01(\x03R\x07seconds\x12\x14\n\x05nanos\x18\x02 \x01(\rR\x05nanos"S\n\x0bDimension3d\x12\x16\n\x06length\x18\x01 \x01(\x01R\x06length\x12\x14\n\x05width\x18\x02 \x01(\x01R\x05width\x12\x16\n\x06height\x18\x03 \x01(\x01R\x06height"K\n\rOrientation3d\x12\x12\n\x04roll\x18\x01 \x01(\x01R\x04roll\x12\x14\n\x05pitch\x18\x02 \x01(\x01R\x05pitch\x12\x10\n\x03yaw\x18\x03 \x01(\x01R\x03yaw""\n\nIdentifier\x12\x14\n\x05value\x18\x01 \x01(\x04R\x05value"e\n\x11ExternalReference\x12\x1c\n\treference\x18\x01 \x01(\tR\treference\x12\x12\n\x04type\x18\x02 \x01(\tR\x04type\x12\x1e\n\nidentifier\x18\x03 \x03(\tR\nidentifier"u\n\x10MountingPosition\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x02 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation"a\n\x0bSpherical3d\x12\x1a\n\x08distance\x18\x01 \x01(\x01R\x08distance\x12\x18\n\x07azimuth\x18\x02 \x01(\x01R\x07azimuth\x12\x1c\n\televation\x18\x03 \x01(\x01R\televation"\xb5\x01\n\x15LogicalLaneAssignment\x12:\n\x10assigned_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12\x1d\n\ns_position\x18\x02 \x01(\x01R\tsPosition\x12\x1d\n\nt_position\x18\x03 \x01(\x01R\ttPosition\x12"\n\rangle_to_lane\x18\x04 \x01(\x01R\x0bangleToLane"\xac\x03\n\x0bBoundingBox\x12/\n\tdimension\x18\x01 \x01(\x0b2\x11.osi3.Dimension3dR\tdimension\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12J\n\x15contained_object_type\x18\x04 \x01(\x0e2\x16.osi3.BoundingBox.TypeR\x13containedObjectType\x12\'\n\x0fmodel_reference\x18\x05 \x01(\tR\x0emodelReference"\x93\x01\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x17\n\x13TYPE_BASE_STRUCTURE\x10\x02\x12\x1d\n\x19TYPE_PROTRUDING_STRUCTURE\x10\x03\x12\x0e\n\nTYPE_CARGO\x10\x04\x12\r\n\tTYPE_DOOR\x10\x05\x12\x14\n\x10TYPE_SIDE_MIRROR\x10\x06"\x9c\x02\n\x0eBaseStationary\x12/\n\tdimension\x18\x01 \x01(\x0b2\x11.osi3.Dimension3dR\tdimension\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x121\n\x0cbase_polygon\x18\x04 \x03(\x0b2\x0e.osi3.Vector2dR\x0bbasePolygon\x12C\n\x14bounding_box_section\x18\x05 \x03(\x0b2\x11.osi3.BoundingBoxR\x12boundingBoxSection"\x88\x04\n\nBaseMoving\x12/\n\tdimension\x18\x01 \x01(\x0b2\x11.osi3.Dimension3dR\tdimension\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12*\n\x08velocity\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x122\n\x0cacceleration\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0cacceleration\x12>\n\x10orientation_rate\x18\x06 \x01(\x0b2\x13.osi3.Orientation3dR\x0forientationRate\x12N\n\x18orientation_acceleration\x18\x08 \x01(\x0b2\x13.osi3.Orientation3dR\x17orientationAcceleration\x121\n\x0cbase_polygon\x18\x07 \x03(\x0b2\x0e.osi3.Vector2dR\x0bbasePolygon\x12C\n\x14bounding_box_section\x18\t \x03(\x0b2\x11.osi3.BoundingBoxR\x12boundingBoxSection"\x9e\x01\n\nStatePoint\x12-\n\ttimestamp\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation"_\n\x0eWavelengthData\x12\x14\n\x05start\x18\x01 \x01(\x01R\x05start\x12\x10\n\x03end\x18\x02 \x01(\x01R\x03end\x12%\n\x0esamples_number\x18\x03 \x01(\x01R\rsamplesNumber"\x92\x01\n\x15SpatialSignalStrength\x12)\n\x10horizontal_angle\x18\x01 \x01(\x01R\x0fhorizontalAngle\x12%\n\x0evertical_angle\x18\x02 \x01(\x01R\rverticalAngle\x12\'\n\x0fsignal_strength\x18\x03 \x01(\x01R\x0esignalStrength"\xea\x01\n\x10ColorDescription\x12#\n\x04grey\x18\x01 \x01(\x0b2\x0f.osi3.ColorGreyR\x04grey\x12 \n\x03rgb\x18\x02 \x01(\x0b2\x0e.osi3.ColorRGBR\x03rgb\x12&\n\x05rgbir\x18\x03 \x01(\x0b2\x10.osi3.ColorRGBIRR\x05rgbir\x12 \n\x03hsv\x18\x04 \x01(\x0b2\x0e.osi3.ColorHSVR\x03hsv\x12 \n\x03luv\x18\x05 \x01(\x0b2\x0e.osi3.ColorLUVR\x03luv\x12#\n\x04cmyk\x18\x06 \x01(\x0b2\x0f.osi3.ColorCMYKR\x04cmyk"\x1f\n\tColorGrey\x12\x12\n\x04grey\x18\x01 \x01(\x01R\x04grey"F\n\x08ColorRGB\x12\x10\n\x03red\x18\x01 \x01(\x01R\x03red\x12\x14\n\x05green\x18\x02 \x01(\x01R\x05green\x12\x12\n\x04blue\x18\x03 \x01(\x01R\x04blue"d\n\nColorRGBIR\x12\x10\n\x03red\x18\x01 \x01(\x01R\x03red\x12\x14\n\x05green\x18\x02 \x01(\x01R\x05green\x12\x12\n\x04blue\x18\x03 \x01(\x01R\x04blue\x12\x1a\n\x08infrared\x18\x04 \x01(\x01R\x08infrared"R\n\x08ColorHSV\x12\x10\n\x03hue\x18\x01 \x01(\x01R\x03hue\x12\x1e\n\nsaturation\x18\x02 \x01(\x01R\nsaturation\x12\x14\n\x05value\x18\x03 \x01(\x01R\x05value"D\n\x08ColorLUV\x12\x1c\n\tluminance\x18\x01 \x01(\x01R\tluminance\x12\x0c\n\x01u\x18\x02 \x01(\x01R\x01u\x12\x0c\n\x01v\x18\x03 \x01(\x01R\x01v"c\n\tColorCMYK\x12\x12\n\x04cyan\x18\x01 \x01(\x01R\x04cyan\x12\x18\n\x07magenta\x18\x02 \x01(\x01R\x07magenta\x12\x16\n\x06yellow\x18\x03 \x01(\x01R\x06yellow\x12\x10\n\x03key\x18\x04 \x01(\x01R\x03key"\xaf\x01\n\x07Pedalry\x12>\n\x1bpedal_position_acceleration\x18\x01 \x01(\x01R\x19pedalPositionAcceleration\x120\n\x14pedal_position_brake\x18\x02 \x01(\x01R\x12pedalPositionBrake\x122\n\x15pedal_position_clutch\x18\x03 \x01(\x01R\x13pedalPositionClutch"i\n\x14VehicleSteeringWheel\x12\x14\n\x05angle\x18\x01 \x01(\x01R\x05angle\x12#\n\rangular_speed\x18\x02 \x01(\x01R\x0cangularSpeed\x12\x16\n\x06torque\x18\x03 \x01(\x01R\x06torque"h\n\x10GeodeticPosition\x12\x1c\n\tlongitude\x18\x01 \x01(\x01R\tlongitude\x12\x1a\n\x08latitude\x18\x02 \x01(\x01R\x08latitude\x12\x1a\n\x08altitude\x18\x03 \x01(\x01R\x08altitude"6\n\x0cKeyValuePair\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value"3\n\tPolygon3d\x12&\n\x06vertex\x18\x01 \x03(\x0b2\x0e.osi3.Vector3dR\x06vertexB\x02H\x01'
 )
-OSI_VERSION_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b"\n\x11osi_version.proto\x12\x04osi3\x1a google/protobuf/descriptor.proto\"\x81\x01\n\x10InterfaceVersion\x12#\n\rversion_major\x18\x01 \x01(\rR\x0cversionMajor\x12#\n\rversion_minor\x18\x02 \x01(\rR\x0cversionMinor\x12#\n\rversion_patch\x18\x03 \x01(\rR\x0cversionPatch:r\n\x19current_interface_version\x18\xe8\xf8\x04 \x01(\x0b2\x16.osi3.InterfaceVersion\x12\x1c.google.protobuf.FileOptionsR\x17currentInterfaceVersionB\x0cH\x01\xc2\xc6'\x06\x08\x03\x10\x07\x18\x00"
+OSI_OBJECT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x10osi_object.proto\x12\x04osi3\x1a\x10osi_common.proto"\x97\x11\n\x10StationaryObject\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12M\n\x0eclassification\x18\x03 \x01(\x0b2%.osi3.StationaryObject.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x04 \x01(\tR\x0emodelReference\x12B\n\x10source_reference\x18\x05 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xb5\x0e\n\x0eClassification\x12>\n\x04type\x18\x01 \x01(\x0e2*.osi3.StationaryObject.Classification.TypeR\x04type\x12J\n\x08material\x18\x02 \x01(\x0e2..osi3.StationaryObject.Classification.MaterialR\x08material\x12G\n\x07density\x18\x03 \x01(\x0e2-.osi3.StationaryObject.Classification.DensityR\x07density\x12A\n\x05color\x18\x04 \x01(\x0e2+.osi3.StationaryObject.Classification.ColorR\x05color\x12\x82\x01\n\x1cemitting_structure_attribute\x18\x05 \x01(\x0b2@.osi3.StationaryObject.Classification.EmittingStructureAttributeR\x1aemittingStructureAttribute\x12:\n\x10assigned_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x128\n\x18assigned_lane_percentage\x18\x07 \x03(\x01R\x16assignedLanePercentage\x12S\n\x17logical_lane_assignment\x18\x08 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment\x1a\xbf\x01\n\x1aEmittingStructureAttribute\x12=\n\x0fwavelength_data\x18\x01 \x03(\x0b2\x14.osi3.WavelengthDataR\x0ewavelengthData\x12b\n\x1femitted_spatial_signal_strength\x18\x03 \x03(\x0b2\x1b.osi3.SpatialSignalStrengthR\x1cemittedSpatialSignalStrength"\xa6\x03\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x0f\n\x0bTYPE_BRIDGE\x10\x02\x12\x11\n\rTYPE_BUILDING\x10\x03\x12\r\n\tTYPE_POLE\x10\x04\x12\x0e\n\nTYPE_PYLON\x10\x05\x12\x13\n\x0fTYPE_DELINEATOR\x10\x06\x12\r\n\tTYPE_TREE\x10\x07\x12\x10\n\x0cTYPE_BARRIER\x10\x08\x12\x13\n\x0fTYPE_VEGETATION\x10\t\x12\x12\n\x0eTYPE_CURBSTONE\x10\n\x12\r\n\tTYPE_WALL\x10\x0b\x12\x1b\n\x17TYPE_VERTICAL_STRUCTURE\x10\x0c\x12\x1e\n\x1aTYPE_RECTANGULAR_STRUCTURE\x10\r\x12\x1b\n\x17TYPE_OVERHEAD_STRUCTURE\x10\x0e\x12\x1d\n\x19TYPE_REFLECTIVE_STRUCTURE\x10\x0f\x12"\n\x1eTYPE_CONSTRUCTION_SITE_ELEMENT\x10\x10\x12\x13\n\x0fTYPE_SPEED_BUMP\x10\x11\x12\x1b\n\x17TYPE_EMITTING_STRUCTURE\x10\x12"\xd7\x01\n\x08Material\x12\x12\n\x10MATERIAL_UNKNOWN\x12\x12\n\x0eMATERIAL_OTHER\x10\x01\x12\x11\n\rMATERIAL_WOOD\x10\x02\x12\x14\n\x10MATERIAL_PLASTIC\x10\x03\x12\x15\n\x11MATERIAL_CONCRETE\x10\x04\x12\x12\n\x0eMATERIAL_METAL\x10\x05\x12\x12\n\x0eMATERIAL_STONE\x10\x06\x12\x12\n\x0eMATERIAL_GLASS\x10\x07\x12\x11\n\rMATERIAL_GLAS\x10\x07\x12\x10\n\x0cMATERIAL_MUD\x10\x08\x1a\x02\x10\x01"\x9d\x01\n\x07Density\x12\x11\n\x0fDENSITY_UNKNOWN\x12\x11\n\rDENSITY_OTHER\x10\x01\x12\x11\n\rDENSITY_SOLID\x10\x02\x12\x16\n\x12DENSITY_SMALL_MESH\x10\x03\x12\x17\n\x13DENSITY_MEDIAN_MESH\x10\x04\x12\x16\n\x12DENSITY_LARGE_MESH\x10\x05\x12\x10\n\x0cDENSITY_OPEN\x10\x06"\xd5\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x10\n\x0cCOLOR_YELLOW\x10\x02\x12\x0f\n\x0bCOLOR_GREEN\x10\x03\x12\x0e\n\nCOLOR_BLUE\x10\x04\x12\x10\n\x0cCOLOR_VIOLET\x10\x05\x12\r\n\tCOLOR_RED\x10\x06\x12\x10\n\x0cCOLOR_ORANGE\x10\x07\x12\x0f\n\x0bCOLOR_BLACK\x10\x08\x12\x0e\n\nCOLOR_GRAY\x10\t\x12\x0e\n\nCOLOR_GREY\x10\t\x12\x0f\n\x0bCOLOR_WHITE\x10\n\x1a\x02\x10\x01"\xf9+\n\x0cMovingObject\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12$\n\x04base\x18\x02 \x01(\x0b2\x10.osi3.BaseMovingR\x04base\x12+\n\x04type\x18\x03 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12:\n\x10assigned_lane_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12S\n\x12vehicle_attributes\x18\x05 \x01(\x0b2$.osi3.MovingObject.VehicleAttributesR\x11vehicleAttributes\x12_\n\x16vehicle_classification\x18\x06 \x01(\x0b2(.osi3.MovingObject.VehicleClassificationR\x15vehicleClassification\x12\'\n\x0fmodel_reference\x18\x07 \x01(\tR\x0emodelReference\x12=\n\x11future_trajectory\x18\x08 \x03(\x0b2\x10.osi3.StatePointR\x10futureTrajectory\x12o\n\x1cmoving_object_classification\x18\t \x01(\x0b2-.osi3.MovingObject.MovingObjectClassificationR\x1amovingObjectClassification\x12B\n\x10source_reference\x18\n \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x0b \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12\\\n\x15pedestrian_attributes\x18\x0c \x01(\x0b2\'.osi3.MovingObject.PedestrianAttributesR\x14pedestrianAttributes\x1a\xa0\x06\n\x11VehicleAttributes\x12-\n\tdriver_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08driverId\x12!\n\x0cradius_wheel\x18\x02 \x01(\x01R\x0bradiusWheel\x12#\n\rnumber_wheels\x18\x03 \x01(\rR\x0cnumberWheels\x128\n\x10bbcenter_to_rear\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x0ebbcenterToRear\x12:\n\x11bbcenter_to_front\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0fbbcenterToFront\x12)\n\x10ground_clearance\x18\x06 \x01(\x01R\x0fgroundClearance\x12M\n\nwheel_data\x18\x07 \x03(\x0b2..osi3.MovingObject.VehicleAttributes.WheelDataR\twheelData\x120\n\x14steering_wheel_angle\x18\x08 \x01(\x01R\x12steeringWheelAngle\x1a\xf1\x02\n\tWheelData\x12\x12\n\x04axle\x18\x01 \x01(\rR\x04axle\x12\x14\n\x05index\x18\x02 \x01(\rR\x05index\x12*\n\x08position\x18\x03 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12!\n\x0cwheel_radius\x18\x04 \x01(\x01R\x0bwheelRadius\x12\x1d\n\nrim_radius\x18\x05 \x01(\x01R\trimRadius\x12\x14\n\x05width\x18\x06 \x01(\x01R\x05width\x125\n\x0borientation\x18\x07 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12#\n\rrotation_rate\x18\x08 \x01(\x01R\x0crotationRate\x12\'\n\x0fmodel_reference\x18\t \x01(\tR\x0emodelReference\x121\n\x14friction_coefficient\x18\n \x01(\x01R\x13frictionCoefficient\x1a\xe7\x01\n\x1aMovingObjectClassification\x12:\n\x10assigned_lane_id\x18\x01 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x128\n\x18assigned_lane_percentage\x18\x02 \x03(\x01R\x16assignedLanePercentage\x12S\n\x17logical_lane_assignment\x18\x03 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment\x1a\xbd\x15\n\x15VehicleClassification\x12A\n\x04type\x18\x01 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.TypeR\x04type\x12T\n\x0blight_state\x18\x02 \x01(\x0b23.osi3.MovingObject.VehicleClassification.LightStateR\nlightState\x12\x1f\n\x0bhas_trailer\x18\x03 \x01(\x08R\nhasTrailer\x12/\n\ntrailer_id\x18\x04 \x01(\x0b2\x10.osi3.IdentifierR\ttrailerId\x12A\n\x04role\x18\x05 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.RoleR\x04role\x1a\x8b\x0e\n\nLightState\x12k\n\x0findicator_state\x18\x01 \x01(\x0e2B.osi3.MovingObject.VehicleClassification.LightState.IndicatorStateR\x0eindicatorState\x12m\n\x0ffront_fog_light\x18\x02 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\rfrontFogLight\x12k\n\x0erear_fog_light\x18\x03 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x0crearFogLight\x12d\n\nhead_light\x18\x04 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\theadLight\x12b\n\thigh_beam\x18\x05 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x08highBeam\x12n\n\x0freversing_light\x18\x06 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x0ereversingLight\x12o\n\x11brake_light_state\x18\x07 \x01(\x0e2C.osi3.MovingObject.VehicleClassification.LightState.BrakeLightStateR\x0fbrakeLightState\x12\x8c\x01\n\x1flicense_plate_illumination_rear\x18\x08 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1clicensePlateIlluminationRear\x12\x8b\x01\n\x1eemergency_vehicle_illumination\x18\t \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1cemergencyVehicleIllumination\x12\x87\x01\n\x1cservice_vehicle_illumination\x18\n \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1aserviceVehicleIllumination"\xb1\x01\n\x0eIndicatorState\x12\x19\n\x17INDICATOR_STATE_UNKNOWN\x12\x19\n\x15INDICATOR_STATE_OTHER\x10\x01\x12\x17\n\x13INDICATOR_STATE_OFF\x10\x02\x12\x18\n\x14INDICATOR_STATE_LEFT\x10\x03\x12\x19\n\x15INDICATOR_STATE_RIGHT\x10\x04\x12\x1b\n\x17INDICATOR_STATE_WARNING\x10\x05"\x88\x02\n\x11GenericLightState\x12\x1d\n\x1bGENERIC_LIGHT_STATE_UNKNOWN\x12\x1d\n\x19GENERIC_LIGHT_STATE_OTHER\x10\x01\x12\x1b\n\x17GENERIC_LIGHT_STATE_OFF\x10\x02\x12\x1a\n\x16GENERIC_LIGHT_STATE_ON\x10\x03\x12%\n!GENERIC_LIGHT_STATE_FLASHING_BLUE\x10\x04\x12-\n)GENERIC_LIGHT_STATE_FLASHING_BLUE_AND_RED\x10\x05\x12&\n"GENERIC_LIGHT_STATE_FLASHING_AMBER\x10\x06"\xa2\x01\n\x0fBrakeLightState\x12\x1b\n\x19BRAKE_LIGHT_STATE_UNKNOWN\x12\x1b\n\x17BRAKE_LIGHT_STATE_OTHER\x10\x01\x12\x19\n\x15BRAKE_LIGHT_STATE_OFF\x10\x02\x12\x1c\n\x18BRAKE_LIGHT_STATE_NORMAL\x10\x03\x12\x1c\n\x18BRAKE_LIGHT_STATE_STRONG\x10\x04"\xf9\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x12\n\x0eTYPE_SMALL_CAR\x10\x02\x12\x14\n\x10TYPE_COMPACT_CAR\x10\x03\x12\x0c\n\x08TYPE_CAR\x10\x04\x12\x13\n\x0fTYPE_MEDIUM_CAR\x10\x04\x12\x13\n\x0fTYPE_LUXURY_CAR\x10\x05\x12\x15\n\x11TYPE_DELIVERY_VAN\x10\x06\x12\x14\n\x10TYPE_HEAVY_TRUCK\x10\x07\x12\x14\n\x10TYPE_SEMITRACTOR\x10\x10\x12\x14\n\x10TYPE_SEMITRAILER\x10\x08\x12\x10\n\x0cTYPE_TRAILER\x10\t\x12\x12\n\x0eTYPE_MOTORBIKE\x10\n\x12\x10\n\x0cTYPE_BICYCLE\x10\x0b\x12\x0c\n\x08TYPE_BUS\x10\x0c\x12\r\n\tTYPE_TRAM\x10\r\x12\x0e\n\nTYPE_TRAIN\x10\x0e\x12\x13\n\x0fTYPE_WHEELCHAIR\x10\x0f\x12\x18\n\x14TYPE_STANDUP_SCOOTER\x10\x11\x1a\x02\x10\x01"\xeb\x01\n\x04Role\x12\x0e\n\x0cROLE_UNKNOWN\x12\x0e\n\nROLE_OTHER\x10\x01\x12\x0e\n\nROLE_CIVIL\x10\x02\x12\x12\n\x0eROLE_AMBULANCE\x10\x03\x12\r\n\tROLE_FIRE\x10\x04\x12\x0f\n\x0bROLE_POLICE\x10\x05\x12\x19\n\x15ROLE_PUBLIC_TRANSPORT\x10\x06\x12\x18\n\x14ROLE_ROAD_ASSISTANCE\x10\x07\x12\x1b\n\x17ROLE_GARBAGE_COLLECTION\x10\x08\x12\x1a\n\x16ROLE_ROAD_CONSTRUCTION\x10\t\x12\x11\n\rROLE_MILITARY\x10\n\x1a\x94\x07\n\x14PedestrianAttributes\x128\n\x10bbcenter_to_root\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x0ebbcenterToRoot\x12Q\n\rskeleton_bone\x18\x02 \x03(\x0b2,.osi3.MovingObject.PedestrianAttributes.BoneR\x0cskeletonBone\x1a\xee\x05\n\x04Bone\x12E\n\x04type\x18\x01 \x01(\x0e21.osi3.MovingObject.PedestrianAttributes.Bone.TypeR\x04type\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12\x16\n\x06length\x18\x04 \x01(\x02R\x06length\x12\x18\n\x07missing\x18\x05 \x01(\x08R\x07missing\x12*\n\x08velocity\x18\x06 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x12>\n\x10orientation_rate\x18\x07 \x01(\x0b2\x13.osi3.Orientation3dR\x0forientationRate"\x9d\x03\n\x04Type\x12\x0b\n\tTYPE_ROOT\x12\x0c\n\x08TYPE_HIP\x10\x01\x12\x14\n\x10TYPE_LOWER_SPINE\x10\x02\x12\x14\n\x10TYPE_UPPER_SPINE\x10\x03\x12\r\n\tTYPE_NECK\x10\x04\x12\r\n\tTYPE_HEAD\x10\x05\x12\x13\n\x0fTYPE_SHOULDER_L\x10\x06\x12\x13\n\x0fTYPE_SHOULDER_R\x10\x07\x12\x14\n\x10TYPE_UPPER_ARM_L\x10\x08\x12\x14\n\x10TYPE_UPPER_ARM_R\x10\t\x12\x14\n\x10TYPE_LOWER_ARM_L\x10\n\x12\x14\n\x10TYPE_LOWER_ARM_R\x10\x0b\x12\x14\n\x10TYPE_FULL_HAND_L\x10\x0c\x12\x14\n\x10TYPE_FULL_HAND_R\x10\r\x12\x14\n\x10TYPE_UPPER_LEG_L\x10\x0e\x12\x14\n\x10TYPE_UPPER_LEG_R\x10\x0f\x12\x14\n\x10TYPE_LOWER_LEG_L\x10\x10\x12\x14\n\x10TYPE_LOWER_LEG_R\x10\x11\x12\x14\n\x10TYPE_FULL_FOOT_L\x10\x12\x12\x14\n\x10TYPE_FULL_FOOT_R\x10\x13"^\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_VEHICLE\x10\x02\x12\x13\n\x0fTYPE_PEDESTRIAN\x10\x03\x12\x0f\n\x0bTYPE_ANIMAL\x10\x04B\x02H\x01'
 )
 OSI_TRAFFICSIGN_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x15osi_trafficsign.proto\x12\x04osi3\x1a\x10osi_common.proto"\x8a\x04\n\x10TrafficSignValue\x12\x14\n\x05value\x18\x01 \x01(\x01R\x05value\x12:\n\nvalue_unit\x18\x02 \x01(\x0e2\x1b.osi3.TrafficSignValue.UnitR\tvalueUnit\x12\x12\n\x04text\x18\x03 \x01(\tR\x04text"\x8f\x03\n\x04Unit\x12\x0e\n\x0cUNIT_UNKNOWN\x12\x0e\n\nUNIT_OTHER\x10\x01\x12\x10\n\x0cUNIT_NO_UNIT\x10\x02\x12\x1b\n\x17UNIT_KILOMETER_PER_HOUR\x10\x03\x12\x16\n\x12UNIT_MILE_PER_HOUR\x10\x04\x12\x0e\n\nUNIT_METER\x10\x05\x12\x12\n\x0eUNIT_KILOMETER\x10\x06\x12\r\n\tUNIT_FEET\x10\x07\x12\r\n\tUNIT_MILE\x10\x08\x12\x13\n\x0fUNIT_METRIC_TON\x10\t\x12\x11\n\rUNIT_LONG_TON\x10\n\x12\x12\n\x0eUNIT_SHORT_TON\x10\x0b\x12\r\n\tUNIT_HOUR\x10\x0f\x12\x10\n\x0cUNIT_MINUTES\x10\x0c\x12\x15\n\x11UNIT_DAY_OF_MONTH\x10\x10\x12\x0c\n\x08UNIT_DAY\x10\r\x12\x13\n\x0fUNIT_PERCENTAGE\x10\x0e\x12\x15\n\x11UNIT_DURATION_DAY\x10\x11\x12\x16\n\x12UNIT_DURATION_HOUR\x10\x12\x12\x18\n\x14UNIT_DURATION_MINUTE\x10\x13"\xe3k\n\x0bTrafficSign\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x127\n\tmain_sign\x18\x02 \x01(\x0b2\x1a.osi3.TrafficSign.MainSignR\x08mainSign\x12R\n\x12supplementary_sign\x18\x03 \x03(\x0b2#.osi3.TrafficSign.SupplementarySignR\x11supplementarySign\x12B\n\x10source_reference\x18\x04 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\xdbB\n\x08MainSign\x12(\n\x04base\x18\x01 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12Q\n\x0eclassification\x18\x02 \x01(\x0b2).osi3.TrafficSign.MainSign.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x03 \x01(\tR\x0emodelReference\x1a\xa8A\n\x0eClassification\x12?\n\x0bvariability\x18\x01 \x01(\x0e2\x1d.osi3.TrafficSign.VariabilityR\x0bvariability\x12B\n\x04type\x18\x02 \x01(\x0e2..osi3.TrafficSign.MainSign.Classification.TypeR\x04type\x12,\n\x05value\x18\x03 \x01(\x0b2\x16.osi3.TrafficSignValueR\x05value\x12a\n\x0fdirection_scope\x18\x04 \x01(\x0e28.osi3.TrafficSign.MainSign.Classification.DirectionScopeR\x0edirectionScope\x12:\n\x10assigned_lane_id\x18\x05 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12/\n\x13vertically_mirrored\x18\x06 \x01(\x08R\x12verticallyMirrored\x12)\n\x11is_out_of_service\x18\x07 \x01(\x08R\x0eisOutOfService\x12\x18\n\x07country\x18\x08 \x01(\tR\x07country\x12)\n\x10country_revision\x18\t \x01(\tR\x0fcountryRevision\x12\x12\n\x04code\x18\n \x01(\tR\x04code\x12\x19\n\x08sub_code\x18\x0b \x01(\tR\x07subCode\x12S\n\x17logical_lane_assignment\x18\x0c \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment"\xde:\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x14\n\x10TYPE_DANGER_SPOT\x10\x02\x12\x17\n\x13TYPE_ZEBRA_CROSSING\x10W\x12\x0f\n\x0bTYPE_FLIGHT\x10n\x12\x10\n\x0bTYPE_CATTLE\x10\xc8\x01\x12\x16\n\x11TYPE_HORSE_RIDERS\x10\xc5\x01\x12\x14\n\x0fTYPE_AMPHIBIANS\x10\xbc\x01\x12\x16\n\x12TYPE_FALLING_ROCKS\x10`\x12\x14\n\x10TYPE_SNOW_OR_ICE\x10^\x12\x15\n\x11TYPE_LOOSE_GRAVEL\x10a\x12\x12\n\x0eTYPE_WATERSIDE\x10f\x12\x13\n\x0eTYPE_CLEARANCE\x10\xd2\x01\x12\x17\n\x13TYPE_MOVABLE_BRIDGE\x10e\x12,\n(TYPE_RIGHT_BEFORE_LEFT_NEXT_INTERSECTION\x10\x03\x12\x12\n\x0eTYPE_TURN_LEFT\x10\x04\x12\x13\n\x0fTYPE_TURN_RIGHT\x10\x05\x12\x19\n\x15TYPE_DOUBLE_TURN_LEFT\x10\x06\x12\x1a\n\x16TYPE_DOUBLE_TURN_RIGHT\x10\x07\x12\x17\n\x13TYPE_HILL_DOWNWARDS\x10\x08\x12\x15\n\x11TYPE_HILL_UPWARDS\x10\t\x12\x14\n\x10TYPE_UNEVEN_ROAD\x10]\x12#\n\x1fTYPE_ROAD_SLIPPERY_WET_OR_DIRTY\x10_\x12\x13\n\x0fTYPE_SIDE_WINDS\x10b\x12\x17\n\x13TYPE_ROAD_NARROWING\x10\n\x12\x1d\n\x19TYPE_ROAD_NARROWING_RIGHT\x10\x0c\x12\x1c\n\x18TYPE_ROAD_NARROWING_LEFT\x10\x0b\x12\x13\n\x0fTYPE_ROAD_WORKS\x10\r\x12\x17\n\x13TYPE_TRAFFIC_QUEUES\x10d\x12\x18\n\x14TYPE_TWO_WAY_TRAFFIC\x10\x0e\x12 \n\x1cTYPE_ATTENTION_TRAFFIC_LIGHT\x10\x0f\x12\x14\n\x10TYPE_PEDESTRIANS\x10g\x12\x1a\n\x16TYPE_CHILDREN_CROSSING\x10j\x12\x14\n\x10TYPE_CYCLE_ROUTE\x10k\x12\x16\n\x12TYPE_DEER_CROSSING\x10m\x12 \n\x1bTYPE_UNGATED_LEVEL_CROSSING\x10\x90\x01\x12\x1e\n\x1aTYPE_LEVEL_CROSSING_MARKER\x10p\x12"\n\x1dTYPE_RAILWAY_TRAFFIC_PRIORITY\x10\x87\x01\x12\x11\n\rTYPE_GIVE_WAY\x10\x10\x12\r\n\tTYPE_STOP\x10\x11\x12\'\n#TYPE_PRIORITY_TO_OPPOSITE_DIRECTION\x10\x12\x123\n/TYPE_PRIORITY_TO_OPPOSITE_DIRECTION_UPSIDE_DOWN\x10\x13\x12\x1d\n\x19TYPE_PRESCRIBED_LEFT_TURN\x10\x14\x12\x1e\n\x1aTYPE_PRESCRIBED_RIGHT_TURN\x10\x15\x12\x1c\n\x18TYPE_PRESCRIBED_STRAIGHT\x10\x16\x12\x1d\n\x19TYPE_PRESCRIBED_RIGHT_WAY\x10\x18\x12\x1c\n\x18TYPE_PRESCRIBED_LEFT_WAY\x10\x17\x12+\n\'TYPE_PRESCRIBED_RIGHT_TURN_AND_STRAIGHT\x10\x1a\x12*\n&TYPE_PRESCRIBED_LEFT_TURN_AND_STRAIGHT\x10\x19\x12,\n(TYPE_PRESCRIBED_LEFT_TURN_AND_RIGHT_TURN\x10\x1b\x125\n1TYPE_PRESCRIBED_LEFT_TURN_RIGHT_TURN_AND_STRAIGHT\x10\x1c\x12\x13\n\x0fTYPE_ROUNDABOUT\x10\x1d\x12\x14\n\x10TYPE_ONEWAY_LEFT\x10\x1e\x12\x15\n\x11TYPE_ONEWAY_RIGHT\x10\x1f\x12\x12\n\x0eTYPE_PASS_LEFT\x10 \x12\x13\n\x0fTYPE_PASS_RIGHT\x10!\x12$\n\x1fTYPE_SIDE_LANE_OPEN_FOR_TRAFFIC\x10\x80\x01\x12&\n!TYPE_SIDE_LANE_CLOSED_FOR_TRAFFIC\x10\x81\x01\x12\'\n"TYPE_SIDE_LANE_CLOSING_FOR_TRAFFIC\x10\x82\x01\x12\x12\n\rTYPE_BUS_STOP\x10\x89\x01\x12\x14\n\x0fTYPE_TAXI_STAND\x10\x8a\x01\x12\x17\n\x12TYPE_BICYCLES_ONLY\x10\x91\x01\x12\x1b\n\x16TYPE_HORSE_RIDERS_ONLY\x10\x92\x01\x12\x1a\n\x15TYPE_PEDESTRIANS_ONLY\x10\x93\x01\x12*\n%TYPE_BICYCLES_PEDESTRIANS_SHARED_ONLY\x10\x94\x01\x122\n-TYPE_BICYCLES_PEDESTRIANS_SEPARATED_LEFT_ONLY\x10\x95\x01\x123\n.TYPE_BICYCLES_PEDESTRIANS_SEPARATED_RIGHT_ONLY\x10\x96\x01\x12\x1f\n\x1aTYPE_PEDESTRIAN_ZONE_BEGIN\x10\x97\x01\x12\x1d\n\x18TYPE_PEDESTRIAN_ZONE_END\x10\x98\x01\x12\x1c\n\x17TYPE_BICYCLE_ROAD_BEGIN\x10\x99\x01\x12\x1a\n\x15TYPE_BICYCLE_ROAD_END\x10\x9a\x01\x12\x11\n\rTYPE_BUS_LANE\x10"\x12\x17\n\x13TYPE_BUS_LANE_BEGIN\x10#\x12\x15\n\x11TYPE_BUS_LANE_END\x10$\x12\x17\n\x13TYPE_ALL_PROHIBITED\x10%\x12(\n$TYPE_MOTORIZED_MULTITRACK_PROHIBITED\x10&\x12\x1a\n\x16TYPE_TRUCKS_PROHIBITED\x10\'\x12\x1c\n\x18TYPE_BICYCLES_PROHIBITED\x10(\x12\x1f\n\x1bTYPE_MOTORCYCLES_PROHIBITED\x10)\x12\x1b\n\x16TYPE_MOPEDS_PROHIBITED\x10\x9b\x01\x12!\n\x1cTYPE_HORSE_RIDERS_PROHIBITED\x10\x9c\x01\x12$\n\x1fTYPE_HORSE_CARRIAGES_PROHIBITED\x10\x9d\x01\x12\x1b\n\x16TYPE_CATTLE_PROHIBITED\x10\x9e\x01\x12\x1a\n\x15TYPE_BUSES_PROHIBITED\x10\x9f\x01\x12\x19\n\x14TYPE_CARS_PROHIBITED\x10\xa0\x01\x12"\n\x1dTYPE_CARS_TRAILERS_PROHIBITED\x10\xa1\x01\x12$\n\x1fTYPE_TRUCKS_TRAILERS_PROHIBITED\x10\xa2\x01\x12\x1d\n\x18TYPE_TRACTORS_PROHIBITED\x10\xa3\x01\x12\x1f\n\x1bTYPE_PEDESTRIANS_PROHIBITED\x10*\x12"\n\x1eTYPE_MOTOR_VEHICLES_PROHIBITED\x10+\x12-\n(TYPE_HAZARDOUS_GOODS_VEHICLES_PROHIBITED\x10\xa4\x01\x12)\n$TYPE_OVER_WEIGHT_VEHICLES_PROHIBITED\x10\xa5\x01\x12.\n)TYPE_VEHICLES_AXLE_OVER_WEIGHT_PROHIBITED\x10\xa6\x01\x12*\n%TYPE_VEHICLES_EXCESS_WIDTH_PROHIBITED\x10\xa7\x01\x12+\n&TYPE_VEHICLES_EXCESS_HEIGHT_PROHIBITED\x10\xa8\x01\x12+\n&TYPE_VEHICLES_EXCESS_LENGTH_PROHIBITED\x10\xa9\x01\x12\x15\n\x11TYPE_DO_NOT_ENTER\x10,\x12\x1e\n\x19TYPE_SNOW_CHAINS_REQUIRED\x10\xaa\x01\x12-\n(TYPE_WATER_POLLUTANT_VEHICLES_PROHIBITED\x10\xab\x01\x12!\n\x1dTYPE_ENVIRONMENTAL_ZONE_BEGIN\x10-\x12\x1f\n\x1bTYPE_ENVIRONMENTAL_ZONE_END\x10.\x12\x17\n\x13TYPE_NO_U_TURN_LEFT\x10/\x12\x18\n\x14TYPE_NO_U_TURN_RIGHT\x100\x12\x1f\n\x1bTYPE_PRESCRIBED_U_TURN_LEFT\x101\x12 \n\x1cTYPE_PRESCRIBED_U_TURN_RIGHT\x102\x12$\n TYPE_MINIMUM_DISTANCE_FOR_TRUCKS\x103\x12\x1a\n\x16TYPE_SPEED_LIMIT_BEGIN\x104\x12\x1f\n\x1bTYPE_SPEED_LIMIT_ZONE_BEGIN\x105\x12\x1d\n\x19TYPE_SPEED_LIMIT_ZONE_END\x106\x12\x1c\n\x18TYPE_MINIMUM_SPEED_BEGIN\x107\x12\x1d\n\x19TYPE_OVERTAKING_BAN_BEGIN\x108\x12(\n$TYPE_OVERTAKING_BAN_FOR_TRUCKS_BEGIN\x109\x12\x18\n\x14TYPE_SPEED_LIMIT_END\x10:\x12\x1a\n\x16TYPE_MINIMUM_SPEED_END\x10;\x12\x1b\n\x17TYPE_OVERTAKING_BAN_END\x10<\x12&\n"TYPE_OVERTAKING_BAN_FOR_TRUCKS_END\x10=\x12\x1d\n\x19TYPE_ALL_RESTRICTIONS_END\x10>\x12\x14\n\x10TYPE_NO_STOPPING\x10?\x12\x13\n\x0fTYPE_NO_PARKING\x10@\x12\x1e\n\x1aTYPE_NO_PARKING_ZONE_BEGIN\x10A\x12\x1c\n\x18TYPE_NO_PARKING_ZONE_END\x10B\x12\'\n#TYPE_RIGHT_OF_WAY_NEXT_INTERSECTION\x10C\x12\x1b\n\x17TYPE_RIGHT_OF_WAY_BEGIN\x10D\x12\x19\n\x15TYPE_RIGHT_OF_WAY_END\x10E\x12)\n%TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION\x10F\x125\n1TYPE_PRIORITY_OVER_OPPOSITE_DIRECTION_UPSIDE_DOWN\x10G\x12\x13\n\x0fTYPE_TOWN_BEGIN\x10H\x12\x11\n\rTYPE_TOWN_END\x10I\x12\x14\n\x10TYPE_CAR_PARKING\x10J\x12\x1f\n\x1bTYPE_CAR_PARKING_ZONE_BEGIN\x10K\x12\x1d\n\x19TYPE_CAR_PARKING_ZONE_END\x10L\x12$\n\x1fTYPE_SIDEWALK_HALF_PARKING_LEFT\x10\xac\x01\x12%\n TYPE_SIDEWALK_HALF_PARKING_RIGHT\x10\xad\x01\x12\x1f\n\x1aTYPE_SIDEWALK_PARKING_LEFT\x10\xae\x01\x12 \n\x1bTYPE_SIDEWALK_PARKING_RIGHT\x10\xaf\x01\x122\n-TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_LEFT\x10\xb0\x01\x123\n.TYPE_SIDEWALK_PERPENDICULAR_HALF_PARKING_RIGHT\x10\xb1\x01\x12-\n(TYPE_SIDEWALK_PERPENDICULAR_PARKING_LEFT\x10\xb2\x01\x12.\n)TYPE_SIDEWALK_PERPENDICULAR_PARKING_RIGHT\x10\xb3\x01\x12\x1c\n\x18TYPE_LIVING_STREET_BEGIN\x10M\x12\x1a\n\x16TYPE_LIVING_STREET_END\x10N\x12\x0f\n\x0bTYPE_TUNNEL\x10O\x12 \n\x1cTYPE_EMERGENCY_STOPPING_LEFT\x10P\x12!\n\x1dTYPE_EMERGENCY_STOPPING_RIGHT\x10Q\x12\x16\n\x12TYPE_HIGHWAY_BEGIN\x10R\x12\x14\n\x10TYPE_HIGHWAY_END\x10S\x12\x19\n\x15TYPE_EXPRESSWAY_BEGIN\x10T\x12\x17\n\x13TYPE_EXPRESSWAY_END\x10U\x12\x1c\n\x17TYPE_NAMED_HIGHWAY_EXIT\x10\xb7\x01\x12\x1f\n\x1aTYPE_NAMED_EXPRESSWAY_EXIT\x10\xb8\x01\x12\x19\n\x14TYPE_NAMED_ROAD_EXIT\x10\xb9\x01\x12\x15\n\x11TYPE_HIGHWAY_EXIT\x10V\x12\x19\n\x14TYPE_EXPRESSWAY_EXIT\x10\xba\x01\x12\x17\n\x12TYPE_ONEWAY_STREET\x10\xbb\x01\x12\x19\n\x14TYPE_CROSSING_GUARDS\x10\xbd\x01\x12\x11\n\x0cTYPE_DEADEND\x10\xbe\x01\x12-\n(TYPE_DEADEND_EXCLUDING_DESIGNATED_ACTORS\x10\xbf\x01\x12\x1b\n\x16TYPE_FIRST_AID_STATION\x10\xc2\x01\x12\x18\n\x13TYPE_POLICE_STATION\x10\xc3\x01\x12\x13\n\x0eTYPE_TELEPHONE\x10\xc4\x01\x12\x19\n\x14TYPE_FILLING_STATION\x10\xc6\x01\x12\x0f\n\nTYPE_HOTEL\x10\xc9\x01\x12\r\n\x08TYPE_INN\x10\xca\x01\x12\x0f\n\nTYPE_KIOSK\x10\xcb\x01\x12\x10\n\x0bTYPE_TOILET\x10\xcc\x01\x12\x10\n\x0bTYPE_CHAPEL\x10\xcd\x01\x12\x16\n\x11TYPE_TOURIST_INFO\x10\xce\x01\x12\x18\n\x13TYPE_REPAIR_SERVICE\x10\xcf\x01\x12\x1e\n\x19TYPE_PEDESTRIAN_UNDERPASS\x10\xd0\x01\x12\x1b\n\x16TYPE_PEDESTRIAN_BRIDGE\x10\xd1\x01\x12\x16\n\x11TYPE_CAMPER_PLACE\x10\xd5\x01\x12$\n\x1fTYPE_ADVISORY_SPEED_LIMIT_BEGIN\x10\xd6\x01\x12"\n\x1dTYPE_ADVISORY_SPEED_LIMIT_END\x10\xd7\x01\x12\x14\n\x0fTYPE_PLACE_NAME\x10\xd8\x01\x12\x1c\n\x17TYPE_TOURIST_ATTRACTION\x10\xd9\x01\x12\x17\n\x12TYPE_TOURIST_ROUTE\x10\xda\x01\x12\x16\n\x11TYPE_TOURIST_AREA\x10\xdb\x01\x12.\n)TYPE_SHOULDER_NOT_PASSABLE_MOTOR_VEHICLES\x10\xdc\x01\x12)\n$TYPE_SHOULDER_UNSAFE_TRUCKS_TRACTORS\x10\xdd\x01\x12\x14\n\x0fTYPE_TOLL_BEGIN\x10\xde\x01\x12\x12\n\rTYPE_TOLL_END\x10\xdf\x01\x12\x13\n\x0eTYPE_TOLL_ROAD\x10\xe0\x01\x12\x11\n\x0cTYPE_CUSTOMS\x10\xe1\x01\x12#\n\x1eTYPE_INTERNATIONAL_BORDER_INFO\x10\xe2\x01\x12\x1e\n\x19TYPE_STREETLIGHT_RED_BAND\x10\xe3\x01\x12&\n!TYPE_FEDERAL_HIGHWAY_ROUTE_NUMBER\x10\xe4\x01\x12\x1e\n\x19TYPE_HIGHWAY_ROUTE_NUMBER\x10\xe5\x01\x12$\n\x1fTYPE_HIGHWAY_INTERCHANGE_NUMBER\x10\xe6\x01\x12\x1f\n\x1aTYPE_EUROPEAN_ROUTE_NUMBER\x10\xe7\x01\x12(\n#TYPE_FEDERAL_HIGHWAY_DIRECTION_LEFT\x10\xe8\x01\x12)\n$TYPE_FEDERAL_HIGHWAY_DIRECTION_RIGHT\x10\xe9\x01\x12%\n TYPE_PRIMARY_ROAD_DIRECTION_LEFT\x10\xea\x01\x12&\n!TYPE_PRIMARY_ROAD_DIRECTION_RIGHT\x10\xeb\x01\x12\'\n"TYPE_SECONDARY_ROAD_DIRECTION_LEFT\x10\xec\x01\x12(\n#TYPE_SECONDARY_ROAD_DIRECTION_RIGHT\x10\xed\x01\x12*\n%TYPE_DIRECTION_DESIGNATED_ACTORS_LEFT\x10\xee\x01\x12+\n&TYPE_DIRECTION_DESIGNATED_ACTORS_RIGHT\x10\xef\x01\x12#\n\x1eTYPE_ROUTING_DESIGNATED_ACTORS\x10\xf0\x01\x12#\n\x1eTYPE_DIRECTION_TO_HIGHWAY_LEFT\x10\x8f\x01\x12#\n\x1fTYPE_DIRECTION_TO_HIGHWAY_RIGHT\x10l\x12,\n(TYPE_DIRECTION_TO_LOCAL_DESTINATION_LEFT\x10\x7f\x12.\n)TYPE_DIRECTION_TO_LOCAL_DESTINATION_RIGHT\x10\x88\x01\x12 \n\x1cTYPE_CONSOLIDATED_DIRECTIONS\x10v\x12\x14\n\x10TYPE_STREET_NAME\x10w\x12"\n\x1eTYPE_DIRECTION_PREANNOUNCEMENT\x10x\x12.\n*TYPE_DIRECTION_PREANNOUNCEMENT_LANE_CONFIG\x10y\x122\n.TYPE_DIRECTION_PREANNOUNCEMENT_HIGHWAY_ENTRIES\x10z\x12\x1d\n\x19TYPE_HIGHWAY_ANNOUNCEMENT\x10{\x12 \n\x1cTYPE_OTHER_ROAD_ANNOUNCEMENT\x10|\x12(\n$TYPE_HIGHWAY_ANNOUNCEMENT_TRUCK_STOP\x10}\x12+\n\'TYPE_HIGHWAY_PREANNOUNCEMENT_DIRECTIONS\x10~\x12\x12\n\x0eTYPE_POLE_EXIT\x10X\x12 \n\x1bTYPE_HIGHWAY_DISTANCE_BOARD\x10\xb4\x01\x12\x15\n\x10TYPE_DETOUR_LEFT\x10\xb5\x01\x12\x16\n\x11TYPE_DETOUR_RIGHT\x10\xb6\x01\x12\x19\n\x14TYPE_NUMBERED_DETOUR\x10\x83\x01\x12\x16\n\x11TYPE_DETOUR_BEGIN\x10\x84\x01\x12\x14\n\x0fTYPE_DETOUR_END\x10\x85\x01\x12\x1e\n\x19TYPE_DETOUR_ROUTING_BOARD\x10\x86\x01\x12\x18\n\x14TYPE_OPTIONAL_DETOUR\x10o\x12!\n\x1cTYPE_OPTIONAL_DETOUR_ROUTING\x10\xc7\x01\x12\x1e\n\x19TYPE_ROUTE_RECOMMENDATION\x10\xd3\x01\x12"\n\x1dTYPE_ROUTE_RECOMMENDATION_END\x10\xd4\x01\x12\'\n"TYPE_ANNOUNCE_LANE_TRANSITION_LEFT\x10\xc0\x01\x12(\n#TYPE_ANNOUNCE_LANE_TRANSITION_RIGHT\x10\xc1\x01\x12 \n\x1cTYPE_ANNOUNCE_RIGHT_LANE_END\x10Z\x12\x1f\n\x1bTYPE_ANNOUNCE_LEFT_LANE_END\x10Y\x12"\n\x1eTYPE_ANNOUNCE_RIGHT_LANE_BEGIN\x10s\x12!\n\x1dTYPE_ANNOUNCE_LEFT_LANE_BEGIN\x10t\x12$\n TYPE_ANNOUNCE_LANE_CONSOLIDATION\x10u\x12\x1b\n\x16TYPE_DETOUR_CITY_BLOCK\x10\x8e\x01\x12\x0e\n\tTYPE_GATE\x10\x8d\x01\x12\x15\n\x11TYPE_POLE_WARNING\x10[\x12\x16\n\x11TYPE_TRAFFIC_CONE\x10\x8c\x01\x12\x1d\n\x18TYPE_MOBILE_LANE_CLOSURE\x10\x8b\x01\x12\x17\n\x13TYPE_REFLECTOR_POST\x10r\x12"\n\x1eTYPE_DIRECTIONAL_BOARD_WARNING\x10q\x12\x16\n\x12TYPE_GUIDING_PLATE\x10h\x12\x1d\n\x19TYPE_GUIDING_PLATE_WEDGES\x10i\x12\x17\n\x13TYPE_PARKING_HAZARD\x10c\x12"\n\x1eTYPE_TRAFFIC_LIGHT_GREEN_ARROW\x10\\"\xbd\x01\n\x0eDirectionScope\x12\x19\n\x17DIRECTION_SCOPE_UNKNOWN\x12\x19\n\x15DIRECTION_SCOPE_OTHER\x10\x01\x12 \n\x1cDIRECTION_SCOPE_NO_DIRECTION\x10\x02\x12\x18\n\x14DIRECTION_SCOPE_LEFT\x10\x03\x12\x19\n\x15DIRECTION_SCOPE_RIGHT\x10\x04\x12\x1e\n\x1aDIRECTION_SCOPE_LEFT_RIGHT\x10\x05\x1a\xbc%\n\x11SupplementarySign\x12(\n\x04base\x18\x01 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12Z\n\x0eclassification\x18\x02 \x01(\x0b22.osi3.TrafficSign.SupplementarySign.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x03 \x01(\tR\x0emodelReference\x1a\xf7#\n\x0eClassification\x12?\n\x0bvariability\x18\x01 \x01(\x0e2\x1d.osi3.TrafficSign.VariabilityR\x0bvariability\x12K\n\x04type\x18\x02 \x01(\x0e27.osi3.TrafficSign.SupplementarySign.Classification.TypeR\x04type\x12,\n\x05value\x18\x03 \x03(\x0b2\x16.osi3.TrafficSignValueR\x05value\x12:\n\x10assigned_lane_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12N\n\x05actor\x18\x05 \x03(\x0e28.osi3.TrafficSign.SupplementarySign.Classification.ActorR\x05actor\x12N\n\x05arrow\x18\x06 \x03(\x0b28.osi3.TrafficSign.SupplementarySign.Classification.ArrowR\x05arrow\x12)\n\x11is_out_of_service\x18\x07 \x01(\x08R\x0eisOutOfService\x12\x18\n\x07country\x18\x08 \x01(\tR\x07country\x12)\n\x10country_revision\x18\t \x01(\tR\x0fcountryRevision\x12\x12\n\x04code\x18\n \x01(\tR\x04code\x12\x19\n\x08sub_code\x18\x0b \x01(\tR\x07subCode\x12S\n\x17logical_lane_assignment\x18\x0c \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment\x1a\xa3\n\n\x05Arrow\x12)\n\x07lane_id\x18\x01 \x03(\x0b2\x10.osi3.IdentifierR\x06laneId\x12`\n\tdirection\x18\x02 \x03(\x0e2B.osi3.TrafficSign.SupplementarySign.Classification.Arrow.DirectionR\tdirection"\x8c\t\n\tDirection\x12\x13\n\x11DIRECTION_UNKNOWN\x12\x13\n\x0fDIRECTION_OTHER\x10\x01\x12\x1a\n\x16DIRECTION_NO_DIRECTION\x10\x02\x12\x1a\n\x16DIRECTION_DIRECT_0_DEG\x10\x03\x12!\n\x1dDIRECTION_DIRECT_45_DEG_RIGHT\x10\x04\x12 \n\x1cDIRECTION_DIRECT_45_DEG_LEFT\x10\x05\x12!\n\x1dDIRECTION_DIRECT_90_DEG_RIGHT\x10\x06\x12 \n\x1cDIRECTION_DIRECT_90_DEG_LEFT\x10\x07\x12"\n\x1eDIRECTION_DIRECT_135_DEG_RIGHT\x10\x08\x12!\n\x1dDIRECTION_DIRECT_135_DEG_LEFT\x10\t\x12\x1c\n\x18DIRECTION_DIRECT_180_DEG\x10\n\x12\x1f\n\x1bDIRECTION_TURN_45_DEG_RIGHT\x10\x0b\x12\x1e\n\x1aDIRECTION_TURN_45_DEG_LEFT\x10\x0c\x12\x1f\n\x1bDIRECTION_TURN_90_DEG_RIGHT\x10\r\x12\x1e\n\x1aDIRECTION_TURN_90_DEG_LEFT\x10\x0e\x12 \n\x1cDIRECTION_TURN_135_DEG_RIGHT\x10\x0f\x12\x1f\n\x1bDIRECTION_TURN_135_DEG_LEFT\x10\x10\x12 \n\x1cDIRECTION_TURN_180_DEG_RIGHT\x10\x11\x12\x1f\n\x1bDIRECTION_TURN_180_DEG_LEFT\x10\x12\x12\x1a\n\x16DIRECTION_CIRCLE_0_DEG\x10\x13\x12!\n\x1dDIRECTION_CIRCLE_45_DEG_RIGHT\x10\x14\x12 \n\x1cDIRECTION_CIRCLE_45_DEG_LEFT\x10\x15\x12!\n\x1dDIRECTION_CIRCLE_90_DEG_RIGHT\x10\x16\x12 \n\x1cDIRECTION_CIRCLE_90_DEG_LEFT\x10\x17\x12"\n\x1eDIRECTION_CIRCLE_135_DEG_RIGHT\x10\x18\x12!\n\x1dDIRECTION_CIRCLE_135_DEG_LEFT\x10\x19\x12\x1c\n\x18DIRECTION_CIRCLE_180_DEG\x10\x1a\x12%\n!DIRECTION_KEEP_LEFT_TO_TURN_0_DEG\x10\x1b\x12&\n"DIRECTION_KEEP_RIGHT_TO_TURN_0_DEG\x10\x1c\x12,\n(DIRECTION_KEEP_LEFT_TO_TURN_90_DEG_RIGHT\x10\x1d\x12,\n(DIRECTION_KEEP_RIGHT_TO_TURN_90_DEG_LEFT\x10\x1e\x127\n3DIRECTION_KEEP_LEFT_DRIVE_BACK_TO_TURN_90_DEG_RIGHT\x10\x1f\x127\n3DIRECTION_KEEP_RIGHT_DRIVE_BACK_TO_TURN_90_DEG_LEFT\x10 "\xb3\n\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_NO_SIGN\x10\x02\x12\r\n\tTYPE_TEXT\x10)\x12\x0e\n\nTYPE_SPACE\x10\'\x12\r\n\tTYPE_TIME\x10\x1a\x12\x0e\n\nTYPE_ARROW\x10\x1e\x12\x17\n\x13TYPE_CONSTRAINED_TO\x10.\x12\x0f\n\x0bTYPE_EXCEPT\x10-\x12\x1b\n\x17TYPE_VALID_FOR_DISTANCE\x10\x03\x12+\n\'TYPE_PRIORITY_ROAD_BOTTOM_LEFT_FOUR_WAY\x10\x1b\x12(\n$TYPE_PRIORITY_ROAD_TOP_LEFT_FOUR_WAY\x10\x1c\x125\n1TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_STRAIGHT\x10 \x125\n1TYPE_PRIORITY_ROAD_BOTTOM_LEFT_THREE_WAY_SIDEWAYS\x10!\x122\n.TYPE_PRIORITY_ROAD_TOP_LEFT_THREE_WAY_STRAIGHT\x10"\x12,\n(TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_FOUR_WAY\x10\x1d\x12)\n%TYPE_PRIORITY_ROAD_TOP_RIGHT_FOUR_WAY\x10\x1f\x126\n2TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_STRAIGHT\x10#\x125\n1TYPE_PRIORITY_ROAD_BOTTOM_RIGHT_THREE_WAY_SIDEWAY\x10$\x123\n/TYPE_PRIORITY_ROAD_TOP_RIGHT_THREE_WAY_STRAIGHT\x10%\x12\x1a\n\x16TYPE_VALID_IN_DISTANCE\x10\x04\x12\x10\n\x0cTYPE_STOP_IN\x10\x19\x12\x13\n\x0fTYPE_LEFT_ARROW\x10\x0b\x12\x18\n\x14TYPE_LEFT_BEND_ARROW\x10\r\x12\x14\n\x10TYPE_RIGHT_ARROW\x10\x0c\x12\x19\n\x15TYPE_RIGHT_BEND_ARROW\x10\x0e\x12\x11\n\rTYPE_ACCIDENT\x10(\x12\r\n\tTYPE_SNOW\x10\t\x12\x0c\n\x08TYPE_FOG\x10\x08\x12$\n TYPE_ROLLING_HIGHWAY_INFORMATION\x100\x12\x11\n\rTYPE_SERVICES\x10/\x12\x13\n\x0fTYPE_TIME_RANGE\x10\x05\x12&\n"TYPE_PARKING_DISC_TIME_RESTRICTION\x10+\x12\x0f\n\x0bTYPE_WEIGHT\x10\x06\x12\x0c\n\x08TYPE_WET\x10,\x12\x1b\n\x17TYPE_PARKING_CONSTRAINT\x10*\x12 \n\x1cTYPE_NO_WAITING_SIDE_STRIPES\x10&\x12\r\n\tTYPE_RAIN\x10\x07\x12\x12\n\x0eTYPE_SNOW_RAIN\x10\n\x12\x0e\n\nTYPE_NIGHT\x10\x13\x12\x13\n\x0fTYPE_STOP_4_WAY\x10\x15\x12\x0e\n\nTYPE_TRUCK\x10\x0f\x12\x1f\n\x1bTYPE_TRACTORS_MAY_BE_PASSED\x10\x10\x12\x12\n\x0eTYPE_HAZARDOUS\x10\x11\x12\x10\n\x0cTYPE_TRAILER\x10\x12\x12\r\n\tTYPE_ZONE\x10\x14\x12\x13\n\x0fTYPE_MOTORCYCLE\x10\x16\x12\x1b\n\x17TYPE_MOTORCYCLE_ALLOWED\x10\x17\x12\x0c\n\x08TYPE_CAR\x10\x18"\xfc\t\n\x05Actor\x12\x0f\n\rACTOR_UNKNOWN\x12\x0f\n\x0bACTOR_OTHER\x10\x01\x12\x12\n\x0eACTOR_NO_ACTOR\x10\x02\x12\x1f\n\x1bACTOR_AGRICULTURAL_VEHICLES\x10\x03\x12\x12\n\x0eACTOR_BICYCLES\x10\x04\x12\x0f\n\x0bACTOR_BUSES\x10\x05\x12\x11\n\rACTOR_CAMPERS\x10\x06\x12\x12\n\x0eACTOR_CARAVANS\x10\x07\x12\x0e\n\nACTOR_CARS\x10\x08\x12\x1c\n\x18ACTOR_CARS_WITH_CARAVANS\x10\t\x12\x1c\n\x18ACTOR_CARS_WITH_TRAILERS\x10\n\x12\x10\n\x0cACTOR_CATTLE\x10\x0b\x12\x12\n\x0eACTOR_CHILDREN\x10\x0c\x12\x1f\n\x1bACTOR_CONSTRUCTION_VEHICLES\x10\r\x12\x1b\n\x17ACTOR_DELIVERY_VEHICLES\x10\x0e\x12\x1a\n\x16ACTOR_DISABLED_PERSONS\x10\x0f\x12\x10\n\x0cACTOR_EBIKES\x10\x10\x12\x1b\n\x17ACTOR_ELECTRIC_VEHICLES\x10\x11\x12\x1c\n\x18ACTOR_EMERGENCY_VEHICLES\x10\x12\x12\x15\n\x11ACTOR_FERRY_USERS\x10\x13\x12\x1b\n\x17ACTOR_FORESTRY_VEHICLES\x10\x14\x12"\n\x1eACTOR_HAZARDOUS_GOODS_VEHICLES\x10\x15\x12\x19\n\x15ACTOR_HORSE_CARRIAGES\x10\x16\x12\x16\n\x12ACTOR_HORSE_RIDERS\x10\x17\x12\x18\n\x14ACTOR_INLINE_SKATERS\x10\x18\x12\x1a\n\x16ACTOR_MEDICAL_VEHICLES\x10\x19\x12\x1b\n\x17ACTOR_MILITARY_VEHICLES\x10\x1a\x12\x10\n\x0cACTOR_MOPEDS\x10\x1b\x12\x15\n\x11ACTOR_MOTORCYCLES\x10\x1c\x12\'\n#ACTOR_MOTORIZED_MULTITRACK_VEHICLES\x10\x1d\x12*\n&ACTOR_OPERATIONAL_AND_UTILITY_VEHICLES\x10\x1e\x12\x15\n\x11ACTOR_PEDESTRIANS\x10\x1f\x12#\n\x1fACTOR_PUBLIC_TRANSPORT_VEHICLES\x10 \x12\x1a\n\x16ACTOR_RAILROAD_TRAFFIC\x10!\x12\x13\n\x0fACTOR_RESIDENTS\x10"\x12\x1a\n\x16ACTOR_SLURRY_TRANSPORT\x10#\x12\x0f\n\x0bACTOR_TAXIS\x10$\x12\x12\n\x0eACTOR_TRACTORS\x10%\x12\x12\n\x0eACTOR_TRAILERS\x10&\x12\x0f\n\x0bACTOR_TRAMS\x10\'\x12\x10\n\x0cACTOR_TRUCKS\x10(\x12"\n\x1eACTOR_TRUCKS_WITH_SEMITRAILERS\x10)\x12\x1e\n\x1aACTOR_TRUCKS_WITH_TRAILERS\x10*\x12$\n ACTOR_VEHICLES_WITH_GREEN_BADGES\x10+\x12"\n\x1eACTOR_VEHICLES_WITH_RED_BADGES\x10,\x12%\n!ACTOR_VEHICLES_WITH_YELLOW_BADGES\x10-\x12"\n\x1eACTOR_WATER_POLLUTANT_VEHICLES\x10.\x12\x1d\n\x19ACTOR_WINTER_SPORTSPEOPLE\x10/"\xc3\x01\n\x0bVariability\x12\x15\n\x13VARIABILITY_UNKNOWN\x12\x15\n\x11VARIABILITY_OTHER\x10\x01\x12\x15\n\x11VARIABILITY_FIXED\x10\x02\x12\x18\n\x14VARIABILITY_VARIABLE\x10\x03\x12\x17\n\x13VARIABILITY_MOVABLE\x10\x04\x12\x17\n\x13VARIABILITY_MUTABLE\x10\x05\x12#\n\x1fVARIABILITY_MOVABLE_AND_MUTABLE\x10\x06B\x02H\x01'
 )
-OSI_OBJECT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x10osi_object.proto\x12\x04osi3\x1a\x10osi_common.proto"\x97\x11\n\x10StationaryObject\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12M\n\x0eclassification\x18\x03 \x01(\x0b2%.osi3.StationaryObject.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x04 \x01(\tR\x0emodelReference\x12B\n\x10source_reference\x18\x05 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xb5\x0e\n\x0eClassification\x12>\n\x04type\x18\x01 \x01(\x0e2*.osi3.StationaryObject.Classification.TypeR\x04type\x12J\n\x08material\x18\x02 \x01(\x0e2..osi3.StationaryObject.Classification.MaterialR\x08material\x12G\n\x07density\x18\x03 \x01(\x0e2-.osi3.StationaryObject.Classification.DensityR\x07density\x12A\n\x05color\x18\x04 \x01(\x0e2+.osi3.StationaryObject.Classification.ColorR\x05color\x12\x82\x01\n\x1cemitting_structure_attribute\x18\x05 \x01(\x0b2@.osi3.StationaryObject.Classification.EmittingStructureAttributeR\x1aemittingStructureAttribute\x12:\n\x10assigned_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x128\n\x18assigned_lane_percentage\x18\x07 \x03(\x01R\x16assignedLanePercentage\x12S\n\x17logical_lane_assignment\x18\x08 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment\x1a\xbf\x01\n\x1aEmittingStructureAttribute\x12=\n\x0fwavelength_data\x18\x01 \x03(\x0b2\x14.osi3.WavelengthDataR\x0ewavelengthData\x12b\n\x1femitted_spatial_signal_strength\x18\x03 \x03(\x0b2\x1b.osi3.SpatialSignalStrengthR\x1cemittedSpatialSignalStrength"\xa6\x03\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x0f\n\x0bTYPE_BRIDGE\x10\x02\x12\x11\n\rTYPE_BUILDING\x10\x03\x12\r\n\tTYPE_POLE\x10\x04\x12\x0e\n\nTYPE_PYLON\x10\x05\x12\x13\n\x0fTYPE_DELINEATOR\x10\x06\x12\r\n\tTYPE_TREE\x10\x07\x12\x10\n\x0cTYPE_BARRIER\x10\x08\x12\x13\n\x0fTYPE_VEGETATION\x10\t\x12\x12\n\x0eTYPE_CURBSTONE\x10\n\x12\r\n\tTYPE_WALL\x10\x0b\x12\x1b\n\x17TYPE_VERTICAL_STRUCTURE\x10\x0c\x12\x1e\n\x1aTYPE_RECTANGULAR_STRUCTURE\x10\r\x12\x1b\n\x17TYPE_OVERHEAD_STRUCTURE\x10\x0e\x12\x1d\n\x19TYPE_REFLECTIVE_STRUCTURE\x10\x0f\x12"\n\x1eTYPE_CONSTRUCTION_SITE_ELEMENT\x10\x10\x12\x13\n\x0fTYPE_SPEED_BUMP\x10\x11\x12\x1b\n\x17TYPE_EMITTING_STRUCTURE\x10\x12"\xd7\x01\n\x08Material\x12\x12\n\x10MATERIAL_UNKNOWN\x12\x12\n\x0eMATERIAL_OTHER\x10\x01\x12\x11\n\rMATERIAL_WOOD\x10\x02\x12\x14\n\x10MATERIAL_PLASTIC\x10\x03\x12\x15\n\x11MATERIAL_CONCRETE\x10\x04\x12\x12\n\x0eMATERIAL_METAL\x10\x05\x12\x12\n\x0eMATERIAL_STONE\x10\x06\x12\x12\n\x0eMATERIAL_GLASS\x10\x07\x12\x11\n\rMATERIAL_GLAS\x10\x07\x12\x10\n\x0cMATERIAL_MUD\x10\x08\x1a\x02\x10\x01"\x9d\x01\n\x07Density\x12\x11\n\x0fDENSITY_UNKNOWN\x12\x11\n\rDENSITY_OTHER\x10\x01\x12\x11\n\rDENSITY_SOLID\x10\x02\x12\x16\n\x12DENSITY_SMALL_MESH\x10\x03\x12\x17\n\x13DENSITY_MEDIAN_MESH\x10\x04\x12\x16\n\x12DENSITY_LARGE_MESH\x10\x05\x12\x10\n\x0cDENSITY_OPEN\x10\x06"\xd5\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x10\n\x0cCOLOR_YELLOW\x10\x02\x12\x0f\n\x0bCOLOR_GREEN\x10\x03\x12\x0e\n\nCOLOR_BLUE\x10\x04\x12\x10\n\x0cCOLOR_VIOLET\x10\x05\x12\r\n\tCOLOR_RED\x10\x06\x12\x10\n\x0cCOLOR_ORANGE\x10\x07\x12\x0f\n\x0bCOLOR_BLACK\x10\x08\x12\x0e\n\nCOLOR_GRAY\x10\t\x12\x0e\n\nCOLOR_GREY\x10\t\x12\x0f\n\x0bCOLOR_WHITE\x10\n\x1a\x02\x10\x01"\xf9+\n\x0cMovingObject\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12$\n\x04base\x18\x02 \x01(\x0b2\x10.osi3.BaseMovingR\x04base\x12+\n\x04type\x18\x03 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12:\n\x10assigned_lane_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12S\n\x12vehicle_attributes\x18\x05 \x01(\x0b2$.osi3.MovingObject.VehicleAttributesR\x11vehicleAttributes\x12_\n\x16vehicle_classification\x18\x06 \x01(\x0b2(.osi3.MovingObject.VehicleClassificationR\x15vehicleClassification\x12\'\n\x0fmodel_reference\x18\x07 \x01(\tR\x0emodelReference\x12=\n\x11future_trajectory\x18\x08 \x03(\x0b2\x10.osi3.StatePointR\x10futureTrajectory\x12o\n\x1cmoving_object_classification\x18\t \x01(\x0b2-.osi3.MovingObject.MovingObjectClassificationR\x1amovingObjectClassification\x12B\n\x10source_reference\x18\n \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x0b \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12\\\n\x15pedestrian_attributes\x18\x0c \x01(\x0b2\'.osi3.MovingObject.PedestrianAttributesR\x14pedestrianAttributes\x1a\xa0\x06\n\x11VehicleAttributes\x12-\n\tdriver_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08driverId\x12!\n\x0cradius_wheel\x18\x02 \x01(\x01R\x0bradiusWheel\x12#\n\rnumber_wheels\x18\x03 \x01(\rR\x0cnumberWheels\x128\n\x10bbcenter_to_rear\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x0ebbcenterToRear\x12:\n\x11bbcenter_to_front\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0fbbcenterToFront\x12)\n\x10ground_clearance\x18\x06 \x01(\x01R\x0fgroundClearance\x12M\n\nwheel_data\x18\x07 \x03(\x0b2..osi3.MovingObject.VehicleAttributes.WheelDataR\twheelData\x120\n\x14steering_wheel_angle\x18\x08 \x01(\x01R\x12steeringWheelAngle\x1a\xf1\x02\n\tWheelData\x12\x12\n\x04axle\x18\x01 \x01(\rR\x04axle\x12\x14\n\x05index\x18\x02 \x01(\rR\x05index\x12*\n\x08position\x18\x03 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12!\n\x0cwheel_radius\x18\x04 \x01(\x01R\x0bwheelRadius\x12\x1d\n\nrim_radius\x18\x05 \x01(\x01R\trimRadius\x12\x14\n\x05width\x18\x06 \x01(\x01R\x05width\x125\n\x0borientation\x18\x07 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12#\n\rrotation_rate\x18\x08 \x01(\x01R\x0crotationRate\x12\'\n\x0fmodel_reference\x18\t \x01(\tR\x0emodelReference\x121\n\x14friction_coefficient\x18\n \x01(\x01R\x13frictionCoefficient\x1a\xe7\x01\n\x1aMovingObjectClassification\x12:\n\x10assigned_lane_id\x18\x01 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x128\n\x18assigned_lane_percentage\x18\x02 \x03(\x01R\x16assignedLanePercentage\x12S\n\x17logical_lane_assignment\x18\x03 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment\x1a\xbd\x15\n\x15VehicleClassification\x12A\n\x04type\x18\x01 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.TypeR\x04type\x12T\n\x0blight_state\x18\x02 \x01(\x0b23.osi3.MovingObject.VehicleClassification.LightStateR\nlightState\x12\x1f\n\x0bhas_trailer\x18\x03 \x01(\x08R\nhasTrailer\x12/\n\ntrailer_id\x18\x04 \x01(\x0b2\x10.osi3.IdentifierR\ttrailerId\x12A\n\x04role\x18\x05 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.RoleR\x04role\x1a\x8b\x0e\n\nLightState\x12k\n\x0findicator_state\x18\x01 \x01(\x0e2B.osi3.MovingObject.VehicleClassification.LightState.IndicatorStateR\x0eindicatorState\x12m\n\x0ffront_fog_light\x18\x02 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\rfrontFogLight\x12k\n\x0erear_fog_light\x18\x03 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x0crearFogLight\x12d\n\nhead_light\x18\x04 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\theadLight\x12b\n\thigh_beam\x18\x05 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x08highBeam\x12n\n\x0freversing_light\x18\x06 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x0ereversingLight\x12o\n\x11brake_light_state\x18\x07 \x01(\x0e2C.osi3.MovingObject.VehicleClassification.LightState.BrakeLightStateR\x0fbrakeLightState\x12\x8c\x01\n\x1flicense_plate_illumination_rear\x18\x08 \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1clicensePlateIlluminationRear\x12\x8b\x01\n\x1eemergency_vehicle_illumination\x18\t \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1cemergencyVehicleIllumination\x12\x87\x01\n\x1cservice_vehicle_illumination\x18\n \x01(\x0e2E.osi3.MovingObject.VehicleClassification.LightState.GenericLightStateR\x1aserviceVehicleIllumination"\xb1\x01\n\x0eIndicatorState\x12\x19\n\x17INDICATOR_STATE_UNKNOWN\x12\x19\n\x15INDICATOR_STATE_OTHER\x10\x01\x12\x17\n\x13INDICATOR_STATE_OFF\x10\x02\x12\x18\n\x14INDICATOR_STATE_LEFT\x10\x03\x12\x19\n\x15INDICATOR_STATE_RIGHT\x10\x04\x12\x1b\n\x17INDICATOR_STATE_WARNING\x10\x05"\x88\x02\n\x11GenericLightState\x12\x1d\n\x1bGENERIC_LIGHT_STATE_UNKNOWN\x12\x1d\n\x19GENERIC_LIGHT_STATE_OTHER\x10\x01\x12\x1b\n\x17GENERIC_LIGHT_STATE_OFF\x10\x02\x12\x1a\n\x16GENERIC_LIGHT_STATE_ON\x10\x03\x12%\n!GENERIC_LIGHT_STATE_FLASHING_BLUE\x10\x04\x12-\n)GENERIC_LIGHT_STATE_FLASHING_BLUE_AND_RED\x10\x05\x12&\n"GENERIC_LIGHT_STATE_FLASHING_AMBER\x10\x06"\xa2\x01\n\x0fBrakeLightState\x12\x1b\n\x19BRAKE_LIGHT_STATE_UNKNOWN\x12\x1b\n\x17BRAKE_LIGHT_STATE_OTHER\x10\x01\x12\x19\n\x15BRAKE_LIGHT_STATE_OFF\x10\x02\x12\x1c\n\x18BRAKE_LIGHT_STATE_NORMAL\x10\x03\x12\x1c\n\x18BRAKE_LIGHT_STATE_STRONG\x10\x04"\xf9\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x12\n\x0eTYPE_SMALL_CAR\x10\x02\x12\x14\n\x10TYPE_COMPACT_CAR\x10\x03\x12\x0c\n\x08TYPE_CAR\x10\x04\x12\x13\n\x0fTYPE_MEDIUM_CAR\x10\x04\x12\x13\n\x0fTYPE_LUXURY_CAR\x10\x05\x12\x15\n\x11TYPE_DELIVERY_VAN\x10\x06\x12\x14\n\x10TYPE_HEAVY_TRUCK\x10\x07\x12\x14\n\x10TYPE_SEMITRACTOR\x10\x10\x12\x14\n\x10TYPE_SEMITRAILER\x10\x08\x12\x10\n\x0cTYPE_TRAILER\x10\t\x12\x12\n\x0eTYPE_MOTORBIKE\x10\n\x12\x10\n\x0cTYPE_BICYCLE\x10\x0b\x12\x0c\n\x08TYPE_BUS\x10\x0c\x12\r\n\tTYPE_TRAM\x10\r\x12\x0e\n\nTYPE_TRAIN\x10\x0e\x12\x13\n\x0fTYPE_WHEELCHAIR\x10\x0f\x12\x18\n\x14TYPE_STANDUP_SCOOTER\x10\x11\x1a\x02\x10\x01"\xeb\x01\n\x04Role\x12\x0e\n\x0cROLE_UNKNOWN\x12\x0e\n\nROLE_OTHER\x10\x01\x12\x0e\n\nROLE_CIVIL\x10\x02\x12\x12\n\x0eROLE_AMBULANCE\x10\x03\x12\r\n\tROLE_FIRE\x10\x04\x12\x0f\n\x0bROLE_POLICE\x10\x05\x12\x19\n\x15ROLE_PUBLIC_TRANSPORT\x10\x06\x12\x18\n\x14ROLE_ROAD_ASSISTANCE\x10\x07\x12\x1b\n\x17ROLE_GARBAGE_COLLECTION\x10\x08\x12\x1a\n\x16ROLE_ROAD_CONSTRUCTION\x10\t\x12\x11\n\rROLE_MILITARY\x10\n\x1a\x94\x07\n\x14PedestrianAttributes\x128\n\x10bbcenter_to_root\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x0ebbcenterToRoot\x12Q\n\rskeleton_bone\x18\x02 \x03(\x0b2,.osi3.MovingObject.PedestrianAttributes.BoneR\x0cskeletonBone\x1a\xee\x05\n\x04Bone\x12E\n\x04type\x18\x01 \x01(\x0e21.osi3.MovingObject.PedestrianAttributes.Bone.TypeR\x04type\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12\x16\n\x06length\x18\x04 \x01(\x02R\x06length\x12\x18\n\x07missing\x18\x05 \x01(\x08R\x07missing\x12*\n\x08velocity\x18\x06 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x12>\n\x10orientation_rate\x18\x07 \x01(\x0b2\x13.osi3.Orientation3dR\x0forientationRate"\x9d\x03\n\x04Type\x12\x0b\n\tTYPE_ROOT\x12\x0c\n\x08TYPE_HIP\x10\x01\x12\x14\n\x10TYPE_LOWER_SPINE\x10\x02\x12\x14\n\x10TYPE_UPPER_SPINE\x10\x03\x12\r\n\tTYPE_NECK\x10\x04\x12\r\n\tTYPE_HEAD\x10\x05\x12\x13\n\x0fTYPE_SHOULDER_L\x10\x06\x12\x13\n\x0fTYPE_SHOULDER_R\x10\x07\x12\x14\n\x10TYPE_UPPER_ARM_L\x10\x08\x12\x14\n\x10TYPE_UPPER_ARM_R\x10\t\x12\x14\n\x10TYPE_LOWER_ARM_L\x10\n\x12\x14\n\x10TYPE_LOWER_ARM_R\x10\x0b\x12\x14\n\x10TYPE_FULL_HAND_L\x10\x0c\x12\x14\n\x10TYPE_FULL_HAND_R\x10\r\x12\x14\n\x10TYPE_UPPER_LEG_L\x10\x0e\x12\x14\n\x10TYPE_UPPER_LEG_R\x10\x0f\x12\x14\n\x10TYPE_LOWER_LEG_L\x10\x10\x12\x14\n\x10TYPE_LOWER_LEG_R\x10\x11\x12\x14\n\x10TYPE_FULL_FOOT_L\x10\x12\x12\x14\n\x10TYPE_FULL_FOOT_R\x10\x13"^\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_VEHICLE\x10\x02\x12\x13\n\x0fTYPE_PEDESTRIAN\x10\x03\x12\x0f\n\x0bTYPE_ANIMAL\x10\x04B\x02H\x01'
+OSI_VERSION_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b"\n\x11osi_version.proto\x12\x04osi3\x1a google/protobuf/descriptor.proto\"\x81\x01\n\x10InterfaceVersion\x12#\n\rversion_major\x18\x01 \x01(\rR\x0cversionMajor\x12#\n\rversion_minor\x18\x02 \x01(\rR\x0cversionMinor\x12#\n\rversion_patch\x18\x03 \x01(\rR\x0cversionPatch:r\n\x19current_interface_version\x18\xe8\xf8\x04 \x01(\x0b2\x16.osi3.InterfaceVersion\x12\x1c.google.protobuf.FileOptionsR\x17currentInterfaceVersionB\x0cH\x01\xc2\xc6'\x06\x08\x03\x10\x07\x18\x00"
 )
-OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x18osi_sensorspecific.proto\x12\x04osi3\x1a\x10osi_common.proto"+\n\x17RadarSpecificObjectData\x12\x10\n\x03rcs\x18\x01 \x01(\x01R\x03rcs"\x19\n\x17LidarSpecificObjectData"\x1a\n\x18CameraSpecificObjectData"\xab\x06\n\x1cUltrasonicSpecificObjectData\x12M\n#maximum_measurement_distance_sensor\x18\x01 \x01(\x01R maximumMeasurementDistanceSensor\x12 \n\x0bprobability\x18\x02 \x01(\x01R\x0bprobability\x12i\n\x14trilateration_status\x18\x03 \x01(\x0e26.osi3.UltrasonicSpecificObjectData.TrilaterationStatusR\x13trilaterationStatus\x12>\n\x05trend\x18\x04 \x01(\x0e2(.osi3.UltrasonicSpecificObjectData.TrendR\x05trend\x12J\n\tsignalway\x18\x05 \x03(\x0b2,.osi3.UltrasonicSpecificObjectData.SignalwayR\tsignalway\x1am\n\tSignalway\x12-\n\tsender_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08senderId\x121\n\x0breceiver_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\nreceiverId"\xa7\x01\n\x13TrilaterationStatus\x12\x1e\n\x1cTRILATERATION_STATUS_UNKNOWN\x12\x1e\n\x1aTRILATERATION_STATUS_OTHER\x10\x01\x12)\n%TRILATERATION_STATUS_NOT_TRILATERATED\x10\x02\x12%\n!TRILATERATION_STATUS_TRILATERATED\x10\x03"\x89\x01\n\x05Trend\x12\x0f\n\rTREND_UNKNOWN\x12\x0f\n\x0bTREND_OTHER\x10\x01\x12\x1e\n\x1aTREND_CONSTANT_APPROACHING\x10\x02\x12\x12\n\x0eTREND_CONSTANT\x10\x03\x12\x15\n\x11TREND_APPROACHING\x10\x04\x12\x13\n\x0fTREND_DEPARTING\x10\x05B\x02H\x01'
-)
-OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x18osi_detectedobject.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x18osi_sensorspecific.proto"\xdf\x03\n\x12DetectedItemHeader\x121\n\x0btracking_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\ntrackingId\x128\n\x0fground_truth_id\x18\x02 \x03(\x0b2\x10.osi3.IdentifierR\rgroundTruthId\x123\n\x15existence_probability\x18\x03 \x01(\x01R\x14existenceProbability\x12\x10\n\x03age\x18\x04 \x01(\x01R\x03age\x12V\n\x11measurement_state\x18\x05 \x01(\x0e2).osi3.DetectedItemHeader.MeasurementStateR\x10measurementState\x12-\n\tsensor_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId"\x8d\x01\n\x10MeasurementState\x12\x1b\n\x19MEASUREMENT_STATE_UNKNOWN\x12\x1b\n\x17MEASUREMENT_STATE_OTHER\x10\x01\x12\x1e\n\x1aMEASUREMENT_STATE_MEASURED\x10\x02\x12\x1f\n\x1bMEASUREMENT_STATE_PREDICTED\x10\x03"\x87\x06\n\x18DetectedStationaryObject\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12V\n\tcandidate\x18\x04 \x03(\x0b28.osi3.DetectedStationaryObject.CandidateStationaryObjectR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12F\n\x0fradar_specifics\x18d \x01(\x0b2\x1d.osi3.RadarSpecificObjectDataR\x0eradarSpecifics\x12F\n\x0flidar_specifics\x18e \x01(\x0b2\x1d.osi3.LidarSpecificObjectDataR\x0elidarSpecifics\x12I\n\x10camera_specifics\x18f \x01(\x0b2\x1e.osi3.CameraSpecificObjectDataR\x0fcameraSpecifics\x12U\n\x14ultrasonic_specifics\x18g \x01(\x0b2".osi3.UltrasonicSpecificObjectDataR\x13ultrasonicSpecifics\x1a\x8c\x01\n\x19CandidateStationaryObject\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12M\n\x0eclassification\x18\x02 \x01(\x0b2%.osi3.StationaryObject.ClassificationR\x0eclassification"\xb2\x0e\n\x14DetectedMovingObject\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12$\n\x04base\x18\x02 \x01(\x0b2\x10.osi3.BaseMovingR\x04base\x12-\n\tbase_rmse\x18\x03 \x01(\x0b2\x10.osi3.BaseMovingR\x08baseRmse\x12R\n\x0freference_point\x18\x04 \x01(\x0e2).osi3.DetectedMovingObject.ReferencePointR\x0ereferencePoint\x12O\n\x0emovement_state\x18\x05 \x01(\x0e2(.osi3.DetectedMovingObject.MovementStateR\rmovementState\x129\n\x19percentage_side_lane_left\x18\x06 \x01(\x01R\x16percentageSideLaneLeft\x12;\n\x1apercentage_side_lane_right\x18\x07 \x01(\x01R\x17percentageSideLaneRight\x12N\n\tcandidate\x18\x08 \x03(\x0b20.osi3.DetectedMovingObject.CandidateMovingObjectR\tcandidate\x12C\n\x11color_description\x18\t \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12F\n\x0fradar_specifics\x18d \x01(\x0b2\x1d.osi3.RadarSpecificObjectDataR\x0eradarSpecifics\x12F\n\x0flidar_specifics\x18e \x01(\x0b2\x1d.osi3.LidarSpecificObjectDataR\x0elidarSpecifics\x12I\n\x10camera_specifics\x18f \x01(\x0b2\x1e.osi3.CameraSpecificObjectDataR\x0fcameraSpecifics\x12U\n\x14ultrasonic_specifics\x18g \x01(\x0b2".osi3.UltrasonicSpecificObjectDataR\x13ultrasonicSpecifics\x1a\xa7\x03\n\x15CandidateMovingObject\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12+\n\x04type\x18\x02 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12_\n\x16vehicle_classification\x18\x03 \x01(\x0b2(.osi3.MovingObject.VehicleClassificationR\x15vehicleClassification\x120\n\thead_pose\x18\x04 \x01(\x0b2\x13.osi3.Orientation3dR\x08headPose\x12;\n\x0fupper_body_pose\x18\x05 \x01(\x0b2\x13.osi3.Orientation3dR\rupperBodyPose\x12o\n\x1cmoving_object_classification\x18\x06 \x01(\x0b2-.osi3.MovingObject.MovingObjectClassificationR\x1amovingObjectClassification"\xe8\x02\n\x0eReferencePoint\x12\x19\n\x17REFERENCE_POINT_UNKNOWN\x12\x19\n\x15REFERENCE_POINT_OTHER\x10\x01\x12\x1a\n\x16REFERENCE_POINT_CENTER\x10\x02\x12\x1f\n\x1bREFERENCE_POINT_MIDDLE_LEFT\x10\x03\x12 \n\x1cREFERENCE_POINT_MIDDLE_RIGHT\x10\x04\x12\x1f\n\x1bREFERENCE_POINT_REAR_MIDDLE\x10\x05\x12\x1d\n\x19REFERENCE_POINT_REAR_LEFT\x10\x06\x12\x1e\n\x1aREFERENCE_POINT_REAR_RIGHT\x10\x07\x12 \n\x1cREFERENCE_POINT_FRONT_MIDDLE\x10\x08\x12\x1e\n\x1aREFERENCE_POINT_FRONT_LEFT\x10\t\x12\x1f\n\x1bREFERENCE_POINT_FRONT_RIGHT\x10\n"\x99\x01\n\rMovementState\x12\x18\n\x16MOVEMENT_STATE_UNKNOWN\x12\x18\n\x14MOVEMENT_STATE_OTHER\x10\x01\x12\x1d\n\x19MOVEMENT_STATE_STATIONARY\x10\x02\x12\x19\n\x15MOVEMENT_STATE_MOVING\x10\x03\x12\x1a\n\x16MOVEMENT_STATE_STOPPED\x10\x04B\x02H\x01'
-)
-OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x1dosi_detectedtrafficsign.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_trafficsign.proto\x1a\x18osi_detectedobject.proto"\xd8\n\n\x13DetectedTrafficSign\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12G\n\tmain_sign\x18\x02 \x01(\x0b2*.osi3.DetectedTrafficSign.DetectedMainSignR\x08mainSign\x12b\n\x12supplementary_sign\x18\x03 \x03(\x0b23.osi3.DetectedTrafficSign.DetectedSupplementarySignR\x11supplementarySign\x1a\xdb\x05\n\x10DetectedMainSign\x12Z\n\tcandidate\x18\x01 \x03(\x0b2<.osi3.DetectedTrafficSign.DetectedMainSign.CandidateMainSignR\tcandidate\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12O\n\x08geometry\x18\x04 \x01(\x0e23.osi3.DetectedTrafficSign.DetectedMainSign.GeometryR\x08geometry\x1a\x88\x01\n\x11CandidateMainSign\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12Q\n\x0eclassification\x18\x02 \x01(\x0b2).osi3.TrafficSign.MainSign.ClassificationR\x0eclassification"\xb1\x02\n\x08Geometry\x12\x12\n\x10GEOMETRY_UNKNOWN\x12\x12\n\x0eGEOMETRY_OTHER\x10\x01\x12\x13\n\x0fGEOMETRY_CIRCLE\x10\x02\x12\x19\n\x15GEOMETRY_TRIANGLE_TOP\x10\x03\x12\x1a\n\x16GEOMETRY_TRIANGLE_DOWN\x10\x04\x12\x13\n\x0fGEOMETRY_SQUARE\x10\x05\x12\x11\n\rGEOMETRY_POLE\x10\x06\x12\x16\n\x12GEOMETRY_RECTANGLE\x10\x07\x12\x12\n\x0eGEOMETRY_PLATE\x10\x08\x12\x14\n\x10GEOMETRY_DIAMOND\x10\t\x12\x17\n\x13GEOMETRY_ARROW_LEFT\x10\n\x12\x18\n\x14GEOMETRY_ARROW_RIGHT\x10\x0b\x12\x14\n\x10GEOMETRY_OCTAGON\x10\x0c\x1a\x83\x03\n\x19DetectedSupplementarySign\x12l\n\tcandidate\x18\x01 \x03(\x0b2N.osi3.DetectedTrafficSign.DetectedSupplementarySign.CandidateSupplementarySignR\tcandidate\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x1a\x9a\x01\n\x1aCandidateSupplementarySign\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12Z\n\x0eclassification\x18\x02 \x01(\x0b22.osi3.TrafficSign.SupplementarySign.ClassificationR\x0eclassificationB\x02H\x01'
-)
-OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x16osi_trafficlight.proto\x12\x04osi3\x1a\x10osi_common.proto"\xb6\x0c\n\x0cTrafficLight\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12I\n\x0eclassification\x18\x03 \x01(\x0b2!.osi3.TrafficLight.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x04 \x01(\tR\x0emodelReference\x12B\n\x10source_reference\x18\x05 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xdc\t\n\x0eClassification\x12=\n\x05color\x18\x01 \x01(\x0e2\'.osi3.TrafficLight.Classification.ColorR\x05color\x12:\n\x04icon\x18\x02 \x01(\x0e2&.osi3.TrafficLight.Classification.IconR\x04icon\x12:\n\x04mode\x18\x03 \x01(\x0e2&.osi3.TrafficLight.Classification.ModeR\x04mode\x12\x18\n\x07counter\x18\x04 \x01(\x01R\x07counter\x12:\n\x10assigned_lane_id\x18\x05 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12)\n\x11is_out_of_service\x18\x06 \x01(\x08R\x0eisOutOfService\x12S\n\x17logical_lane_assignment\x18\x07 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment"|\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\r\n\tCOLOR_RED\x10\x02\x12\x10\n\x0cCOLOR_YELLOW\x10\x03\x12\x0f\n\x0bCOLOR_GREEN\x10\x04\x12\x0e\n\nCOLOR_BLUE\x10\x05\x12\x0f\n\x0bCOLOR_WHITE\x10\x06"\xcf\x04\n\x04Icon\x12\x0e\n\x0cICON_UNKNOWN\x12\x0e\n\nICON_OTHER\x10\x01\x12\r\n\tICON_NONE\x10\x02\x12\x1d\n\x19ICON_ARROW_STRAIGHT_AHEAD\x10\x03\x12\x13\n\x0fICON_ARROW_LEFT\x10\x04\x12\x18\n\x14ICON_ARROW_DIAG_LEFT\x10\x05\x12"\n\x1eICON_ARROW_STRAIGHT_AHEAD_LEFT\x10\x06\x12\x14\n\x10ICON_ARROW_RIGHT\x10\x07\x12\x19\n\x15ICON_ARROW_DIAG_RIGHT\x10\x08\x12#\n\x1fICON_ARROW_STRAIGHT_AHEAD_RIGHT\x10\t\x12\x19\n\x15ICON_ARROW_LEFT_RIGHT\x10\n\x12\x13\n\x0fICON_ARROW_DOWN\x10\x0b\x12\x18\n\x14ICON_ARROW_DOWN_LEFT\x10\x0c\x12\x19\n\x15ICON_ARROW_DOWN_RIGHT\x10\r\x12\x14\n\x10ICON_ARROW_CROSS\x10\x0e\x12\x13\n\x0fICON_PEDESTRIAN\x10\x0f\x12\r\n\tICON_WALK\x10\x10\x12\x12\n\x0eICON_DONT_WALK\x10\x11\x12\x10\n\x0cICON_BICYCLE\x10\x12\x12\x1f\n\x1bICON_PEDESTRIAN_AND_BICYCLE\x10\x13\x12\x1a\n\x16ICON_COUNTDOWN_SECONDS\x10\x14\x12\x1a\n\x16ICON_COUNTDOWN_PERCENT\x10\x15\x12\r\n\tICON_TRAM\x10\x16\x12\x0c\n\x08ICON_BUS\x10\x17\x12\x15\n\x11ICON_BUS_AND_TRAM\x10\x18"m\n\x04Mode\x12\x0e\n\x0cMODE_UNKNOWN\x12\x0e\n\nMODE_OTHER\x10\x01\x12\x0c\n\x08MODE_OFF\x10\x02\x12\x11\n\rMODE_CONSTANT\x10\x03\x12\x11\n\rMODE_FLASHING\x10\x04\x12\x11\n\rMODE_COUNTING\x10\x05B\x02H\x01'
-)
-OSI_DETECTEDTRAFFICLIGHT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x1eosi_detectedtrafficlight.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x16osi_trafficlight.proto\x1a\x18osi_detectedobject.proto"\xc1\x03\n\x14DetectedTrafficLight\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12N\n\tcandidate\x18\x04 \x03(\x0b20.osi3.DetectedTrafficLight.CandidateTrafficLightR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x84\x01\n\x15CandidateTrafficLight\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12I\n\x0eclassification\x18\x02 \x01(\x0b2!.osi3.TrafficLight.ClassificationR\x0eclassificationB\x02H\x01'
-)
-OSI_ROADMARKING_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x15osi_roadmarking.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_trafficsign.proto"\xa0\n\n\x0bRoadMarking\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12H\n\x0eclassification\x18\x03 \x01(\x0b2 .osi3.RoadMarking.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x04 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xf1\x07\n\x0eClassification\x129\n\x04type\x18\x01 \x01(\x0e2%.osi3.RoadMarking.Classification.TypeR\x04type\x12c\n\x16traffic_main_sign_type\x18\x02 \x01(\x0e2..osi3.TrafficSign.MainSign.Classification.TypeR\x13trafficMainSignType\x12Q\n\x10monochrome_color\x18\x03 \x01(\x0e2&.osi3.RoadMarking.Classification.ColorR\x0fmonochromeColor\x12,\n\x05value\x18\x04 \x01(\x0b2\x16.osi3.TrafficSignValueR\x05value\x12\x1d\n\nvalue_text\x18\x05 \x01(\tR\tvalueText\x12:\n\x10assigned_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12)\n\x11is_out_of_service\x18\x07 \x01(\x08R\x0eisOutOfService\x12\x18\n\x07country\x18\x08 \x01(\tR\x07country\x12)\n\x10country_revision\x18\t \x01(\tR\x0fcountryRevision\x12\x12\n\x04code\x18\n \x01(\tR\x04code\x12\x19\n\x08sub_code\x18\x0b \x01(\tR\x07subCode\x12S\n\x17logical_lane_assignment\x18\x0c \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment"\xcb\x01\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x1d\n\x19TYPE_PAINTED_TRAFFIC_SIGN\x10\x02\x12\x1e\n\x1aTYPE_SYMBOLIC_TRAFFIC_SIGN\x10\x03\x12\x1d\n\x19TYPE_TEXTUAL_TRAFFIC_SIGN\x10\x04\x12\x17\n\x13TYPE_GENERIC_SYMBOL\x10\x05\x12\x15\n\x11TYPE_GENERIC_LINE\x10\x06\x12\x15\n\x11TYPE_GENERIC_TEXT\x10\x07"\xa0\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x0f\n\x0bCOLOR_WHITE\x10\x02\x12\x10\n\x0cCOLOR_YELLOW\x10\x03\x12\x0e\n\nCOLOR_BLUE\x10\x05\x12\r\n\tCOLOR_RED\x10\x06\x12\x0f\n\x0bCOLOR_GREEN\x10\x07\x12\x10\n\x0cCOLOR_VIOLET\x10\x08\x12\x10\n\x0cCOLOR_ORANGE\x10\tB\x02H\x01'
-)
-OSI_DETECTEDROADMARKING_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x1dosi_detectedroadmarking.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_roadmarking.proto\x1a\x18osi_detectedobject.proto"\xbc\x03\n\x13DetectedRoadMarking\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12L\n\tcandidate\x18\x04 \x03(\x0b2..osi3.DetectedRoadMarking.CandidateRoadMarkingR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x82\x01\n\x14CandidateRoadMarking\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12H\n\x0eclassification\x18\x02 \x01(\x0b2 .osi3.RoadMarking.ClassificationR\x0eclassificationB\x02H\x01'
-)
-OSI_LANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x0eosi_lane.proto\x12\x04osi3\x1a\x10osi_common.proto"\xa7\x0e\n\x04Lane\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12A\n\x0eclassification\x18\x02 \x01(\x0b2\x19.osi3.Lane.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\xf5\x0c\n\x0eClassification\x122\n\x04type\x18\x01 \x01(\x0e2\x1e.osi3.Lane.Classification.TypeR\x04type\x12/\n\x14is_host_vehicle_lane\x18\x02 \x01(\x08R\x11isHostVehicleLane\x12.\n\ncenterline\x18\x03 \x03(\x0b2\x0e.osi3.Vector3dR\ncenterline\x12E\n\x1fcenterline_is_driving_direction\x18\x04 \x01(\x08R\x1ccenterlineIsDrivingDirection\x12C\n\x15left_adjacent_lane_id\x18\x05 \x03(\x0b2\x10.osi3.IdentifierR\x12leftAdjacentLaneId\x12E\n\x16right_adjacent_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x13rightAdjacentLaneId\x12H\n\x0clane_pairing\x18\x07 \x03(\x0b2%.osi3.Lane.Classification.LanePairingR\x0blanePairing\x12E\n\x16right_lane_boundary_id\x18\x08 \x03(\x0b2\x10.osi3.IdentifierR\x13rightLaneBoundaryId\x12C\n\x15left_lane_boundary_id\x18\t \x03(\x0b2\x10.osi3.IdentifierR\x12leftLaneBoundaryId\x12C\n\x15free_lane_boundary_id\x18\n \x03(\x0b2\x10.osi3.IdentifierR\x12freeLaneBoundaryId\x12N\n\x0eroad_condition\x18\x0b \x01(\x0b2\'.osi3.Lane.Classification.RoadConditionR\rroadCondition\x12;\n\x07subtype\x18\x0c \x01(\x0e2!.osi3.Lane.Classification.SubtypeR\x07subtype\x1a\x9b\x02\n\rRoadCondition\x12/\n\x13surface_temperature\x18\x01 \x01(\x01R\x12surfaceTemperature\x12,\n\x12surface_water_film\x18\x02 \x01(\x01R\x10surfaceWaterFilm\x124\n\x16surface_freezing_point\x18\x03 \x01(\x01R\x14surfaceFreezingPoint\x12\x1f\n\x0bsurface_ice\x18\x04 \x01(\x01R\nsurfaceIce\x12+\n\x11surface_roughness\x18\x05 \x01(\x01R\x10surfaceRoughness\x12\'\n\x0fsurface_texture\x18\x06 \x01(\x01R\x0esurfaceTexture\x1a\x8b\x01\n\x0bLanePairing\x12>\n\x12antecessor_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x10antecessorLaneId\x12<\n\x11successor_lane_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x0fsuccessorLaneId"d\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_DRIVING\x10\x02\x12\x13\n\x0fTYPE_NONDRIVING\x10\x03\x12\x15\n\x11TYPE_INTERSECTION\x10\x04"\xc0\x02\n\x07Subtype\x12\x11\n\x0fSUBTYPE_UNKNOWN\x12\x11\n\rSUBTYPE_OTHER\x10\x01\x12\x12\n\x0eSUBTYPE_NORMAL\x10\x02\x12\x12\n\x0eSUBTYPE_BIKING\x10\x03\x12\x14\n\x10SUBTYPE_SIDEWALK\x10\x04\x12\x13\n\x0fSUBTYPE_PARKING\x10\x05\x12\x10\n\x0cSUBTYPE_STOP\x10\x06\x12\x16\n\x12SUBTYPE_RESTRICTED\x10\x07\x12\x12\n\x0eSUBTYPE_BORDER\x10\x08\x12\x14\n\x10SUBTYPE_SHOULDER\x10\t\x12\x10\n\x0cSUBTYPE_EXIT\x10\n\x12\x11\n\rSUBTYPE_ENTRY\x10\x0b\x12\x12\n\x0eSUBTYPE_ONRAMP\x10\x0c\x12\x13\n\x0fSUBTYPE_OFFRAMP\x10\r\x12\x1a\n\x16SUBTYPE_CONNECTINGRAMP\x10\x0e"\xa4\n\n\x0cLaneBoundary\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12E\n\rboundary_line\x18\x02 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x0cboundaryLine\x12I\n\x0eclassification\x18\x03 \x01(\x0b2!.osi3.LaneBoundary.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x04 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x8b\x02\n\rBoundaryPoint\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x14\n\x05width\x18\x02 \x01(\x01R\x05width\x12\x16\n\x06height\x18\x03 \x01(\x01R\x06height\x129\n\x04dash\x18\x04 \x01(\x0e2%.osi3.LaneBoundary.BoundaryPoint.DashR\x04dash"e\n\x04Dash\x12\x0e\n\x0cDASH_UNKNOWN\x12\x0e\n\nDASH_OTHER\x10\x01\x12\x0e\n\nDASH_START\x10\x02\x12\x11\n\rDASH_CONTINUE\x10\x03\x12\x0c\n\x08DASH_END\x10\x04\x12\x0c\n\x08DASH_GAP\x10\x05\x1a\xc8\x05\n\x0eClassification\x12:\n\x04type\x18\x01 \x01(\x0e2&.osi3.LaneBoundary.Classification.TypeR\x04type\x12=\n\x05color\x18\x02 \x01(\x0e2\'.osi3.LaneBoundary.Classification.ColorR\x05color\x12D\n\x15limiting_structure_id\x18\x03 \x03(\x0b2\x10.osi3.IdentifierR\x13limitingStructureId"\xc1\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_NO_LINE\x10\x02\x12\x13\n\x0fTYPE_SOLID_LINE\x10\x03\x12\x14\n\x10TYPE_DASHED_LINE\x10\x04\x12\x13\n\x0fTYPE_BOTTS_DOTS\x10\x05\x12\x12\n\x0eTYPE_ROAD_EDGE\x10\x06\x12\x12\n\x0eTYPE_SNOW_EDGE\x10\x07\x12\x13\n\x0fTYPE_GRASS_EDGE\x10\x08\x12\x14\n\x10TYPE_GRAVEL_EDGE\x10\t\x12\x12\n\x0eTYPE_SOIL_EDGE\x10\n\x12\x13\n\x0fTYPE_GUARD_RAIL\x10\x0b\x12\r\n\tTYPE_CURB\x10\x0c\x12\x12\n\x0eTYPE_STRUCTURE\x10\r\x12\x10\n\x0cTYPE_BARRIER\x10\x0e\x12\x16\n\x12TYPE_SOUND_BARRIER\x10\x0f"\xb0\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x0e\n\nCOLOR_NONE\x10\x02\x12\x0f\n\x0bCOLOR_WHITE\x10\x03\x12\x10\n\x0cCOLOR_YELLOW\x10\x04\x12\r\n\tCOLOR_RED\x10\x05\x12\x0e\n\nCOLOR_BLUE\x10\x06\x12\x0f\n\x0bCOLOR_GREEN\x10\x07\x12\x10\n\x0cCOLOR_VIOLET\x10\x08\x12\x10\n\x0cCOLOR_ORANGE\x10\tB\x02H\x01'
-)
-OSI_DETECTEDLANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x16osi_detectedlane.proto\x12\x04osi3\x1a\x0eosi_lane.proto\x1a\x18osi_detectedobject.proto\x1a\x10osi_common.proto"\xf6\x01\n\x0cDetectedLane\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12>\n\tcandidate\x18\x02 \x03(\x0b2 .osi3.DetectedLane.CandidateLaneR\tcandidate\x1at\n\rCandidateLane\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12A\n\x0eclassification\x18\x02 \x01(\x0b2\x19.osi3.Lane.ClassificationR\x0eclassification"\xb7\x04\n\x14DetectedLaneBoundary\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12N\n\tcandidate\x18\x02 \x03(\x0b20.osi3.DetectedLaneBoundary.CandidateLaneBoundaryR\tcandidate\x12E\n\rboundary_line\x18\x03 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x0cboundaryLine\x12N\n\x12boundary_line_rmse\x18\x04 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x10boundaryLineRmse\x12:\n\x19boundary_line_confidences\x18\x05 \x03(\x01R\x17boundaryLineConfidences\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x84\x01\n\x15CandidateLaneBoundary\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12I\n\x0eclassification\x18\x02 \x01(\x0b2!.osi3.LaneBoundary.ClassificationR\x0eclassificationB\x02H\x01'
-)
-OSI_OCCUPANT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x12osi_occupant.proto\x12\x04osi3\x1a\x10osi_common.proto"\xdc\x06\n\x08Occupant\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12E\n\x0eclassification\x18\x02 \x01(\x0b2\x1d.osi3.Occupant.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\xa2\x05\n\x0eClassification\x12\x1b\n\tis_driver\x18\x02 \x01(\x08R\x08isDriver\x126\n\x04seat\x18\x03 \x01(\x0e2".osi3.Occupant.Classification.SeatR\x04seat\x12X\n\x10steering_control\x18\x04 \x01(\x0e2-.osi3.Occupant.Classification.SteeringControlR\x0fsteeringControl"\xf5\x01\n\x04Seat\x12\x0e\n\x0cSEAT_UNKNOWN\x12\x0e\n\nSEAT_OTHER\x10\x01\x12\x13\n\x0fSEAT_FRONT_LEFT\x10\x02\x12\x14\n\x10SEAT_FRONT_RIGHT\x10\x03\x12\x15\n\x11SEAT_FRONT_MIDDLE\x10\x04\x12\x12\n\x0eSEAT_BACK_LEFT\x10\x05\x12\x13\n\x0fSEAT_BACK_RIGHT\x10\x06\x12\x14\n\x10SEAT_BACK_MIDDLE\x10\x07\x12\x17\n\x13SEAT_THIRD_ROW_LEFT\x10\x08\x12\x18\n\x14SEAT_THIRD_ROW_RIGHT\x10\t\x12\x19\n\x15SEAT_THIRD_ROW_MIDDLE\x10\n"\xe8\x01\n\x0fSteeringControl\x12\x1a\n\x18STEERING_CONTROL_UNKNOWN\x12\x1a\n\x16STEERING_CONTROL_OTHER\x10\x01\x12\x1c\n\x18STEERING_CONTROL_NO_HAND\x10\x02\x12\x1d\n\x19STEERING_CONTROL_ONE_HAND\x10\x03\x12\x1f\n\x1bSTEERING_CONTROL_BOTH_HANDS\x10\x04\x12\x1e\n\x1aSTEERING_CONTROL_LEFT_HAND\x10\x05\x12\x1f\n\x1bSTEERING_CONTROL_RIGHT_HAND\x10\x06B\x02H\x01'
-)
-OSI_DETECTEDOCCUPANT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x1aosi_detectedoccupant.proto\x12\x04osi3\x1a\x12osi_occupant.proto\x1a\x18osi_detectedobject.proto"\x8a\x02\n\x10DetectedOccupant\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12F\n\tcandidate\x18\x02 \x03(\x0b2(.osi3.DetectedOccupant.CandidateOccupantR\tcandidate\x1a|\n\x11CandidateOccupant\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12E\n\x0eclassification\x18\x02 \x01(\x0b2\x1d.osi3.Occupant.ClassificationR\x0eclassificationB\x02H\x01'
-)
-OSI_ENVIRONMENT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x15osi_environment.proto\x12\x04osi3\x1a\x10osi_common.proto"\x8e\x13\n\x17EnvironmentalConditions\x12d\n\x14ambient_illumination\x18\x01 \x01(\x0e21.osi3.EnvironmentalConditions.AmbientIlluminationR\x13ambientIllumination\x12G\n\x0btime_of_day\x18\x02 \x01(\x0b2\'.osi3.EnvironmentalConditions.TimeOfDayR\ttimeOfDay\x12%\n\x0eunix_timestamp\x18\x08 \x01(\x03R\runixTimestamp\x121\n\x14atmospheric_pressure\x18\x03 \x01(\x01R\x13atmosphericPressure\x12 \n\x0btemperature\x18\x04 \x01(\x01R\x0btemperature\x12+\n\x11relative_humidity\x18\x05 \x01(\x01R\x10relativeHumidity\x12Q\n\rprecipitation\x18\x06 \x01(\x0e2+.osi3.EnvironmentalConditions.PrecipitationR\rprecipitation\x123\n\x03fog\x18\x07 \x01(\x0e2!.osi3.EnvironmentalConditions.FogR\x03fog\x12B\n\x10source_reference\x18\t \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12@\n\x06clouds\x18\n \x01(\x0b2(.osi3.EnvironmentalConditions.CloudLayerR\x06clouds\x126\n\x04wind\x18\x0b \x01(\x0b2".osi3.EnvironmentalConditions.WindR\x04wind\x123\n\x03sun\x18\x0c \x01(\x0b2!.osi3.EnvironmentalConditions.SunR\x03sun\x1aA\n\tTimeOfDay\x124\n\x16seconds_since_midnight\x18\x01 \x01(\rR\x14secondsSinceMidnight\x1a\xe6\x04\n\nCloudLayer\x12s\n\x16fractional_cloud_cover\x18\x01 \x01(\x0e2=.osi3.EnvironmentalConditions.CloudLayer.FractionalCloudCoverR\x14fractionalCloudCover"\xe2\x03\n\x14FractionalCloudCover\x12 \n\x1eFRACTIONAL_CLOUD_COVER_UNKNOWN\x12 \n\x1cFRACTIONAL_CLOUD_COVER_OTHER\x10\x01\x12%\n!FRACTIONAL_CLOUD_COVER_ZERO_OKTAS\x10\x02\x12$\n FRACTIONAL_CLOUD_COVER_ONE_OKTAS\x10\x03\x12$\n FRACTIONAL_CLOUD_COVER_TWO_OKTAS\x10\x04\x12&\n"FRACTIONAL_CLOUD_COVER_THREE_OKTAS\x10\x05\x12%\n!FRACTIONAL_CLOUD_COVER_FOUR_OKTAS\x10\x06\x12%\n!FRACTIONAL_CLOUD_COVER_FIVE_OKTAS\x10\x07\x12$\n FRACTIONAL_CLOUD_COVER_SIX_OKTAS\x10\x08\x12&\n"FRACTIONAL_CLOUD_COVER_SEVEN_OKTAS\x10\t\x12&\n"FRACTIONAL_CLOUD_COVER_EIGHT_OKTAS\x10\n\x12\'\n#FRACTIONAL_CLOUD_COVER_SKY_OBSCURED\x10\x0b\x1aG\n\x04Wind\x12)\n\x10origin_direction\x18\x01 \x01(\x01R\x0foriginDirection\x12\x14\n\x05speed\x18\x02 \x01(\x01R\x05speed\x1a[\n\x03Sun\x12\x18\n\x07azimuth\x18\x01 \x01(\x01R\x07azimuth\x12\x1c\n\televation\x18\x02 \x01(\x01R\televation\x12\x1c\n\tintensity\x18\x03 \x01(\x01R\tintensity"\xfe\x01\n\rPrecipitation\x12\x17\n\x15PRECIPITATION_UNKNOWN\x12\x17\n\x13PRECIPITATION_OTHER\x10\x01\x12\x16\n\x12PRECIPITATION_NONE\x10\x02\x12\x1c\n\x18PRECIPITATION_VERY_LIGHT\x10\x03\x12\x17\n\x13PRECIPITATION_LIGHT\x10\x04\x12\x1a\n\x16PRECIPITATION_MODERATE\x10\x05\x12\x17\n\x13PRECIPITATION_HEAVY\x10\x06\x12\x1c\n\x18PRECIPITATION_VERY_HEAVY\x10\x07\x12\x19\n\x15PRECIPITATION_EXTREME\x10\x08"\xcb\x01\n\x03Fog\x12\r\n\x0bFOG_UNKNOWN\x12\r\n\tFOG_OTHER\x10\x01\x12\x1c\n\x18FOG_EXCELLENT_VISIBILITY\x10\x02\x12\x17\n\x13FOG_GOOD_VISIBILITY\x10\x03\x12\x1b\n\x17FOG_MODERATE_VISIBILITY\x10\x04\x12\x17\n\x13FOG_POOR_VISIBILITY\x10\x05\x12\x0c\n\x08FOG_MIST\x10\x06\x12\r\n\tFOG_LIGHT\x10\x07\x12\r\n\tFOG_THICK\x10\x08\x12\r\n\tFOG_DENSE\x10\t"\xfe\x02\n\x13AmbientIllumination\x12\x1e\n\x1cAMBIENT_ILLUMINATION_UNKNOWN\x12\x1e\n\x1aAMBIENT_ILLUMINATION_OTHER\x10\x01\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL1\x10\x02\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL2\x10\x03\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL3\x10\x04\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL4\x10\x05\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL5\x10\x06\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL6\x10\x07\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL7\x10\x08\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL8\x10\t\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL9\x10\nB\x02H\x01'
-)
-OSI_LOGICALLANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x15osi_logicallane.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x15osi_trafficsign.proto"\xdb\x05\n\x13LogicalLaneBoundary\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12S\n\rboundary_line\x18\x02 \x03(\x0b2..osi3.LogicalLaneBoundary.LogicalBoundaryPointR\x0cboundaryLine\x12<\n\x11reference_line_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\x0freferenceLineId\x12B\n\x14physical_boundary_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x12physicalBoundaryId\x12H\n\x0cpassing_rule\x18\x05 \x01(\x0e2%.osi3.LogicalLaneBoundary.PassingRuleR\x0bpassingRule\x12B\n\x10source_reference\x18\x06 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\x80\x01\n\x14LogicalBoundaryPoint\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x1d\n\ns_position\x18\x02 \x01(\x01R\tsPosition\x12\x1d\n\nt_position\x18\x03 \x01(\x01R\ttPosition"\xb9\x01\n\x0bPassingRule\x12\x16\n\x14PASSING_RULE_UNKNOWN\x12\x16\n\x12PASSING_RULE_OTHER\x10\x01\x12\x1d\n\x19PASSING_RULE_NONE_ALLOWED\x10\x02\x12\x1d\n\x19PASSING_RULE_INCREASING_T\x10\x03\x12\x1d\n\x19PASSING_RULE_DECREASING_T\x10\x04\x12\x1d\n\x19PASSING_RULE_BOTH_ALLOWED\x10\x05"\xf4\x15\n\x0bLogicalLane\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12*\n\x04type\x18\x02 \x01(\x0e2\x16.osi3.LogicalLane.TypeR\x04type\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12_\n\x17physical_lane_reference\x18\x04 \x03(\x0b2\'.osi3.LogicalLane.PhysicalLaneReferenceR\x15physicalLaneReference\x12<\n\x11reference_line_id\x18\x05 \x01(\x0b2\x10.osi3.IdentifierR\x0freferenceLineId\x12\x17\n\x07start_s\x18\x06 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x07 \x01(\x01R\x04endS\x12F\n\x0emove_direction\x18\x08 \x01(\x0e2\x1f.osi3.LogicalLane.MoveDirectionR\rmoveDirection\x12N\n\x13right_adjacent_lane\x18\t \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x11rightAdjacentLane\x12L\n\x12left_adjacent_lane\x18\n \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x10leftAdjacentLane\x12I\n\x10overlapping_lane\x18\x0b \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x0foverlappingLane\x12<\n\x11right_boundary_id\x18\x0c \x03(\x0b2\x10.osi3.IdentifierR\x0frightBoundaryId\x12:\n\x10left_boundary_id\x18\r \x03(\x0b2\x10.osi3.IdentifierR\x0eleftBoundaryId\x12K\n\x10predecessor_lane\x18\x0e \x03(\x0b2 .osi3.LogicalLane.LaneConnectionR\x0fpredecessorLane\x12G\n\x0esuccessor_lane\x18\x0f \x03(\x0b2 .osi3.LogicalLane.LaneConnectionR\rsuccessorLane\x12\x1f\n\x0bstreet_name\x18\x10 \x01(\tR\nstreetName\x12@\n\x0ctraffic_rule\x18\x11 \x03(\x0b2\x1d.osi3.LogicalLane.TrafficRuleR\x0btrafficRule\x1a\x81\x01\n\x15PhysicalLaneReference\x12:\n\x10physical_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0ephysicalLaneId\x12\x17\n\x07start_s\x18\x02 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x03 \x01(\x01R\x04endS\x1az\n\x0eLaneConnection\x124\n\rother_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0botherLaneId\x122\n\x16at_begin_of_other_lane\x18\x02 \x01(\x08R\x12atBeginOfOtherLane\x1a\xb6\x01\n\x0cLaneRelation\x124\n\rother_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0botherLaneId\x12\x17\n\x07start_s\x18\x02 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x03 \x01(\x01R\x04endS\x12"\n\rstart_s_other\x18\x04 \x01(\x01R\x0bstartSOther\x12\x1e\n\x0bend_s_other\x18\x05 \x01(\x01R\tendSOther\x1a\xae\x06\n\x0bTrafficRule\x12Y\n\x11traffic_rule_type\x18\x01 \x01(\x0e2-.osi3.LogicalLane.TrafficRule.TrafficRuleTypeR\x0ftrafficRuleType\x12e\n\x15traffic_rule_validity\x18\x02 \x01(\x0b21.osi3.LogicalLane.TrafficRule.TrafficRuleValidityR\x13trafficRuleValidity\x12I\n\x0bspeed_limit\x18\x03 \x01(\x0b2(.osi3.LogicalLane.TrafficRule.SpeedLimitR\nspeedLimit\x1a\x8b\x03\n\x13TrafficRuleValidity\x12\x17\n\x07start_s\x18\x01 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x02 \x01(\x01R\x04endS\x12d\n\x0evalid_for_type\x18\x03 \x03(\x0b2>.osi3.LogicalLane.TrafficRule.TrafficRuleValidity.TypeValidityR\x0cvalidForType\x1a\xdf\x01\n\x0cTypeValidity\x12+\n\x04type\x18\x01 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12P\n\x0cvehicle_type\x18\x02 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.TypeR\x0bvehicleType\x12P\n\x0cvehicle_role\x18\x03 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.RoleR\x0bvehicleRole\x1aP\n\nSpeedLimit\x12B\n\x11speed_limit_value\x18\x01 \x01(\x0b2\x16.osi3.TrafficSignValueR\x0fspeedLimitValue"2\n\x0fTrafficRuleType\x12\x1f\n\x1dTRAFFIC_RULE_TYPE_SPEED_LIMIT"\xce\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x0f\n\x0bTYPE_NORMAL\x10\x02\x12\x0f\n\x0bTYPE_BIKING\x10\x03\x12\x11\n\rTYPE_SIDEWALK\x10\x04\x12\x10\n\x0cTYPE_PARKING\x10\x05\x12\r\n\tTYPE_STOP\x10\x06\x12\x13\n\x0fTYPE_RESTRICTED\x10\x07\x12\x0f\n\x0bTYPE_BORDER\x10\x08\x12\x11\n\rTYPE_SHOULDER\x10\t\x12\r\n\tTYPE_EXIT\x10\n\x12\x0e\n\nTYPE_ENTRY\x10\x0b\x12\x0f\n\x0bTYPE_ONRAMP\x10\x0c\x12\x10\n\x0cTYPE_OFFRAMP\x10\r\x12\x17\n\x13TYPE_CONNECTINGRAMP\x10\x0e\x12\x0f\n\x0bTYPE_MEDIAN\x10\x0f\x12\r\n\tTYPE_CURB\x10\x10\x12\r\n\tTYPE_RAIL\x10\x11\x12\r\n\tTYPE_TRAM\x10\x12"\xa6\x01\n\rMoveDirection\x12\x18\n\x16MOVE_DIRECTION_UNKNOWN\x12\x18\n\x14MOVE_DIRECTION_OTHER\x10\x01\x12\x1f\n\x1bMOVE_DIRECTION_INCREASING_S\x10\x02\x12\x1f\n\x1bMOVE_DIRECTION_DECREASING_S\x10\x03\x12\x1f\n\x1bMOVE_DIRECTION_BOTH_ALLOWED\x10\x04B\x02H\x01'
-)
-OSI_REFERENCELINE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x17osi_referenceline.proto\x12\x04osi3\x1a\x10osi_common.proto"\xe7\x02\n\rReferenceLine\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12,\n\x04type\x18\x03 \x01(\x0e2\x18.osi3.ReferenceLine.TypeR\x04type\x12C\n\tpoly_line\x18\x02 \x03(\x0b2&.osi3.ReferenceLine.ReferenceLinePointR\x08polyLine\x1a\x88\x01\n\x12ReferenceLinePoint\x125\n\x0eworld_position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\rworldPosition\x12\x1d\n\ns_position\x18\x02 \x01(\x01R\tsPosition\x12\x1c\n\nt_axis_yaw\x18\x03 \x01(\x01R\x08tAxisYaw"6\n\x04Type\x12\x0f\n\rTYPE_POLYLINE\x12\x1d\n\x19TYPE_POLYLINE_WITH_T_AXIS\x10\x01B\x02H\x01'
-)
-OSI_GROUNDTRUTH_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b"\n\x15osi_groundtruth.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x15osi_environment.proto\x1a\x15osi_trafficsign.proto\x1a\x16osi_trafficlight.proto\x1a\x15osi_roadmarking.proto\x1a\x0eosi_lane.proto\x1a\x15osi_logicallane.proto\x1a\x17osi_referenceline.proto\x1a\x10osi_object.proto\x1a\x12osi_occupant.proto\"\x9d\t\n\x0bGroundTruth\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x128\n\x0fhost_vehicle_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\rhostVehicleId\x12C\n\x11stationary_object\x18\x04 \x03(\x0b2\x16.osi3.StationaryObjectR\x10stationaryObject\x127\n\rmoving_object\x18\x05 \x03(\x0b2\x12.osi3.MovingObjectR\x0cmovingObject\x124\n\x0ctraffic_sign\x18\x06 \x03(\x0b2\x11.osi3.TrafficSignR\x0btrafficSign\x127\n\rtraffic_light\x18\x07 \x03(\x0b2\x12.osi3.TrafficLightR\x0ctrafficLight\x124\n\x0croad_marking\x18\x08 \x03(\x0b2\x11.osi3.RoadMarkingR\x0broadMarking\x127\n\rlane_boundary\x18\t \x03(\x0b2\x12.osi3.LaneBoundaryR\x0claneBoundary\x12\x1e\n\x04lane\x18\n \x03(\x0b2\n.osi3.LaneR\x04lane\x12*\n\x08occupant\x18\x0b \x03(\x0b2\x0e.osi3.OccupantR\x08occupant\x12X\n\x18environmental_conditions\x18\x0c \x01(\x0b2\x1d.osi3.EnvironmentalConditionsR\x17environmentalConditions\x12!\n\x0ccountry_code\x18\r \x01(\rR\x0bcountryCode\x12\x1f\n\x0bproj_string\x18\x0e \x01(\tR\nprojString\x12#\n\rmap_reference\x18\x0f \x01(\tR\x0cmapReference\x12'\n\x0fmodel_reference\x18\x10 \x01(\tR\x0emodelReference\x12:\n\x0ereference_line\x18\x11 \x03(\x0b2\x13.osi3.ReferenceLineR\rreferenceLine\x12M\n\x15logical_lane_boundary\x18\x12 \x03(\x0b2\x19.osi3.LogicalLaneBoundaryR\x13logicalLaneBoundary\x124\n\x0clogical_lane\x18\x13 \x03(\x0b2\x11.osi3.LogicalLaneR\x0blogicalLane\x12M\n\x11proj_frame_offset\x18\x14 \x01(\x0b2!.osi3.GroundTruth.ProjFrameOffsetR\x0fprojFrameOffset\x1aO\n\x0fProjFrameOffset\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x10\n\x03yaw\x18\x02 \x01(\x01R\x03yawB\x02H\x01"
-)
-OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n!osi_sensorviewconfiguration.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x11osi_version.proto"\xc0\t\n\x17SensorViewConfiguration\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\tsensor_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x04 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x05 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x06 \x01(\x01R\x13fieldOfViewVertical\x12\x14\n\x05range\x18\x07 \x01(\x01R\x05range\x12;\n\x11update_cycle_time\x18\x08 \x01(\x0b2\x0f.osi3.TimestampR\x0fupdateCycleTime\x12?\n\x13update_cycle_offset\x18\t \x01(\x0b2\x0f.osi3.TimestampR\x11updateCycleOffset\x12C\n\x15simulation_start_time\x18\n \x01(\x0b2\x0f.osi3.TimestampR\x13simulationStartTime\x126\n\x17omit_static_information\x18\x0b \x01(\x08R\x15omitStaticInformation\x12p\n!generic_sensor_view_configuration\x18\xe8\x07 \x03(\x0b2$.osi3.GenericSensorViewConfigurationR\x1egenericSensorViewConfiguration\x12j\n\x1fradar_sensor_view_configuration\x18\xe9\x07 \x03(\x0b2".osi3.RadarSensorViewConfigurationR\x1cradarSensorViewConfiguration\x12j\n\x1flidar_sensor_view_configuration\x18\xea\x07 \x03(\x0b2".osi3.LidarSensorViewConfigurationR\x1clidarSensorViewConfiguration\x12m\n camera_sensor_view_configuration\x18\xeb\x07 \x03(\x0b2#.osi3.CameraSensorViewConfigurationR\x1dcameraSensorViewConfiguration\x12y\n$ultrasonic_sensor_view_configuration\x18\xec\x07 \x03(\x0b2\'.osi3.UltrasonicSensorViewConfigurationR!ultrasonicSensorViewConfiguration"\xd0\x02\n\x1eGenericSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical"\xfc\x06\n\x1cRadarSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x129\n\x19number_of_rays_horizontal\x18\x06 \x01(\rR\x16numberOfRaysHorizontal\x125\n\x17number_of_rays_vertical\x18\x07 \x01(\rR\x14numberOfRaysVertical\x12;\n\x1amax_number_of_interactions\x18\x08 \x01(\rR\x17maxNumberOfInteractions\x12+\n\x11emitter_frequency\x18\t \x01(\x01R\x10emitterFrequency\x12d\n\x12tx_antenna_diagram\x18\n \x03(\x0b26.osi3.RadarSensorViewConfiguration.AntennaDiagramEntryR\x10txAntennaDiagram\x12d\n\x12rx_antenna_diagram\x18\x0b \x03(\x0b26.osi3.RadarSensorViewConfiguration.AntennaDiagramEntryR\x10rxAntennaDiagram\x1a\x83\x01\n\x13AntennaDiagramEntry\x12)\n\x10horizontal_angle\x18\x01 \x01(\x01R\x0fhorizontalAngle\x12%\n\x0evertical_angle\x18\x02 \x01(\x01R\rverticalAngle\x12\x1a\n\x08response\x18\x03 \x01(\x01R\x08response"\x98\x05\n\x1cLidarSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x129\n\x19number_of_rays_horizontal\x18\x06 \x01(\rR\x16numberOfRaysHorizontal\x125\n\x17number_of_rays_vertical\x18\x07 \x01(\rR\x14numberOfRaysVertical\x12;\n\x1amax_number_of_interactions\x18\x08 \x01(\rR\x17maxNumberOfInteractions\x12+\n\x11emitter_frequency\x18\t \x01(\x01R\x10emitterFrequency\x12"\n\rnum_of_pixels\x18\n \x01(\rR\x0bnumOfPixels\x12.\n\ndirections\x18\x0b \x03(\x0b2\x0e.osi3.Vector3dR\ndirections\x12\x18\n\x07timings\x18\x0c \x03(\rR\x07timings"\xab\x0e\n\x1dCameraSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x12=\n\x1bnumber_of_pixels_horizontal\x18\x06 \x01(\rR\x18numberOfPixelsHorizontal\x129\n\x19number_of_pixels_vertical\x18\x07 \x01(\rR\x16numberOfPixelsVertical\x12X\n\x0echannel_format\x18\x08 \x03(\x0e21.osi3.CameraSensorViewConfiguration.ChannelFormatR\rchannelFormat\x12*\n\x11samples_per_pixel\x18\t \x01(\rR\x0fsamplesPerPixel\x12;\n\x1amax_number_of_interactions\x18\n \x01(\rR\x17maxNumberOfInteractions\x12=\n\x0fwavelength_data\x18\x0b \x03(\x0b2\x14.osi3.WavelengthDataR\x0ewavelengthData\x12O\n\x0bpixel_order\x18\x0c \x01(\x0e2..osi3.CameraSensorViewConfiguration.PixelOrderR\npixelOrder"\x88\x01\n\nPixelOrder\x12\x15\n\x13PIXEL_ORDER_DEFAULT\x12\x15\n\x11PIXEL_ORDER_OTHER\x10\x01\x12%\n!PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM\x10\x02\x12%\n!PIXEL_ORDER_LEFT_RIGHT_BOTTOM_TOP\x10\x03"\x81\x07\n\rChannelFormat\x12\x18\n\x16CHANNEL_FORMAT_UNKNOWN\x12\x18\n\x14CHANNEL_FORMAT_OTHER\x10\x01\x12\x1e\n\x1aCHANNEL_FORMAT_MONO_U8_LIN\x10\x02\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_U16_LIN\x10\x03\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_U32_LIN\x10\x04\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_F32_LIN\x10\x05\x12\x1d\n\x19CHANNEL_FORMAT_RGB_U8_LIN\x10\x06\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_U16_LIN\x10\x07\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_U32_LIN\x10\x08\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_F32_LIN\x10\t\x12$\n CHANNEL_FORMAT_BAYER_BGGR_U8_LIN\x10\n\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_U16_LIN\x10\x0b\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_U32_LIN\x10\x0c\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_F32_LIN\x10\r\x12$\n CHANNEL_FORMAT_BAYER_RGGB_U8_LIN\x10\x0e\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_U16_LIN\x10\x0f\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_U32_LIN\x10\x10\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_F32_LIN\x10\x11\x12\x1e\n\x1aCHANNEL_FORMAT_RCCC_U8_LIN\x10\x12\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_U16_LIN\x10\x13\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_U32_LIN\x10\x14\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_F32_LIN\x10\x15\x12\x1e\n\x1aCHANNEL_FORMAT_RCCB_U8_LIN\x10\x16\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_U16_LIN\x10\x17\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_U32_LIN\x10\x18\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_F32_LIN\x10\x19"\xd3\x02\n!UltrasonicSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVerticalB\x02H\x01'
+OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x1eosi_logicaldetectiondata.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto"\xc7\x01\n\x14LogicalDetectionData\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x128\n\x06header\x18\x02 \x01(\x0b2 .osi3.LogicalDetectionDataHeaderR\x06header\x12C\n\x11logical_detection\x18\x03 \x03(\x0b2\x16.osi3.LogicalDetectionR\x10logicalDetection"\xc3\x04\n\x1aLogicalDetectionDataHeader\x12E\n\x16logical_detection_time\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\x14logicalDetectionTime\x12U\n\x0edata_qualifier\x18\x02 \x01(\x0e2..osi3.LogicalDetectionDataHeader.DataQualifierR\rdataQualifier\x12J\n"number_of_valid_logical_detections\x18\x03 \x01(\rR\x1enumberOfValidLogicalDetections\x12-\n\tsensor_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId"\x8b\x02\n\rDataQualifier\x12\x18\n\x16DATA_QUALIFIER_UNKNOWN\x12\x18\n\x14DATA_QUALIFIER_OTHER\x10\x01\x12\x1c\n\x18DATA_QUALIFIER_AVAILABLE\x10\x02\x12$\n DATA_QUALIFIER_AVAILABLE_REDUCED\x10\x03\x12 \n\x1cDATA_QUALIFIER_NOT_AVAILABLE\x10\x04\x12\x1c\n\x18DATA_QUALIFIER_BLINDNESS\x10\x05\x12&\n"DATA_QUALIFIER_TEMPORARY_AVAILABLE\x10\x06\x12\x1a\n\x16DATA_QUALIFIER_INVALID\x10\x07"\xc9\x04\n\x10LogicalDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12*\n\x08position\x18\x03 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x123\n\rposition_rmse\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x0cpositionRmse\x12*\n\x08velocity\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x123\n\rvelocity_rmse\x18\x06 \x01(\x0b2\x0e.osi3.Vector3dR\x0cvelocityRmse\x12\x1c\n\tintensity\x18\x07 \x01(\x01R\tintensity\x12\x10\n\x03snr\x18\x08 \x01(\x01R\x03snr\x128\n\x18point_target_probability\x18\t \x01(\x01R\x16pointTargetProbability\x12-\n\tsensor_id\x18\n \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12L\n\x0eclassification\x18\x0b \x01(\x0e2$.osi3.LogicalDetectionClassificationR\x0eclassification\x12(\n\x10echo_pulse_width\x18\x0c \x01(\x01R\x0eechoPulseWidth*\xbb\x02\n\x1eLogicalDetectionClassification\x12*\n(LOGICAL_DETECTION_CLASSIFICATION_UNKNOWN\x12*\n&LOGICAL_DETECTION_CLASSIFICATION_OTHER\x10\x01\x12,\n(LOGICAL_DETECTION_CLASSIFICATION_INVALID\x10\x02\x12,\n(LOGICAL_DETECTION_CLASSIFICATION_CLUTTER\x10\x03\x121\n-LOGICAL_DETECTION_CLASSIFICATION_OVERDRIVABLE\x10\x04\x122\n.LOGICAL_DETECTION_CLASSIFICATION_UNDERDRIVABLE\x10\x05B\x02H\x01'
 )
 OSI_ROUTE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x0fosi_route.proto\x12\x04osi3\x1a\x10osi_common.proto"\xc4\x02\n\x05Route\x12+\n\x08route_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x07routeId\x12=\n\rroute_segment\x18\x02 \x03(\x0b2\x18.osi3.Route.RouteSegmentR\x0crouteSegment\x1a|\n\x12LogicalLaneSegment\x128\n\x0flogical_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\rlogicalLaneId\x12\x17\n\x07start_s\x18\x02 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x03 \x01(\x01R\x04endS\x1aQ\n\x0cRouteSegment\x12A\n\x0clane_segment\x18\x01 \x03(\x0b2\x1e.osi3.Route.LogicalLaneSegmentR\x0blaneSegmentB\x02H\x01'
@@ -29058,14 +30636,65 @@ OSI_ROUTE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedF
 OSI_HOSTVEHICLEDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x19osi_hostvehicledata.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x0fosi_route.proto"\xa7"\n\x0fHostVehicleData\x120\n\x07version\x18\t \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\n \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x128\n\x0fhost_vehicle_id\x18\x0b \x01(\x0b2\x10.osi3.IdentifierR\rhostVehicleId\x12,\n\x08location\x18\x01 \x01(\x0b2\x10.osi3.BaseMovingR\x08location\x125\n\rlocation_rmse\x18\x02 \x01(\x0b2\x10.osi3.BaseMovingR\x0clocationRmse\x12J\n\x0evehicle_basics\x18\x03 \x01(\x0b2#.osi3.HostVehicleData.VehicleBasicsR\rvehicleBasics\x12V\n\x12vehicle_powertrain\x18\x04 \x01(\x0b2\'.osi3.HostVehicleData.VehiclePowertrainR\x11vehiclePowertrain\x12Z\n\x14vehicle_brake_system\x18\x05 \x01(\x0b2(.osi3.HostVehicleData.VehicleBrakeSystemR\x12vehicleBrakeSystem\x12P\n\x10vehicle_steering\x18\x06 \x01(\x0b2%.osi3.HostVehicleData.VehicleSteeringR\x0fvehicleSteering\x12J\n\x0evehicle_wheels\x18\x07 \x01(\x0b2#.osi3.HostVehicleData.VehicleWheelsR\rvehicleWheels\x12\\\n\x14vehicle_localization\x18\x08 \x01(\x0b2).osi3.HostVehicleData.VehicleLocalizationR\x13vehicleLocalization\x12\x82\x01\n"vehicle_automated_driving_function\x18\x0c \x03(\x0b25.osi3.HostVehicleData.VehicleAutomatedDrivingFunctionR\x1fvehicleAutomatedDrivingFunction\x12J\n\x0evehicle_motion\x18\r \x01(\x0b2#.osi3.HostVehicleData.VehicleMotionR\rvehicleMotion\x12!\n\x05route\x18\x0e \x01(\x0b2\x0b.osi3.RouteR\x05route\x1a\x8c\x03\n\rVehicleBasics\x12\x1f\n\x0bcurb_weight\x18\x01 \x01(\x01R\ncurbWeight\x12[\n\x0foperating_state\x18\x02 \x01(\x0e22.osi3.HostVehicleData.VehicleBasics.OperatingStateR\x0eoperatingState"\xfc\x01\n\x0eOperatingState\x12\x19\n\x17OPERATING_STATE_UNKNOWN\x12\x19\n\x15OPERATING_STATE_OTHER\x10\x01\x12\x19\n\x15OPERATING_STATE_SLEEP\x10\x02\x12\x1b\n\x17OPERATING_STATE_STANDBY\x10\x03\x12\x1c\n\x18OPERATING_STATE_BOARDING\x10\x04\x12!\n\x1dOPERATING_STATE_ENTERTAINMENT\x10\x05\x12\x1b\n\x17OPERATING_STATE_DRIVING\x10\x06\x12\x1e\n\x1aOPERATING_STATE_DIAGNOSTIC\x10\x07\x1a\xd0\x03\n\x11VehiclePowertrain\x12>\n\x1bpedal_position_acceleration\x18\x01 \x01(\x01R\x19pedalPositionAcceleration\x122\n\x15pedal_position_clutch\x18\x02 \x01(\x01R\x13pedalPositionClutch\x12+\n\x11gear_transmission\x18\x03 \x01(\x05R\x10gearTransmission\x12C\n\x05motor\x18\x04 \x03(\x0b2-.osi3.HostVehicleData.VehiclePowertrain.MotorR\x05motor\x1a\xd4\x01\n\x05Motor\x12F\n\x04type\x18\x01 \x01(\x0e22.osi3.HostVehicleData.VehiclePowertrain.Motor.TypeR\x04type\x12\x10\n\x03rpm\x18\x02 \x01(\x01R\x03rpm\x12\x16\n\x06torque\x18\x03 \x01(\x01R\x06torque"Y\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\r\n\tTYPE_OTTO\x10\x02\x12\x0f\n\x0bTYPE_DIESEL\x10\x03\x12\x11\n\rTYPE_ELECTRIC\x10\x04\x1aF\n\x12VehicleBrakeSystem\x120\n\x14pedal_position_brake\x18\x01 \x01(\x01R\x12pedalPositionBrake\x1ac\n\x0fVehicleSteering\x12P\n\x16vehicle_steering_wheel\x18\x01 \x01(\x0b2\x1a.osi3.VehicleSteeringWheelR\x14vehicleSteeringWheel\x1a\xcd\x01\n\rVehicleWheels\x12L\n\nwheel_data\x18\x01 \x03(\x0b2-.osi3.HostVehicleData.VehicleWheels.WheelDataR\twheelData\x1an\n\tWheelData\x12\x12\n\x04axle\x18\x01 \x01(\rR\x04axle\x12\x14\n\x05index\x18\x02 \x01(\rR\x05index\x12#\n\rrotation_rate\x18\x03 \x01(\x01R\x0crotationRate\x12\x12\n\x04slip\x18\x04 \x01(\x01R\x04slip\x1a\xbd\x01\n\x13VehicleLocalization\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x02 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12C\n\x11geodetic_position\x18\x03 \x01(\x0b2\x16.osi3.GeodeticPositionR\x10geodeticPosition\x1a\xbf\x02\n\rVehicleMotion\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x02 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12*\n\x08velocity\x18\x03 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x12>\n\x10orientation_rate\x18\x04 \x01(\x0b2\x13.osi3.Orientation3dR\x0forientationRate\x122\n\x0cacceleration\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0cacceleration\x12+\n\x11current_curvature\x18\x06 \x01(\x01R\x10currentCurvature\x1a\xc2\x0c\n\x1fVehicleAutomatedDrivingFunction\x12N\n\x04name\x18\x01 \x01(\x0e2:.osi3.HostVehicleData.VehicleAutomatedDrivingFunction.NameR\x04name\x12\x1f\n\x0bcustom_name\x18\x02 \x01(\tR\ncustomName\x12Q\n\x05state\x18\x03 \x01(\x0e2;.osi3.HostVehicleData.VehicleAutomatedDrivingFunction.StateR\x05state\x12!\n\x0ccustom_state\x18\x04 \x01(\tR\x0bcustomState\x12m\n\x0fdriver_override\x18\x05 \x01(\x0b2D.osi3.HostVehicleData.VehicleAutomatedDrivingFunction.DriverOverrideR\x0edriverOverride\x127\n\rcustom_detail\x18\x06 \x03(\x0b2\x12.osi3.KeyValuePairR\x0ccustomDetail\x1a\xd9\x01\n\x0eDriverOverride\x12\x16\n\x06active\x18\x01 \x01(\x08R\x06active\x12t\n\x0foverride_reason\x18\x02 \x03(\x0e2K.osi3.HostVehicleData.VehicleAutomatedDrivingFunction.DriverOverride.ReasonR\x0eoverrideReason"9\n\x06Reason\x12\x14\n\x12REASON_BRAKE_PEDAL\x12\x19\n\x15REASON_STEERING_INPUT\x10\x01"\xa3\x06\n\x04Name\x12\x0e\n\x0cNAME_UNKNOWN\x12\x0e\n\nNAME_OTHER\x10\x01\x12\x1b\n\x17NAME_BLIND_SPOT_WARNING\x10\x02\x12"\n\x1eNAME_FORWARD_COLLISION_WARNING\x10\x03\x12\x1f\n\x1bNAME_LANE_DEPARTURE_WARNING\x10\x04\x12"\n\x1eNAME_PARKING_COLLISION_WARNING\x10\x05\x12#\n\x1fNAME_REAR_CROSS_TRAFFIC_WARNING\x10\x06\x12$\n NAME_AUTOMATIC_EMERGENCY_BRAKING\x10\x07\x12%\n!NAME_AUTOMATIC_EMERGENCY_STEERING\x10\x08\x12,\n(NAME_REVERSE_AUTOMATIC_EMERGENCY_BRAKING\x10\t\x12 \n\x1cNAME_ADAPTIVE_CRUISE_CONTROL\x10\n\x12\x1c\n\x18NAME_LANE_KEEPING_ASSIST\x10\x0b\x12"\n\x1eNAME_ACTIVE_DRIVING_ASSISTANCE\x10\x0c\x12\x16\n\x12NAME_BACKUP_CAMERA\x10\r\x12\x1d\n\x19NAME_SURROUND_VIEW_CAMERA\x10\x0e\x12"\n\x1eNAME_ACTIVE_PARKING_ASSISTANCE\x10\x0f\x12"\n\x1eNAME_REMOTE_PARKING_ASSISTANCE\x10\x10\x12\x1b\n\x17NAME_TRAILER_ASSISTANCE\x10\x11\x12\x1d\n\x19NAME_AUTOMATIC_HIGH_BEAMS\x10\x12\x12\x1a\n\x16NAME_DRIVER_MONITORING\x10\x13\x12\x18\n\x14NAME_HEAD_UP_DISPLAY\x10\x14\x12\x15\n\x11NAME_NIGHT_VISION\x10\x15\x12\x16\n\x12NAME_URBAN_DRIVING\x10\x16\x12\x1a\n\x16NAME_HIGHWAY_AUTOPILOT\x10\x17\x12\x17\n\x13NAME_CRUISE_CONTROL\x10\x18\x12\x1c\n\x18NAME_SPEED_LIMIT_CONTROL\x10\x19"\x8d\x01\n\x05State\x12\x0f\n\rSTATE_UNKNOWN\x12\x0f\n\x0bSTATE_OTHER\x10\x01\x12\x11\n\rSTATE_ERRORED\x10\x02\x12\x15\n\x11STATE_UNAVAILABLE\x10\x03\x12\x13\n\x0fSTATE_AVAILABLE\x10\x04\x12\x11\n\rSTATE_STANDBY\x10\x05\x12\x10\n\x0cSTATE_ACTIVE\x10\x06B\x02H\x01'
 )
+OSI_TRAFFICUPDATE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x17osi_trafficupdate.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x19osi_hostvehicledata.proto"\xda\x01\n\rTrafficUpdate\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12*\n\x06update\x18\x03 \x03(\x0b2\x12.osi3.MovingObjectR\x06update\x12<\n\x0einternal_state\x18\x04 \x03(\x0b2\x15.osi3.HostVehicleDataR\rinternalStateB\x02H\x01'
+)
+OSI_TRAFFICLIGHT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x16osi_trafficlight.proto\x12\x04osi3\x1a\x10osi_common.proto"\xb6\x0c\n\x0cTrafficLight\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12I\n\x0eclassification\x18\x03 \x01(\x0b2!.osi3.TrafficLight.ClassificationR\x0eclassification\x12\'\n\x0fmodel_reference\x18\x04 \x01(\tR\x0emodelReference\x12B\n\x10source_reference\x18\x05 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xdc\t\n\x0eClassification\x12=\n\x05color\x18\x01 \x01(\x0e2\'.osi3.TrafficLight.Classification.ColorR\x05color\x12:\n\x04icon\x18\x02 \x01(\x0e2&.osi3.TrafficLight.Classification.IconR\x04icon\x12:\n\x04mode\x18\x03 \x01(\x0e2&.osi3.TrafficLight.Classification.ModeR\x04mode\x12\x18\n\x07counter\x18\x04 \x01(\x01R\x07counter\x12:\n\x10assigned_lane_id\x18\x05 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12)\n\x11is_out_of_service\x18\x06 \x01(\x08R\x0eisOutOfService\x12S\n\x17logical_lane_assignment\x18\x07 \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment"|\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\r\n\tCOLOR_RED\x10\x02\x12\x10\n\x0cCOLOR_YELLOW\x10\x03\x12\x0f\n\x0bCOLOR_GREEN\x10\x04\x12\x0e\n\nCOLOR_BLUE\x10\x05\x12\x0f\n\x0bCOLOR_WHITE\x10\x06"\xcf\x04\n\x04Icon\x12\x0e\n\x0cICON_UNKNOWN\x12\x0e\n\nICON_OTHER\x10\x01\x12\r\n\tICON_NONE\x10\x02\x12\x1d\n\x19ICON_ARROW_STRAIGHT_AHEAD\x10\x03\x12\x13\n\x0fICON_ARROW_LEFT\x10\x04\x12\x18\n\x14ICON_ARROW_DIAG_LEFT\x10\x05\x12"\n\x1eICON_ARROW_STRAIGHT_AHEAD_LEFT\x10\x06\x12\x14\n\x10ICON_ARROW_RIGHT\x10\x07\x12\x19\n\x15ICON_ARROW_DIAG_RIGHT\x10\x08\x12#\n\x1fICON_ARROW_STRAIGHT_AHEAD_RIGHT\x10\t\x12\x19\n\x15ICON_ARROW_LEFT_RIGHT\x10\n\x12\x13\n\x0fICON_ARROW_DOWN\x10\x0b\x12\x18\n\x14ICON_ARROW_DOWN_LEFT\x10\x0c\x12\x19\n\x15ICON_ARROW_DOWN_RIGHT\x10\r\x12\x14\n\x10ICON_ARROW_CROSS\x10\x0e\x12\x13\n\x0fICON_PEDESTRIAN\x10\x0f\x12\r\n\tICON_WALK\x10\x10\x12\x12\n\x0eICON_DONT_WALK\x10\x11\x12\x10\n\x0cICON_BICYCLE\x10\x12\x12\x1f\n\x1bICON_PEDESTRIAN_AND_BICYCLE\x10\x13\x12\x1a\n\x16ICON_COUNTDOWN_SECONDS\x10\x14\x12\x1a\n\x16ICON_COUNTDOWN_PERCENT\x10\x15\x12\r\n\tICON_TRAM\x10\x16\x12\x0c\n\x08ICON_BUS\x10\x17\x12\x15\n\x11ICON_BUS_AND_TRAM\x10\x18"m\n\x04Mode\x12\x0e\n\x0cMODE_UNKNOWN\x12\x0e\n\nMODE_OTHER\x10\x01\x12\x0c\n\x08MODE_OFF\x10\x02\x12\x11\n\rMODE_CONSTANT\x10\x03\x12\x11\n\rMODE_FLASHING\x10\x04\x12\x11\n\rMODE_COUNTING\x10\x05B\x02H\x01'
+)
+OSI_SENSORSPECIFIC_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x18osi_sensorspecific.proto\x12\x04osi3\x1a\x10osi_common.proto"+\n\x17RadarSpecificObjectData\x12\x10\n\x03rcs\x18\x01 \x01(\x01R\x03rcs"\x19\n\x17LidarSpecificObjectData"\x1a\n\x18CameraSpecificObjectData"\xab\x06\n\x1cUltrasonicSpecificObjectData\x12M\n#maximum_measurement_distance_sensor\x18\x01 \x01(\x01R maximumMeasurementDistanceSensor\x12 \n\x0bprobability\x18\x02 \x01(\x01R\x0bprobability\x12i\n\x14trilateration_status\x18\x03 \x01(\x0e26.osi3.UltrasonicSpecificObjectData.TrilaterationStatusR\x13trilaterationStatus\x12>\n\x05trend\x18\x04 \x01(\x0e2(.osi3.UltrasonicSpecificObjectData.TrendR\x05trend\x12J\n\tsignalway\x18\x05 \x03(\x0b2,.osi3.UltrasonicSpecificObjectData.SignalwayR\tsignalway\x1am\n\tSignalway\x12-\n\tsender_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08senderId\x121\n\x0breceiver_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\nreceiverId"\xa7\x01\n\x13TrilaterationStatus\x12\x1e\n\x1cTRILATERATION_STATUS_UNKNOWN\x12\x1e\n\x1aTRILATERATION_STATUS_OTHER\x10\x01\x12)\n%TRILATERATION_STATUS_NOT_TRILATERATED\x10\x02\x12%\n!TRILATERATION_STATUS_TRILATERATED\x10\x03"\x89\x01\n\x05Trend\x12\x0f\n\rTREND_UNKNOWN\x12\x0f\n\x0bTREND_OTHER\x10\x01\x12\x1e\n\x1aTREND_CONSTANT_APPROACHING\x10\x02\x12\x12\n\x0eTREND_CONSTANT\x10\x03\x12\x15\n\x11TREND_APPROACHING\x10\x04\x12\x13\n\x0fTREND_DEPARTING\x10\x05B\x02H\x01'
+)
+OSI_DETECTEDOBJECT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x18osi_detectedobject.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x18osi_sensorspecific.proto"\xdf\x03\n\x12DetectedItemHeader\x121\n\x0btracking_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\ntrackingId\x128\n\x0fground_truth_id\x18\x02 \x03(\x0b2\x10.osi3.IdentifierR\rgroundTruthId\x123\n\x15existence_probability\x18\x03 \x01(\x01R\x14existenceProbability\x12\x10\n\x03age\x18\x04 \x01(\x01R\x03age\x12V\n\x11measurement_state\x18\x05 \x01(\x0e2).osi3.DetectedItemHeader.MeasurementStateR\x10measurementState\x12-\n\tsensor_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId"\x8d\x01\n\x10MeasurementState\x12\x1b\n\x19MEASUREMENT_STATE_UNKNOWN\x12\x1b\n\x17MEASUREMENT_STATE_OTHER\x10\x01\x12\x1e\n\x1aMEASUREMENT_STATE_MEASURED\x10\x02\x12\x1f\n\x1bMEASUREMENT_STATE_PREDICTED\x10\x03"\x87\x06\n\x18DetectedStationaryObject\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12V\n\tcandidate\x18\x04 \x03(\x0b28.osi3.DetectedStationaryObject.CandidateStationaryObjectR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12F\n\x0fradar_specifics\x18d \x01(\x0b2\x1d.osi3.RadarSpecificObjectDataR\x0eradarSpecifics\x12F\n\x0flidar_specifics\x18e \x01(\x0b2\x1d.osi3.LidarSpecificObjectDataR\x0elidarSpecifics\x12I\n\x10camera_specifics\x18f \x01(\x0b2\x1e.osi3.CameraSpecificObjectDataR\x0fcameraSpecifics\x12U\n\x14ultrasonic_specifics\x18g \x01(\x0b2".osi3.UltrasonicSpecificObjectDataR\x13ultrasonicSpecifics\x1a\x8c\x01\n\x19CandidateStationaryObject\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12M\n\x0eclassification\x18\x02 \x01(\x0b2%.osi3.StationaryObject.ClassificationR\x0eclassification"\xb2\x0e\n\x14DetectedMovingObject\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12$\n\x04base\x18\x02 \x01(\x0b2\x10.osi3.BaseMovingR\x04base\x12-\n\tbase_rmse\x18\x03 \x01(\x0b2\x10.osi3.BaseMovingR\x08baseRmse\x12R\n\x0freference_point\x18\x04 \x01(\x0e2).osi3.DetectedMovingObject.ReferencePointR\x0ereferencePoint\x12O\n\x0emovement_state\x18\x05 \x01(\x0e2(.osi3.DetectedMovingObject.MovementStateR\rmovementState\x129\n\x19percentage_side_lane_left\x18\x06 \x01(\x01R\x16percentageSideLaneLeft\x12;\n\x1apercentage_side_lane_right\x18\x07 \x01(\x01R\x17percentageSideLaneRight\x12N\n\tcandidate\x18\x08 \x03(\x0b20.osi3.DetectedMovingObject.CandidateMovingObjectR\tcandidate\x12C\n\x11color_description\x18\t \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x12F\n\x0fradar_specifics\x18d \x01(\x0b2\x1d.osi3.RadarSpecificObjectDataR\x0eradarSpecifics\x12F\n\x0flidar_specifics\x18e \x01(\x0b2\x1d.osi3.LidarSpecificObjectDataR\x0elidarSpecifics\x12I\n\x10camera_specifics\x18f \x01(\x0b2\x1e.osi3.CameraSpecificObjectDataR\x0fcameraSpecifics\x12U\n\x14ultrasonic_specifics\x18g \x01(\x0b2".osi3.UltrasonicSpecificObjectDataR\x13ultrasonicSpecifics\x1a\xa7\x03\n\x15CandidateMovingObject\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12+\n\x04type\x18\x02 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12_\n\x16vehicle_classification\x18\x03 \x01(\x0b2(.osi3.MovingObject.VehicleClassificationR\x15vehicleClassification\x120\n\thead_pose\x18\x04 \x01(\x0b2\x13.osi3.Orientation3dR\x08headPose\x12;\n\x0fupper_body_pose\x18\x05 \x01(\x0b2\x13.osi3.Orientation3dR\rupperBodyPose\x12o\n\x1cmoving_object_classification\x18\x06 \x01(\x0b2-.osi3.MovingObject.MovingObjectClassificationR\x1amovingObjectClassification"\xe8\x02\n\x0eReferencePoint\x12\x19\n\x17REFERENCE_POINT_UNKNOWN\x12\x19\n\x15REFERENCE_POINT_OTHER\x10\x01\x12\x1a\n\x16REFERENCE_POINT_CENTER\x10\x02\x12\x1f\n\x1bREFERENCE_POINT_MIDDLE_LEFT\x10\x03\x12 \n\x1cREFERENCE_POINT_MIDDLE_RIGHT\x10\x04\x12\x1f\n\x1bREFERENCE_POINT_REAR_MIDDLE\x10\x05\x12\x1d\n\x19REFERENCE_POINT_REAR_LEFT\x10\x06\x12\x1e\n\x1aREFERENCE_POINT_REAR_RIGHT\x10\x07\x12 \n\x1cREFERENCE_POINT_FRONT_MIDDLE\x10\x08\x12\x1e\n\x1aREFERENCE_POINT_FRONT_LEFT\x10\t\x12\x1f\n\x1bREFERENCE_POINT_FRONT_RIGHT\x10\n"\x99\x01\n\rMovementState\x12\x18\n\x16MOVEMENT_STATE_UNKNOWN\x12\x18\n\x14MOVEMENT_STATE_OTHER\x10\x01\x12\x1d\n\x19MOVEMENT_STATE_STATIONARY\x10\x02\x12\x19\n\x15MOVEMENT_STATE_MOVING\x10\x03\x12\x1a\n\x16MOVEMENT_STATE_STOPPED\x10\x04B\x02H\x01'
+)
+OSI_DETECTEDTRAFFICLIGHT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x1eosi_detectedtrafficlight.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x16osi_trafficlight.proto\x1a\x18osi_detectedobject.proto"\xc1\x03\n\x14DetectedTrafficLight\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12N\n\tcandidate\x18\x04 \x03(\x0b20.osi3.DetectedTrafficLight.CandidateTrafficLightR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x84\x01\n\x15CandidateTrafficLight\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12I\n\x0eclassification\x18\x02 \x01(\x0b2!.osi3.TrafficLight.ClassificationR\x0eclassificationB\x02H\x01'
+)
+OSI_ENVIRONMENT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x15osi_environment.proto\x12\x04osi3\x1a\x10osi_common.proto"\x8e\x13\n\x17EnvironmentalConditions\x12d\n\x14ambient_illumination\x18\x01 \x01(\x0e21.osi3.EnvironmentalConditions.AmbientIlluminationR\x13ambientIllumination\x12G\n\x0btime_of_day\x18\x02 \x01(\x0b2\'.osi3.EnvironmentalConditions.TimeOfDayR\ttimeOfDay\x12%\n\x0eunix_timestamp\x18\x08 \x01(\x03R\runixTimestamp\x121\n\x14atmospheric_pressure\x18\x03 \x01(\x01R\x13atmosphericPressure\x12 \n\x0btemperature\x18\x04 \x01(\x01R\x0btemperature\x12+\n\x11relative_humidity\x18\x05 \x01(\x01R\x10relativeHumidity\x12Q\n\rprecipitation\x18\x06 \x01(\x0e2+.osi3.EnvironmentalConditions.PrecipitationR\rprecipitation\x123\n\x03fog\x18\x07 \x01(\x0e2!.osi3.EnvironmentalConditions.FogR\x03fog\x12B\n\x10source_reference\x18\t \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12@\n\x06clouds\x18\n \x01(\x0b2(.osi3.EnvironmentalConditions.CloudLayerR\x06clouds\x126\n\x04wind\x18\x0b \x01(\x0b2".osi3.EnvironmentalConditions.WindR\x04wind\x123\n\x03sun\x18\x0c \x01(\x0b2!.osi3.EnvironmentalConditions.SunR\x03sun\x1aA\n\tTimeOfDay\x124\n\x16seconds_since_midnight\x18\x01 \x01(\rR\x14secondsSinceMidnight\x1a\xe6\x04\n\nCloudLayer\x12s\n\x16fractional_cloud_cover\x18\x01 \x01(\x0e2=.osi3.EnvironmentalConditions.CloudLayer.FractionalCloudCoverR\x14fractionalCloudCover"\xe2\x03\n\x14FractionalCloudCover\x12 \n\x1eFRACTIONAL_CLOUD_COVER_UNKNOWN\x12 \n\x1cFRACTIONAL_CLOUD_COVER_OTHER\x10\x01\x12%\n!FRACTIONAL_CLOUD_COVER_ZERO_OKTAS\x10\x02\x12$\n FRACTIONAL_CLOUD_COVER_ONE_OKTAS\x10\x03\x12$\n FRACTIONAL_CLOUD_COVER_TWO_OKTAS\x10\x04\x12&\n"FRACTIONAL_CLOUD_COVER_THREE_OKTAS\x10\x05\x12%\n!FRACTIONAL_CLOUD_COVER_FOUR_OKTAS\x10\x06\x12%\n!FRACTIONAL_CLOUD_COVER_FIVE_OKTAS\x10\x07\x12$\n FRACTIONAL_CLOUD_COVER_SIX_OKTAS\x10\x08\x12&\n"FRACTIONAL_CLOUD_COVER_SEVEN_OKTAS\x10\t\x12&\n"FRACTIONAL_CLOUD_COVER_EIGHT_OKTAS\x10\n\x12\'\n#FRACTIONAL_CLOUD_COVER_SKY_OBSCURED\x10\x0b\x1aG\n\x04Wind\x12)\n\x10origin_direction\x18\x01 \x01(\x01R\x0foriginDirection\x12\x14\n\x05speed\x18\x02 \x01(\x01R\x05speed\x1a[\n\x03Sun\x12\x18\n\x07azimuth\x18\x01 \x01(\x01R\x07azimuth\x12\x1c\n\televation\x18\x02 \x01(\x01R\televation\x12\x1c\n\tintensity\x18\x03 \x01(\x01R\tintensity"\xfe\x01\n\rPrecipitation\x12\x17\n\x15PRECIPITATION_UNKNOWN\x12\x17\n\x13PRECIPITATION_OTHER\x10\x01\x12\x16\n\x12PRECIPITATION_NONE\x10\x02\x12\x1c\n\x18PRECIPITATION_VERY_LIGHT\x10\x03\x12\x17\n\x13PRECIPITATION_LIGHT\x10\x04\x12\x1a\n\x16PRECIPITATION_MODERATE\x10\x05\x12\x17\n\x13PRECIPITATION_HEAVY\x10\x06\x12\x1c\n\x18PRECIPITATION_VERY_HEAVY\x10\x07\x12\x19\n\x15PRECIPITATION_EXTREME\x10\x08"\xcb\x01\n\x03Fog\x12\r\n\x0bFOG_UNKNOWN\x12\r\n\tFOG_OTHER\x10\x01\x12\x1c\n\x18FOG_EXCELLENT_VISIBILITY\x10\x02\x12\x17\n\x13FOG_GOOD_VISIBILITY\x10\x03\x12\x1b\n\x17FOG_MODERATE_VISIBILITY\x10\x04\x12\x17\n\x13FOG_POOR_VISIBILITY\x10\x05\x12\x0c\n\x08FOG_MIST\x10\x06\x12\r\n\tFOG_LIGHT\x10\x07\x12\r\n\tFOG_THICK\x10\x08\x12\r\n\tFOG_DENSE\x10\t"\xfe\x02\n\x13AmbientIllumination\x12\x1e\n\x1cAMBIENT_ILLUMINATION_UNKNOWN\x12\x1e\n\x1aAMBIENT_ILLUMINATION_OTHER\x10\x01\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL1\x10\x02\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL2\x10\x03\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL3\x10\x04\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL4\x10\x05\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL5\x10\x06\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL6\x10\x07\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL7\x10\x08\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL8\x10\t\x12\x1f\n\x1bAMBIENT_ILLUMINATION_LEVEL9\x10\nB\x02H\x01'
+)
+OSI_STREAMINGUPDATE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x19osi_streamingupdate.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x15osi_environment.proto\x1a\x10osi_object.proto\x1a\x15osi_trafficsign.proto\x1a\x16osi_trafficlight.proto\x1a\x19osi_hostvehicledata.proto"\xfd\x04\n\x0fStreamingUpdate\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12P\n\x18stationary_object_update\x18\x03 \x03(\x0b2\x16.osi3.StationaryObjectR\x16stationaryObjectUpdate\x12D\n\x14moving_object_update\x18\x04 \x03(\x0b2\x12.osi3.MovingObjectR\x12movingObjectUpdate\x12A\n\x13traffic_sign_update\x18\x05 \x03(\x0b2\x11.osi3.TrafficSignR\x11trafficSignUpdate\x12D\n\x14traffic_light_update\x18\x06 \x03(\x0b2\x12.osi3.TrafficLightR\x12trafficLightUpdate\x12e\n\x1fenvironmental_conditions_update\x18\x07 \x01(\x0b2\x1d.osi3.EnvironmentalConditionsR\x1denvironmentalConditionsUpdate\x12N\n\x18host_vehicle_data_update\x18\x08 \x03(\x0b2\x15.osi3.HostVehicleDataR\x15hostVehicleDataUpdate\x121\n\x0bobsolete_id\x18\t \x03(\x0b2\x10.osi3.IdentifierR\nobsoleteIdB\x02H\x01'
+)
+OSI_ROADMARKING_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x15osi_roadmarking.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_trafficsign.proto"\xa0\n\n\x0bRoadMarking\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x12H\n\x0eclassification\x18\x03 \x01(\x0b2 .osi3.RoadMarking.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x04 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\xf1\x07\n\x0eClassification\x129\n\x04type\x18\x01 \x01(\x0e2%.osi3.RoadMarking.Classification.TypeR\x04type\x12c\n\x16traffic_main_sign_type\x18\x02 \x01(\x0e2..osi3.TrafficSign.MainSign.Classification.TypeR\x13trafficMainSignType\x12Q\n\x10monochrome_color\x18\x03 \x01(\x0e2&.osi3.RoadMarking.Classification.ColorR\x0fmonochromeColor\x12,\n\x05value\x18\x04 \x01(\x0b2\x16.osi3.TrafficSignValueR\x05value\x12\x1d\n\nvalue_text\x18\x05 \x01(\tR\tvalueText\x12:\n\x10assigned_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x0eassignedLaneId\x12)\n\x11is_out_of_service\x18\x07 \x01(\x08R\x0eisOutOfService\x12\x18\n\x07country\x18\x08 \x01(\tR\x07country\x12)\n\x10country_revision\x18\t \x01(\tR\x0fcountryRevision\x12\x12\n\x04code\x18\n \x01(\tR\x04code\x12\x19\n\x08sub_code\x18\x0b \x01(\tR\x07subCode\x12S\n\x17logical_lane_assignment\x18\x0c \x03(\x0b2\x1b.osi3.LogicalLaneAssignmentR\x15logicalLaneAssignment"\xcb\x01\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x1d\n\x19TYPE_PAINTED_TRAFFIC_SIGN\x10\x02\x12\x1e\n\x1aTYPE_SYMBOLIC_TRAFFIC_SIGN\x10\x03\x12\x1d\n\x19TYPE_TEXTUAL_TRAFFIC_SIGN\x10\x04\x12\x17\n\x13TYPE_GENERIC_SYMBOL\x10\x05\x12\x15\n\x11TYPE_GENERIC_LINE\x10\x06\x12\x15\n\x11TYPE_GENERIC_TEXT\x10\x07"\xa0\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x0f\n\x0bCOLOR_WHITE\x10\x02\x12\x10\n\x0cCOLOR_YELLOW\x10\x03\x12\x0e\n\nCOLOR_BLUE\x10\x05\x12\r\n\tCOLOR_RED\x10\x06\x12\x0f\n\x0bCOLOR_GREEN\x10\x07\x12\x10\n\x0cCOLOR_VIOLET\x10\x08\x12\x10\n\x0cCOLOR_ORANGE\x10\tB\x02H\x01'
+)
+OSI_LANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x0eosi_lane.proto\x12\x04osi3\x1a\x10osi_common.proto"\xa7\x0e\n\x04Lane\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12A\n\x0eclassification\x18\x02 \x01(\x0b2\x19.osi3.Lane.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\xf5\x0c\n\x0eClassification\x122\n\x04type\x18\x01 \x01(\x0e2\x1e.osi3.Lane.Classification.TypeR\x04type\x12/\n\x14is_host_vehicle_lane\x18\x02 \x01(\x08R\x11isHostVehicleLane\x12.\n\ncenterline\x18\x03 \x03(\x0b2\x0e.osi3.Vector3dR\ncenterline\x12E\n\x1fcenterline_is_driving_direction\x18\x04 \x01(\x08R\x1ccenterlineIsDrivingDirection\x12C\n\x15left_adjacent_lane_id\x18\x05 \x03(\x0b2\x10.osi3.IdentifierR\x12leftAdjacentLaneId\x12E\n\x16right_adjacent_lane_id\x18\x06 \x03(\x0b2\x10.osi3.IdentifierR\x13rightAdjacentLaneId\x12H\n\x0clane_pairing\x18\x07 \x03(\x0b2%.osi3.Lane.Classification.LanePairingR\x0blanePairing\x12E\n\x16right_lane_boundary_id\x18\x08 \x03(\x0b2\x10.osi3.IdentifierR\x13rightLaneBoundaryId\x12C\n\x15left_lane_boundary_id\x18\t \x03(\x0b2\x10.osi3.IdentifierR\x12leftLaneBoundaryId\x12C\n\x15free_lane_boundary_id\x18\n \x03(\x0b2\x10.osi3.IdentifierR\x12freeLaneBoundaryId\x12N\n\x0eroad_condition\x18\x0b \x01(\x0b2\'.osi3.Lane.Classification.RoadConditionR\rroadCondition\x12;\n\x07subtype\x18\x0c \x01(\x0e2!.osi3.Lane.Classification.SubtypeR\x07subtype\x1a\x9b\x02\n\rRoadCondition\x12/\n\x13surface_temperature\x18\x01 \x01(\x01R\x12surfaceTemperature\x12,\n\x12surface_water_film\x18\x02 \x01(\x01R\x10surfaceWaterFilm\x124\n\x16surface_freezing_point\x18\x03 \x01(\x01R\x14surfaceFreezingPoint\x12\x1f\n\x0bsurface_ice\x18\x04 \x01(\x01R\nsurfaceIce\x12+\n\x11surface_roughness\x18\x05 \x01(\x01R\x10surfaceRoughness\x12\'\n\x0fsurface_texture\x18\x06 \x01(\x01R\x0esurfaceTexture\x1a\x8b\x01\n\x0bLanePairing\x12>\n\x12antecessor_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x10antecessorLaneId\x12<\n\x11successor_lane_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x0fsuccessorLaneId"d\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_DRIVING\x10\x02\x12\x13\n\x0fTYPE_NONDRIVING\x10\x03\x12\x15\n\x11TYPE_INTERSECTION\x10\x04"\xc0\x02\n\x07Subtype\x12\x11\n\x0fSUBTYPE_UNKNOWN\x12\x11\n\rSUBTYPE_OTHER\x10\x01\x12\x12\n\x0eSUBTYPE_NORMAL\x10\x02\x12\x12\n\x0eSUBTYPE_BIKING\x10\x03\x12\x14\n\x10SUBTYPE_SIDEWALK\x10\x04\x12\x13\n\x0fSUBTYPE_PARKING\x10\x05\x12\x10\n\x0cSUBTYPE_STOP\x10\x06\x12\x16\n\x12SUBTYPE_RESTRICTED\x10\x07\x12\x12\n\x0eSUBTYPE_BORDER\x10\x08\x12\x14\n\x10SUBTYPE_SHOULDER\x10\t\x12\x10\n\x0cSUBTYPE_EXIT\x10\n\x12\x11\n\rSUBTYPE_ENTRY\x10\x0b\x12\x12\n\x0eSUBTYPE_ONRAMP\x10\x0c\x12\x13\n\x0fSUBTYPE_OFFRAMP\x10\r\x12\x1a\n\x16SUBTYPE_CONNECTINGRAMP\x10\x0e"\xa4\n\n\x0cLaneBoundary\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12E\n\rboundary_line\x18\x02 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x0cboundaryLine\x12I\n\x0eclassification\x18\x03 \x01(\x0b2!.osi3.LaneBoundary.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x04 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x8b\x02\n\rBoundaryPoint\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x14\n\x05width\x18\x02 \x01(\x01R\x05width\x12\x16\n\x06height\x18\x03 \x01(\x01R\x06height\x129\n\x04dash\x18\x04 \x01(\x0e2%.osi3.LaneBoundary.BoundaryPoint.DashR\x04dash"e\n\x04Dash\x12\x0e\n\x0cDASH_UNKNOWN\x12\x0e\n\nDASH_OTHER\x10\x01\x12\x0e\n\nDASH_START\x10\x02\x12\x11\n\rDASH_CONTINUE\x10\x03\x12\x0c\n\x08DASH_END\x10\x04\x12\x0c\n\x08DASH_GAP\x10\x05\x1a\xc8\x05\n\x0eClassification\x12:\n\x04type\x18\x01 \x01(\x0e2&.osi3.LaneBoundary.Classification.TypeR\x04type\x12=\n\x05color\x18\x02 \x01(\x0e2\'.osi3.LaneBoundary.Classification.ColorR\x05color\x12D\n\x15limiting_structure_id\x18\x03 \x03(\x0b2\x10.osi3.IdentifierR\x13limitingStructureId"\xc1\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x10\n\x0cTYPE_NO_LINE\x10\x02\x12\x13\n\x0fTYPE_SOLID_LINE\x10\x03\x12\x14\n\x10TYPE_DASHED_LINE\x10\x04\x12\x13\n\x0fTYPE_BOTTS_DOTS\x10\x05\x12\x12\n\x0eTYPE_ROAD_EDGE\x10\x06\x12\x12\n\x0eTYPE_SNOW_EDGE\x10\x07\x12\x13\n\x0fTYPE_GRASS_EDGE\x10\x08\x12\x14\n\x10TYPE_GRAVEL_EDGE\x10\t\x12\x12\n\x0eTYPE_SOIL_EDGE\x10\n\x12\x13\n\x0fTYPE_GUARD_RAIL\x10\x0b\x12\r\n\tTYPE_CURB\x10\x0c\x12\x12\n\x0eTYPE_STRUCTURE\x10\r\x12\x10\n\x0cTYPE_BARRIER\x10\x0e\x12\x16\n\x12TYPE_SOUND_BARRIER\x10\x0f"\xb0\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x0e\n\nCOLOR_NONE\x10\x02\x12\x0f\n\x0bCOLOR_WHITE\x10\x03\x12\x10\n\x0cCOLOR_YELLOW\x10\x04\x12\r\n\tCOLOR_RED\x10\x05\x12\x0e\n\nCOLOR_BLUE\x10\x06\x12\x0f\n\x0bCOLOR_GREEN\x10\x07\x12\x10\n\x0cCOLOR_VIOLET\x10\x08\x12\x10\n\x0cCOLOR_ORANGE\x10\tB\x02H\x01'
+)
+OSI_LOGICALLANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x15osi_logicallane.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x15osi_trafficsign.proto"\xdb\x05\n\x13LogicalLaneBoundary\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12S\n\rboundary_line\x18\x02 \x03(\x0b2..osi3.LogicalLaneBoundary.LogicalBoundaryPointR\x0cboundaryLine\x12<\n\x11reference_line_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\x0freferenceLineId\x12B\n\x14physical_boundary_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x12physicalBoundaryId\x12H\n\x0cpassing_rule\x18\x05 \x01(\x0e2%.osi3.LogicalLaneBoundary.PassingRuleR\x0bpassingRule\x12B\n\x10source_reference\x18\x06 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\x80\x01\n\x14LogicalBoundaryPoint\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x1d\n\ns_position\x18\x02 \x01(\x01R\tsPosition\x12\x1d\n\nt_position\x18\x03 \x01(\x01R\ttPosition"\xb9\x01\n\x0bPassingRule\x12\x16\n\x14PASSING_RULE_UNKNOWN\x12\x16\n\x12PASSING_RULE_OTHER\x10\x01\x12\x1d\n\x19PASSING_RULE_NONE_ALLOWED\x10\x02\x12\x1d\n\x19PASSING_RULE_INCREASING_T\x10\x03\x12\x1d\n\x19PASSING_RULE_DECREASING_T\x10\x04\x12\x1d\n\x19PASSING_RULE_BOTH_ALLOWED\x10\x05"\xf4\x15\n\x0bLogicalLane\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12*\n\x04type\x18\x02 \x01(\x0e2\x16.osi3.LogicalLane.TypeR\x04type\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x12_\n\x17physical_lane_reference\x18\x04 \x03(\x0b2\'.osi3.LogicalLane.PhysicalLaneReferenceR\x15physicalLaneReference\x12<\n\x11reference_line_id\x18\x05 \x01(\x0b2\x10.osi3.IdentifierR\x0freferenceLineId\x12\x17\n\x07start_s\x18\x06 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x07 \x01(\x01R\x04endS\x12F\n\x0emove_direction\x18\x08 \x01(\x0e2\x1f.osi3.LogicalLane.MoveDirectionR\rmoveDirection\x12N\n\x13right_adjacent_lane\x18\t \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x11rightAdjacentLane\x12L\n\x12left_adjacent_lane\x18\n \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x10leftAdjacentLane\x12I\n\x10overlapping_lane\x18\x0b \x03(\x0b2\x1e.osi3.LogicalLane.LaneRelationR\x0foverlappingLane\x12<\n\x11right_boundary_id\x18\x0c \x03(\x0b2\x10.osi3.IdentifierR\x0frightBoundaryId\x12:\n\x10left_boundary_id\x18\r \x03(\x0b2\x10.osi3.IdentifierR\x0eleftBoundaryId\x12K\n\x10predecessor_lane\x18\x0e \x03(\x0b2 .osi3.LogicalLane.LaneConnectionR\x0fpredecessorLane\x12G\n\x0esuccessor_lane\x18\x0f \x03(\x0b2 .osi3.LogicalLane.LaneConnectionR\rsuccessorLane\x12\x1f\n\x0bstreet_name\x18\x10 \x01(\tR\nstreetName\x12@\n\x0ctraffic_rule\x18\x11 \x03(\x0b2\x1d.osi3.LogicalLane.TrafficRuleR\x0btrafficRule\x1a\x81\x01\n\x15PhysicalLaneReference\x12:\n\x10physical_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0ephysicalLaneId\x12\x17\n\x07start_s\x18\x02 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x03 \x01(\x01R\x04endS\x1az\n\x0eLaneConnection\x124\n\rother_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0botherLaneId\x122\n\x16at_begin_of_other_lane\x18\x02 \x01(\x08R\x12atBeginOfOtherLane\x1a\xb6\x01\n\x0cLaneRelation\x124\n\rother_lane_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x0botherLaneId\x12\x17\n\x07start_s\x18\x02 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x03 \x01(\x01R\x04endS\x12"\n\rstart_s_other\x18\x04 \x01(\x01R\x0bstartSOther\x12\x1e\n\x0bend_s_other\x18\x05 \x01(\x01R\tendSOther\x1a\xae\x06\n\x0bTrafficRule\x12Y\n\x11traffic_rule_type\x18\x01 \x01(\x0e2-.osi3.LogicalLane.TrafficRule.TrafficRuleTypeR\x0ftrafficRuleType\x12e\n\x15traffic_rule_validity\x18\x02 \x01(\x0b21.osi3.LogicalLane.TrafficRule.TrafficRuleValidityR\x13trafficRuleValidity\x12I\n\x0bspeed_limit\x18\x03 \x01(\x0b2(.osi3.LogicalLane.TrafficRule.SpeedLimitR\nspeedLimit\x1a\x8b\x03\n\x13TrafficRuleValidity\x12\x17\n\x07start_s\x18\x01 \x01(\x01R\x06startS\x12\x13\n\x05end_s\x18\x02 \x01(\x01R\x04endS\x12d\n\x0evalid_for_type\x18\x03 \x03(\x0b2>.osi3.LogicalLane.TrafficRule.TrafficRuleValidity.TypeValidityR\x0cvalidForType\x1a\xdf\x01\n\x0cTypeValidity\x12+\n\x04type\x18\x01 \x01(\x0e2\x17.osi3.MovingObject.TypeR\x04type\x12P\n\x0cvehicle_type\x18\x02 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.TypeR\x0bvehicleType\x12P\n\x0cvehicle_role\x18\x03 \x01(\x0e2-.osi3.MovingObject.VehicleClassification.RoleR\x0bvehicleRole\x1aP\n\nSpeedLimit\x12B\n\x11speed_limit_value\x18\x01 \x01(\x0b2\x16.osi3.TrafficSignValueR\x0fspeedLimitValue"2\n\x0fTrafficRuleType\x12\x1f\n\x1dTRAFFIC_RULE_TYPE_SPEED_LIMIT"\xce\x02\n\x04Type\x12\x0e\n\x0cTYPE_UNKNOWN\x12\x0e\n\nTYPE_OTHER\x10\x01\x12\x0f\n\x0bTYPE_NORMAL\x10\x02\x12\x0f\n\x0bTYPE_BIKING\x10\x03\x12\x11\n\rTYPE_SIDEWALK\x10\x04\x12\x10\n\x0cTYPE_PARKING\x10\x05\x12\r\n\tTYPE_STOP\x10\x06\x12\x13\n\x0fTYPE_RESTRICTED\x10\x07\x12\x0f\n\x0bTYPE_BORDER\x10\x08\x12\x11\n\rTYPE_SHOULDER\x10\t\x12\r\n\tTYPE_EXIT\x10\n\x12\x0e\n\nTYPE_ENTRY\x10\x0b\x12\x0f\n\x0bTYPE_ONRAMP\x10\x0c\x12\x10\n\x0cTYPE_OFFRAMP\x10\r\x12\x17\n\x13TYPE_CONNECTINGRAMP\x10\x0e\x12\x0f\n\x0bTYPE_MEDIAN\x10\x0f\x12\r\n\tTYPE_CURB\x10\x10\x12\r\n\tTYPE_RAIL\x10\x11\x12\r\n\tTYPE_TRAM\x10\x12"\xa6\x01\n\rMoveDirection\x12\x18\n\x16MOVE_DIRECTION_UNKNOWN\x12\x18\n\x14MOVE_DIRECTION_OTHER\x10\x01\x12\x1f\n\x1bMOVE_DIRECTION_INCREASING_S\x10\x02\x12\x1f\n\x1bMOVE_DIRECTION_DECREASING_S\x10\x03\x12\x1f\n\x1bMOVE_DIRECTION_BOTH_ALLOWED\x10\x04B\x02H\x01'
+)
+OSI_REFERENCELINE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x17osi_referenceline.proto\x12\x04osi3\x1a\x10osi_common.proto"\xe7\x02\n\rReferenceLine\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12,\n\x04type\x18\x03 \x01(\x0e2\x18.osi3.ReferenceLine.TypeR\x04type\x12C\n\tpoly_line\x18\x02 \x03(\x0b2&.osi3.ReferenceLine.ReferenceLinePointR\x08polyLine\x1a\x88\x01\n\x12ReferenceLinePoint\x125\n\x0eworld_position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\rworldPosition\x12\x1d\n\ns_position\x18\x02 \x01(\x01R\tsPosition\x12\x1c\n\nt_axis_yaw\x18\x03 \x01(\x01R\x08tAxisYaw"6\n\x04Type\x12\x0f\n\rTYPE_POLYLINE\x12\x1d\n\x19TYPE_POLYLINE_WITH_T_AXIS\x10\x01B\x02H\x01'
+)
+OSI_OCCUPANT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x12osi_occupant.proto\x12\x04osi3\x1a\x10osi_common.proto"\xdc\x06\n\x08Occupant\x12 \n\x02id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x02id\x12E\n\x0eclassification\x18\x02 \x01(\x0b2\x1d.osi3.Occupant.ClassificationR\x0eclassification\x12B\n\x10source_reference\x18\x03 \x03(\x0b2\x17.osi3.ExternalReferenceR\x0fsourceReference\x1a\xa2\x05\n\x0eClassification\x12\x1b\n\tis_driver\x18\x02 \x01(\x08R\x08isDriver\x126\n\x04seat\x18\x03 \x01(\x0e2".osi3.Occupant.Classification.SeatR\x04seat\x12X\n\x10steering_control\x18\x04 \x01(\x0e2-.osi3.Occupant.Classification.SteeringControlR\x0fsteeringControl"\xf5\x01\n\x04Seat\x12\x0e\n\x0cSEAT_UNKNOWN\x12\x0e\n\nSEAT_OTHER\x10\x01\x12\x13\n\x0fSEAT_FRONT_LEFT\x10\x02\x12\x14\n\x10SEAT_FRONT_RIGHT\x10\x03\x12\x15\n\x11SEAT_FRONT_MIDDLE\x10\x04\x12\x12\n\x0eSEAT_BACK_LEFT\x10\x05\x12\x13\n\x0fSEAT_BACK_RIGHT\x10\x06\x12\x14\n\x10SEAT_BACK_MIDDLE\x10\x07\x12\x17\n\x13SEAT_THIRD_ROW_LEFT\x10\x08\x12\x18\n\x14SEAT_THIRD_ROW_RIGHT\x10\t\x12\x19\n\x15SEAT_THIRD_ROW_MIDDLE\x10\n"\xe8\x01\n\x0fSteeringControl\x12\x1a\n\x18STEERING_CONTROL_UNKNOWN\x12\x1a\n\x16STEERING_CONTROL_OTHER\x10\x01\x12\x1c\n\x18STEERING_CONTROL_NO_HAND\x10\x02\x12\x1d\n\x19STEERING_CONTROL_ONE_HAND\x10\x03\x12\x1f\n\x1bSTEERING_CONTROL_BOTH_HANDS\x10\x04\x12\x1e\n\x1aSTEERING_CONTROL_LEFT_HAND\x10\x05\x12\x1f\n\x1bSTEERING_CONTROL_RIGHT_HAND\x10\x06B\x02H\x01'
+)
+OSI_GROUNDTRUTH_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b"\n\x15osi_groundtruth.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x15osi_environment.proto\x1a\x15osi_trafficsign.proto\x1a\x16osi_trafficlight.proto\x1a\x15osi_roadmarking.proto\x1a\x0eosi_lane.proto\x1a\x15osi_logicallane.proto\x1a\x17osi_referenceline.proto\x1a\x10osi_object.proto\x1a\x12osi_occupant.proto\"\x9d\t\n\x0bGroundTruth\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x128\n\x0fhost_vehicle_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\rhostVehicleId\x12C\n\x11stationary_object\x18\x04 \x03(\x0b2\x16.osi3.StationaryObjectR\x10stationaryObject\x127\n\rmoving_object\x18\x05 \x03(\x0b2\x12.osi3.MovingObjectR\x0cmovingObject\x124\n\x0ctraffic_sign\x18\x06 \x03(\x0b2\x11.osi3.TrafficSignR\x0btrafficSign\x127\n\rtraffic_light\x18\x07 \x03(\x0b2\x12.osi3.TrafficLightR\x0ctrafficLight\x124\n\x0croad_marking\x18\x08 \x03(\x0b2\x11.osi3.RoadMarkingR\x0broadMarking\x127\n\rlane_boundary\x18\t \x03(\x0b2\x12.osi3.LaneBoundaryR\x0claneBoundary\x12\x1e\n\x04lane\x18\n \x03(\x0b2\n.osi3.LaneR\x04lane\x12*\n\x08occupant\x18\x0b \x03(\x0b2\x0e.osi3.OccupantR\x08occupant\x12X\n\x18environmental_conditions\x18\x0c \x01(\x0b2\x1d.osi3.EnvironmentalConditionsR\x17environmentalConditions\x12!\n\x0ccountry_code\x18\r \x01(\rR\x0bcountryCode\x12\x1f\n\x0bproj_string\x18\x0e \x01(\tR\nprojString\x12#\n\rmap_reference\x18\x0f \x01(\tR\x0cmapReference\x12'\n\x0fmodel_reference\x18\x10 \x01(\tR\x0emodelReference\x12:\n\x0ereference_line\x18\x11 \x03(\x0b2\x13.osi3.ReferenceLineR\rreferenceLine\x12M\n\x15logical_lane_boundary\x18\x12 \x03(\x0b2\x19.osi3.LogicalLaneBoundaryR\x13logicalLaneBoundary\x124\n\x0clogical_lane\x18\x13 \x03(\x0b2\x11.osi3.LogicalLaneR\x0blogicalLane\x12M\n\x11proj_frame_offset\x18\x14 \x01(\x0b2!.osi3.GroundTruth.ProjFrameOffsetR\x0fprojFrameOffset\x1aO\n\x0fProjFrameOffset\x12*\n\x08position\x18\x01 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x12\x10\n\x03yaw\x18\x02 \x01(\x01R\x03yawB\x02H\x01"
+)
+OSI_DETECTEDTRAFFICSIGN_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x1dosi_detectedtrafficsign.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_trafficsign.proto\x1a\x18osi_detectedobject.proto"\xd8\n\n\x13DetectedTrafficSign\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12G\n\tmain_sign\x18\x02 \x01(\x0b2*.osi3.DetectedTrafficSign.DetectedMainSignR\x08mainSign\x12b\n\x12supplementary_sign\x18\x03 \x03(\x0b23.osi3.DetectedTrafficSign.DetectedSupplementarySignR\x11supplementarySign\x1a\xdb\x05\n\x10DetectedMainSign\x12Z\n\tcandidate\x18\x01 \x03(\x0b2<.osi3.DetectedTrafficSign.DetectedMainSign.CandidateMainSignR\tcandidate\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12O\n\x08geometry\x18\x04 \x01(\x0e23.osi3.DetectedTrafficSign.DetectedMainSign.GeometryR\x08geometry\x1a\x88\x01\n\x11CandidateMainSign\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12Q\n\x0eclassification\x18\x02 \x01(\x0b2).osi3.TrafficSign.MainSign.ClassificationR\x0eclassification"\xb1\x02\n\x08Geometry\x12\x12\n\x10GEOMETRY_UNKNOWN\x12\x12\n\x0eGEOMETRY_OTHER\x10\x01\x12\x13\n\x0fGEOMETRY_CIRCLE\x10\x02\x12\x19\n\x15GEOMETRY_TRIANGLE_TOP\x10\x03\x12\x1a\n\x16GEOMETRY_TRIANGLE_DOWN\x10\x04\x12\x13\n\x0fGEOMETRY_SQUARE\x10\x05\x12\x11\n\rGEOMETRY_POLE\x10\x06\x12\x16\n\x12GEOMETRY_RECTANGLE\x10\x07\x12\x12\n\x0eGEOMETRY_PLATE\x10\x08\x12\x14\n\x10GEOMETRY_DIAMOND\x10\t\x12\x17\n\x13GEOMETRY_ARROW_LEFT\x10\n\x12\x18\n\x14GEOMETRY_ARROW_RIGHT\x10\x0b\x12\x14\n\x10GEOMETRY_OCTAGON\x10\x0c\x1a\x83\x03\n\x19DetectedSupplementarySign\x12l\n\tcandidate\x18\x01 \x03(\x0b2N.osi3.DetectedTrafficSign.DetectedSupplementarySign.CandidateSupplementarySignR\tcandidate\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x1a\x9a\x01\n\x1aCandidateSupplementarySign\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12Z\n\x0eclassification\x18\x02 \x01(\x0b22.osi3.TrafficSign.SupplementarySign.ClassificationR\x0eclassificationB\x02H\x01'
+)
+OSI_DETECTEDROADMARKING_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x1dosi_detectedroadmarking.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x15osi_roadmarking.proto\x1a\x18osi_detectedobject.proto"\xbc\x03\n\x13DetectedRoadMarking\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12(\n\x04base\x18\x02 \x01(\x0b2\x14.osi3.BaseStationaryR\x04base\x121\n\tbase_rmse\x18\x03 \x01(\x0b2\x14.osi3.BaseStationaryR\x08baseRmse\x12L\n\tcandidate\x18\x04 \x03(\x0b2..osi3.DetectedRoadMarking.CandidateRoadMarkingR\tcandidate\x12C\n\x11color_description\x18\x05 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x82\x01\n\x14CandidateRoadMarking\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12H\n\x0eclassification\x18\x02 \x01(\x0b2 .osi3.RoadMarking.ClassificationR\x0eclassificationB\x02H\x01'
+)
+OSI_DETECTEDLANE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x16osi_detectedlane.proto\x12\x04osi3\x1a\x0eosi_lane.proto\x1a\x18osi_detectedobject.proto\x1a\x10osi_common.proto"\xf6\x01\n\x0cDetectedLane\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12>\n\tcandidate\x18\x02 \x03(\x0b2 .osi3.DetectedLane.CandidateLaneR\tcandidate\x1at\n\rCandidateLane\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12A\n\x0eclassification\x18\x02 \x01(\x0b2\x19.osi3.Lane.ClassificationR\x0eclassification"\xb7\x04\n\x14DetectedLaneBoundary\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12N\n\tcandidate\x18\x02 \x03(\x0b20.osi3.DetectedLaneBoundary.CandidateLaneBoundaryR\tcandidate\x12E\n\rboundary_line\x18\x03 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x0cboundaryLine\x12N\n\x12boundary_line_rmse\x18\x04 \x03(\x0b2 .osi3.LaneBoundary.BoundaryPointR\x10boundaryLineRmse\x12:\n\x19boundary_line_confidences\x18\x05 \x03(\x01R\x17boundaryLineConfidences\x12C\n\x11color_description\x18\x06 \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription\x1a\x84\x01\n\x15CandidateLaneBoundary\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12I\n\x0eclassification\x18\x02 \x01(\x0b2!.osi3.LaneBoundary.ClassificationR\x0eclassificationB\x02H\x01'
+)
+OSI_DETECTEDOCCUPANT_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x1aosi_detectedoccupant.proto\x12\x04osi3\x1a\x12osi_occupant.proto\x1a\x18osi_detectedobject.proto"\x8a\x02\n\x10DetectedOccupant\x120\n\x06header\x18\x01 \x01(\x0b2\x18.osi3.DetectedItemHeaderR\x06header\x12F\n\tcandidate\x18\x02 \x03(\x0b2(.osi3.DetectedOccupant.CandidateOccupantR\tcandidate\x1a|\n\x11CandidateOccupant\x12 \n\x0bprobability\x18\x01 \x01(\x01R\x0bprobability\x12E\n\x0eclassification\x18\x02 \x01(\x0b2\x1d.osi3.Occupant.ClassificationR\x0eclassificationB\x02H\x01'
+)
+OSI_SENSORVIEWCONFIGURATION_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n!osi_sensorviewconfiguration.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x11osi_version.proto"\xc0\t\n\x17SensorViewConfiguration\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\tsensor_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x04 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x05 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x06 \x01(\x01R\x13fieldOfViewVertical\x12\x14\n\x05range\x18\x07 \x01(\x01R\x05range\x12;\n\x11update_cycle_time\x18\x08 \x01(\x0b2\x0f.osi3.TimestampR\x0fupdateCycleTime\x12?\n\x13update_cycle_offset\x18\t \x01(\x0b2\x0f.osi3.TimestampR\x11updateCycleOffset\x12C\n\x15simulation_start_time\x18\n \x01(\x0b2\x0f.osi3.TimestampR\x13simulationStartTime\x126\n\x17omit_static_information\x18\x0b \x01(\x08R\x15omitStaticInformation\x12p\n!generic_sensor_view_configuration\x18\xe8\x07 \x03(\x0b2$.osi3.GenericSensorViewConfigurationR\x1egenericSensorViewConfiguration\x12j\n\x1fradar_sensor_view_configuration\x18\xe9\x07 \x03(\x0b2".osi3.RadarSensorViewConfigurationR\x1cradarSensorViewConfiguration\x12j\n\x1flidar_sensor_view_configuration\x18\xea\x07 \x03(\x0b2".osi3.LidarSensorViewConfigurationR\x1clidarSensorViewConfiguration\x12m\n camera_sensor_view_configuration\x18\xeb\x07 \x03(\x0b2#.osi3.CameraSensorViewConfigurationR\x1dcameraSensorViewConfiguration\x12y\n$ultrasonic_sensor_view_configuration\x18\xec\x07 \x03(\x0b2\'.osi3.UltrasonicSensorViewConfigurationR!ultrasonicSensorViewConfiguration"\xd0\x02\n\x1eGenericSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical"\xfc\x06\n\x1cRadarSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x129\n\x19number_of_rays_horizontal\x18\x06 \x01(\rR\x16numberOfRaysHorizontal\x125\n\x17number_of_rays_vertical\x18\x07 \x01(\rR\x14numberOfRaysVertical\x12;\n\x1amax_number_of_interactions\x18\x08 \x01(\rR\x17maxNumberOfInteractions\x12+\n\x11emitter_frequency\x18\t \x01(\x01R\x10emitterFrequency\x12d\n\x12tx_antenna_diagram\x18\n \x03(\x0b26.osi3.RadarSensorViewConfiguration.AntennaDiagramEntryR\x10txAntennaDiagram\x12d\n\x12rx_antenna_diagram\x18\x0b \x03(\x0b26.osi3.RadarSensorViewConfiguration.AntennaDiagramEntryR\x10rxAntennaDiagram\x1a\x83\x01\n\x13AntennaDiagramEntry\x12)\n\x10horizontal_angle\x18\x01 \x01(\x01R\x0fhorizontalAngle\x12%\n\x0evertical_angle\x18\x02 \x01(\x01R\rverticalAngle\x12\x1a\n\x08response\x18\x03 \x01(\x01R\x08response"\x98\x05\n\x1cLidarSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x129\n\x19number_of_rays_horizontal\x18\x06 \x01(\rR\x16numberOfRaysHorizontal\x125\n\x17number_of_rays_vertical\x18\x07 \x01(\rR\x14numberOfRaysVertical\x12;\n\x1amax_number_of_interactions\x18\x08 \x01(\rR\x17maxNumberOfInteractions\x12+\n\x11emitter_frequency\x18\t \x01(\x01R\x10emitterFrequency\x12"\n\rnum_of_pixels\x18\n \x01(\rR\x0bnumOfPixels\x12.\n\ndirections\x18\x0b \x03(\x0b2\x0e.osi3.Vector3dR\ndirections\x12\x18\n\x07timings\x18\x0c \x03(\rR\x07timings"\xab\x0e\n\x1dCameraSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVertical\x12=\n\x1bnumber_of_pixels_horizontal\x18\x06 \x01(\rR\x18numberOfPixelsHorizontal\x129\n\x19number_of_pixels_vertical\x18\x07 \x01(\rR\x16numberOfPixelsVertical\x12X\n\x0echannel_format\x18\x08 \x03(\x0e21.osi3.CameraSensorViewConfiguration.ChannelFormatR\rchannelFormat\x12*\n\x11samples_per_pixel\x18\t \x01(\rR\x0fsamplesPerPixel\x12;\n\x1amax_number_of_interactions\x18\n \x01(\rR\x17maxNumberOfInteractions\x12=\n\x0fwavelength_data\x18\x0b \x03(\x0b2\x14.osi3.WavelengthDataR\x0ewavelengthData\x12O\n\x0bpixel_order\x18\x0c \x01(\x0e2..osi3.CameraSensorViewConfiguration.PixelOrderR\npixelOrder"\x88\x01\n\nPixelOrder\x12\x15\n\x13PIXEL_ORDER_DEFAULT\x12\x15\n\x11PIXEL_ORDER_OTHER\x10\x01\x12%\n!PIXEL_ORDER_RIGHT_LEFT_TOP_BOTTOM\x10\x02\x12%\n!PIXEL_ORDER_LEFT_RIGHT_BOTTOM_TOP\x10\x03"\x81\x07\n\rChannelFormat\x12\x18\n\x16CHANNEL_FORMAT_UNKNOWN\x12\x18\n\x14CHANNEL_FORMAT_OTHER\x10\x01\x12\x1e\n\x1aCHANNEL_FORMAT_MONO_U8_LIN\x10\x02\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_U16_LIN\x10\x03\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_U32_LIN\x10\x04\x12\x1f\n\x1bCHANNEL_FORMAT_MONO_F32_LIN\x10\x05\x12\x1d\n\x19CHANNEL_FORMAT_RGB_U8_LIN\x10\x06\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_U16_LIN\x10\x07\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_U32_LIN\x10\x08\x12\x1e\n\x1aCHANNEL_FORMAT_RGB_F32_LIN\x10\t\x12$\n CHANNEL_FORMAT_BAYER_BGGR_U8_LIN\x10\n\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_U16_LIN\x10\x0b\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_U32_LIN\x10\x0c\x12%\n!CHANNEL_FORMAT_BAYER_BGGR_F32_LIN\x10\r\x12$\n CHANNEL_FORMAT_BAYER_RGGB_U8_LIN\x10\x0e\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_U16_LIN\x10\x0f\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_U32_LIN\x10\x10\x12%\n!CHANNEL_FORMAT_BAYER_RGGB_F32_LIN\x10\x11\x12\x1e\n\x1aCHANNEL_FORMAT_RCCC_U8_LIN\x10\x12\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_U16_LIN\x10\x13\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_U32_LIN\x10\x14\x12\x1f\n\x1bCHANNEL_FORMAT_RCCC_F32_LIN\x10\x15\x12\x1e\n\x1aCHANNEL_FORMAT_RCCB_U8_LIN\x10\x16\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_U16_LIN\x10\x17\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_U32_LIN\x10\x18\x12\x1f\n\x1bCHANNEL_FORMAT_RCCB_F32_LIN\x10\x19"\xd3\x02\n!UltrasonicSensorViewConfiguration\x12-\n\tsensor_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x02 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x127\n\x18field_of_view_horizontal\x18\x04 \x01(\x01R\x15fieldOfViewHorizontal\x123\n\x16field_of_view_vertical\x18\x05 \x01(\x01R\x13fieldOfViewVerticalB\x02H\x01'
+)
 OSI_SENSORVIEW_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x14osi_sensorview.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x15osi_groundtruth.proto\x1a!osi_sensorviewconfiguration.proto\x1a\x19osi_hostvehicledata.proto"\xdb\x06\n\nSensorView\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12-\n\tsensor_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x04 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x05 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x12A\n\x11host_vehicle_data\x18\x06 \x01(\x0b2\x15.osi3.HostVehicleDataR\x0fhostVehicleData\x12A\n\x13global_ground_truth\x18\x07 \x01(\x0b2\x11.osi3.GroundTruthR\x11globalGroundTruth\x128\n\x0fhost_vehicle_id\x18\x08 \x01(\x0b2\x10.osi3.IdentifierR\rhostVehicleId\x12H\n\x13generic_sensor_view\x18\xe8\x07 \x03(\x0b2\x17.osi3.GenericSensorViewR\x11genericSensorView\x12B\n\x11radar_sensor_view\x18\xe9\x07 \x03(\x0b2\x15.osi3.RadarSensorViewR\x0fradarSensorView\x12B\n\x11lidar_sensor_view\x18\xea\x07 \x03(\x0b2\x15.osi3.LidarSensorViewR\x0flidarSensorView\x12E\n\x12camera_sensor_view\x18\xeb\x07 \x03(\x0b2\x16.osi3.CameraSensorViewR\x10cameraSensorView\x12Q\n\x16ultrasonic_sensor_view\x18\xec\x07 \x03(\x0b2\x1a.osi3.UltrasonicSensorViewR\x14ultrasonicSensorView"h\n\x11GenericSensorView\x12S\n\x12view_configuration\x18\x01 \x01(\x0b2$.osi3.GenericSensorViewConfigurationR\x11viewConfiguration"\x95\x03\n\x0fRadarSensorView\x12Q\n\x12view_configuration\x18\x01 \x01(\x0b2".osi3.RadarSensorViewConfigurationR\x11viewConfiguration\x12@\n\nreflection\x18\x02 \x03(\x0b2 .osi3.RadarSensorView.ReflectionR\nreflection\x1a\xec\x01\n\nReflection\x12\'\n\x0fsignal_strength\x18\x01 \x01(\x01R\x0esignalStrength\x12$\n\x0etime_of_flight\x18\x02 \x01(\x01R\x0ctimeOfFlight\x12#\n\rdoppler_shift\x18\x03 \x01(\x01R\x0cdopplerShift\x126\n\x17source_horizontal_angle\x18\x04 \x01(\x01R\x15sourceHorizontalAngle\x122\n\x15source_vertical_angle\x18\x05 \x01(\x01R\x13sourceVerticalAngle"\x94\x03\n\x0fLidarSensorView\x12Q\n\x12view_configuration\x18\x01 \x01(\x0b2".osi3.LidarSensorViewConfigurationR\x11viewConfiguration\x12@\n\nreflection\x18\x02 \x03(\x0b2 .osi3.LidarSensorView.ReflectionR\nreflection\x1a\xeb\x01\n\nReflection\x12\'\n\x0fsignal_strength\x18\x01 \x01(\x01R\x0esignalStrength\x12$\n\x0etime_of_flight\x18\x02 \x01(\x01R\x0ctimeOfFlight\x12#\n\rdoppler_shift\x18\x03 \x01(\x01R\x0cdopplerShift\x12:\n\x11normal_to_surface\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0fnormalToSurface\x12-\n\tobject_id\x18\x06 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId"\x85\x01\n\x10CameraSensorView\x12R\n\x12view_configuration\x18\x01 \x01(\x0b2#.osi3.CameraSensorViewConfigurationR\x11viewConfiguration\x12\x1d\n\nimage_data\x18\x02 \x01(\x0cR\timageData"n\n\x14UltrasonicSensorView\x12V\n\x12view_configuration\x18\x01 \x01(\x0b2\'.osi3.UltrasonicSensorViewConfigurationR\x11viewConfigurationB\x02H\x01'
 )
 OSI_FEATUREDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x15osi_featuredata.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto"\xc5\x02\n\x0bFeatureData\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12;\n\x0cradar_sensor\x18\x02 \x03(\x0b2\x18.osi3.RadarDetectionDataR\x0bradarSensor\x12;\n\x0clidar_sensor\x18\x03 \x03(\x0b2\x18.osi3.LidarDetectionDataR\x0blidarSensor\x12J\n\x11ultrasonic_sensor\x18\x04 \x03(\x0b2\x1d.osi3.UltrasonicDetectionDataR\x10ultrasonicSensor\x12>\n\rcamera_sensor\x18\x05 \x03(\x0b2\x19.osi3.CameraDetectionDataR\x0ccameraSensor"\xf2\n\n\x15SensorDetectionHeader\x12:\n\x10measurement_time\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\x0fmeasurementTime\x12#\n\rcycle_counter\x18\x02 \x01(\x04R\x0ccycleCounter\x12C\n\x11mounting_position\x18\x03 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x04 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x12P\n\x0edata_qualifier\x18\x05 \x01(\x0e2).osi3.SensorDetectionHeader.DataQualifierR\rdataQualifier\x12;\n\x1anumber_of_valid_detections\x18\x06 \x01(\rR\x17numberOfValidDetections\x12-\n\tsensor_id\x18\x07 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12\\\n\x12extended_qualifier\x18\x08 \x01(\x0e2-.osi3.SensorDetectionHeader.ExtendedQualifierR\x11extendedQualifier"\x8b\x02\n\rDataQualifier\x12\x18\n\x16DATA_QUALIFIER_UNKNOWN\x12\x18\n\x14DATA_QUALIFIER_OTHER\x10\x01\x12\x1c\n\x18DATA_QUALIFIER_AVAILABLE\x10\x02\x12$\n DATA_QUALIFIER_AVAILABLE_REDUCED\x10\x03\x12 \n\x1cDATA_QUALIFIER_NOT_AVAILABLE\x10\x04\x12\x1c\n\x18DATA_QUALIFIER_BLINDNESS\x10\x05\x12&\n"DATA_QUALIFIER_TEMPORARY_AVAILABLE\x10\x06\x12\x1a\n\x16DATA_QUALIFIER_INVALID\x10\x07"\xba\x04\n\x11ExtendedQualifier\x12\x1c\n\x1aEXTENDED_QUALIFIER_UNKNOWN\x12\x1c\n\x18EXTENDED_QUALIFIER_OTHER\x10\x01\x12,\n(EXTENDED_QUALIFIER_NORMAL_OPERATION_MODE\x10\x02\x12\'\n#EXTENDED_QUALIFIER_POWER_UP_OR_DOWN\x10\x03\x12,\n(EXTENDED_QUALIFIER_SENSOR_NOT_CALIBRATED\x10\x04\x12%\n!EXTENDED_QUALIFIER_SENSOR_BLOCKED\x10\x05\x12(\n$EXTENDED_QUALIFIER_SENSOR_MISALIGNED\x10\x06\x129\n5EXTENDED_QUALIFIER_BAD_SENSOR_ENVIRONMENTAL_CONDITION\x10\x07\x12,\n(EXTENDED_QUALIFIER_REDUCED_FIELD_OF_VIEW\x10\x08\x12*\n&EXTENDED_QUALIFIER_INPUT_NOT_AVAILABLE\x10\t\x12&\n"EXTENDED_QUALIFIER_INTERNAL_REASON\x10\n\x12+\n\'EXTENDED_QUALIFIER_EXTERNAL_DISTURBANCE\x10\x0b\x12)\n%EXTENDED_QUALIFIER_BEGINNING_BLOCKAGE\x10\x0c"}\n\x12RadarDetectionData\x123\n\x06header\x18\x01 \x01(\x0b2\x1b.osi3.SensorDetectionHeaderR\x06header\x122\n\tdetection\x18\x02 \x03(\x0b2\x14.osi3.RadarDetectionR\tdetection"\x90\x04\n\x0eRadarDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12-\n\x08position\x18\x03 \x01(\x0b2\x11.osi3.Spherical3dR\x08position\x126\n\rposition_rmse\x18\x04 \x01(\x0b2\x11.osi3.Spherical3dR\x0cpositionRmse\x12\'\n\x0fradial_velocity\x18\x05 \x01(\x01R\x0eradialVelocity\x120\n\x14radial_velocity_rmse\x18\x06 \x01(\x01R\x12radialVelocityRmse\x12\x10\n\x03rcs\x18\x07 \x01(\x01R\x03rcs\x12\x10\n\x03snr\x18\x08 \x01(\x01R\x03snr\x128\n\x18point_target_probability\x18\t \x01(\x01R\x16pointTargetProbability\x123\n\x0cambiguity_id\x18\n \x01(\x0b2\x10.osi3.IdentifierR\x0bambiguityId\x12E\n\x0eclassification\x18\x0b \x01(\x0e2\x1d.osi3.DetectionClassificationR\x0eclassification"}\n\x12LidarDetectionData\x123\n\x06header\x18\x01 \x01(\x0b2\x1b.osi3.SensorDetectionHeaderR\x06header\x122\n\tdetection\x18\x02 \x03(\x0b2\x14.osi3.LidarDetectionR\tdetection"\xd1\x04\n\x0eLidarDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12-\n\x08position\x18\x03 \x01(\x0b2\x11.osi3.Spherical3dR\x08position\x126\n\rposition_rmse\x18\x04 \x01(\x0b2\x11.osi3.Spherical3dR\x0cpositionRmse\x12\x16\n\x06height\x18\x05 \x01(\x01R\x06height\x12\x1f\n\x0bheight_rmse\x18\x06 \x01(\x01R\nheightRmse\x12\x1c\n\tintensity\x18\x07 \x01(\x01R\tintensity\x124\n\x16free_space_probability\x18\x08 \x01(\x01R\x14freeSpaceProbability\x12E\n\x0eclassification\x18\t \x01(\x0e2\x1d.osi3.DetectionClassificationR\x0eclassification\x12"\n\x0creflectivity\x18\n \x01(\x01R\x0creflectivity\x12(\n\x10echo_pulse_width\x18\x0b \x01(\x01R\x0eechoPulseWidth\x12\'\n\x0fradial_velocity\x18\x0c \x01(\x01R\x0eradialVelocity\x12)\n\x07beam_id\x18\r \x01(\x0b2\x10.osi3.IdentifierR\x06beamId"\x8e\x01\n!UltrasonicDetectionSpecificHeader\x12\x1b\n\tmax_range\x18\x01 \x01(\x01R\x08maxRange\x12L\n#number_of_valid_indirect_detections\x18\x02 \x01(\rR\x1fnumberOfValidIndirectDetections"\xab\x02\n\x17UltrasonicDetectionData\x123\n\x06header\x18\x01 \x01(\x0b2\x1b.osi3.SensorDetectionHeaderR\x06header\x12P\n\x0fspecific_header\x18\x03 \x01(\x0b2\'.osi3.UltrasonicDetectionSpecificHeaderR\x0especificHeader\x127\n\tdetection\x18\x02 \x03(\x0b2\x19.osi3.UltrasonicDetectionR\tdetection\x12P\n\x12indirect_detection\x18\x04 \x03(\x0b2!.osi3.UltrasonicIndirectDetectionR\x11indirectDetection"\x95\x01\n\x13UltrasonicDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12\x1a\n\x08distance\x18\x03 \x01(\x01R\x08distance"\xc1\x02\n\x1bUltrasonicIndirectDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12)\n\x10ellipsoid_radial\x18\x03 \x01(\x01R\x0fellipsoidRadial\x12\'\n\x0fellipsoid_axial\x18\x04 \x01(\x01R\x0eellipsoidAxial\x121\n\x0breceiver_id\x18\x05 \x01(\x0b2\x10.osi3.IdentifierR\nreceiverId\x127\n\x0freceiver_origin\x18\x06 \x01(\x0b2\x0e.osi3.Vector3dR\x0ereceiverOrigin"T\n\x1dCameraDetectionSpecificHeader\x123\n\x16number_of_valid_points\x18\x01 \x01(\rR\x13numberOfValidPoints"\xf6\x01\n\x13CameraDetectionData\x123\n\x06header\x18\x01 \x01(\x0b2\x1b.osi3.SensorDetectionHeaderR\x06header\x12L\n\x0fspecific_header\x18\x03 \x01(\x0b2#.osi3.CameraDetectionSpecificHeaderR\x0especificHeader\x123\n\tdetection\x18\x02 \x03(\x0b2\x15.osi3.CameraDetectionR\tdetection\x12\'\n\x05point\x18\x04 \x03(\x0b2\x11.osi3.CameraPointR\x05point"\x8e\x15\n\x0fCameraDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x128\n\x0ftime_difference\x18\x03 \x01(\x0b2\x0f.osi3.TimestampR\x0etimeDifference\x12N\n\x10image_shape_type\x18\x04 \x01(\x0e2$.osi3.CameraDetection.ImageShapeTypeR\x0eimageShapeType\x12F\n\x1fshape_classification_background\x18\x05 \x01(\x08R\x1dshapeClassificationBackground\x12F\n\x1fshape_classification_foreground\x18\x06 \x01(\x08R\x1dshapeClassificationForeground\x12:\n\x19shape_classification_flat\x18\x07 \x01(\x08R\x17shapeClassificationFlat\x12@\n\x1cshape_classification_upright\x18\x08 \x01(\x08R\x1ashapeClassificationUpright\x12>\n\x1bshape_classification_ground\x18\t \x01(\x08R\x19shapeClassificationGround\x128\n\x18shape_classification_sky\x18\n \x01(\x08R\x16shapeClassificationSky\x12F\n\x1fshape_classification_vegetation\x18\x0b \x01(\x08R\x1dshapeClassificationVegetation\x12:\n\x19shape_classification_road\x18\x0c \x01(\x08R\x17shapeClassificationRoad\x12P\n%shape_classification_non_driving_lane\x18\r \x01(\x08R!shapeClassificationNonDrivingLane\x12A\n\x1dshape_classification_non_road\x18\x0e \x01(\x08R\x1ashapeClassificationNonRoad\x12S\n&shape_classification_stationary_object\x18\x0f \x01(\x08R#shapeClassificationStationaryObject\x12K\n"shape_classification_moving_object\x18\x10 \x01(\x08R\x1fshapeClassificationMovingObject\x12B\n\x1dshape_classification_landmark\x18\x11 \x01(\x08R\x1bshapeClassificationLandmark\x12I\n!shape_classification_traffic_sign\x18\x12 \x01(\x08R\x1eshapeClassificationTrafficSign\x12K\n"shape_classification_traffic_light\x18\x13 \x01(\x08R\x1fshapeClassificationTrafficLight\x12I\n!shape_classification_road_marking\x18\x14 \x01(\x08R\x1eshapeClassificationRoadMarking\x12@\n\x1cshape_classification_vehicle\x18\x15 \x01(\x08R\x1ashapeClassificationVehicle\x12F\n\x1fshape_classification_pedestrian\x18\x16 \x01(\x08R\x1dshapeClassificationPedestrian\x12>\n\x1bshape_classification_animal\x18\x17 \x01(\x08R\x19shapeClassificationAnimal\x12Q\n%shape_classification_pedestrian_front\x18\x18 \x01(\x08R"shapeClassificationPedestrianFront\x12O\n$shape_classification_pedestrian_side\x18\x19 \x01(\x08R!shapeClassificationPedestrianSide\x12O\n$shape_classification_pedestrian_rear\x18\x1a \x01(\x08R!shapeClassificationPedestrianRear\x12H\n shape_classification_probability\x18\x1b \x01(\x01R\x1eshapeClassificationProbability\x121\n\x05color\x18\x1c \x01(\x0e2\x1b.osi3.CameraDetection.ColorR\x05color\x12+\n\x11color_probability\x18\x1d \x01(\x01R\x10colorProbability\x123\n\x0cambiguity_id\x18\x1e \x01(\x0b2\x10.osi3.IdentifierR\x0bambiguityId\x12*\n\x11first_point_index\x18\x1f \x01(\rR\x0ffirstPointIndex\x12(\n\x10number_of_points\x18  \x01(\rR\x0enumberOfPoints\x12C\n\x11color_description\x18! \x01(\x0b2\x16.osi3.ColorDescriptionR\x10colorDescription"\xeb\x01\n\x05Color\x12\x0f\n\rCOLOR_UNKNOWN\x12\x0f\n\x0bCOLOR_OTHER\x10\x01\x12\x0f\n\x0bCOLOR_BLACK\x10\x02\x12\x0e\n\nCOLOR_GRAY\x10\x03\x12\x0e\n\nCOLOR_GREY\x10\x03\x12\x0f\n\x0bCOLOR_WHITE\x10\x04\x12\x10\n\x0cCOLOR_YELLOW\x10\x05\x12\x10\n\x0cCOLOR_ORANGE\x10\x06\x12\r\n\tCOLOR_RED\x10\x07\x12\x10\n\x0cCOLOR_VIOLET\x10\x08\x12\x0e\n\nCOLOR_BLUE\x10\t\x12\x0f\n\x0bCOLOR_GREEN\x10\n\x12\x14\n\x10COLOR_REFLECTIVE\x10\x0b\x1a\x02\x10\x01"\xfb\x01\n\x0eImageShapeType\x12\x1a\n\x18IMAGE_SHAPE_TYPE_UNKNOWN\x12\x1a\n\x16IMAGE_SHAPE_TYPE_OTHER\x10\x01\x12\x1a\n\x16IMAGE_SHAPE_TYPE_POINT\x10\x02\x12\x18\n\x14IMAGE_SHAPE_TYPE_BOX\x10\x03\x12\x1c\n\x18IMAGE_SHAPE_TYPE_ELLIPSE\x10\x04\x12\x1c\n\x18IMAGE_SHAPE_TYPE_POLYGON\x10\x05\x12\x1d\n\x19IMAGE_SHAPE_TYPE_POLYLINE\x10\x06\x12 \n\x1cIMAGE_SHAPE_TYPE_POINT_CLOUD\x10\x07"\x9d\x01\n\x0bCameraPoint\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12\'\n\x05point\x18\x02 \x01(\x0b2\x11.osi3.Spherical3dR\x05point\x120\n\npoint_rmse\x18\x03 \x01(\x0b2\x11.osi3.Spherical3dR\tpointRmse*\x84\x02\n\x17DetectionClassification\x12"\n DETECTION_CLASSIFICATION_UNKNOWN\x12"\n\x1eDETECTION_CLASSIFICATION_OTHER\x10\x01\x12$\n DETECTION_CLASSIFICATION_INVALID\x10\x02\x12$\n DETECTION_CLASSIFICATION_CLUTTER\x10\x03\x12)\n%DETECTION_CLASSIFICATION_OVERDRIVABLE\x10\x04\x12*\n&DETECTION_CLASSIFICATION_UNDERDRIVABLE\x10\x05B\x02H\x01'
-)
-OSI_LOGICALDETECTIONDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x1eosi_logicaldetectiondata.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto"\xc7\x01\n\x14LogicalDetectionData\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x128\n\x06header\x18\x02 \x01(\x0b2 .osi3.LogicalDetectionDataHeaderR\x06header\x12C\n\x11logical_detection\x18\x03 \x03(\x0b2\x16.osi3.LogicalDetectionR\x10logicalDetection"\xc3\x04\n\x1aLogicalDetectionDataHeader\x12E\n\x16logical_detection_time\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\x14logicalDetectionTime\x12U\n\x0edata_qualifier\x18\x02 \x01(\x0e2..osi3.LogicalDetectionDataHeader.DataQualifierR\rdataQualifier\x12J\n"number_of_valid_logical_detections\x18\x03 \x01(\rR\x1enumberOfValidLogicalDetections\x12-\n\tsensor_id\x18\x04 \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId"\x8b\x02\n\rDataQualifier\x12\x18\n\x16DATA_QUALIFIER_UNKNOWN\x12\x18\n\x14DATA_QUALIFIER_OTHER\x10\x01\x12\x1c\n\x18DATA_QUALIFIER_AVAILABLE\x10\x02\x12$\n DATA_QUALIFIER_AVAILABLE_REDUCED\x10\x03\x12 \n\x1cDATA_QUALIFIER_NOT_AVAILABLE\x10\x04\x12\x1c\n\x18DATA_QUALIFIER_BLINDNESS\x10\x05\x12&\n"DATA_QUALIFIER_TEMPORARY_AVAILABLE\x10\x06\x12\x1a\n\x16DATA_QUALIFIER_INVALID\x10\x07"\xc9\x04\n\x10LogicalDetection\x123\n\x15existence_probability\x18\x01 \x01(\x01R\x14existenceProbability\x12-\n\tobject_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x08objectId\x12*\n\x08position\x18\x03 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x123\n\rposition_rmse\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x0cpositionRmse\x12*\n\x08velocity\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x123\n\rvelocity_rmse\x18\x06 \x01(\x0b2\x0e.osi3.Vector3dR\x0cvelocityRmse\x12\x1c\n\tintensity\x18\x07 \x01(\x01R\tintensity\x12\x10\n\x03snr\x18\x08 \x01(\x01R\x03snr\x128\n\x18point_target_probability\x18\t \x01(\x01R\x16pointTargetProbability\x12-\n\tsensor_id\x18\n \x03(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12L\n\x0eclassification\x18\x0b \x01(\x0e2$.osi3.LogicalDetectionClassificationR\x0eclassification\x12(\n\x10echo_pulse_width\x18\x0c \x01(\x01R\x0eechoPulseWidth*\xbb\x02\n\x1eLogicalDetectionClassification\x12*\n(LOGICAL_DETECTION_CLASSIFICATION_UNKNOWN\x12*\n&LOGICAL_DETECTION_CLASSIFICATION_OTHER\x10\x01\x12,\n(LOGICAL_DETECTION_CLASSIFICATION_INVALID\x10\x02\x12,\n(LOGICAL_DETECTION_CLASSIFICATION_CLUTTER\x10\x03\x121\n-LOGICAL_DETECTION_CLASSIFICATION_OVERDRIVABLE\x10\x04\x122\n.LOGICAL_DETECTION_CLASSIFICATION_UNDERDRIVABLE\x10\x05B\x02H\x01'
 )
 OSI_SENSORDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x14osi_sensordata.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x1dosi_detectedtrafficsign.proto\x1a\x1eosi_detectedtrafficlight.proto\x1a\x1dosi_detectedroadmarking.proto\x1a\x16osi_detectedlane.proto\x1a\x18osi_detectedobject.proto\x1a\x1aosi_detectedoccupant.proto\x1a\x14osi_sensorview.proto\x1a\x15osi_featuredata.proto\x1a\x1eosi_logicaldetectiondata.proto"\xba\x03\n\x14DetectedEntityHeader\x12:\n\x10measurement_time\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\x0fmeasurementTime\x12#\n\rcycle_counter\x18\x02 \x01(\x04R\x0ccycleCounter\x12O\n\x0edata_qualifier\x18\x03 \x01(\x0e2(.osi3.DetectedEntityHeader.DataQualifierR\rdataQualifier"\xef\x01\n\rDataQualifier\x12\x18\n\x16DATA_QUALIFIER_UNKNOWN\x12\x18\n\x14DATA_QUALIFIER_OTHER\x10\x01\x12\x1c\n\x18DATA_QUALIFIER_AVAILABLE\x10\x02\x12$\n DATA_QUALIFIER_AVAILABLE_REDUCED\x10\x03\x12 \n\x1cDATA_QUALIFIER_NOT_AVAILABLE\x10\x04\x12\x1c\n\x18DATA_QUALIFIER_BLINDNESS\x10\x05\x12&\n"DATA_QUALIFIER_TEMPORARY_AVAILABLE\x10\x06"\xd8\x0f\n\nSensorData\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12D\n\x15host_vehicle_location\x18\x03 \x01(\x0b2\x10.osi3.BaseMovingR\x13hostVehicleLocation\x12M\n\x1ahost_vehicle_location_rmse\x18\x04 \x01(\x0b2\x10.osi3.BaseMovingR\x17hostVehicleLocationRmse\x12-\n\tsensor_id\x18\x05 \x01(\x0b2\x10.osi3.IdentifierR\x08sensorId\x12C\n\x11mounting_position\x18\x06 \x01(\x0b2\x16.osi3.MountingPositionR\x10mountingPosition\x12L\n\x16mounting_position_rmse\x18\x07 \x01(\x0b2\x16.osi3.MountingPositionR\x14mountingPositionRmse\x121\n\x0bsensor_view\x18\x08 \x03(\x0b2\x10.osi3.SensorViewR\nsensorView\x12C\n\x15last_measurement_time\x18\t \x01(\x0b2\x0f.osi3.TimestampR\x13lastMeasurementTime\x12T\n\x18stationary_object_header\x18\n \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x16stationaryObjectHeader\x12K\n\x11stationary_object\x18\x0b \x03(\x0b2\x1e.osi3.DetectedStationaryObjectR\x10stationaryObject\x12L\n\x14moving_object_header\x18\x0c \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x12movingObjectHeader\x12?\n\rmoving_object\x18\r \x03(\x0b2\x1a.osi3.DetectedMovingObjectR\x0cmovingObject\x12J\n\x13traffic_sign_header\x18\x0e \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x11trafficSignHeader\x12<\n\x0ctraffic_sign\x18\x0f \x03(\x0b2\x19.osi3.DetectedTrafficSignR\x0btrafficSign\x12L\n\x14traffic_light_header\x18\x10 \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x12trafficLightHeader\x12?\n\rtraffic_light\x18\x11 \x03(\x0b2\x1a.osi3.DetectedTrafficLightR\x0ctrafficLight\x12J\n\x13road_marking_header\x18\x12 \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x11roadMarkingHeader\x12<\n\x0croad_marking\x18\x13 \x03(\x0b2\x19.osi3.DetectedRoadMarkingR\x0broadMarking\x12L\n\x14lane_boundary_header\x18\x14 \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x12laneBoundaryHeader\x12?\n\rlane_boundary\x18\x15 \x03(\x0b2\x1a.osi3.DetectedLaneBoundaryR\x0claneBoundary\x12;\n\x0blane_header\x18\x16 \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\nlaneHeader\x12&\n\x04lane\x18\x17 \x03(\x0b2\x12.osi3.DetectedLaneR\x04lane\x12C\n\x0foccupant_header\x18\x18 \x01(\x0b2\x1a.osi3.DetectedEntityHeaderR\x0eoccupantHeader\x122\n\x08occupant\x18\x19 \x03(\x0b2\x16.osi3.DetectedOccupantR\x08occupant\x124\n\x0cfeature_data\x18\x1a \x01(\x0b2\x11.osi3.FeatureDataR\x0bfeatureData\x12P\n\x16logical_detection_data\x18\x1b \x01(\x0b2\x1a.osi3.LogicalDetectionDataR\x14logicalDetectionData\x12[\n\x16virtual_detection_area\x18\x1c \x01(\x0b2%.osi3.SensorData.VirtualDetectionAreaR\x14virtualDetectionArea\x120\n\x0bsystem_time\x18\x1d \x01(\x0b2\x0f.osi3.TimestampR\nsystemTime\x1aA\n\x14VirtualDetectionArea\x12)\n\x07polygon\x18\x01 \x03(\x0b2\x0f.osi3.Polygon3dR\x07polygonB\x02H\x01'
@@ -29073,20 +30702,14 @@ OSI_SENSORDATA_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerial
 OSI_DATARECORDING_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x17osi_datarecording.proto\x12\x04osi3\x1a\x14osi_sensordata.proto"E\n\x10SensorDataSeries\x121\n\x0bsensor_data\x18\x01 \x03(\x0b2\x10.osi3.SensorDataR\nsensorData"F\n\x14SensorDataSeriesList\x12.\n\x06sensor\x18\x01 \x03(\x0b2\x16.osi3.SensorDataSeriesR\x06sensorB\x02H\x01'
 )
-OSI_MOTIONREQUEST_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x17osi_motionrequest.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x11osi_version.proto"\x97\x06\n\rMotionRequest\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12U\n\x13motion_request_type\x18\x03 \x01(\x0e2%.osi3.MotionRequest.MotionRequestTypeR\x11motionRequestType\x12E\n\rdesired_state\x18\x04 \x01(\x0b2 .osi3.MotionRequest.DesiredStateR\x0cdesiredState\x12T\n\x12desired_trajectory\x18\x05 \x01(\x0b2%.osi3.MotionRequest.DesiredTrajectoryR\x11desiredTrajectory\x1a\x80\x02\n\x0cDesiredState\x12-\n\ttimestamp\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12*\n\x08velocity\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x122\n\x0cacceleration\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0cacceleration\x1aP\n\x11DesiredTrajectory\x12;\n\x10trajectory_point\x18\x01 \x03(\x0b2\x10.osi3.StatePointR\x0ftrajectoryPoint"\\\n\x11MotionRequestType\x12#\n!MOTION_REQUEST_TYPE_DESIRED_STATE\x12"\n\x1eMOTION_REQUEST_TYPE_TRAJECTORY\x10\x01B\x02H\x01'
-)
-OSI_STREAMINGUPDATE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x19osi_streamingupdate.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x15osi_environment.proto\x1a\x10osi_object.proto\x1a\x15osi_trafficsign.proto\x1a\x16osi_trafficlight.proto\x1a\x19osi_hostvehicledata.proto"\xfd\x04\n\x0fStreamingUpdate\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12P\n\x18stationary_object_update\x18\x03 \x03(\x0b2\x16.osi3.StationaryObjectR\x16stationaryObjectUpdate\x12D\n\x14moving_object_update\x18\x04 \x03(\x0b2\x12.osi3.MovingObjectR\x12movingObjectUpdate\x12A\n\x13traffic_sign_update\x18\x05 \x03(\x0b2\x11.osi3.TrafficSignR\x11trafficSignUpdate\x12D\n\x14traffic_light_update\x18\x06 \x03(\x0b2\x12.osi3.TrafficLightR\x12trafficLightUpdate\x12e\n\x1fenvironmental_conditions_update\x18\x07 \x01(\x0b2\x1d.osi3.EnvironmentalConditionsR\x1denvironmentalConditionsUpdate\x12N\n\x18host_vehicle_data_update\x18\x08 \x03(\x0b2\x15.osi3.HostVehicleDataR\x15hostVehicleDataUpdate\x121\n\x0bobsolete_id\x18\t \x03(\x0b2\x10.osi3.IdentifierR\nobsoleteIdB\x02H\x01'
-)
 OSI_TRAFFICCOMMAND_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x18osi_trafficcommand.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto"\xe6\x01\n\x0eTrafficCommand\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12F\n\x16traffic_participant_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\x14trafficParticipantId\x12+\n\x06action\x18\x04 \x03(\x0b2\x13.osi3.TrafficActionR\x06action"\x9f"\n\rTrafficAction\x12d\n\x18follow_trajectory_action\x18\x01 \x01(\x0b2*.osi3.TrafficAction.FollowTrajectoryActionR\x16followTrajectoryAction\x12R\n\x12follow_path_action\x18\x02 \x01(\x0b2$.osi3.TrafficAction.FollowPathActionR\x10followPathAction\x12t\n\x1eacquire_global_position_action\x18\x03 \x01(\x0b2/.osi3.TrafficAction.AcquireGlobalPositionActionR\x1bacquireGlobalPositionAction\x12R\n\x12lane_change_action\x18\x04 \x01(\x0b2$.osi3.TrafficAction.LaneChangeActionR\x10laneChangeAction\x12B\n\x0cspeed_action\x18\x05 \x01(\x0b2\x1f.osi3.TrafficAction.SpeedActionR\x0bspeedAction\x12X\n\x14abort_actions_action\x18\x06 \x01(\x0b2&.osi3.TrafficAction.AbortActionsActionR\x12abortActionsAction\x12R\n\x12end_actions_action\x18\x07 \x01(\x0b2$.osi3.TrafficAction.EndActionsActionR\x10endActionsAction\x12E\n\rcustom_action\x18\x08 \x01(\x0b2 .osi3.TrafficAction.CustomActionR\x0ccustomAction\x12p\n\x1clongitudinal_distance_action\x18\t \x01(\x0b2..osi3.TrafficAction.LongitudinalDistanceActionR\x1alongitudinalDistanceAction\x12R\n\x12lane_offset_action\x18\n \x01(\x0b2$.osi3.TrafficAction.LaneOffsetActionR\x10laneOffsetAction\x12a\n\x17lateral_distance_action\x18\x0b \x01(\x0b2).osi3.TrafficAction.LateralDistanceActionR\x15lateralDistanceAction\x12K\n\x0fteleport_action\x18\x0c \x01(\x0b2".osi3.TrafficAction.TeleportActionR\x0eteleportAction\x1a=\n\x0cActionHeader\x12-\n\taction_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x08actionId\x1a\x87\x01\n\x12DynamicConstraints\x12)\n\x10max_acceleration\x18\x01 \x01(\x01R\x0fmaxAcceleration\x12)\n\x10max_deceleration\x18\x02 \x01(\x01R\x0fmaxDeceleration\x12\x1b\n\tmax_speed\x18\x03 \x01(\x01R\x08maxSpeed\x1a\x9b\x02\n\x16FollowTrajectoryAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12;\n\x10trajectory_point\x18\x02 \x03(\x0b2\x10.osi3.StatePointR\x0ftrajectoryPoint\x123\n\x15constrain_orientation\x18\x03 \x01(\x08R\x14constrainOrientation\x12H\n\x0efollowing_mode\x18\x04 \x01(\x0e2!.osi3.TrafficAction.FollowingModeR\rfollowingMode\x1a\x89\x02\n\x10FollowPathAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12/\n\npath_point\x18\x02 \x03(\x0b2\x10.osi3.StatePointR\tpathPoint\x123\n\x15constrain_orientation\x18\x03 \x01(\x08R\x14constrainOrientation\x12H\n\x0efollowing_mode\x18\x04 \x01(\x0e2!.osi3.TrafficAction.FollowingModeR\rfollowingMode\x1a\xc7\x01\n\x1bAcquireGlobalPositionAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x1a\x8d\x02\n\x10LaneChangeAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x120\n\x14relative_target_lane\x18\x02 \x01(\x05R\x12relativeTargetLane\x12H\n\x0edynamics_shape\x18\x03 \x01(\x0e2!.osi3.TrafficAction.DynamicsShapeR\rdynamicsShape\x12\x1a\n\x08duration\x18\x04 \x01(\x01R\x08duration\x12\x1a\n\x08distance\x18\x05 \x01(\x01R\x08distance\x1a\x8a\x02\n\x0bSpeedAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x122\n\x15absolute_target_speed\x18\x02 \x01(\x01R\x13absoluteTargetSpeed\x12H\n\x0edynamics_shape\x18\x03 \x01(\x0e2!.osi3.TrafficAction.DynamicsShapeR\rdynamicsShape\x12\x1a\n\x08duration\x18\x04 \x01(\x01R\x08duration\x12\x1a\n\x08distance\x18\x05 \x01(\x01R\x08distance\x1a\x97\x01\n\x12AbortActionsAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12:\n\x10target_action_id\x18\x02 \x03(\x0b2\x10.osi3.IdentifierR\x0etargetActionId\x1a\x95\x01\n\x10EndActionsAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12:\n\x10target_action_id\x18\x02 \x03(\x0b2\x10.osi3.IdentifierR\x0etargetActionId\x1a\x92\x01\n\x0cCustomAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12\x18\n\x07command\x18\x02 \x01(\tR\x07command\x12!\n\x0ccommand_type\x18\x03 \x01(\tR\x0bcommandType\x1a\xe3\x02\n\x1aLongitudinalDistanceAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12S\n\x1dtarget_traffic_participant_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x1atargetTrafficParticipantId\x12\x1a\n\x08distance\x18\x03 \x01(\x01R\x08distance\x12\x1c\n\tfreespace\x18\x04 \x01(\x08R\tfreespace\x12\x16\n\x06follow\x18\x05 \x01(\x08R\x06follow\x12W\n\x13dynamic_constraints\x18\x06 \x01(\x0b2&.osi3.TrafficAction.DynamicConstraintsR\x12dynamicConstraints\x1a\xde\x02\n\x15LateralDistanceAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12S\n\x1dtarget_traffic_participant_id\x18\x02 \x01(\x0b2\x10.osi3.IdentifierR\x1atargetTrafficParticipantId\x12\x1a\n\x08distance\x18\x03 \x01(\x01R\x08distance\x12\x1c\n\tfreespace\x18\x04 \x01(\x08R\tfreespace\x12\x16\n\x06follow\x18\x05 \x01(\x08R\x06follow\x12W\n\x13dynamic_constraints\x18\x06 \x01(\x0b2&.osi3.TrafficAction.DynamicConstraintsR\x12dynamicConstraints\x1a\xd1\x01\n\x10LaneOffsetAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12,\n\x12target_lane_offset\x18\x02 \x01(\x01R\x10targetLaneOffset\x12H\n\x0edynamics_shape\x18\x03 \x01(\x0e2!.osi3.TrafficAction.DynamicsShapeR\rdynamicsShape\x1a\xba\x01\n\x0eTeleportAction\x12E\n\raction_header\x18\x01 \x01(\x0b2 .osi3.TrafficAction.ActionHeaderR\x0cactionHeader\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation"E\n\rFollowingMode\x12\x19\n\x17FOLLOWING_MODE_POSITION\x12\x19\n\x15FOLLOWING_MODE_FOLLOW\x10\x01"\x9a\x01\n\rDynamicsShape\x12\x1c\n\x1aDYNAMICS_SHAPE_UNSPECIFIED\x12\x19\n\x15DYNAMICS_SHAPE_LINEAR\x10\x01\x12\x18\n\x14DYNAMICS_SHAPE_CUBIC\x10\x02\x12\x1d\n\x19DYNAMICS_SHAPE_SINUSOIDAL\x10\x03\x12\x17\n\x13DYNAMICS_SHAPE_STEP\x10\x04B\x02H\x01'
 )
 OSI_TRAFFICCOMMANDUPDATE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x1eosi_trafficcommandupdate.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto"\x92\x03\n\x14TrafficCommandUpdate\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12F\n\x16traffic_participant_id\x18\x03 \x01(\x0b2\x10.osi3.IdentifierR\x14trafficParticipantId\x12U\n\x10dismissed_action\x18\x04 \x03(\x0b2*.osi3.TrafficCommandUpdate.DismissedActionR\x0fdismissedAction\x1az\n\x0fDismissedAction\x12@\n\x13dismissed_action_id\x18\x01 \x01(\x0b2\x10.osi3.IdentifierR\x11dismissedActionId\x12%\n\x0efailure_reason\x18\x02 \x01(\tR\rfailureReasonB\x02H\x01'
 )
-OSI_TRAFFICUPDATE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
-    b'\n\x17osi_trafficupdate.proto\x12\x04osi3\x1a\x11osi_version.proto\x1a\x10osi_common.proto\x1a\x10osi_object.proto\x1a\x19osi_hostvehicledata.proto"\xda\x01\n\rTrafficUpdate\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12*\n\x06update\x18\x03 \x03(\x0b2\x12.osi3.MovingObjectR\x06update\x12<\n\x0einternal_state\x18\x04 \x03(\x0b2\x15.osi3.HostVehicleDataR\rinternalStateB\x02H\x01'
+OSI_MOTIONREQUEST_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
+    b'\n\x17osi_motionrequest.proto\x12\x04osi3\x1a\x10osi_common.proto\x1a\x11osi_version.proto"\x97\x06\n\rMotionRequest\x120\n\x07version\x18\x01 \x01(\x0b2\x16.osi3.InterfaceVersionR\x07version\x12-\n\ttimestamp\x18\x02 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12U\n\x13motion_request_type\x18\x03 \x01(\x0e2%.osi3.MotionRequest.MotionRequestTypeR\x11motionRequestType\x12E\n\rdesired_state\x18\x04 \x01(\x0b2 .osi3.MotionRequest.DesiredStateR\x0cdesiredState\x12T\n\x12desired_trajectory\x18\x05 \x01(\x0b2%.osi3.MotionRequest.DesiredTrajectoryR\x11desiredTrajectory\x1a\x80\x02\n\x0cDesiredState\x12-\n\ttimestamp\x18\x01 \x01(\x0b2\x0f.osi3.TimestampR\ttimestamp\x12*\n\x08position\x18\x02 \x01(\x0b2\x0e.osi3.Vector3dR\x08position\x125\n\x0borientation\x18\x03 \x01(\x0b2\x13.osi3.Orientation3dR\x0borientation\x12*\n\x08velocity\x18\x04 \x01(\x0b2\x0e.osi3.Vector3dR\x08velocity\x122\n\x0cacceleration\x18\x05 \x01(\x0b2\x0e.osi3.Vector3dR\x0cacceleration\x1aP\n\x11DesiredTrajectory\x12;\n\x10trajectory_point\x18\x01 \x03(\x0b2\x10.osi3.StatePointR\x0ftrajectoryPoint"\\\n\x11MotionRequestType\x12#\n!MOTION_REQUEST_TYPE_DESIRED_STATE\x12"\n\x1eMOTION_REQUEST_TYPE_TRAJECTORY\x10\x01B\x02H\x01'
 )
 OSI_MAPASAMOPENDRIVE_PROTO_DESCRIPTOR = default_google_proto_descriptor_pool.AddSerializedFile(
     b'\n\x1aosi_mapasamopendrive.proto\x12\x04osi3"l\n\x10MapAsamOpenDrive\x12#\n\rmap_reference\x18\x01 \x01(\tR\x0cmapReference\x123\n\x16open_drive_xml_content\x18\x02 \x01(\tR\x13openDriveXmlContentB\x02H\x01'

@@ -5,7 +5,6 @@ from typing import Any
 from mcap_protobuf.decoder import DecoderFactory
 from mcap.reader import make_reader
 from mcap_protobuf.writer import Writer as McapWriter
-import struct
 from .generated import osi3
 
 MESSAGES_TYPE = [
