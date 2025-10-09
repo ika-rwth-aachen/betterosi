@@ -26,6 +26,8 @@ classifiers = [
 ]
 dependencies = [
     'betterproto2[all] (>=0.8.0,<1)',
+    'betterproto2_compiler',
+    'betterproto2-rust-codec',
     'mcap',
     'mcap-protobuf-support',
     'matplotlib',
