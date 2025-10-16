@@ -13,7 +13,7 @@ wheels = [
 
 [[package]]
 name = "betterosi"
-version = "0.8.1"
+version = "0.8.3"
 source = { editable = "." }
 dependencies = [
     { name = "betterproto2", extra = ["all"] },
@@ -41,7 +41,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "betterproto2", extras = ["all"], specifier = ">=0.8.0,<1" },
+    { name = "betterproto2", extras = ["all"] },
     { name = "betterproto2-compiler" },
     { name = "betterproto2-rust-codec" },
     { name = "matplotlib" },

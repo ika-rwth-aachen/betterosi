@@ -28,7 +28,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    'betterproto2[all] (>=0.8.0,<1)',
+    'betterproto2[all]',
     'betterproto2_compiler',
     'betterproto2-rust-codec',
     'mcap',
@@ -39,7 +39,7 @@ dependencies = [
     'tqdm'
 ]
 
-version = "0.8.3"
+version = "0.8.4"
 
 [project.optional-dependencies]
 test = ['ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks']
