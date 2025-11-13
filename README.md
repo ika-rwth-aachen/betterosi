@@ -5,6 +5,7 @@
 [![](https://github.com/ika-rwth-aachen/betterosi/workflows/CI/badge.svg)](https://github.com/ika-rwth-aachen/betterosi/actions)
 [![](https://img.shields.io/pypi/pyversions/betterosi.svg)](https://pypi.python.org/pypi/betterosi/)
 [![](https://img.shields.io/github/issues-raw/ika-rwth-aachen/betterosi.svg)](https://github.com/ika-rwth-aachen/betterosi/issues)
+![logo](./betterosi.svg)
 
 A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](https://github.com/OpenSimulationInterface/open-simulation-interface) files (either `.osi` binary traces or [MCAP](https://github.com/foxglove/mcap) files) using [betterproto2](https://github.com/betterproto/python-betterproto2) instead of the default protobuf generated code (better typing and enum support).
 
