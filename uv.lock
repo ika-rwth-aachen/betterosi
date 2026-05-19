@@ -13,7 +13,7 @@ wheels = [
 
 [[package]]
 name = "betterosi"
-version = "0.8.3"
+version = "0.8.5"
 source = { editable = "." }
 dependencies = [
     { name = "betterproto2", extra = ["all"] },
@@ -63,15 +63,15 @@ provides-extras = ["test"]
 
 [[package]]
 name = "betterproto2"
-version = "0.9.0"
+version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "python-dateutil" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f4/42/0abb192e2ad3cde53ceb1494bb0b31a548cc4c672e32d32e403cea9817d2/betterproto2-0.9.0.tar.gz", hash = "sha256:06e31730f3a40ee8195c1ce05ac182b802b8dc3adac125ebe223f2518c695bc2", size = 143826, upload-time = "2025-09-25T20:09:04.304Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c4/88/7249571b6d525968afbc70f4fc7774cee5cdd55ecebe084a0d49f75513cb/betterproto2-0.10.0.tar.gz", hash = "sha256:fa0bcc3b87b6fd9151cd0058c153e480830f55fddb5afe3fef92e842490be266", size = 16997, upload-time = "2026-05-10T13:02:19.29Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/06/9eb1579407b69ccccc8942e44d0af3b3ef6b5d65f00ff35f9b9581556ab5/betterproto2-0.9.0-py3-none-any.whl", hash = "sha256:53aa700640e5c516917ee8fd68463de3581f2e52360b0be3c7c811024ec9cdab", size = 19550, upload-time = "2025-09-25T20:09:02.847Z" },
+    { url = "https://files.pythonhosted.org/packages/56/e8/596fde3196b253cee2c7a94df2d434b043d99c5a565fb3110468501b2562/betterproto2-0.10.0-py3-none-any.whl", hash = "sha256:be80a0cb1aee34f1b5e424db43884bde659ce1dbc323676aa0d47930e70a898b", size = 19904, upload-time = "2026-05-10T13:02:17.757Z" },
 ]
 
 [package.optional-dependencies]
@@ -84,7 +84,7 @@ all = [
 
 [[package]]
 name = "betterproto2-compiler"
-version = "0.9.0"
+version = "0.10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "betterproto2" },
@@ -93,9 +93,9 @@ dependencies = [
     { name = "strenum", marker = "python_full_version < '3.11'" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4b/2d/62f13d5d35236b82835fc18e0e5a804435626e34897b22be5cdbf7dc368e/betterproto2_compiler-0.9.0.tar.gz", hash = "sha256:f138597a035b4f163f25255a77fc6732801e046d0d9f3b13634b07c8f06bcd66", size = 135297, upload-time = "2025-09-25T20:15:43.137Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/12/ae/66cd7614711c73ef8654e018e8f4bc8344fbf8e1dd80241e1ee61cb91db4/betterproto2_compiler-0.10.1.tar.gz", hash = "sha256:0a6bf4673befac9916e5822598231e5885f2f570e6cb61285f6cd47085f88e81", size = 54675, upload-time = "2026-05-13T17:05:28.747Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/5e/0075f709826bcd3d23f9c0988a83ac8c2605342a14cef1d283cf837f3468/betterproto2_compiler-0.9.0-py3-none-any.whl", hash = "sha256:0765a726191a64df653de39fa834b278fb37c8fb4f2e5d447a522ce75547ec76", size = 65471, upload-time = "2025-09-25T20:15:41.619Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/9b/4a396309d0b5e31ad7f73d74139477b518fadddbdba7c4f54bbd0fdc5350/betterproto2_compiler-0.10.1-py3-none-any.whl", hash = "sha256:0c4666d40a9fe31331b5ab4cfd0367d70f4bf04d273127e14cd23b221e93575d", size = 66888, upload-time = "2026-05-13T17:05:27.301Z" },
 ]
 
 [[package]]
