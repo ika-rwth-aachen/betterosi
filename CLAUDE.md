@@ -32,7 +32,8 @@ uv run pre-commit run --all-files
 
 ### Regenerate protobuf code
 ```bash
-uv run python gen_protos.py
+uv run python gen_protos.py            # Generate all versions (e.g. 3.7.0, 3.8.0)
+uv run python gen_protos.py 3.8 3.7    # Generate specific versions (resolves 3.8 -> 3.8.0, etc.)
 ```
 This runs `buf generate` and `buf build` for each version directory in `osi-proto/<version>/` (e.g. `3.7.0`, `3.8.0`) to produce typed Python code into `betterosi/generated/<version>/` (gitignored), and builds `osi3_descriptor_set.pb` for MCAP schema registration.
 

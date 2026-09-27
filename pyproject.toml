@@ -51,6 +51,19 @@ commands = [
     "python gen_protos.py"
 ]
 artifacts = [
+    "betterosi/generated",
+]
+
+[tool.hatch.build.targets.wheel]
+artifacts = [
+    "betterosi/generated",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "betterosi",
+    "osi-proto",
+    "gen_protos.py",
 ]
 
 [project.scripts]
