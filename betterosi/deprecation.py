@@ -7,6 +7,103 @@ from protobuf import Enum as _ProtobufEnum
 from protobuf import Message as _ProtobufMessage
 
 
+def _value_prefixes(member_name: str):
+    if member_name.startswith("TYPE_"):
+        suffix = member_name[5:]
+    elif member_name.startswith("SUBTYPE_"):
+        suffix = member_name[8:]
+    else:
+        suffix = member_name
+    return f"TYPE_{suffix}", f"SUBTYPE_{suffix}"
+
+
+class _DeprecatedEnumAttr:
+    def __init__(self, target, alias):
+        self.target = target
+        self.alias = alias
+
+    def __get__(self, instance, owner):
+        _warnings.warn(
+            f"Accessing enum value by original name '{self.alias}' is deprecated. Use '{self.target.name}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.target
+
+
+class _DeprecatedEnumType(type(_ProtobufEnum)):
+    def __getitem__(cls, name):
+        try:
+            return super().__getitem__(name)
+        except KeyError:
+            dep_map = getattr(cls, "_deprecation_map", None)
+            if dep_map and name in dep_map:
+                target = dep_map[name]
+                _warnings.warn(
+                    f"Accessing enum value by original name '{name}' is deprecated. Use '{target.name}' instead.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
+                return target
+            raise
+
+    def __contains__(cls, item):
+        try:
+            if super().__contains__(item):
+                return True
+        except TypeError:
+            pass
+        if (
+            isinstance(item, str)
+            and hasattr(cls, "__members__")
+            and item in cls.__members__
+        ):
+            return True
+        dep_map = getattr(cls, "_deprecation_map", None)
+        if dep_map and item in dep_map:
+            _warnings.warn(
+                f"Checking enum value by original name '{item}' is deprecated.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            return True
+        return False
+
+
+def _patch_enum(cls):
+    if not isinstance(cls, type) or not issubclass(cls, _ProtobufEnum):
+        return
+
+    dep_map = cls.__dict__.get("_deprecation_map", None)
+    if dep_map is None:
+        dep_map = {}
+        cls._deprecation_map = dep_map
+
+    desc = cls.desc() if hasattr(cls, "desc") else None
+    if desc and hasattr(desc, "values"):
+        for v in desc.values:
+            try:
+                target = cls(v.number)
+                dep_map.setdefault(v.name, target)
+            except (ValueError, KeyError):
+                pass
+
+    for member in cls:
+        t_name, st_name = _value_prefixes(member.name)
+        dep_map.setdefault(t_name, member)
+        dep_map.setdefault(st_name, member)
+
+    for alias, target in dep_map.items():
+        if alias not in cls.__dict__:
+            setattr(cls, alias, _DeprecatedEnumAttr(target, alias))
+
+    if not isinstance(cls.__class__, _DeprecatedEnumType):
+        try:
+            cls.__class__ = _DeprecatedEnumType
+        except TypeError:
+            pass
+
+
 class EnumWrapper:
     def __init__(self, cls):
         self._wrapped = cls
@@ -18,6 +115,12 @@ class EnumWrapper:
         else:
             for member in cls:
                 self._original_names[member.name] = member.value
+
+        for member in cls:
+            self._original_names.setdefault(member.name, member.value)
+            t_name, st_name = _value_prefixes(member.name)
+            self._original_names.setdefault(t_name, member.value)
+            self._original_names.setdefault(st_name, member.value)
 
     @property
     def wrapped(self):
@@ -41,49 +144,46 @@ class EnumWrapper:
         return f"EnumWrapper of {self._wrapped!r}"
 
     def __getattr__(self, name):
-        try:
+        if hasattr(self._wrapped, "__members__") and name in self._wrapped.__members__:
             return getattr(self._wrapped, name)
-        except AttributeError:
-            val = self._original_names.get(name, None)
-            if val is None:
-                raise
-            target = self._wrapped(val)
-            _warnings.warn(
-                f"Accessing enum value by original name '{name}' is deprecated. Use '{target.name}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target
+        val = self._original_names.get(name, None)
+        if val is None:
+            return getattr(self._wrapped, name)
+        target = self._wrapped(val)
+        _warnings.warn(
+            f"Accessing enum value by original name '{name}' is deprecated. Use '{target.name}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return target
 
     def from_string(self, name):
-        try:
+        if hasattr(self._wrapped, "__members__") and name in self._wrapped.__members__:
             return self._wrapped[name]
-        except (KeyError, ValueError):
-            val = self._original_names.get(name, None)
-            if val is None:
-                raise ValueError(f"Unknown enum value: {name}") from None
-            target = self._wrapped(val)
-            _warnings.warn(
-                f"Accessing enum value by original name '{name}' is deprecated. Use '{target.name}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target
+        val = self._original_names.get(name, None)
+        if val is None:
+            raise ValueError(f"Unknown enum value: {name}") from None
+        target = self._wrapped(val)
+        _warnings.warn(
+            f"Accessing enum value by original name '{name}' is deprecated. Use '{target.name}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return target
 
     def __getitem__(self, item):
-        try:
+        if hasattr(self._wrapped, "__members__") and item in self._wrapped.__members__:
             return self._wrapped[item]
-        except KeyError:
-            val = self._original_names.get(item, None)
-            if val is None:
-                raise
-            target = self._wrapped(val)
-            _warnings.warn(
-                f"Accessing enum value by original name '{item}' is deprecated. Use '{target.name}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target
+        val = self._original_names.get(item, None)
+        if val is None:
+            raise KeyError(item)
+        target = self._wrapped(val)
+        _warnings.warn(
+            f"Accessing enum value by original name '{item}' is deprecated. Use '{target.name}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return target
 
     def __contains__(self, item):
         try:
@@ -114,6 +214,12 @@ class EnumWrapper:
 
     def __call__(self, val):
         return self._wrapped(val)
+
+    def __dir__(self):
+        base = set(super().__dir__())
+        base |= set(dir(self._wrapped))
+        base |= set(self._original_names.keys())
+        return sorted(base)
 
 
 def _find_enums(cls, prefix):
@@ -201,14 +307,18 @@ def setup_deprecation(
         else:
             return {}, {}
 
-    # 1. Enums wrapped in EnumWrapper
+    # 1. Enums wrapped in EnumWrapper and patched for TYPE_*/SUBTYPE_*
     all_enums = {}
     for name in getattr(generated_module, "__all__", []):
         cls = getattr(generated_module, name)
-        if isinstance(cls, type) and issubclass(cls, _ProtobufMessage):
-            all_enums.update(_find_enums(cls, name))
+        if isinstance(cls, type):
+            if issubclass(cls, _ProtobufMessage):
+                all_enums.update(_find_enums(cls, name))
+            elif issubclass(cls, _ProtobufEnum):
+                all_enums[name] = cls
 
     for n, e in all_enums.items():
+        _patch_enum(e)
         module_globals[n] = EnumWrapper(e)
 
     # 2. Patch ParseFromString and parse on all message classes

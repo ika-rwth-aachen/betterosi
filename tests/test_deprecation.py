@@ -60,6 +60,90 @@ def test_enum_contains_original_name():
         assert [] not in betterosi.MovingObjectType
 
 
+def test_enum_type_and_subtype_prefixes():
+    # 1. Access via SUBTYPE_* on an enum that originally had TYPE_*
+    with pytest.deprecated_call(match="original name 'SUBTYPE_UNKNOWN'"):
+        val_sub = betterosi.MovingObjectType.SUBTYPE_UNKNOWN
+    assert val_sub == betterosi.MovingObject.Type.UNKNOWN
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_VEHICLE'"):
+        val_veh = betterosi.MovingObjectType.SUBTYPE_VEHICLE
+    assert val_veh == betterosi.MovingObject.Type.VEHICLE
+
+    # 2. Access via TYPE_* on an enum that originally had SUBTYPE_* (Lane.Classification.Subtype)
+    with pytest.deprecated_call(match="original name 'TYPE_NORMAL'"):
+        val_type_normal = betterosi.LaneClassificationSubtype.TYPE_NORMAL
+    assert val_type_normal == betterosi.LaneClassification.Subtype.NORMAL
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_NORMAL'"):
+        val_sub_normal = betterosi.LaneClassificationSubtype.SUBTYPE_NORMAL
+    assert val_sub_normal == betterosi.LaneClassification.Subtype.NORMAL
+
+    # 3. Subscript and from_string with SUBTYPE_*
+    with pytest.deprecated_call(match="original name 'SUBTYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObjectType["SUBTYPE_UNKNOWN"]
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObjectType.from_string("SUBTYPE_UNKNOWN")
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(match="Checking enum value by original name"):
+        assert "SUBTYPE_UNKNOWN" in betterosi.MovingObjectType
+
+    # 4. Direct access on the enum class itself
+    with pytest.deprecated_call(match="original name 'TYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObject.Type.TYPE_UNKNOWN
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObject.Type.SUBTYPE_UNKNOWN
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(match="original name 'TYPE_NORMAL'"):
+        assert (
+            betterosi.LaneClassification.Subtype.TYPE_NORMAL
+            == betterosi.LaneClassification.Subtype.NORMAL
+        )
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_NORMAL'"):
+        assert (
+            betterosi.LaneClassification.Subtype.SUBTYPE_NORMAL
+            == betterosi.LaneClassification.Subtype.NORMAL
+        )
+
+    # 5. Subscript and contains on the enum class itself
+    with pytest.deprecated_call(match="original name 'TYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObject.Type["TYPE_UNKNOWN"]
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(match="original name 'SUBTYPE_UNKNOWN'"):
+        assert (
+            betterosi.MovingObject.Type["SUBTYPE_UNKNOWN"]
+            == betterosi.MovingObject.Type.UNKNOWN
+        )
+
+    with pytest.deprecated_call(
+        match="Checking enum value by original name 'TYPE_UNKNOWN'"
+    ):
+        assert "TYPE_UNKNOWN" in betterosi.MovingObject.Type
+
+    with pytest.deprecated_call(
+        match="Checking enum value by original name 'SUBTYPE_UNKNOWN'"
+    ):
+        assert "SUBTYPE_UNKNOWN" in betterosi.MovingObject.Type
+
+
 def test_enum_len_iter_call_repr():
     assert len(betterosi.MovingObjectType) == len(betterosi.MovingObject.Type)
     members = list(betterosi.MovingObjectType)
