@@ -30,7 +30,7 @@ dependencies = [
     'typer',
 ]
 
-version = "0.8.5"
+version = "0.9.0"
 
 [project.optional-dependencies]
 view = ['matplotlib', 'numpy']
