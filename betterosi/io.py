@@ -246,8 +246,45 @@ def read(
     p = Path(filepath)
     with p.open("rb") as f:
         if p.suffix == ".mcap":
-            reader = make_reader(
-                f, decoder_factories=[BetterOsiDecoderFactory(osi_module=osi_module)]
+            decoder_factory = BetterOsiDecoderFactory(osi_module=osi_module)
+            reader = make_reader(f)
+            topics = mcap_topics
+            if topics is None:
+                summary = reader.get_summary()
+                if summary is not None:
+                    osi_topics = [
+                        channel.topic
+                        for channel in summary.channels.values()
+                        if (
+                            summary.schemas.get(channel.schema_id)
+                            and (
+                                summary.schemas[channel.schema_id].name.startswith(
+                                    "osi3."
+                                )
+                                or summary.schemas[channel.schema_id].name
+                                in MESSAGES_TYPE
+                            )
+                        )
+                    ]
+                    if osi_topics:
+                        topics = osi_topics
+
+            decoders: dict[int, Any] = {}
+
+            def _decode(schema, channel, message):
+                chid = channel.id
+                if chid not in decoders:
+                    decoders[chid] = decoder_factory.decoder_for(
+                        channel.message_encoding, schema
+                    )
+                dec = decoders[chid]
+                if dec is None:
+                    return None
+                return dec(message.data)
+
+            decoded_messages = (
+                (schema, _decode(schema, channel, message))
+                for schema, channel, message in reader.iter_messages(topics=topics)
             )
             views = (
                 gen2betterosi(
@@ -257,9 +294,8 @@ def read(
                     return_ground_truth=return_ground_truth,
                     passthrough=True,
                 )
-                for schema, channel, message, proto_msg in reader.iter_decoded_messages(
-                    topics=mcap_topics
-                )
+                for schema, proto_msg in decoded_messages
+                if proto_msg is not None
             )
             views = (v for v in views if v is not None)
         elif p.suffix == ".osi":
