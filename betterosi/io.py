@@ -77,20 +77,8 @@ def _get_osi_version(version: str | None = None) -> str:
 
 
 def _get_protobuf_version() -> str:
-    """Return the protobuf version (protobuf-py preferred)."""
-    try:
-        from importlib.metadata import PackageNotFoundError, version
-
-        return version("protobuf-py")
-    except (PackageNotFoundError, ImportError):
-        pass
-    try:
-        import google.protobuf
-
-        return google.protobuf.__version__
-    except ImportError:
-        pass
-    return "proto3"
+    """Return the ASAM OSI protobuf version (proto3 / 3.0.0)."""
+    return "3.0.0"
 
 
 def _get_betterosi_version() -> str:
