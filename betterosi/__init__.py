@@ -69,6 +69,30 @@ def __getattr__(name: str) -> Any:
         return EnumWrapper
 
     # 3. Check capitalization aliases and nested messages on default version
+    if (
+        hasattr(_default_version_module, "_capitalization_map")
+        and name in _default_version_module._capitalization_map
+    ):
+        canonical, target_cls = _default_version_module._capitalization_map[name]
+        warnings.warn(
+            f"'{name}' is deprecated. Use '{canonical}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return target_cls
+
+    if (
+        hasattr(_default_version_module, "_nested_messages_map")
+        and name in _default_version_module._nested_messages_map
+    ):
+        canonical, target_cls = _default_version_module._nested_messages_map[name]
+        warnings.warn(
+            f"'{name}' is deprecated. Use '{canonical}' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return target_cls
+
     try:
         return getattr(_default_version_module, name)
     except AttributeError:

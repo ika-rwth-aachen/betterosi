@@ -232,6 +232,16 @@ def test_enum_wrapper_attr_warning():
     assert cls is dep.EnumWrapper
 
 
+def test_top_level_alias_warning_stacklevel():
+    with warnings.catch_warnings(record=True) as recorded:
+        warnings.simplefilter("always", DeprecationWarning)
+        _ = betterosi.Vector3D
+        _ = betterosi.LaneClassification
+    assert len(recorded) == 2
+    for w in recorded:
+        assert w.filename == __file__
+
+
 def test_attribute_error_for_unknown():
     with pytest.raises(
         AttributeError, match="module 'betterosi' has no attribute 'TotallyFakeAttr'"
