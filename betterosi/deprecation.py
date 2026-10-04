@@ -291,6 +291,18 @@ def _patch_parse_methods(cls):
         cls.ParseFromString = classmethod(ParseFromString)
         cls.parse = classmethod(parse)
 
+    if hasattr(cls, "to_binary"):
+
+        def __bytes__(self):
+            _warnings.warn(
+                f"bytes({cls.__name__}) is deprecated. Use {cls.__name__}.to_binary() instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            return self.to_binary()
+
+        cls.__bytes__ = __bytes__
+
 
 def setup_deprecation(
     module_globals=None, generated_module=None, module_name="betterosi"

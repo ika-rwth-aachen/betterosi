@@ -192,6 +192,25 @@ def test_parse_warning():
     assert parsed2.version.version_major == 3
 
 
+def test_bytes_message_warning():
+    gt = betterosi.GroundTruth(
+        timestamp=betterosi.Timestamp(seconds=42, nanos=100),
+        moving_object=[betterosi.MovingObject(id=betterosi.Identifier(value=7))],
+    )
+    with pytest.deprecated_call(
+        match=r"bytes\(GroundTruth\) is deprecated\. Use GroundTruth\.to_binary\(\) instead\."
+    ):
+        data = bytes(gt)
+    assert isinstance(data, bytes)
+    assert data == gt.to_binary()
+    assert len(data) > 0
+
+    # Verify that deserializing bytes(gt) works correctly
+    parsed = betterosi.GroundTruth.from_binary(data)
+    assert parsed.timestamp.seconds == 42
+    assert parsed.moving_object[0].id.value == 7
+
+
 def test_capitalized_alias_warning():
     with pytest.deprecated_call(
         match=r"'Vector3D' is deprecated\. Use 'Vector3d' instead\."
