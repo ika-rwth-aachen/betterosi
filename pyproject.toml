@@ -24,11 +24,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
 ]
-dependencies = [
-    'protobuf-py',
-    'mcap',
-    'typer',
-]
+dynamic = ["dependencies"]
 
 version = "0.9.0"
 
@@ -37,6 +33,7 @@ view = ['matplotlib', 'numpy']
 
 [dependency-groups]
 dev = [
+    'hatchling', 'hatch-build-scripts', 'editables',
     'protoc-gen-py', 'buf-bin', 'tqdm',
     'ruff', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks'
 ]
@@ -54,6 +51,8 @@ artifacts = [
     "betterosi/generated",
 ]
 
+[tool.hatch.metadata.hooks.custom]
+
 [tool.hatch.build.targets.wheel]
 artifacts = [
     "betterosi/generated",
@@ -64,7 +63,11 @@ include = [
     "betterosi",
     "osi-proto",
     "gen_protos.py",
+    "hatch_build.py",
 ]
+
+[tool.uv]
+no-build-isolation-package = ["betterosi"]
 
 [project.scripts]
 betterosi-viewer = "betterosi.viewer:main"
