@@ -77,18 +77,18 @@ def _get_osi_version(version: str | None = None) -> str:
 
 
 def _get_protobuf_version() -> str:
-    """Return the protobuf version (protobuf-py or google.protobuf)."""
-    try:
-        import google.protobuf
-
-        return google.protobuf.__version__
-    except ImportError:
-        pass
+    """Return the protobuf version (protobuf-py preferred)."""
     try:
         from importlib.metadata import PackageNotFoundError, version
 
         return version("protobuf-py")
     except (PackageNotFoundError, ImportError):
+        pass
+    try:
+        import google.protobuf
+
+        return google.protobuf.__version__
+    except ImportError:
         pass
     return "proto3"
 

@@ -198,3 +198,18 @@ def test_version_specific_writer_metadata(tmp_path: Path):
 
     ch_meta = betterosi.read_channel_metadata(out_file)
     assert ch_meta["ground_truth"]["net.asam.osi.trace.channel.osi_version"] == "3.7.0"
+
+
+def test_protobuf_version_prefers_protobuf_py(monkeypatch):
+    import sys
+    from importlib.metadata import version
+
+    from betterosi.io import _get_protobuf_version
+
+    expected_version = version("protobuf-py")
+
+    # Mock google.protobuf to simulate it being installed with a different version
+    fake_google_pb = type("FakeModule", (), {"__version__": "7.36.2"})
+    monkeypatch.setitem(sys.modules, "google.protobuf", fake_google_pb)
+
+    assert _get_protobuf_version() == expected_version
