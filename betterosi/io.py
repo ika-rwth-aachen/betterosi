@@ -264,17 +264,42 @@ def read(
             views = (v for v in views if v is not None)
         elif p.suffix == ".osi":
             if return_sensor_view or return_ground_truth:
+                is_sv = False
                 try:
                     with p.open("rb") as t:
-                        sample = next(iter_osi_trace_file(t, osi_module.SensorView))
-                        if return_ground_truth:
-                            is_sv = sample.global_ground_truth is not None
-                        else:
-                            is_sv = True
-                except Exception:
-                    if return_sensor_view:
-                        raise
-                    is_sv = False
+                        length_bytes = t.read(4)
+                        if len(length_bytes) == 4:
+                            (msg_len,) = struct.unpack("<I", length_bytes)
+                            first_bytes = t.read(msg_len)
+                            if len(first_bytes) == msg_len:
+                                try:
+                                    sample_sv = osi_module.SensorView.from_binary(
+                                        first_bytes
+                                    )
+                                    ggt = getattr(
+                                        sample_sv, "global_ground_truth", None
+                                    )
+                                    if (
+                                        ggt is not None
+                                        and getattr(ggt, "timestamp", None) is not None
+                                        and (
+                                            ggt.timestamp.seconds is not None
+                                            or ggt.timestamp.nanos is not None
+                                        )
+                                    ):
+                                        is_sv = True
+                                except (ValueError, AttributeError, KeyError) as e:
+                                    logger.debug(
+                                        "Failed to decode sample as SensorView: %s", e
+                                    )
+                except OSError as e:
+                    logger.debug("Failed to read sample for type probing: %s", e)
+
+                if return_sensor_view and not is_sv:
+                    raise ValueError(
+                        f"File '{filepath}' contains GroundTruth messages, not SensorView."
+                    )
+
                 if is_sv:
                     views = iter_osi_trace_file(f, osi_module.SensorView)
                     if not return_sensor_view:
