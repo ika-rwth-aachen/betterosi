@@ -203,4 +203,4 @@ def test_version_specific_writer_metadata(tmp_path: Path):
 def test_protobuf_version_is_proto3():
     from betterosi.io import _get_protobuf_version
 
-    assert _get_protobuf_version() == "3.0.0"
+    assert _get_protobuf_version() == "7.0.0"

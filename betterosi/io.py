@@ -77,8 +77,8 @@ def _get_osi_version(version: str | None = None) -> str:
 
 
 def _get_protobuf_version() -> str:
-    """Return the ASAM OSI protobuf version (proto3 / 3.0.0)."""
-    return "3.0.0"
+    """Return the ASAM OSI protobuf version (7.0.0)."""  # pretending to be the latest version of python protobuf for compatibilitys
+    return "7.0.0"
 
 
 def _get_betterosi_version() -> str:
