@@ -66,8 +66,6 @@ include = [
     "hatch_build.py",
 ]
 
-[tool.uv]
-no-build-isolation-package = ["betterosi"]
 
 [project.scripts]
 betterosi-viewer = "betterosi.viewer:main"
