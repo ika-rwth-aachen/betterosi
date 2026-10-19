@@ -14,7 +14,7 @@ A python library for reading and writing [ASAM OSI (Open-Simulation-Interace)](h
 - View OSI or MCAP file containing OSI GroundTruth `betterosi-viewer <filepath.mcap / filepath.osi>`(adapted from [esmini](https://github.com/esmini/esmini))
 - Convert osi to mcap with `betterosi-to-mcap <filepath to osi>`.
 
-The library uses code from [esmini](https://github.com/esmini/esmini) (`betterosi/viewer.py`) under MPL 2.0 license and the code from [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface) to read osi traces (`betterosi/osi3trace.py`).
+The library uses code from [esmini](https://github.com/esmini/esmini) (`betterosi/viewer.py`) under MPL 2.0 license. Reading and writing of `.osi` traces and MCAP files is implemented in `betterosi/io.py`.
 
 The library uses [buf](https://buf.build/) with [protoc-gen-py](https://github.com/bufbuild/protobuf-py) to generate typed Python code from the protobuf definitions of [open-simulation-interface](https://github.com/OpenSimulationInterface/open-simulation-interface).
 
@@ -95,7 +95,7 @@ with (
     )
     gt = betterosi.GroundTruth(
         version=betterosi.InterfaceVersion(
-            version_major=3, version_minor=7, version_patch=0
+            version_major=3, version_minor=8, version_patch=0
         ),
         timestamp=betterosi.Timestamp(seconds=0, nanos=0),
         moving_object=[moving_object],
@@ -103,7 +103,7 @@ with (
     )
     sv = betterosi.SensorView(
         version=betterosi.InterfaceVersion(
-            version_major=3, version_minor=7, version_patch=0
+            version_major=3, version_minor=8, version_patch=0
         ),
         timestamp=betterosi.Timestamp(seconds=0, nanos=0),
         global_ground_truth=gt,
@@ -122,10 +122,10 @@ with (
         writer_sv.add(sv)
 ```
 
-When writing MCAP messages you can specifiy the topic in the writer and the add function by setting the `topic` argument. When reading such files, set the argument `mcap_topic` to the same string.
+When writing MCAP messages you can specifiy the topic in the writer and the add function by setting the `topic` argument. When reading such files, pass the topic(s) as a list to the `mcap_topics` argument, e.g. `mcap_topics=["ground_truth"]`. By default, all channels with an OSI schema are read.
 
 ## Read OSI and MCAP
-With `betterosi.read` you can read an mcap or osi trace. `read` returns a generator. With the following code, you can get a list of the GroundTruth messages from a trace, even if the GroundTruth are nested inside SensorViews. It works the same for OSI traces.
+With `betterosi.read` you can read an mcap or osi trace. `read` returns a generator. With the following code, you can get a list of the GroundTruth messages from a trace, even if the GroundTruth are nested inside SensorViews. It works the same for OSI traces (see below for how the message type of an `.osi` file is determined).
 
 ```python
 import betterosi
@@ -136,7 +136,7 @@ print([len(ground_truths), ground_truths[0]])
 Above code prints the following:
 <!--pytest-codeblocks:expected-output-->
 ```
-[1000, GroundTruth(version=InterfaceVersion(version_major=3, version_minor=7, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), host_vehicle_id=Identifier(value=0), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3d(length=5.0, width=2.0, height=1.0), position=Vector3d(x=0.5, y=0.0, z=0.0), orientation=Orientation3d(roll=0.0, pitch=0.0, yaw=0.0), velocity=Vector3d(x=1.0, y=0.0, z=0.0)), type=MovingObject.Type.UNKNOWN)])]
+[1000, GroundTruth(version=InterfaceVersion(version_major=3, version_minor=8, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), host_vehicle_id=Identifier(value=0), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3d(length=5.0, width=2.0, height=1.0), position=Vector3d(x=0.5, y=0.0, z=0.0), orientation=Orientation3d(roll=0.0, pitch=0.0, yaw=0.0), velocity=Vector3d(x=1.0, y=0.0, z=0.0)), type=MovingObject.Type.UNKNOWN)])]
 ```
 
 If you want a list of the sensor views directly:
@@ -150,13 +150,18 @@ print(next(sensor_views))
 The above prints:
 <!--pytest-codeblocks:expected-output-->
 ```
-SensorView(version=InterfaceVersion(version_major=3, version_minor=7, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), global_ground_truth=GroundTruth(version=InterfaceVersion(version_major=3, version_minor=7, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), host_vehicle_id=Identifier(value=0), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3d(length=5.0, width=2.0, height=1.0), position=Vector3d(x=0.5, y=0.0, z=0.0), orientation=Orientation3d(roll=0.0, pitch=0.0, yaw=0.0), velocity=Vector3d(x=1.0, y=0.0, z=0.0)), type=MovingObject.Type.UNKNOWN)]), host_vehicle_id=Identifier(value=0))
+SensorView(version=InterfaceVersion(version_major=3, version_minor=8, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), global_ground_truth=GroundTruth(version=InterfaceVersion(version_major=3, version_minor=8, version_patch=0), timestamp=Timestamp(seconds=0, nanos=0), host_vehicle_id=Identifier(value=0), moving_object=[MovingObject(id=Identifier(value=42), base=BaseMoving(dimension=Dimension3d(length=5.0, width=2.0, height=1.0), position=Vector3d(x=0.5, y=0.0, z=0.0), orientation=Orientation3d(roll=0.0, pitch=0.0, yaw=0.0), velocity=Vector3d(x=1.0, y=0.0, z=0.0)), type=MovingObject.Type.UNKNOWN)]), host_vehicle_id=Identifier(value=0))
 ```
-If you want to read any OSI trace, you just need to give the filename.
+MCAP files store the message type of every channel, so reading them only needs the file name. `.osi` traces do not store it, and GroundTruth and SensorView messages cannot always be told apart from their bytes. `read` determines the type of an `.osi` file in this order:
+
+1. the `osi_message_type` argument, if given,
+2. the [OSI trace file naming convention](https://opensimulationinterface.github.io/osi-antora-generator/asamosi/latest/interface/architecture/trace_file_naming.html) (`<timestamp>_<type>_...osi`, e.g. `20240101T120000Z_gt_380_700_1000_drive.osi`) or a single `gt` / `sv` / ... part in the file name,
+3. only with `return_ground_truth` / `return_sensor_view`: decoding the first message. If that is ambiguous, a `ValueError` asks you to pass `osi_message_type`.
+
 ```python
 import betterosi
 
-any_osi_message = betterosi.read("test.osi")
+any_osi_message = betterosi.read("test.osi", osi_message_type="GroundTruth")
 any_osi_message = betterosi.read("test.mcap")
 ```
 
@@ -169,11 +174,7 @@ pip install protoc-gen-py buf-bin
 python gen_protos.py
 ```
 
-Or use `buf generate` directly (requires `buf.yaml` and `buf.gen.yaml` in the project root):
-
-```
-buf generate
-```
+`gen_protos.py` compiles every version directory in `osi-proto/<version>/` into `betterosi/generated/<version>/` (with `buf generate` and an inline `protoc-gen-py` template, so no `buf.yaml` / `buf.gen.yaml` is needed) and builds the `osi3_descriptor_set.pb` used for MCAP schemas. Pass versions to generate only those, e.g. `python gen_protos.py 3.8`. The generated code is not committed; it is also created automatically by the build hook during `uv sync` / `pip install`.
 
 # Name
 The library is called betterosi because it was formerly based on the [python-betterproto2](https://github.com/betterproto/python-betterproto2) library for handling protobufs. 

@@ -3,10 +3,15 @@ import importlib.util
 import re
 import sys
 import types
-import warnings
 from pathlib import Path
 
-from .deprecation import EnumWrapper, setup_deprecation
+from .deprecation import (
+    MISSING,
+    EnumWrapper,
+    deprecated_names,
+    resolve_deprecated_name,
+    setup_deprecation,
+)
 from .io import (
     gen2betterosi,
     iter_osi_trace_file,
@@ -105,29 +110,11 @@ class VersionModule(types.ModuleType):
         self._nested_messages_map: dict[str, tuple[str, type]] = {}
 
     def __getattr__(self, name: str):
-        if name in self._capitalization_map:
-            canonical, target_cls = self._capitalization_map[name]
-            warnings.warn(
-                f"'{name}' is deprecated. Use '{canonical}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target_cls
-        if name in self._nested_messages_map:
-            canonical, target_cls = self._nested_messages_map[name]
-            warnings.warn(
-                f"'{name}' is deprecated. Use '{canonical}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target_cls
-        if name == "EnumWrapper":
-            warnings.warn(
-                "'EnumWrapper' is deprecated.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return EnumWrapper
+        target = resolve_deprecated_name(
+            name, self._capitalization_map, self._nested_messages_map
+        )
+        if target is not MISSING:
+            return target
         # Cross-version access support, e.g. v3_5_0.v3_8_0
         if name.startswith("v") and "_" in name:
             try:
@@ -138,11 +125,7 @@ class VersionModule(types.ModuleType):
 
     def __dir__(self):
         base = set(super().__dir__())
-        extra = (
-            set(self._capitalization_map.keys())
-            | set(self._nested_messages_map.keys())
-            | {"EnumWrapper"}
-        )
+        extra = deprecated_names(self._capitalization_map, self._nested_messages_map)
         return sorted(base | extra)
 
 

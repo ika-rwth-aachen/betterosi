@@ -1,5 +1,8 @@
+import inspect
 import logging
+import re
 import struct
+import warnings
 from collections.abc import Generator
 from datetime import datetime, timezone
 from pathlib import Path
@@ -7,10 +10,21 @@ from typing import Any
 
 from mcap.reader import make_reader
 from mcap.writer import Writer as RawMcapWriter
+from protobuf import Message as _ProtobufMessage
 
-from .mcap_reader import MESSAGES_TYPE, BetterOsiDecoderFactory
+from .mcap_reader import BetterOsiDecoderFactory, osi_type_name
 
 logger = logging.getLogger(__name__)
+
+# Keyword arguments accepted by mcap.writer.Writer (everything except `output`).
+_MCAP_WRITER_OPTIONS: frozenset[str] = frozenset(
+    name
+    for name in inspect.signature(RawMcapWriter.__init__).parameters
+    if name not in ("self", "output")
+)
+
+# Generated message classes live in e.g. `betterosi.generated._v3_7_0.osi_groundtruth_pb`.
+_GENERATED_MODULE_VERSION_RE = re.compile(r"\._v(\d+)_(\d+)_(\d+)\.")
 
 OSI_TRACE_METADATA_NAME: str = "net.asam.osi.trace"
 OSI_CHANNEL_OSI_VERSION_KEY: str = "net.asam.osi.trace.channel.osi_version"
@@ -82,13 +96,13 @@ def _get_protobuf_version() -> str:
 
 
 def _get_betterosi_version() -> str:
-    """Return the package version of betterosi."""
+    """Return the package version of betterosi (from pyproject.toml via the installed metadata)."""
     try:
         from importlib.metadata import PackageNotFoundError, version
 
         return version("betterosi")
     except (PackageNotFoundError, ImportError):
-        return "0.8.5"
+        return "0+unknown"
 
 
 def extract_timestamp_from_filename(path: Path | str) -> str | None:
@@ -174,19 +188,25 @@ def gen2betterosi(
     return_ground_truth=False,
     passthrough=False,
 ):
-    if not passthrough:
-        if any(schema.name == f"osi3.{k}" for k in MESSAGES_TYPE):
-            return message
-        else:
-            return None
+    """Filter or convert one decoded MCAP message.
+
+    ``passthrough=False`` drops messages whose schema is not an OSI top-level
+    message. ``passthrough=True`` lets them through as long as no filter is set.
+    Both ``osi3.<Type>`` and bare ``<Type>`` schema names are accepted.
+    """
+    type_name = osi_type_name(schema)
+    if not passthrough and type_name is None:
+        return None
     if not return_sensor_view and not return_ground_truth:
         return message
-    if return_sensor_view and schema.name == "osi3.SensorView":
+    if return_sensor_view and type_name == "SensorView":
         return message
     if return_ground_truth:
-        if schema.name == "osi3.SensorView":
+        if type_name == "SensorView":
+            if not message.has_field("global_ground_truth"):
+                return None
             return message.global_ground_truth
-        if schema.name == "osi3.GroundTruth":
+        if type_name == "GroundTruth":
             return message
     return None
 
@@ -205,6 +225,152 @@ def iter_osi_trace_file(f, m):
         yield m.from_binary(message)
 
 
+# Message type abbreviations of the ASAM OSI trace file naming convention
+# (<timestamp>_<type>_<osi version>_<protobuf version>_<frames>_<custom>.osi).
+OSI_TRACE_TYPE_ABBREVIATIONS: dict[str, str] = {
+    "gt": "GroundTruth",
+    "sv": "SensorView",
+    "sd": "SensorData",
+    "svc": "SensorViewConfiguration",
+    "hvd": "HostVehicleData",
+    "tc": "TrafficCommand",
+    "tcu": "TrafficCommandUpdate",
+    "tu": "TrafficUpdate",
+    "mr": "MotionRequest",
+    "su": "StreamingUpdate",
+}
+
+_OSI_TRACE_TIMESTAMP_RE = re.compile(r"^\d{8}T\d{6}Z$")
+
+
+def osi_message_type_from_filename(path: Path | str) -> str | None:
+    """Return the OSI message type encoded in a trace file name, or ``None``.
+
+    If the name starts with an OSI timestamp (``20260920T220305Z_gt_...``), the
+    token after it is used. Otherwise the type is accepted only when exactly one
+    distinct type abbreviation appears among the ``_``-separated parts of the
+    name, so ambiguous names such as ``sv_vs_gt.osi`` give ``None``.
+    """
+    tokens = Path(path).stem.lower().split("_")
+    if len(tokens) > 1 and _OSI_TRACE_TIMESTAMP_RE.match(tokens[0].upper()):
+        return OSI_TRACE_TYPE_ABBREVIATIONS.get(tokens[1])
+    found = {
+        OSI_TRACE_TYPE_ABBREVIATIONS[t]
+        for t in tokens
+        if t in OSI_TRACE_TYPE_ABBREVIATIONS
+    }
+    if len(found) == 1:
+        return found.pop()
+    return None
+
+
+def _has_unknown_fields(msg) -> bool:
+    """Return True if ``msg`` or any nested message holds unknown fields."""
+    if getattr(msg, "_unknown_fields", None):
+        return True
+    for field in msg.desc().fields:
+        value = getattr(msg, field.name, None)
+        if isinstance(value, dict):
+            values = value.values()
+        elif isinstance(value, (list, tuple)):
+            values = value
+        else:
+            values = (value,)
+        for v in values:
+            if isinstance(v, _ProtobufMessage) and _has_unknown_fields(v):
+                return True
+    return False
+
+
+def _probe_osi_message_type(first_bytes: bytes, osi_module: Any) -> str | None:
+    """Guess whether a frame is a SensorView or a GroundTruth.
+
+    The frame is decoded as both types. In protobuf-py a wire-type mismatch is
+    stored as an unknown field, so the wrong interpretation usually shows up
+    as unknown fields somewhere in the decoded tree. Exactly one clean
+    interpretation gives the answer. If both are clean, the bytes really are
+    ambiguous (e.g. a SensorView with only version/timestamp/sensor_id is a
+    valid GroundTruth with version/timestamp/host_vehicle_id) and ``None`` is
+    returned.
+    """
+    clean = []
+    for type_name in ("SensorView", "GroundTruth"):
+        try:
+            msg = getattr(osi_module, type_name).from_binary(first_bytes)
+        except ValueError as e:
+            logger.debug("First frame does not decode as %s: %s", type_name, e)
+            continue
+        if _has_unknown_fields(msg):
+            logger.debug("First frame decoded as %s has unknown fields", type_name)
+            continue
+        clean.append(type_name)
+    if len(clean) == 1:
+        return clean[0]
+    return None
+
+
+def _read_first_frame(f) -> bytes | None:
+    """Read the first length-prefixed frame of an open .osi file and rewind it."""
+    try:
+        length_bytes = f.read(4)
+        if len(length_bytes) < 4:
+            return None
+        (msg_len,) = struct.unpack("<I", length_bytes)
+        data = f.read(msg_len)
+        return data if len(data) == msg_len else None
+    finally:
+        f.seek(0)
+
+
+def _resolve_osi_message_type(
+    f, path: Path, osi_message_type: str | None, osi_module: Any, probe: bool
+) -> str | None:
+    """Work out the message type of an .osi file.
+
+    Order: explicit ``osi_message_type``, then the trace file naming convention,
+    then (only if ``probe``) decoding the first frame.
+    """
+    if osi_message_type is not None:
+        return osi_message_type
+    from_name = osi_message_type_from_filename(path)
+    if from_name is not None:
+        return from_name
+    if not probe:
+        return None
+    first = _read_first_frame(f)
+    if first is None:
+        return None
+    return _probe_osi_message_type(first, osi_module)
+
+
+def _ground_truth_from_sensor_views(views, filepath):
+    """Yield ``global_ground_truth`` of each SensorView.
+
+    Frames without ``global_ground_truth`` are skipped and reported in one
+    warning. If no frame has one, a ``ValueError`` is raised instead of
+    silently returning nothing.
+    """
+    yielded = skipped = 0
+    for sv in views:
+        if sv.has_field("global_ground_truth"):
+            yielded += 1
+            yield sv.global_ground_truth
+        else:
+            skipped += 1
+    if skipped and not yielded:
+        raise ValueError(
+            f"File '{filepath}' contains SensorView messages without "
+            "global_ground_truth, so no GroundTruth can be returned."
+        )
+    if skipped:
+        warnings.warn(
+            f"Skipped {skipped} SensorView frame(s) in '{filepath}' without "
+            "global_ground_truth.",
+            UserWarning,
+            stacklevel=2,
+        )
+
+
 def read(
     filepath: str,
     return_sensor_view=False,
@@ -216,8 +382,6 @@ def read(
     osi_module: Any | None = None,
 ) -> Generator[Any]:
     if mcap_return_betterosi is not None:
-        import warnings
-
         warnings.warn(
             "mcap_return_betterosi is deprecated and has no effect. "
             "MCAP reading always uses betterosi classes now.",
@@ -243,16 +407,8 @@ def read(
                     osi_topics = [
                         channel.topic
                         for channel in summary.channels.values()
-                        if (
-                            summary.schemas.get(channel.schema_id)
-                            and (
-                                summary.schemas[channel.schema_id].name.startswith(
-                                    "osi3."
-                                )
-                                or summary.schemas[channel.schema_id].name
-                                in MESSAGES_TYPE
-                            )
-                        )
+                        if osi_type_name(summary.schemas.get(channel.schema_id))
+                        is not None
                     ]
                     if osi_topics:
                         topics = osi_topics
@@ -287,61 +443,56 @@ def read(
             )
             views = (v for v in views if v is not None)
         elif p.suffix == ".osi":
-            if return_sensor_view or return_ground_truth:
-                is_sv = False
-                try:
-                    with p.open("rb") as t:
-                        length_bytes = t.read(4)
-                        if len(length_bytes) == 4:
-                            (msg_len,) = struct.unpack("<I", length_bytes)
-                            first_bytes = t.read(msg_len)
-                            if len(first_bytes) == msg_len:
-                                try:
-                                    sample_sv = osi_module.SensorView.from_binary(
-                                        first_bytes
-                                    )
-                                    ggt = getattr(
-                                        sample_sv, "global_ground_truth", None
-                                    )
-                                    if (
-                                        ggt is not None
-                                        and getattr(ggt, "timestamp", None) is not None
-                                        and (
-                                            ggt.timestamp.seconds is not None
-                                            or ggt.timestamp.nanos is not None
-                                        )
-                                    ):
-                                        is_sv = True
-                                except (ValueError, AttributeError, KeyError) as e:
-                                    logger.debug(
-                                        "Failed to decode sample as SensorView: %s", e
-                                    )
-                except OSError as e:
-                    logger.debug("Failed to read sample for type probing: %s", e)
-
-                if return_sensor_view and not is_sv:
+            want_filter = bool(return_sensor_view or return_ground_truth)
+            msg_type = _resolve_osi_message_type(
+                f, p, osi_message_type, osi_module, probe=want_filter
+            )
+            if msg_type is None:
+                if want_filter:
                     raise ValueError(
-                        f"File '{filepath}' contains GroundTruth messages, not SensorView."
+                        f"Could not determine the OSI message type of '{filepath}'. "
+                        "Pass osi_message_type=... or name the file following the "
+                        "OSI trace file naming convention "
+                        "(e.g. *_gt_*.osi / *_sv_*.osi)."
                     )
-
-                if is_sv:
-                    views = iter_osi_trace_file(f, osi_module.SensorView)
+                raise ValueError("Specify the osi_message_type, e.g., `GroundTruth`.")
+            message_cls = getattr(osi_module, msg_type, None)
+            if message_cls is None:
+                raise ValueError(f"Unknown OSI message type '{msg_type}'.")
+            views = iter_osi_trace_file(f, message_cls)
+            if want_filter:
+                if return_ground_truth and msg_type == "SensorView":
                     if not return_sensor_view:
-                        views = (m.global_ground_truth for m in views)
-                else:
-                    views = iter_osi_trace_file(f, osi_module.GroundTruth)
-            else:
-                if osi_message_type is None:
+                        views = _ground_truth_from_sensor_views(views, filepath)
+                elif not (
+                    (return_sensor_view and msg_type == "SensorView")
+                    or (return_ground_truth and msg_type == "GroundTruth")
+                ):
+                    wanted = "SensorView" if return_sensor_view else "GroundTruth"
+                    if return_sensor_view and return_ground_truth:
+                        wanted = "SensorView or GroundTruth"
                     raise ValueError(
-                        "Specify the osi_message_type, e.g., `GroundTruth`."
+                        f"File '{filepath}' contains {msg_type} messages, not {wanted}."
                     )
-                views = iter_osi_trace_file(f, getattr(osi_module, osi_message_type))
         else:
             raise NotImplementedError()
         yield from views
 
 
 class Writer:
+    """Write OSI messages to an ``.osi`` trace or an ``.mcap`` file.
+
+    Extra keyword arguments are passed on to :class:`mcap.writer.Writer`
+    (e.g. ``chunk_size``, ``compression``, ``use_chunking``). Unknown names
+    raise ``TypeError``. For ``.osi`` output, MCAP-only options are ignored with
+    a warning.
+
+    ``add()`` checks that each message belongs to the writer's OSI version: a
+    message class from another ``betterosi.v<x>_<y>_<z>`` module raises
+    ``ValueError``, and an ``InterfaceVersion`` field that differs from the
+    writer's version gives a one-time ``UserWarning``.
+    """
+
     def __init__(
         self,
         output,
@@ -355,17 +506,26 @@ class Writer:
         **kwargs,
     ):
         p = Path(output)
+        unknown = sorted(set(kwargs) - _MCAP_WRITER_OPTIONS)
+        if unknown:
+            raise TypeError(
+                f"Writer() got unexpected keyword argument(s): {', '.join(unknown)}. "
+                f"Supported MCAP options: {', '.join(sorted(_MCAP_WRITER_OPTIONS))}."
+            )
+
+        from .version_manager import DEFAULT_VERSION, module_name_to_version
+
+        self._version = (
+            module_name_to_version(version) if version is not None else DEFAULT_VERSION
+        )
+        self._warned_interface_version = False
+
         if p.suffix == ".mcap":
             self.write_mcap = True
             self.write_osi = False
             self.topic = topic
             self.file = open(p, mode)  # noqa: SIM115
-            writer_kwargs = {}
-            if "chunk_size" in kwargs:
-                writer_kwargs["chunk_size"] = kwargs["chunk_size"]
-            if "compression" in kwargs:
-                writer_kwargs["compression"] = kwargs["compression"]
-            self._mcap_writer = RawMcapWriter(self.file, **writer_kwargs)
+            self._mcap_writer = RawMcapWriter(self.file, **kwargs)
             lib_str = (
                 library
                 if library is not None
@@ -381,14 +541,6 @@ class Writer:
                 else:
                     self._channel_metadata[topic] = channel_metadata
 
-            from .version_manager import DEFAULT_VERSION, module_name_to_version
-
-            self._version = (
-                module_name_to_version(version)
-                if version is not None
-                else DEFAULT_VERSION
-            )
-
             if descriptor_set is not None:
                 self._descriptor_set = descriptor_set
             else:
@@ -402,11 +554,56 @@ class Writer:
                     file_meta["zero_time"] = zt
             self.add_metadata(OSI_TRACE_METADATA_NAME, file_meta)
         elif p.suffix == ".osi":
+            mcap_only = {
+                "metadata": metadata,
+                "channel_metadata": channel_metadata,
+                "library": library,
+                "descriptor_set": descriptor_set,
+                **kwargs,
+            }
+            ignored = sorted(k for k, v in mcap_only.items() if v is not None)
+            if ignored:
+                warnings.warn(
+                    f"Writer options {', '.join(ignored)} only apply to MCAP output "
+                    f"and are ignored for '{p.name}'.",
+                    UserWarning,
+                    stacklevel=2,
+                )
             self.write_mcap = False
             self.write_osi = True
             self.file = open(p, mode)  # noqa: SIM115
         else:
             raise NotImplementedError()
+
+    def _check_message_version(self, view) -> None:
+        """Make sure ``view`` belongs to the OSI version this writer declares."""
+        m = _GENERATED_MODULE_VERSION_RE.search(type(view).__module__)
+        if m is not None:
+            msg_version = ".".join(m.groups())
+            if msg_version != self._version:
+                raise ValueError(
+                    f"Cannot write a {type(view).__name__} from OSI {msg_version} "
+                    f"with a Writer for OSI {self._version}. Use "
+                    f"betterosi.v{msg_version.replace('.', '_')}.Writer or "
+                    f"Writer(..., version='{msg_version}')."
+                )
+        if self._warned_interface_version:
+            return
+        try:
+            if not view.has_field("version"):
+                return
+        except (AttributeError, KeyError, ValueError):
+            return
+        v = view.version
+        field_version = f"{v.version_major}.{v.version_minor}.{v.version_patch}"
+        if field_version != self._version:
+            warnings.warn(
+                f"{type(view).__name__}.version is {field_version}, but the Writer "
+                f"declares OSI {self._version}.",
+                UserWarning,
+                stacklevel=3,
+            )
+            self._warned_interface_version = True
 
     def __enter__(self):
         return self
@@ -494,6 +691,7 @@ class Writer:
         channel_metadata: dict[str, str] | None = None,
         channel_description: str | None = None,
     ):
+        self._check_message_version(view)
         if self.write_mcap:
             if log_time is None:
                 log_time = int(view.timestamp.nanos + view.timestamp.seconds * 1e9)
@@ -545,7 +743,9 @@ def make_version_writer(version: str, descriptor_set: bytes | None = None):
                 metadata=metadata,
                 channel_metadata=channel_metadata,
                 library=library,
-                descriptor_set=descriptor_set,
+                descriptor_set=(
+                    descriptor_set if Path(output).suffix == ".mcap" else None
+                ),
                 version=version,
                 **kwargs,
             )

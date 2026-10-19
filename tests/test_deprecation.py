@@ -172,6 +172,50 @@ def test_parse_from_string_warning():
     assert parsed2.version.version_major == 3
 
 
+@pytest.mark.parametrize("method", ["ParseFromString", "parse"])
+def test_parse_on_instance_fills_in_place(method):
+    """`msg.ParseFromString(data)` must fill `msg` itself (review finding 2)."""
+    data = betterosi.GroundTruth(
+        version=betterosi.InterfaceVersion(
+            version_major=3, version_minor=8, version_patch=0
+        ),
+        timestamp=betterosi.Timestamp(seconds=5, nanos=0),
+        moving_object=[betterosi.MovingObject(id=betterosi.Identifier(value=1))],
+    ).to_binary()
+
+    # Start with a field that is not in `data`: it must be cleared, as in protobuf.
+    msg = betterosi.GroundTruth(host_vehicle_id=betterosi.Identifier(value=99))
+    with pytest.deprecated_call(match=rf"GroundTruth\.{method} is deprecated"):
+        returned = getattr(msg, method)(data)
+
+    assert returned is msg
+    assert msg.version.version_major == 3
+    assert msg.timestamp.seconds == 5
+    assert len(msg.moving_object) == 1
+    assert msg.moving_object[0].id.value == 1
+    assert not msg.has_field("host_vehicle_id")
+    assert msg.to_binary() == data
+
+
+def test_parse_on_class_returns_new_message():
+    data = betterosi.GroundTruth(
+        timestamp=betterosi.Timestamp(seconds=5, nanos=0)
+    ).to_binary()
+    with pytest.deprecated_call():
+        a = betterosi.GroundTruth.ParseFromString(data)
+    with pytest.deprecated_call():
+        b = betterosi.GroundTruth.ParseFromString(data)
+    assert a is not b
+    assert a.timestamp.seconds == b.timestamp.seconds == 5
+
+
+def test_parse_warning_points_at_caller():
+    data = betterosi.GroundTruth().to_binary()
+    with pytest.warns(DeprecationWarning) as record:
+        betterosi.GroundTruth().ParseFromString(data)
+    assert record[0].filename == __file__
+
+
 def test_parse_warning():
     gt = betterosi.GroundTruth(
         version=betterosi.InterfaceVersion(

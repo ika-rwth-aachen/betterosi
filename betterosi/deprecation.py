@@ -5,6 +5,7 @@ import warnings as _warnings
 
 from protobuf import Enum as _ProtobufEnum
 from protobuf import Message as _ProtobufMessage
+from protobuf import merge_from_binary as _merge_from_binary
 
 
 def _value_prefixes(member_name: str):
@@ -267,29 +268,54 @@ def _capitalization_aliases(name):
         yield m.group(1) + acronym[0] + acronym[1:].lower()
 
 
+class _ClassOrInstanceMethod:
+    """Descriptor that passes the class or the instance, depending on how it is accessed."""
+
+    def __init__(self, func):
+        self._func = func
+
+    def __get__(self, obj, objtype=None):
+        # MethodType does not add a Python stack frame, so the shim's
+        # ``stacklevel=2`` still points at the caller.
+        return _types.MethodType(self._func, obj if obj is not None else objtype)
+
+
+def _parse_into(cls_or_self, data):
+    """Decode ``data``.
+
+    Called on the class, this returns a new message. Called on an instance, it
+    clears that instance, fills it in place, and returns it.
+    """
+    if isinstance(cls_or_self, type):
+        return cls_or_self.from_binary(data)
+
+    msg = cls_or_self
+    for field in msg.desc().fields:
+        msg.clear_field(field.name)
+    unknown = getattr(msg, "_unknown_fields", None)
+    if unknown:
+        unknown.clear()
+    _merge_from_binary(msg, data)
+    return msg
+
+
 def _patch_parse_methods(cls):
     if hasattr(cls, "from_binary"):
 
-        def ParseFromString(cls_or_self, data):
-            _warnings.warn(
-                f"{cls.__name__}.ParseFromString is deprecated. Use {cls.__name__}.from_binary() instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            c = cls_or_self if isinstance(cls_or_self, type) else cls_or_self.__class__
-            return c.from_binary(data)
+        def _make_parse_shim(method_name):
+            def shim(cls_or_self, data):
+                _warnings.warn(
+                    f"{cls.__name__}.{method_name} is deprecated. Use {cls.__name__}.from_binary() instead.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
+                return _parse_into(cls_or_self, data)
 
-        def parse(cls_or_self, data):
-            _warnings.warn(
-                f"{cls.__name__}.parse is deprecated. Use {cls.__name__}.from_binary() instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            c = cls_or_self if isinstance(cls_or_self, type) else cls_or_self.__class__
-            return c.from_binary(data)
+            shim.__name__ = method_name
+            return _ClassOrInstanceMethod(shim)
 
-        cls.ParseFromString = classmethod(ParseFromString)
-        cls.parse = classmethod(parse)
+        cls.ParseFromString = _make_parse_shim("ParseFromString")
+        cls.parse = _make_parse_shim("parse")
 
     if hasattr(cls, "to_binary"):
 
@@ -302,6 +328,47 @@ def _patch_parse_methods(cls):
             return self.to_binary()
 
         cls.__bytes__ = __bytes__
+
+
+MISSING = object()
+"""Sentinel returned by :func:`resolve_deprecated_name` when ``name`` is not an alias."""
+
+
+def resolve_deprecated_name(
+    name: str,
+    capitalization_map: dict,
+    nested_messages_map: dict,
+    stacklevel: int = 3,
+):
+    """Resolve a deprecated module attribute and emit a ``DeprecationWarning``.
+
+    Handles old capitalization (``Vector3D``), flattened nested messages
+    (``MovingObjectVehicleAttributes``) and ``EnumWrapper``. Returns
+    :data:`MISSING` if ``name`` is none of these.
+
+    The default ``stacklevel`` points the warning at the code that accessed the
+    attribute, when called directly from a module ``__getattr__``.
+    """
+    for alias_map in (capitalization_map, nested_messages_map):
+        if name in alias_map:
+            canonical, target = alias_map[name]
+            _warnings.warn(
+                f"'{name}' is deprecated. Use '{canonical}' instead.",
+                DeprecationWarning,
+                stacklevel=stacklevel,
+            )
+            return target
+    if name == "EnumWrapper":
+        _warnings.warn(
+            "'EnumWrapper' is deprecated.", DeprecationWarning, stacklevel=stacklevel
+        )
+        return EnumWrapper
+    return MISSING
+
+
+def deprecated_names(capitalization_map: dict, nested_messages_map: dict) -> set:
+    """Names that :func:`resolve_deprecated_name` resolves, for ``__dir__``."""
+    return set(capitalization_map) | set(nested_messages_map) | {"EnumWrapper"}
 
 
 def setup_deprecation(
@@ -359,29 +426,9 @@ def setup_deprecation(
     existing_getattr = module_globals.get("__getattr__")
 
     def __getattr__(name: str):
-        if name in capitalization_map:
-            canonical, target_cls = capitalization_map[name]
-            _warnings.warn(
-                f"'{name}' is deprecated. Use '{canonical}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target_cls
-        if name in nested_messages_map:
-            canonical, target_cls = nested_messages_map[name]
-            _warnings.warn(
-                f"'{name}' is deprecated. Use '{canonical}' instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return target_cls
-        if name == "EnumWrapper":
-            _warnings.warn(
-                "'EnumWrapper' is deprecated.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            return EnumWrapper
+        target = resolve_deprecated_name(name, capitalization_map, nested_messages_map)
+        if target is not MISSING:
+            return target
         if existing_getattr is not None:
             return existing_getattr(name)
         raise AttributeError(f"module '{module_name}' has no attribute '{name}'")
@@ -392,12 +439,9 @@ def setup_deprecation(
         base = list(module_globals.keys())
         if existing_dir is not None:
             base = existing_dir()
-        extra = (
-            set(capitalization_map.keys())
-            | set(nested_messages_map.keys())
-            | {"EnumWrapper"}
+        return sorted(
+            set(base) | deprecated_names(capitalization_map, nested_messages_map)
         )
-        return sorted(set(base) | extra)
 
     module_globals["__getattr__"] = __getattr__
     module_globals["__dir__"] = __dir__

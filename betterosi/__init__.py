@@ -1,13 +1,14 @@
 import sys
-import warnings
 from typing import Any
 
+from .deprecation import MISSING, resolve_deprecated_name
 from .io import (  # noqa: F401
     OSI_CHANNEL_DESCRIPTION_KEY,
     OSI_CHANNEL_OSI_VERSION_KEY,
     OSI_CHANNEL_PROTOBUF_VERSION_KEY,
     OSI_TRACE_METADATA_NAME,
     Writer,
+    _get_betterosi_version,
     extract_timestamp_from_filename,
     gen2betterosi,
     iter_osi_trace_file,
@@ -26,7 +27,7 @@ from .version_manager import (
     version_to_module_name,
 )
 
-__version__ = "0.8.5"
+__version__ = _get_betterosi_version()
 __version_osi__ = DEFAULT_VERSION
 
 # Load default version (3.8.0) and populate betterosi's top-level namespace
@@ -57,41 +58,14 @@ def __getattr__(name: str) -> Any:
         except (ValueError, KeyError, ModuleNotFoundError):
             pass
 
-    # 2. Direct access to EnumWrapper
-    if name == "EnumWrapper":
-        from .deprecation import EnumWrapper
-
-        warnings.warn(
-            "'EnumWrapper' is deprecated.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return EnumWrapper
-
-    # 3. Check capitalization aliases and nested messages on default version
-    if (
-        hasattr(_default_version_module, "_capitalization_map")
-        and name in _default_version_module._capitalization_map
-    ):
-        canonical, target_cls = _default_version_module._capitalization_map[name]
-        warnings.warn(
-            f"'{name}' is deprecated. Use '{canonical}' instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return target_cls
-
-    if (
-        hasattr(_default_version_module, "_nested_messages_map")
-        and name in _default_version_module._nested_messages_map
-    ):
-        canonical, target_cls = _default_version_module._nested_messages_map[name]
-        warnings.warn(
-            f"'{name}' is deprecated. Use '{canonical}' instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return target_cls
+    # 2. Deprecated aliases (EnumWrapper, Vector3D, nested messages) of the default version
+    target = resolve_deprecated_name(
+        name,
+        _default_version_module._capitalization_map,
+        _default_version_module._nested_messages_map,
+    )
+    if target is not MISSING:
+        return target
 
     try:
         return getattr(_default_version_module, name)

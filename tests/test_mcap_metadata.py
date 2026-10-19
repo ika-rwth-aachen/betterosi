@@ -134,7 +134,7 @@ def test_zero_time_extraction_from_filename(tmp_path: Path):
     out_file = tmp_path / filename
     gt = betterosi.GroundTruth(
         version=betterosi.InterfaceVersion(
-            version_major=3, version_minor=7, version_patch=0
+            version_major=3, version_minor=8, version_patch=0
         ),
         timestamp=betterosi.Timestamp(seconds=1, nanos=0),
     )
@@ -156,7 +156,7 @@ def test_osi2mcap_metadata(tmp_path: Path):
     osi_file = tmp_path / "20260920T220305Z_gt.osi"
     gt = betterosi.GroundTruth(
         version=betterosi.InterfaceVersion(
-            version_major=3, version_minor=7, version_patch=0
+            version_major=3, version_minor=8, version_patch=0
         ),
         timestamp=betterosi.Timestamp(seconds=1, nanos=0),
     )
@@ -204,3 +204,74 @@ def test_protobuf_version_is_proto3():
     from betterosi.io import _get_protobuf_version
 
     assert _get_protobuf_version() == "7.0.0"
+
+
+def test_betterosi_package_version():
+    import importlib.metadata
+
+    assert betterosi.__version__ == importlib.metadata.version("betterosi")
+    assert betterosi.__version__ == "0.9.0"
+
+
+def test_writer_unknown_kwarg_raises(tmp_path: Path):
+    import pytest
+
+    with pytest.raises(TypeError, match="Writer\\(\\) got unexpected keyword argument"):
+        betterosi.Writer(tmp_path / "test.mcap", invalid_foo=123)
+
+
+def test_writer_forward_mcap_kwargs(tmp_path: Path):
+    out_file = tmp_path / "unchunked.mcap"
+    with betterosi.Writer(out_file, use_chunking=False, chunk_size=2048) as w:
+        w.add(
+            betterosi.GroundTruth(
+                version=betterosi.InterfaceVersion(
+                    version_major=3, version_minor=8, version_patch=0
+                ),
+                timestamp=betterosi.Timestamp(seconds=1, nanos=0),
+            )
+        )
+    msgs = list(betterosi.read(out_file))
+    assert len(msgs) == 1
+
+
+def test_writer_osi_warns_on_mcap_kwargs(tmp_path: Path):
+    import pytest
+
+    with (
+        pytest.warns(UserWarning, match="only apply to MCAP output"),
+        betterosi.Writer(tmp_path / "test.osi", chunk_size=1024),
+    ):
+        pass
+
+
+def test_writer_rejects_cross_version_message(tmp_path: Path):
+    import pytest
+
+    with betterosi.Writer(tmp_path / "test.mcap") as w:
+        gt_v370 = betterosi.v3_7_0.GroundTruth(
+            version=betterosi.v3_7_0.InterfaceVersion(
+                version_major=3, version_minor=7, version_patch=0
+            ),
+            timestamp=betterosi.v3_7_0.Timestamp(seconds=1, nanos=0),
+        )
+        with pytest.raises(
+            ValueError, match="Cannot write a GroundTruth from OSI 3.7.0"
+        ):
+            w.add(gt_v370)
+
+
+def test_writer_warns_on_mismatched_interface_version(tmp_path: Path):
+    import pytest
+
+    with betterosi.Writer(tmp_path / "test.mcap") as w:
+        gt = betterosi.GroundTruth(
+            version=betterosi.InterfaceVersion(
+                version_major=3, version_minor=7, version_patch=0
+            ),
+            timestamp=betterosi.Timestamp(seconds=1, nanos=0),
+        )
+        with pytest.warns(
+            UserWarning, match="version is 3.7.0, but the Writer declares OSI 3.8.0"
+        ):
+            w.add(gt)

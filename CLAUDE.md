@@ -17,7 +17,7 @@ uv sync --all-extras --dev
 ```bash
 uv run pytest
 ```
-Tests are code blocks embedded in `README.md`, executed via `pytest-codeblocks`. There is no separate test directory.
+Tests include test suites in the `tests/` directory as well as code blocks embedded in `README.md` (executed via `pytest-codeblocks`).
 
 ### Lint and format
 ```bash

@@ -19,6 +19,20 @@ MESSAGES_TYPE = [
 ]
 
 
+def osi_type_name(schema: Schema | None) -> str | None:
+    """Return the OSI top-level message type for an MCAP schema, or ``None``.
+
+    Accepts both the qualified name (``osi3.GroundTruth``) and the bare name
+    (``GroundTruth``).
+    """
+    if schema is None:
+        return None
+    prefix, _, type_name = schema.name.rpartition(".")
+    if prefix not in ("", "osi3") or type_name not in MESSAGES_TYPE:
+        return None
+    return type_name
+
+
 class BetterOsiDecoderFactory(DecoderFactory):
     """MCAP DecoderFactory that decodes directly into betterosi (protobuf-py) classes."""
 
@@ -44,8 +58,8 @@ class BetterOsiDecoderFactory(DecoderFactory):
         if schema is None or schema.encoding != "protobuf":
             return None
 
-        type_name = schema.name.split(".")[-1]
-        if type_name not in MESSAGES_TYPE:
+        type_name = osi_type_name(schema)
+        if type_name is None:
             return None
 
         osi_mod = self._get_osi_module()

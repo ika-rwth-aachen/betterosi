@@ -85,7 +85,13 @@ def test_write_and_read_osi_v3_7_0(tmp_path):
     with v3_7_0.Writer(trace_file) as writer:
         writer.add(gt)
 
-    messages = list(v3_7_0.read(trace_file, return_ground_truth=True))
+    # A frame with only version/timestamp is byte-identical as SensorView and
+    # GroundTruth, and the file name gives no type, so pass it explicitly.
+    messages = list(
+        v3_7_0.read(
+            trace_file, return_ground_truth=True, osi_message_type="GroundTruth"
+        )
+    )
     assert len(messages) == 1
     assert isinstance(messages[0], v3_7_0.GroundTruth)
     assert messages[0].version.version_minor == 7

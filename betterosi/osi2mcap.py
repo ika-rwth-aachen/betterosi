@@ -22,13 +22,11 @@ def osi2mcap(
         output = Path(f"{input.stem}.mcap")
     else:
         output = Path(output).with_suffix(".mcap")
-    kwargs = {}
+    kwargs = {"osi_message_type": osi_message_type}
     if osi_message_type == "GroundTruth":
         kwargs["return_ground_truth"] = True
     elif osi_message_type == "SensorView":
         kwargs["return_sensor_view"] = True
-    else:
-        kwargs["osi_message_type"] = osi_message_type
     iterer = betterosi.read(input, **kwargs)
     try:
         from tqdm.auto import tqdm
