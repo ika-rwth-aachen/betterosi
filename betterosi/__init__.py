@@ -1,55 +1,81 @@
-from .generated.google.protobuf import *  # noqa: F403
-from .generated.osi3 import *  # noqa: F403
-from .io import Writer, read, MESSAGES_TYPE  # noqa: F401
-from . import generated
-from .generated import osi3 as osi
-import betterproto2
+import sys
+from typing import Any
+
+from .deprecation import MISSING, resolve_deprecated_name
+from .io import (  # noqa: F401
+    OSI_CHANNEL_DESCRIPTION_KEY,
+    OSI_CHANNEL_OSI_VERSION_KEY,
+    OSI_CHANNEL_PROTOBUF_VERSION_KEY,
+    OSI_TRACE_METADATA_NAME,
+    Writer,
+    _get_betterosi_version,
+    extract_timestamp_from_filename,
+    gen2betterosi,
+    iter_osi_trace_file,
+    load_descriptor_set,
+    prepare_channel_metadata,
+    prepare_required_file_metadata,
+    read,
+    read_channel_metadata,
+    read_file_metadata,
+)
+from .mcap_reader import MESSAGES_TYPE, BetterOsiDecoderFactory  # noqa: F401
+from .version_manager import (
+    DEFAULT_VERSION,
+    get_available_versions,
+    get_version_module,
+    version_to_module_name,
+)
+
+__version__ = _get_betterosi_version()
+__version_osi__ = DEFAULT_VERSION
+
+# Load default version (3.8.0) and populate betterosi's top-level namespace
+_default_version_module = get_version_module(DEFAULT_VERSION)
+
+# Re-export all non-private attributes from default version (except EnumWrapper)
+for _k, _v in _default_version_module.__dict__.items():
+    if not _k.startswith("_") and _k != "EnumWrapper" and _k not in globals():
+        globals()[_k] = _v
+
+# Discover and register all available versions (e.g. v3_5_0, v3_8_0)
+_available_versions = get_available_versions()
+for _ver in _available_versions:
+    _attr_name = version_to_module_name(_ver)
+    _v_mod = get_version_module(_ver)
+    globals()[_attr_name] = _v_mod
+    sys.modules[f"betterosi.{_attr_name}"] = _v_mod
 
 
-class EnumWrapper:
-    def __init__(self, cls):
-        self.wrapped = cls
-
-    def __repr__(self):
-        return f"EnumWrapper of {repr(self.wrapped)}"
-
-    def __getattr__(self, name):
+def __getattr__(name: str) -> Any:
+    # 1. Version access like v3_5_0 or v3_8_0 (dynamically discoverable)
+    if name.startswith("v") and "_" in name:
         try:
-            return getattr(self.wrapped, name)
-        except AttributeError as e:
-            n = self.wrapped.betterproto_renamed_proto_names_to_value().get(name, None)
-            if n is None:
-                raise e
-            else:
-                return self.wrapped(n)
+            mod = get_version_module(name)
+            globals()[name] = mod
+            sys.modules[f"betterosi.{name}"] = mod
+            return mod
+        except (ValueError, KeyError, ModuleNotFoundError):
+            pass
 
-    def from_string(self, name):
-        try:
-            return self.wrapped.from_string(name)
-        except ValueError as e:
-            n = self.wrapped.betterproto_renamed_proto_names_to_value().get(name, None)
-            if n is None:
-                raise e
-            else:
-                return self.wrapped(n)
+    # 2. Deprecated aliases (EnumWrapper, Vector3D, nested messages) of the default version
+    target = resolve_deprecated_name(
+        name,
+        _default_version_module._capitalization_map,
+        _default_version_module._nested_messages_map,
+    )
+    if target is not MISSING:
+        return target
 
-    def __iter__(self):
-        return iter(self.wrapped)
-
-    def __call__(self, val):
-        return self.wrapped(val)
+    try:
+        return getattr(_default_version_module, name)
+    except AttributeError:
+        raise AttributeError(f"module 'betterosi' has no attribute '{name}'") from None
 
 
-enums = {
-    o: getattr(osi, o)
-    for o in osi.__all__
-    if isinstance(getattr(osi, o), betterproto2.enum_._EnumMeta)
-}
-
-for n, e in enums.items():
-    globals()[n] = EnumWrapper(e)
-
-for c_name in generated.osi3.__all__:
-    c = getattr(generated.osi3, c_name)
-    if hasattr(c, "parse"):
-        c.ParseFromString = c.parse
+def __dir__():
+    base = set(globals().keys())
+    base |= set(dir(_default_version_module))
+    for v in get_available_versions():
+        base.add(version_to_module_name(v))
+    return sorted(base)

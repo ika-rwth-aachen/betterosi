@@ -162,3 +162,10 @@ cython_debug/
 dist/
 
 *.jpg
+
+# Generated protobuf files
+betterosi/generated/
+
+# Trace files and test outputs
+*.osi
+*.mcap

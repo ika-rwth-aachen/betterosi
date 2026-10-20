@@ -22,21 +22,48 @@
 import os
 import sys
 import time
+import warnings
 
-import matplotlib.animation as anim
-import matplotlib.collections as mc
-import matplotlib.patches as patches
-import matplotlib.pyplot as plt
-import matplotlib.transforms as transforms
-import matplotlib.widgets as mw
-import numpy as np
-
-import betterosi as osi3
 import betterosi
+import betterosi as osi3
+
+_WARNED_MISSING_DEPS = False
+
+
+def _warn_missing_deps():
+    global _WARNED_MISSING_DEPS
+    if not _WARNED_MISSING_DEPS:
+        warnings.warn(
+            "The viewer requires 'matplotlib' and 'numpy', which are not installed. "
+            "Please install them using: pip install 'betterosi[view]'",
+            UserWarning,
+            stacklevel=2,
+        )
+        _WARNED_MISSING_DEPS = True
+
+
+try:
+    import matplotlib.animation as anim
+    import matplotlib.collections as mc
+    import matplotlib.pyplot as plt
+    import matplotlib.widgets as mw
+    import numpy as np
+    from matplotlib import patches, transforms
+
+    HAS_VIEWER_DEPS = True
+except ImportError:
+    HAS_VIEWER_DEPS = False
+    _warn_missing_deps()
 
 
 class BBObject:
     def __init__(self, id, x, y, h, v, width, height, axes):
+        if not HAS_VIEWER_DEPS:
+            _warn_missing_deps()
+            raise RuntimeError(
+                "The viewer requires 'matplotlib' and 'numpy', which are not installed. "
+                "Please install them using: pip install 'betterosi[view]'"
+            )
         self.id = id
         self.width = width
         self.height = height
@@ -57,7 +84,7 @@ class BBObject:
             (-self.width / 2.0, -self.height / 2.0),
             self.width,
             self.height,
-            label="object_{}".format(self.id),
+            label=f"object_{self.id}",
             fill=False,
             edgecolor="red",
             lw=1,
@@ -133,6 +160,12 @@ class BBObjects:
 
 class View:
     def __init__(self, gt, filename):
+        if not HAS_VIEWER_DEPS:
+            _warn_missing_deps()
+            raise RuntimeError(
+                "The viewer requires 'matplotlib' and 'numpy', which are not installed. "
+                "Please install them using: pip install 'betterosi[view]'"
+            )
         # settings
         self.empty_select_string = ""
         self.grid_enabled = True
@@ -288,7 +321,7 @@ class View:
         self.fig.canvas.mpl_connect("motion_notify_event", self.on_motion)
 
         self.fig.canvas.manager.set_window_title(
-            "OSI viewer: {}".format(os.path.basename(self.filename))
+            f"OSI viewer: {os.path.basename(self.filename)}"
         )
 
     def add_bb_object(self, bb_object):
@@ -444,13 +477,9 @@ class View:
         self.unselect()
         self.unselect_object()
         self.picked = True
-        if isinstance(event.artist, patches.Rectangle) or isinstance(
-            event.artist, patches.Polygon
-        ):
+        if isinstance(event.artist, (patches.Rectangle, patches.Polygon)):
             self.select_object(artist=event.artist)
-        elif isinstance(event.artist, mc.LineCollection) or isinstance(
-            event.artist, mc.PathCollection
-        ):
+        elif isinstance(event.artist, (mc.LineCollection, mc.PathCollection)):
             index = self.osi_idx_by_collection[event.artist][event.ind[0]]
             id = self.osi_ids_by_collection[event.artist][event.ind[0]]
             if isinstance(event.artist, mc.LineCollection):
@@ -464,7 +493,7 @@ class View:
                 for isect in self.intersection_ids:
                     if id in isect[1]:
                         self.update_pick_text(
-                            "{} (isect {})".format(event.artist.get_label(), isect[0]),
+                            f"{event.artist.get_label()} (isect {isect[0]})",
                             index,
                             id,
                             event.ind[0],
@@ -686,7 +715,7 @@ class View:
         elif type == 15:
             return "SOUND_BARRIER"
         else:
-            return "UNSUPPORTED: {}".format(type)
+            return f"UNSUPPORTED: {type}"
 
     def unselect_object(self):
         if self.selected_object:
@@ -738,11 +767,7 @@ class View:
                 idx.append(index)
                 lines.append(line)
             else:
-                print(
-                    "skipping lane of type {} with id {}".format(
-                        clf.type, lane.id.value
-                    )
-                )
+                print(f"skipping lane of type {clf.type} with id {lane.id.value}")
 
         self.plot_colors["CenterLine"] = "#BBBBFF"
         collection = mc.LineCollection(
@@ -836,15 +861,11 @@ class View:
 
         if no_line_type:
             print(
-                "Boundary type {} plotted with light gray color".format(
-                    self.rmtype2string(type)
-                )
+                f"Boundary type {self.rmtype2string(type)} plotted with light gray color"
             )
         if unknown_line_type:
             print(
-                "Unsupported lane boundary type: {} plotted with light red color".format(
-                    self.rmtype2string(type)
-                )
+                f"Unsupported lane boundary type: {self.rmtype2string(type)} plotted with light red color"
             )
 
         # road markings
@@ -912,23 +933,13 @@ class View:
                 self.osi_idx_by_stationary[patch] = index
 
     def update_pick_text(self, label, index, id, instance):
-        self.text.set_text(
-            "selected:\n{}\nidx {} id {} # {}\n".format(label, index, id, instance)
-        )
+        self.text.set_text(f"selected:\n{label}\nidx {index} id {id} # {instance}\n")
 
     def update_follow_text(self):
         if self.follow_object_index >= 0:
             obj = self.bb_objects.bb_objects[self.follow_object_index]
             self.text.set_text(
-                "follow: {}\nidx {} id {}\nx {:.2f} y {:.2f}\nh {:.2f} v {:.2f}".format(
-                    obj.patch.get_label(),
-                    self.follow_object_index,
-                    obj.id,
-                    obj.x,
-                    obj.y,
-                    obj.h,
-                    obj.v,
-                )
+                f"follow: {obj.patch.get_label()}\nidx {self.follow_object_index} id {obj.id}\nx {obj.x:.2f} y {obj.y:.2f}\nh {obj.h:.2f} v {obj.v:.2f}"
             )
 
     def select_object(self, artist=None, index=None):
@@ -944,11 +955,7 @@ class View:
                 # stationary object?
                 if artist in self.osi_ids_by_stationary:
                     self.text.set_text(
-                        "selected:\n{}\nids {} idx {}\n".format(
-                            artist.get_label(),
-                            self.osi_ids_by_stationary[artist],
-                            self.osi_idx_by_stationary[artist],
-                        )
+                        f"selected:\n{artist.get_label()}\nids {self.osi_ids_by_stationary[artist]} idx {self.osi_idx_by_stationary[artist]}\n"
                     )
                     return  # no need of update function for stationary objects
                 # else moving object?
@@ -988,6 +995,12 @@ class View:
 
 class OSIMCAPViewer:
     def __init__(self, osi_filename=None, gts=None):
+        if not HAS_VIEWER_DEPS:
+            _warn_missing_deps()
+            raise RuntimeError(
+                "The viewer requires 'matplotlib' and 'numpy', which are not installed. "
+                "Please install them using: pip install 'betterosi[view]'"
+            )
         self.view = None
         self.first_timestamp = 0.0
         if osi_filename is not None:
@@ -1042,15 +1055,19 @@ class OSIMCAPViewer:
 
 
 def main():
+    if not HAS_VIEWER_DEPS:
+        _warn_missing_deps()
+        sys.exit(1)
+
     if len(sys.argv) > 1:
         filename = sys.argv[1]
     else:
-        print("Usage: {} <osi or mcap file>".format(os.path.basename(sys.argv[0])))
-        exit(-1)
+        print(f"Usage: {os.path.basename(sys.argv[0])} <osi or mcap file>")
+        sys.exit(-1)
 
     OSIMCAPViewer(filename)
     plt.show()
-    exit(0)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
